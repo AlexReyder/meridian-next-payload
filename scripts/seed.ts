@@ -670,6 +670,822 @@ const HOME_AUDIENCE_SEED: Record<Locale, BlockData> = {
   },
 }
 
+const HOME_CONCEPTS_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'conceptsHome',
+    eyebrow: 'Portfolio',
+    title: 'Концепты студии',
+    description:
+      'Демонстрационные проекты, показывающие наш подход к сайтам, digital-системам, web-продуктам, client portals и мобильным приложениям.',
+    challengeLabel: 'Задача',
+    structuredLabel: 'Что структурировали',
+    deliveredLabel: 'Что подготовили',
+    viewConceptsLabel: 'Посмотреть концепты',
+    conceptsPageKey: 'concepts',
+    previousAriaLabel: 'Previous concept',
+    nextAriaLabel: 'Next concept',
+    items: [
+      {
+        title: 'B2B-платформа и внутренняя система',
+        badge: 'ДИЗАЙН B2B-СИСТЕМ',
+        challenge:
+          'Собрать в единую digital-систему сложный операционный workflow с несколькими ролями, сценариями согласования и dashboard-логикой.',
+        structured:
+          'Роли и права доступа, ключевые пользовательские сценарии, экранную карту продукта, логику модулей и повседневные сценарии работы команды.',
+        delivered:
+          'Premium prototype, визуальную систему интерфейсов, структуру ключевых экранов и материалы для передачи в разработку.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2014%20%D0%BC%D0%B0%D1%80.%202026%20%D0%B3.%2C%2014_40_41-CePFENS9WLG2LnMAAvGPqCTSEXmfAA.png',
+      },
+      {
+        title: 'Дизайн мобильного приложения',
+        badge: 'ДИЗАЙН МОБИЛЬНЫХ ПРИЛОЖЕНИЙ',
+        challenge:
+          'Упаковать fintech-продукт в понятный mobile-first формат, который можно показать инвесторам и использовать как основу для следующего этапа product delivery.',
+        structured:
+          'Пользовательские сценарии, onboarding flow, логику финансовых экранов, приоритетные модули и структуру mobile app.',
+        delivered:
+          'Investor-ready prototype, визуальное направление, ключевые экраны приложения и материалы для следующего этапа разработки.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2014%20%D0%BC%D0%B0%D1%80.%202026%20%D0%B3.%2C%2014_36_16-zSBwb23xZfTkH98sfm4PeJisalCp4J.png',
+      },
+      {
+        title: 'Клиентский портал и dashboard',
+        badge: 'PORTAL & DASHBOARD DESIGN',
+        challenge:
+          'Превратить сложный сервисный процесс в понятный client portal с прозрачной навигацией, workflow-логикой и role-based структурой.',
+        structured:
+          'Архитектуру portal, пользовательские сценарии, статусы сервисных запросов, экранную матрицу и ключевые точки взаимодействия.',
+        delivered:
+          'Структуру интерфейсов, prototype ключевых экранов, UI-направление и пакет материалов для передачи в разработку.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2014%20%D0%BC%D0%B0%D1%80.%202026%20%D0%B3.%2C%2014_36_44-4Jg9PpfqhaWF1jqQJot1Qe8kayuahF.png',
+      },
+      {
+        title: 'Корпоративный сайт для B2B-компании',
+        badge: 'ДИЗАЙН САЙТОВ',
+        challenge:
+          'Создать корпоративный сайт, который выглядит premium, ясно объясняет сложный сервис и усиливает доверие к компании на этапе первого контакта.',
+        structured:
+          'Архитектуру сайта, иерархию смысловых блоков, логику ключевых страниц, сценарии навигации и подачу сложного B2B-предложения.',
+        delivered:
+          'Визуальную концепцию сайта, структуру основных страниц, UI-систему для web-интерфейса и материалы для передачи в разработку.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%81%D0%B0%D0%B8%CC%86%D1%82%20%D0%B4%D0%BB%D1%8F%20premium%20B2B-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8-SPKXmEMqMFrNE7j2kZJceAyP95E6Wr.png',
+      },
+      {
+        title: 'Investor-ready landing page для startup-продукта',
+        badge: 'STARTUP WEBSITE DESIGN',
+        challenge:
+          'Упаковать ранний продукт в landing page, который помогает быстро объяснить идею, ценность и сценарий продукта инвестору, партнёру или первым клиентам.',
+        structured:
+          'Логику первого экрана, narrative продукта, порядок смысловых блоков, ключевые proof points и визуальную подачу startup-концепции.',
+        delivered:
+          'Landing page concept, структуру сайта, визуальное направление и набор ключевых экранов для запуска или презентации.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Investor-ready%20landing%20page%20%D0%B4%D0%BB%D1%8F%20startup-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-AiYHAxUpvYA99vGPPXm86hKNtp0p4v.png',
+      },
+      {
+        title: 'SaaS-интерфейс для web-продукта',
+        badge: 'WEB PRODUCT DESIGN',
+        challenge:
+          'Собрать интерфейс web-продукта так, чтобы сложная функциональность выглядела понятно, современно и была готова к росту по модулям и ролям.',
+        structured:
+          'Ключевые пользовательские сценарии, экранную архитектуру, продуктовые модули, приоритетные workflows и иерархию основных разделов.',
+        delivered:
+          'Prototype web-продукта, структуру ключевых экранов, базовую систему компонентов и материалы для передачи в разработку.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SaaS-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B8%CC%86%D1%81%20%D0%B4%D0%BB%D1%8F%20web-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-8Gn65RinntBPWpZHQNjQi1hZLKvCaJ.png',
+      },
+      {
+        title: 'Сервисная платформа / booking interface',
+        badge: 'SERVICE PLATFORM DESIGN',
+        challenge:
+          'Превратить сложный клиентский сервис в понятный digital-продукт с прозрачным поиском, выбором, booking flow и личным кабинетом.',
+        structured:
+          'Путь пользователя от выбора до бронирования, логику сервиса, ключевые точки принятия решения, статусы, экранную карту и сценарии повторного взаимодействия.',
+        delivered:
+          'Структуру платформы, prototype ключевых flows, UI-направление и материалы для следующего этапа продукта.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%3A%20booking%20interface-qA90VaWibxKuGT5KGLlC9qTlSMGM6O.png',
+      },
+    ],
+  },
+  en: {
+    blockType: 'conceptsHome',
+    eyebrow: 'Portfolio',
+    title: 'Studio Concepts',
+    description:
+      'Demonstration projects showcasing our approach to websites, digital systems, web products, client portals, and mobile apps.',
+    challengeLabel: 'Challenge',
+    structuredLabel: 'What We Structured',
+    deliveredLabel: 'What We Prepared',
+    viewConceptsLabel: 'View Concepts',
+    conceptsPageKey: 'concepts',
+    previousAriaLabel: 'Previous concept',
+    nextAriaLabel: 'Next concept',
+    items: [
+      {
+        title: 'B2B Platform & Internal System',
+        badge: 'B2B SYSTEM DESIGN',
+        challenge:
+          'Build a unified digital system from a complex operational workflow with multiple roles, approval scenarios, and dashboard logic.',
+        structured:
+          'Roles and permissions, key user scenarios, product screen map, module logic, and daily team workflows.',
+        delivered:
+          'Premium prototype, visual interface system, key screen structure, and dev handoff materials.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/B2B-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%D0%B8%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0-nfjB6TIcpHm2krsv9QxEOV6JqBP6jO.png',
+      },
+      {
+        title: 'Mobile App Design',
+        badge: 'MOBILE APP DESIGN',
+        challenge:
+          'Package a fintech product in a clear mobile-first format that can be shown to investors and used as a foundation for the next product delivery stage.',
+        structured:
+          'User scenarios, onboarding flow, financial screen logic, priority modules, and mobile app structure.',
+        delivered:
+          'Investor-ready prototype, visual direction, key app screens, and materials for the next development stage.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%94%D0%B8%D0%B7%D0%B0%D0%B8%CC%86%D0%BD%20%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F-WPXYUHUvoGBadJ6HNUNIFKIWraf70B.png',
+      },
+      {
+        title: 'Client Portal & Dashboard',
+        badge: 'PORTAL & DASHBOARD DESIGN',
+        challenge:
+          'Transform a complex service process into a clear client portal with transparent navigation, workflow logic, and role-based structure.',
+        structured:
+          'Portal architecture, user scenarios, service request statuses, screen matrix, and key interaction points.',
+        delivered:
+          'Interface structure, key screen prototype, UI direction, and dev handoff package.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9A%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D1%81%D0%BA%D0%B8%D0%B8%CC%86%20%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D0%BB%20%D0%B8%20dashboard-JlI8wKPt6UWq4rRVcyFQXwBsL2XAHb.png',
+      },
+      {
+        title: 'Corporate Website for B2B Company',
+        badge: 'WEBSITE DESIGN',
+        challenge:
+          'Create a corporate website that looks premium, clearly explains a complex service, and builds trust at first contact.',
+        structured:
+          'Site architecture, content block hierarchy, key page logic, navigation scenarios, and complex B2B offering presentation.',
+        delivered:
+          'Website visual concept, main page structure, UI system for web interface, and dev handoff materials.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%81%D0%B0%D0%B8%CC%86%D1%82%20%D0%B4%D0%BB%D1%8F%20premium%20B2B-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8-6RgbOJ9HFWZMTpHDeV3gRjnxMU9UZF.png',
+      },
+      {
+        title: 'Investor-Ready Startup Landing Page',
+        badge: 'STARTUP WEBSITE DESIGN',
+        challenge:
+          'Package an early-stage product into a landing page that quickly explains the idea, value, and product scenario to investors, partners, or first customers.',
+        structured:
+          'First screen logic, product narrative, content block order, key proof points, and startup concept visual presentation.',
+        delivered:
+          'Landing page concept, site structure, visual direction, and key screens for launch or presentation.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Investor-ready%20landing%20page%20%D0%B4%D0%BB%D1%8F%20startup-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-b85KxA9lUQySVtGgn38fMd2GX2STAN.png',
+      },
+      {
+        title: 'SaaS Interface for Web Product',
+        badge: 'WEB PRODUCT DESIGN',
+        challenge:
+          'Build a web product interface so that complex functionality looks clear, modern, and is ready to grow by modules and roles.',
+        structured:
+          'Key user scenarios, screen architecture, product modules, priority workflows, and main section hierarchy.',
+        delivered:
+          'Web product prototype, key screen structure, basic component system, and dev handoff materials.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SaaS-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B8%CC%86%D1%81%20%D0%B4%D0%BB%D1%8F%20web-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-ypxGBLA8NjWgvW2cxBxjUL68xoXEGf.png',
+      },
+      {
+        title: 'Service Platform / Booking Interface',
+        badge: 'SERVICE PLATFORM DESIGN',
+        challenge:
+          'Transform a complex client service into a clear digital product with transparent search, selection, booking flow, and personal dashboard.',
+        structured:
+          'User journey from selection to booking, service logic, key decision points, statuses, screen map, and repeat interaction scenarios.',
+        delivered:
+          'Platform structure, key flow prototype, UI direction, and materials for the next product stage.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%3A%20booking%20interface-LmkTbFEVKsDBsJTHI6LSbVWUfH0eCy.png',
+      },
+    ],
+  },
+  ar: {
+    blockType: 'conceptsHome',
+    eyebrow: 'مفاهيم الاستوديو',
+    title: 'مفاهيم الاستوديو',
+    description:
+      'مشاريع عرض توضح كيف نتعامل مع المواقع والأنظمة الرقمية والبوابات وتطبيقات الجوال من حيث الهيكل والمنطق البصري وجودة المخرجات.',
+    challengeLabel: 'التحدي',
+    structuredLabel: 'ما هيكلناه',
+    deliveredLabel: 'ما سلّمناه',
+    viewConceptsLabel: 'استعرض المفاهيم',
+    conceptsPageKey: 'concepts',
+    previousAriaLabel: 'النموذج السابق',
+    nextAriaLabel: 'النموذج التالي',
+    items: [
+      {
+        title: 'منصة B2B ونظام داخلي',
+        badge: 'تصميم أنظمة B2B',
+        challenge:
+          'بناء نظام رقمي موحد من سير عمل تشغيلي معقد بأدوار متعددة وسيناريوهات موافقة ومنطق لوحات تحكم.',
+        structured:
+          'الأدوار والصلاحيات، سيناريوهات المستخدم الرئيسية، خريطة شاشات المنتج، منطق الوحدات، وسير عمل الفريق اليومي.',
+        delivered:
+          'نموذج أولي احترافي، نظام واجهة بصري، هيكل الشاشات الرئيسية، ومواد تسليم المطورين.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/B2B-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%D0%B8%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0-nfjB6TIcpHm2krsv9QxEOV6JqBP6jO.png',
+      },
+      {
+        title: 'تصميم تطبيق موبايل',
+        badge: 'تصميم تطبيقات الموبايل',
+        challenge:
+          'تغليف منتج fintech في تنسيق mobile-first واضح يمكن عرضه على المستثمرين واستخدامه كأساس للمرحلة التالية.',
+        structured:
+          'سيناريوهات المستخدم، تدفق التسجيل، منطق الشاشات المالية، الوحدات ذات الأولوية، وهيكل التطبيق.',
+        delivered:
+          'نموذج أولي جاهز للمستثمرين، توجه بصري، شاشات التطبيق الرئيسية، ومواد للمرحلة التطويرية التالية.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%94%D0%B8%D0%B7%D0%B0%D0%B8%CC%86%D0%BD%20%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F-WPXYUHUvoGBadJ6HNUNIFKIWraf70B.png',
+      },
+      {
+        title: 'بوابة العملاء ولوحة التحكم',
+        badge: 'تصميم البوابات ولوحات التحكم',
+        challenge:
+          'تحويل عملية خدمة معقدة إلى بوابة عملاء واضحة بتنقل شفاف ومنطق سير عمل وهيكل قائم على الأدوار.',
+        structured:
+          'هيكل البوابة، سيناريوهات المستخدم، حالات طلبات الخدمة، مصفوفة الشاشات، ونقاط التفاعل الرئيسية.',
+        delivered:
+          'هيكل الواجهة، نموذج الشاشات الرئيسية، توجه UI، وحزمة تسليم المطورين.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9A%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D1%81%D0%BA%D0%B8%D0%B8%CC%86%20%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D0%BB%20%D0%B8%20dashboard-JlI8wKPt6UWq4rRVcyFQXwBsL2XAHb.png',
+      },
+      {
+        title: 'موقع شركة B2B',
+        badge: 'تصميم المواقع',
+        challenge:
+          'إنشاء موقع شركة يبدو احترافياً، ويشرح خدمة معقدة بوضوح، ويبني الثقة من أول تواصل.',
+        structured:
+          'هيكل الموقع، تسلسل كتل المحتوى، منطق الصفحات الرئيسية، سيناريوهات التنقل، وعرض خدمة B2B المعقدة.',
+        delivered:
+          'مفهوم الموقع البصري، هيكل الصفحة الرئيسية، نظام UI للواجهة الويب، ومواد تسليم المطورين.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%81%D0%B0%D0%B8%CC%86%D1%82%20%D0%B4%D0%BB%D1%8F%20premium%20B2B-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8-6RgbOJ9HFWZMTpHDeV3gRjnxMU9UZF.png',
+      },
+      {
+        title: 'صفحة هبوط جاهزة للمستثمرين',
+        badge: 'تصميم مواقع الشركات الناشئة',
+        challenge:
+          'تغليف منتج في مرحلة مبكرة في صفحة هبوط تشرح بسرعة الفكرة والقيمة وسيناريو المنتج للمستثمرين أو الشركاء أو العملاء الأوائل.',
+        structured:
+          'منطق الشاشة الأولى، سرد المنتج، ترتيب كتل المحتوى، نقاط الإثبات الرئيسية، والعرض البصري لمفهوم الشركة الناشئة.',
+        delivered:
+          'مفهوم صفحة الهبوط، هيكل الموقع، توجه بصري، والشاشات الرئيسية للإطلاق أو العرض.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Investor-ready%20landing%20page%20%D0%B4%D0%BB%D1%8F%20startup-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-b85KxA9lUQySVtGgn38fMd2GX2STAN.png',
+      },
+      {
+        title: 'واجهة SaaS لمنتج ويب',
+        badge: 'تصميم منتجات الويب',
+        challenge:
+          'بناء واجهة منتج ويب بحيث تبدو الوظائف المعقدة واضحة وعصرية وجاهزة للنمو بالوحدات والأدوار.',
+        structured:
+          'سيناريوهات المستخدم الرئيسية، هيكل الشاشات، وحدات المنتج، سير العمل ذات الأولوية، وتسلسل الأقسام الرئيسية.',
+        delivered:
+          'نموذج منتج الويب، هيكل الشاشات الرئيسية، نظام مكونات أساسي، ومواد تسليم المطورين.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SaaS-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%81%D0%A8%D0%BA%D0%B8%D0%B5%D0%A1%20%D0%B4%D0%BB%D1%8F%20web-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-ypxGBLA8NjWgvW2cxBxjUL68xoXEGf.png',
+      },
+      {
+        title: 'منصة خدمات / واجهة حجز',
+        badge: 'تصميم منصات الخدمات',
+        challenge:
+          'تحويل خدمة عملاء معقدة إلى منتج رقمي واضح ببحث شفاف واختيار وتدفق حجز ولوحة تحكم شخصية.',
+        structured:
+          'رحلة المستخدم من الاختيار إلى الحجز، منطق الخدمة، نقاط القرار الرئيسية، الحالات، خريطة الشاشات، وسيناريوهات التفاعل المتكرر.',
+        delivered:
+          'هيكل المنصة، نموذج التدفق الرئيسي، توجه UI، ومواد للمرحلة التالية من المنتج.',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%3A%20booking%20interface-LmkTbFEVKsDBsJTHI6LSbVWUfH0eCy.png',
+      },
+    ],
+  },
+}
+
+const HOME_METHOD_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'methodHome',
+    sectionId: 'method',
+    eyebrow: 'Process',
+    title: 'Метод работы',
+    description: 'Async-first подход. Меньше лишних созвонов, понятный scope, быстрее согласование.',
+    items: [
+      {
+        number: '01',
+        title: 'Scope',
+        description:
+          'Фиксируем границы проекта, роли и ключевые сценарии. Scope становится понятным до старта работы.',
+        details: [{ label: 'Async brief' }, { label: 'Scope document' }, { label: 'Timeline estimate' }],
+      },
+      {
+        number: '02',
+        title: 'Frame',
+        description:
+          'Формулируем продуктовую логику. Структурный каркас, который станет основой для всех решений.',
+        details: [{ label: 'Goal alignment' }, { label: 'Constraints map' }, { label: 'Success criteria' }],
+      },
+      {
+        number: '03',
+        title: 'Architect',
+        description:
+          'Проектируем UX-архитектуру: роли, сценарии, экранную структуру. До первого пикселя дизайна.',
+        details: [{ label: 'Role map' }, { label: 'User scenarios' }, { label: 'Screen matrix' }],
+      },
+      {
+        number: '04',
+        title: 'Design',
+        description:
+          'Создаём premium-интерфейсы. Визуальное направление, UI-система, интерактивный prototype.',
+        details: [{ label: 'Визуальное направление' }, { label: 'UI-компоненты' }, { label: 'Прототип' }],
+      },
+      {
+        number: '05',
+        title: 'Deliver',
+        description:
+          'Передаём в разработку с понятной документацией — без лишних вопросов.',
+        details: [{ label: 'Design system' }, { label: 'Сводка для разработки' }, { label: 'Developer support' }],
+      },
+    ],
+  },
+  en: {
+    blockType: 'methodHome',
+    sectionId: 'method',
+    eyebrow: 'Process',
+    title: 'How We Work',
+    description: 'Async-first approach. Fewer unnecessary calls, clear scope, faster approvals.',
+    items: [
+      {
+        number: '01',
+        title: 'Scope',
+        description:
+          'We define project boundaries, roles, and key scenarios. Scope is fixed before work begins.',
+        details: [{ label: 'Async brief' }, { label: 'Scope document' }, { label: 'Timeline estimate' }],
+      },
+      {
+        number: '02',
+        title: 'Frame',
+        description:
+          'We formulate the product logic. A structural framework as the foundation for all decisions.',
+        details: [{ label: 'Goal alignment' }, { label: 'Constraints map' }, { label: 'Success criteria' }],
+      },
+      {
+        number: '03',
+        title: 'Architect',
+        description:
+          'We design the UX architecture: roles, flows, screen structure. Before the first pixel of design.',
+        details: [{ label: 'Role map' }, { label: 'User scenarios' }, { label: 'Screen matrix' }],
+      },
+      {
+        number: '04',
+        title: 'Design',
+        description:
+          'We create premium interfaces. Visual direction, UI system, interactive prototype.',
+        details: [{ label: 'Visual direction' }, { label: 'UI components' }, { label: 'Prototype' }],
+      },
+      {
+        number: '05',
+        title: 'Deliver',
+        description:
+          'We hand off to development with clear documentation — no extra questions needed.',
+        details: [{ label: 'Design system' }, { label: 'Dev summary' }, { label: 'Developer support' }],
+      },
+    ],
+  },
+  ar: {
+    blockType: 'methodHome',
+    sectionId: 'method',
+    eyebrow: 'المنهجية',
+    title: 'كيف نعمل',
+    description: 'منهجية غير متزامنة أولاً. مكالمات أقل، نطاق واضح، موافقات أسرع.',
+    items: [
+      {
+        number: '01',
+        title: 'النطاق',
+        description:
+          'نحدد حدود المشروع والأدوار والسيناريوهات الرئيسية. النطاق ثابت قبل بدء العمل.',
+        details: [{ label: 'ملخص غير متزامن' }, { label: 'وثيقة النطاق' }, { label: 'تقدير الجدول الزمني' }],
+      },
+      {
+        number: '02',
+        title: 'الإطار',
+        description:
+          'نصوغ منطق المنتج. إطار هيكلي كأساس لجميع القرارات.',
+        details: [{ label: 'توافق الأهداف' }, { label: 'خريطة القيود' }, { label: 'معايير النجاح' }],
+      },
+      {
+        number: '03',
+        title: 'الهندسة',
+        description:
+          'نصمم هندسة تجربة المستخدم: الأدوار، التدفقات، هيكل الشاشات. قبل أول بكسل من التصميم.',
+        details: [{ label: 'خريطة الأدوار' }, { label: 'سيناريوهات المستخدم' }, { label: 'مصفوفة الشاشات' }],
+      },
+      {
+        number: '04',
+        title: 'التصميم',
+        description:
+          'ننشئ واجهات احترافية. التوجه البصري، نظام UI، النموذج التفاعلي.',
+        details: [{ label: 'التوجه البصري' }, { label: 'مكونات UI' }, { label: 'النموذج الأولي' }],
+      },
+      {
+        number: '05',
+        title: 'التسليم',
+        description:
+          'نسلّم للتطوير بتوثيق واضح — لا حاجة لأسئلة إضافية.',
+        details: [{ label: 'نظام التصميم' }, { label: 'ملخص التطوير' }, { label: 'دعم المطورين' }],
+      },
+    ],
+  },
+}
+
+const HOME_PROPOSAL_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'proposalHome',
+    sectionId: 'proposal',
+    title: 'Закажите дизайн сайта, системы или приложения',
+    description:
+      'Расскажите о проекте — сайт, портал, B2B-система или mobile app. Мы предложим формат работы, сроки и стоимость без обязательного звонка.',
+    steps: [
+      {
+        icon: 'fileText',
+        title: 'Оставьте бриф',
+        description: 'Опишите сайт, систему или приложение',
+      },
+      {
+        icon: 'mail',
+        title: 'Получите рекомендацию',
+        description: 'Формат, сроки и ориентир по стоимости',
+      },
+      {
+        icon: 'checkCircle',
+        title: 'Подтвердите следующий шаг',
+        description: 'Или пришлите дополнительные материалы',
+      },
+    ],
+    ctaLabel: 'Получить предложение',
+    ctaPageKey: 'get-proposal',
+    footerNote: 'Для сайта, mobile app, портала или digital-системы',
+  },
+  en: {
+    blockType: 'proposalHome',
+    sectionId: 'proposal',
+    title: 'Order Website, System, or App Design',
+    description:
+      "Tell us about your project — website, portal, B2B system, or mobile app. We'll propose a work format, timeline, and pricing without a mandatory call.",
+    steps: [
+      {
+        icon: 'fileText',
+        title: 'Submit a Brief',
+        description: 'Describe your website, system, or app',
+      },
+      {
+        icon: 'mail',
+        title: 'Get a Recommendation',
+        description: 'Format, timeline, and price estimate',
+      },
+      {
+        icon: 'checkCircle',
+        title: 'Confirm Next Step',
+        description: 'Or send additional materials',
+      },
+    ],
+    ctaLabel: 'Get Proposal',
+    ctaPageKey: 'get-proposal',
+    footerNote: 'For websites, mobile apps, portals, or digital systems',
+  },
+  ar: {
+    blockType: 'proposalHome',
+    sectionId: 'proposal',
+    title: 'اطلب تصميم موقع أو نظام أو تطبيق',
+    description:
+      'أخبرنا عن مشروعك — موقع، بوابة، نظام B2B، أو تطبيق موبايل. سنقترح صيغة العمل والجدول الزمني والتسعير بدون مكالمة إلزامية.',
+    steps: [
+      {
+        icon: 'fileText',
+        title: 'أرسل ملخصاً',
+        description: 'صف موقعك أو نظامك أو تطبيقك',
+      },
+      {
+        icon: 'mail',
+        title: 'احصل على توصية',
+        description: 'الصيغة والجدول الزمني وتقدير السعر',
+      },
+      {
+        icon: 'checkCircle',
+        title: 'أكد الخطوة التالية',
+        description: 'أو أرسل مواد إضافية',
+      },
+    ],
+    ctaLabel: 'طلب عرض',
+    ctaPageKey: 'get-proposal',
+    footerNote: 'للمواقع وتطبيقات الموبايل والبوابات والأنظمة الرقمية',
+  },
+}
+
+const HOME_SAMPLE_PREVIEW_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'samplePreviewHome',
+    eyebrow: 'Материалы первого этапа',
+    title: 'Что вы получаете на первом этапе',
+    description:
+      'Структура, логика, прототип и документация — всё, что нужно для уверенного старта разработки.',
+    items: [
+      {
+        title: 'Структурная рамка',
+        subtitle: 'Цели, контекст, границы проекта',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%BC%D0%BA%D0%B0-ymV853nVDkOWvhLmmek2QmfUFbENUM.png',
+        alt: 'Strategic framing document showing goals, scope, criteria, priorities and restrictions',
+      },
+      {
+        title: 'Архитектура сценариев',
+        subtitle: 'Структура пользовательских flows',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%B0%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B5%D0%B2%20-1nYqEzacq4GuL3RHRwA9Ss9VDASxnW.png',
+        alt: 'Flow architecture diagram showing entry points, choices, success and warning paths',
+      },
+      {
+        title: 'Экранная матрица',
+        subtitle: 'Матрица экранов по ролям',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BC%D0%B0%D1%82%D1%80%D0%B8%D1%86%D0%B0%20-ERkytJ7R8AhKODiumExXqNLPexWfT8.png',
+        alt: 'Screen matrix showing role-based screen structure across Core, Finance, Team Leads, and Users',
+      },
+      {
+        title: 'Интерактивный прототип',
+        subtitle: 'Кликабельный прототип ключевых flows',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B8%CC%86%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-sl3pKDIW3vAOChr0PT1KdWnbmO8RND.png',
+        alt: 'Interactive prototype showing laptop and mobile app with polished UI',
+      },
+    ],
+    bottomNote:
+      'Все материалы передаются в Figma с полной документацией и готовы к обсуждению с командой разработки.',
+  },
+  en: {
+    blockType: 'samplePreviewHome',
+    eyebrow: 'First Phase Deliverables',
+    title: 'What You Get in the First Phase',
+    description:
+      'Structure, logic, prototype, and documentation — everything needed for a confident dev kickoff.',
+    items: [
+      {
+        title: 'Structural Framework',
+        subtitle: 'Goals, context, project boundaries',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-izxISwxnsh153iue55fxis0BfXpJZy.png',
+        alt: 'Strategic framing document showing goals, scope, criteria, priorities and restrictions',
+      },
+      {
+        title: 'Scenario Architecture',
+        subtitle: 'User flow structure',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B8-6Cd1Gr0fJ9T1bQvpwusenVE1qH0EeF.png',
+        alt: 'User scenarios diagram showing entry points, choices, success and warning paths',
+      },
+      {
+        title: 'Screen Matrix',
+        subtitle: 'Role-based screen map',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20-CjniSYt05jhRhvZGAnVzEoa5nOSJcb.png',
+        alt: 'Screen matrix showing role-based screen structure across Core, Finance, Team Leads, and Users',
+      },
+      {
+        title: 'Interactive Prototype',
+        subtitle: 'Clickable prototype of key flows',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B8%CC%86%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-f73wC5LUW8rwRcU9w00neMYkmRnmYY.png',
+        alt: 'Interactive prototype showing laptop and mobile app with polished UI',
+      },
+    ],
+    bottomNote:
+      'All materials are delivered in Figma with full documentation, ready to discuss with your dev team.',
+  },
+  ar: {
+    blockType: 'samplePreviewHome',
+    eyebrow: 'تسليمات المرحلة الأولى',
+    title: 'ما تحصل عليه في المرحلة الأولى',
+    description:
+      'الهيكلة، المنطق، النموذج الأولي، والتوثيق — كل ما تحتاجه لبداية تطوير واثقة.',
+    items: [
+      {
+        title: 'الإطار الهيكلي',
+        subtitle: 'الأهداف، السياق، حدود المشروع',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-izxISwxnsh153iue55fxis0BfXpJZy.png',
+        alt: 'وثيقة الإطار الاستراتيجي توضح الأهداف والنطاق والمعايير والأولويات والقيود',
+      },
+      {
+        title: 'هندسة السيناريوهات',
+        subtitle: 'هيكل تدفق المستخدم',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B8-6Cd1Gr0fJ9T1bQvpwusenVE1qH0EeF.png',
+        alt: 'مخطط سيناريوهات المستخدم يوضح نقاط الدخول والاختيارات ومسارات النجاح والتحذير',
+      },
+      {
+        title: 'مصفوفة الشاشات',
+        subtitle: 'خريطة الشاشات حسب الدور',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20-CjniSYt05jhRhvZGAnVzEoa5nOSJcb.png',
+        alt: 'مصفوفة الشاشات توضح هيكل الشاشات حسب الأدوار عبر الأساسي والمالية وقادة الفرق والمستخدمين',
+      },
+      {
+        title: 'النموذج التفاعلي',
+        subtitle: 'نموذج قابل للنقر للتدفقات الرئيسية',
+        imageUrl:
+          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D8%B1%D0%A7%D0%83%D0%A8%D0%AA%D0%B8%D0%A2%D0%B2%D0%A8%D0%A8%D0%88%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-f73wC5LUW8rwRcU9w00neMYkmRnmYY.png',
+        alt: 'نموذج تفاعلي يعرض لابتوب وتطبيق موبايل بواجهة مصقولة',
+      },
+    ],
+    bottomNote:
+      'جميع المواد تُسلّم في Figma مع توثيق كامل، جاهزة للمناقشة مع فريق التطوير.',
+  },
+}
+
+const HOME_TRUST_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'trustHome',
+    items: [
+      { label: 'Дизайн сайтов, порталов и B2B-систем' },
+      { label: 'Мобильные приложения и dashboards' },
+      { label: 'Редизайн и UX/UI-улучшение' },
+      { label: 'От структуры до передачи в разработку' },
+    ],
+  },
+  en: {
+    blockType: 'trustHome',
+    items: [
+      { label: 'Website, portal, and B2B system design' },
+      { label: 'Mobile apps and dashboards' },
+      { label: 'Redesign and UX/UI improvement' },
+      { label: 'From structure to dev handoff' },
+    ],
+  },
+  ar: {
+    blockType: 'trustHome',
+    items: [
+      { label: 'تصميم المواقع والبوابات وأنظمة B2B' },
+      { label: 'تطبيقات الموبايل ولوحات التحكم' },
+      { label: 'إعادة التصميم وتحسين UX/UI' },
+      { label: 'من الهيكلة إلى تسليم المطورين' },
+    ],
+  },
+}
+
+const HOME_FAQ_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'faqHome',
+    eyebrow: 'FAQ',
+    title: 'Частые вопросы',
+    items: [
+      {
+        question: 'С какими проектами вы работаете?',
+        answer:
+          'Мы проектируем сайты, корпоративные порталы, B2B-платформы, клиентские системы, dashboards и мобильные приложения. Работаем как с новыми проектами, так и с редизайном существующих продуктов.',
+      },
+      {
+        question: 'Что я получу после отправки brief?',
+        answer:
+          'В течение 24-48 часов вы получите рекомендацию по формату работы, ориентир по срокам и стартовую стоимость — для сайта, системы или приложения любой сложности.',
+      },
+      {
+        question: 'Можно ли работать без звонков?',
+        answer:
+          'Да, мы работаем async-first. Большинство коммуникации происходит в письменном формате. Созвоны — по необходимости и с понятной agenda.',
+      },
+      {
+        question: 'Поддерживаете ли вы white-label формат?',
+        answer:
+          'Да. Для партнёров и integrators у нас есть White-Label Partner Desk. Вы получаете premium дизайн сайтов, систем и приложений под своим брендом.',
+      },
+      {
+        question: 'Можно ли прийти с существующим сайтом или системой для редизайна?',
+        answer:
+          'Конечно. Мы работаем как с идеями на этапе концепции, так и с редизайном существующих сайтов, порталов и digital-продуктов.',
+      },
+      {
+        question: 'Подписываете ли вы NDA?',
+        answer:
+          'Да, стандартная практика. Отправьте ваш NDA или используйте наш шаблон — подпишем до начала обсуждения деталей.',
+      },
+      {
+        question: 'Как быстро может стартовать проект?',
+        answer:
+          'Обычно через 3-5 рабочих дней после согласования scope и оплаты. При срочной необходимости — обсуждаем приоритетный старт.',
+      },
+      {
+        question: 'Вы помогаете только с дизайном или со структурой продукта тоже?',
+        answer:
+          'Мы начинаем со структуры. Product framing, UX-архитектура, роли и flows — это основа. Дизайн сайта, системы или приложения строится на этом фундаменте.',
+      },
+    ],
+  },
+  en: {
+    blockType: 'faqHome',
+    eyebrow: 'FAQ',
+    title: 'Frequently Asked Questions',
+    items: [
+      {
+        question: 'What kind of projects do you work on?',
+        answer:
+          'We design websites, corporate portals, B2B platforms, client systems, dashboards, and mobile apps. We work with both new projects and redesigns of existing products.',
+      },
+      {
+        question: 'What will I get after submitting a brief?',
+        answer:
+          "Within 24-48 hours, you'll receive a recommendation on the work format, timeline estimate, and starting price — for a website, system, or app of any complexity.",
+      },
+      {
+        question: 'Can we work without video calls?',
+        answer:
+          'Yes, we work async-first. Most communication happens in writing. Calls are scheduled only when needed and with a clear agenda.',
+      },
+      {
+        question: 'Do you support white-label format?',
+        answer:
+          'Yes. For partners and integrators, we offer the White-Label Partner Desk. You get premium website, system, and app design under your own brand.',
+      },
+      {
+        question: 'Can I come with an existing website or system for redesign?',
+        answer:
+          'Absolutely. We work with both early-stage concepts and redesigns of existing websites, portals, and digital products.',
+      },
+      {
+        question: 'Do you sign NDAs?',
+        answer:
+          "Yes, it's standard practice. Send us your NDA or use our template — we'll sign before discussing details.",
+      },
+      {
+        question: 'How quickly can a project start?',
+        answer:
+          'Usually within 3-5 business days after scope approval and payment. For urgent needs, we can discuss priority start.',
+      },
+      {
+        question: 'Do you only help with design or with product structure too?',
+        answer:
+          'We start with structure. Product framing, UX architecture, roles, and flows — that’s the foundation. Website, system, or app design is built on this base.',
+      },
+    ],
+  },
+  ar: {
+    blockType: 'faqHome',
+    eyebrow: 'الأسئلة الشائعة',
+    title: 'الأسئلة الشائعة',
+    items: [
+      {
+        question: 'ما نوع المشاريع التي تعملون عليها؟',
+        answer:
+          'نصمم المواقع والبوابات المؤسسية ومنصات B2B وأنظمة العملاء ولوحات التحكم وتطبيقات الموبايل. نعمل مع المشاريع الجديدة وإعادة تصميم المنتجات الحالية.',
+      },
+      {
+        question: 'ماذا سأحصل عليه بعد إرسال الملخص؟',
+        answer:
+          'خلال 24-48 ساعة، ستحصل على توصية بصيغة العمل وتقدير الجدول الزمني والسعر المبدئي — لموقع أو نظام أو تطبيق بأي درجة من التعقيد.',
+      },
+      {
+        question: 'هل يمكننا العمل بدون مكالمات فيديو؟',
+        answer:
+          'نعم، نعمل بمنهجية غير متزامنة أولاً. معظم التواصل يتم كتابياً. المكالمات تُجدول فقط عند الحاجة ومع أجندة واضحة.',
+      },
+      {
+        question: 'هل تدعمون صيغة White-label؟',
+        answer:
+          'نعم. للشركاء والمتكاملين، نقدم مكتب شراكة White-Label. تحصل على تصميم مواقع وأنظمة وتطبيقات احترافي تحت علامتك التجارية.',
+      },
+      {
+        question: 'هل يمكنني القدوم بموقع أو نظام حالي لإعادة التصميم؟',
+        answer:
+          'بالتأكيد. نعمل مع المفاهيم في مراحلها المبكرة وإعادة تصميم المواقع والبوابات والمنتجات الرقمية الحالية.',
+      },
+      {
+        question: 'هل توقعون اتفاقيات عدم الإفصاح (NDA)؟',
+        answer:
+          'نعم، هذا إجراء معتاد. أرسل لنا اتفاقية عدم الإفصاح الخاصة بك أو استخدم نموذجنا — سنوقع قبل مناقشة التفاصيل.',
+      },
+      {
+        question: 'ما مدى سرعة بدء المشروع؟',
+        answer:
+          'عادة خلال 3-5 أيام عمل بعد الموافقة على النطاق والدفع. للاحتياجات العاجلة، يمكننا مناقشة البداية ذات الأولوية.',
+      },
+      {
+        question: 'هل تساعدون في التصميم فقط أم في هيكلة المنتج أيضاً؟',
+        answer:
+          'نبدأ بالهيكلة. إطار المنتج، هندسة تجربة المستخدم، الأدوار، والتدفقات — هذا هو الأساس. تصميم الموقع أو النظام أو التطبيق يُبنى على هذا الأساس.',
+      },
+    ],
+  },
+}
+
 function upsertBlock(layout: BlockData[], nextBlock: BlockData): BlockData[] {
   const existingIndex = layout.findIndex((block) => block?.blockType === nextBlock.blockType)
 
@@ -799,14 +1615,37 @@ async function main() {
 //   await seedBlockForLocale(payload, homePage.id, 'en', HOME_DELIVERABLES_SEED.en)
 //   await seedBlockForLocale(payload, homePage.id, 'ar', HOME_DELIVERABLES_SEED.ar)
 
-await seedBlockForLocale(payload, homePage.id, 'ru', HOME_WHY_SEED.ru)
-await seedBlockForLocale(payload, homePage.id, 'en', HOME_WHY_SEED.en)
-await seedBlockForLocale(payload, homePage.id, 'ar', HOME_WHY_SEED.ar)
+    // await seedBlockForLocale(payload, homePage.id, 'ru', HOME_WHY_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', HOME_WHY_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', HOME_WHY_SEED.ar)
 
-await seedBlockForLocale(payload, homePage.id, 'ru', HOME_AUDIENCE_SEED.ru)
-await seedBlockForLocale(payload, homePage.id, 'en', HOME_AUDIENCE_SEED.en)
-await seedBlockForLocale(payload, homePage.id, 'ar', HOME_AUDIENCE_SEED.ar)
+    // await seedBlockForLocale(payload, homePage.id, 'ru', HOME_AUDIENCE_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', HOME_AUDIENCE_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', HOME_AUDIENCE_SEED.ar)
+
+    // await seedBlockForLocale(payload, homePage.id, 'ru', HOME_CONCEPTS_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', HOME_CONCEPTS_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', HOME_CONCEPTS_SEED.ar)
+
+    // await seedBlockForLocale(payload, homePage.id, 'ru', HOME_METHOD_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', HOME_METHOD_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', HOME_METHOD_SEED.ar)
   
+    // await seedBlockForLocale(payload, homePage.id, 'ru', HOME_PROPOSAL_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', HOME_PROPOSAL_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', HOME_PROPOSAL_SEED.ar)
+
+    // await seedBlockForLocale(payload, homePage.id, 'ru', HOME_SAMPLE_PREVIEW_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', HOME_SAMPLE_PREVIEW_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', HOME_SAMPLE_PREVIEW_SEED.ar)
+
+    await seedBlockForLocale(payload, homePage.id, 'ru', HOME_TRUST_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', HOME_TRUST_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', HOME_TRUST_SEED.ar)
+
+    await seedBlockForLocale(payload, homePage.id, 'ru', HOME_FAQ_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', HOME_FAQ_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', HOME_FAQ_SEED.ar)
   console.log('✅ Home hero seed completed')
   process.exit(0)
 }

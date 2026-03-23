@@ -1,12 +1,18 @@
 import type { CollectionConfig } from 'payload'
 
 import { HeroBlock } from '../blocks/HeroBlock.ts'
-import { PAGE_KEY_OPTIONS } from '../lib/routes.ts'
-import { ValueHomeBlock } from '@/blocks/ValueHomeBlock.ts'
+import { PAGE_KEY_OPTIONS } from '../lib/routes'
+import { ValueHomeBlock } from '@/blocks/ValueHomeBlock'
 import { VideoWalkthroughHomeBlock } from '@/blocks/VideoWalkThroughHome'
 import { DeliverablesHomeBlock } from '@/blocks/DeliverablesHomeBlock'
 import { WhyHomeBlock } from '@/blocks/WhyHomeBlock'
 import { AudienceHomeBlock } from '@/blocks/AudienceHomeBlock'
+import { ConceptsHomeBlock } from '@/blocks/ConceptsHomeBlock'
+import { MethodHomeBlock } from '@/blocks/MethodHomeBlock'
+import { ProposalHomeBlock } from '@/blocks/ProposalHomeBlock'
+import { SamplePreviewHomeBlock } from '@/blocks/SamplePreviewHomeBlock'
+import { TrustHomeBlock } from '@/blocks/TrustHomeBlock'
+import { FaqHomeBlock } from '@/blocks/FaqHomeBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -49,8 +55,20 @@ export const Pages: CollectionConfig = {
       type: 'blocks',
       localized: true,
       required: true,
-      blocks: [HeroBlock, ValueHomeBlock, VideoWalkthroughHomeBlock, DeliverablesHomeBlock, WhyHomeBlock,
-  AudienceHomeBlock,],
+      blocks: [
+        HeroBlock,
+        ValueHomeBlock,
+        VideoWalkthroughHomeBlock,
+        DeliverablesHomeBlock,
+        WhyHomeBlock,
+        AudienceHomeBlock,
+        ConceptsHomeBlock,
+        MethodHomeBlock,
+        ProposalHomeBlock,
+        SamplePreviewHomeBlock,
+        TrustHomeBlock,
+        FaqHomeBlock
+      ],
     },
   ],
 }

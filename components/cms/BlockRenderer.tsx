@@ -6,6 +6,12 @@ import { VideoWalkthroughHomeBlockComponent } from './blocks/VideoWalkthroughHom
 import { DeliverablesHomeBlockComponent } from './blocks/DeliverablesHomeBlock'
 import { WhyHomeBlockComponent } from './blocks/WhyHomeBlock'
 import { AudienceHomeBlockComponent } from './blocks/AudienceHomeBlock'
+import { ConceptsHomeBlockComponent } from './blocks/ConceptsHomeBlock'
+import { MethodHomeBlockComponent } from './blocks/MethodHomeBlock'
+import { ProposalHomeBlockComponent } from './blocks/ProposalHomeBlock'
+import { SamplePreviewHomeBlockComponent } from './blocks/SamplePreviewHomeBlock'
+import { TrustHomeBlockComponent } from './blocks/TrustHomeBlock'
+import { FaqHomeBlockComponent } from './blocks/FaqHomeBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -31,6 +37,18 @@ export function BlockRenderer({ blocks, locale }: Props) {
             return <WhyHomeBlockComponent key={key} block={block} locale={locale} />
           case 'audienceHome':
             return <AudienceHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'conceptsHome':
+            return <ConceptsHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'methodHome':
+            return <MethodHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'proposalHome':
+            return <ProposalHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'samplePreviewHome':
+            return <SamplePreviewHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'trustHome':
+            return <TrustHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'faqHome':
+            return <FaqHomeBlockComponent key={key} block={block} locale={locale} />
           default:
             return null
         }

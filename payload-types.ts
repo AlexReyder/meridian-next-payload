@@ -389,6 +389,119 @@ export interface Page {
         blockName?: string | null;
         blockType: 'audienceHome';
       }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        challengeLabel: string;
+        structuredLabel: string;
+        deliveredLabel: string;
+        viewConceptsLabel: string;
+        conceptsPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        previousAriaLabel: string;
+        nextAriaLabel: string;
+        items: {
+          title: string;
+          badge: string;
+          challenge: string;
+          structured: string;
+          delivered: string;
+          imageUrl: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'conceptsHome';
+      }
+    | {
+        sectionId?: string | null;
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: {
+          number: string;
+          title: string;
+          description: string;
+          details: {
+            label: string;
+            id?: string | null;
+          }[];
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'methodHome';
+      }
+    | {
+        sectionId?: string | null;
+        title: string;
+        description: string;
+        steps: {
+          icon: 'fileText' | 'mail' | 'checkCircle';
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        ctaLabel: string;
+        ctaPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        footerNote: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'proposalHome';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: {
+          title: string;
+          subtitle: string;
+          imageUrl: string;
+          alt: string;
+          id?: string | null;
+        }[];
+        bottomNote: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'samplePreviewHome';
+      }
+    | {
+        items: {
+          label: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'trustHome';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        items: {
+          question: string;
+          answer: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'faqHome';
+      }
   )[];
   updatedAt: string;
   createdAt: string;
@@ -691,6 +804,123 @@ export interface PagesSelect<T extends boolean = true> {
                     problem?: T;
                     solution?: T;
                     result?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        conceptsHome?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              challengeLabel?: T;
+              structuredLabel?: T;
+              deliveredLabel?: T;
+              viewConceptsLabel?: T;
+              conceptsPageKey?: T;
+              previousAriaLabel?: T;
+              nextAriaLabel?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    badge?: T;
+                    challenge?: T;
+                    structured?: T;
+                    delivered?: T;
+                    imageUrl?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        methodHome?:
+          | T
+          | {
+              sectionId?: T;
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    description?: T;
+                    details?:
+                      | T
+                      | {
+                          label?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        proposalHome?:
+          | T
+          | {
+              sectionId?: T;
+              title?: T;
+              description?: T;
+              steps?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              ctaLabel?: T;
+              ctaPageKey?: T;
+              footerNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        samplePreviewHome?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    subtitle?: T;
+                    imageUrl?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              bottomNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        trustHome?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faqHome?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
                     id?: T;
                   };
               id?: T;
