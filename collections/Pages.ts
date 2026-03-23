@@ -24,6 +24,20 @@ import { AudienceSolutionsBlock } from '@/blocks/solutions/AudienceSolutions'
 import { WhySolutionsBlock } from '@/blocks/solutions/WhySolutionsBlock'
 import { ConnectedCtaSolutionsBlock } from '@/blocks/solutions/ConnectedCtaSolutionsBlock'
 import { FaqSolutionsBlock } from '@/blocks/solutions/FaqSolutionsBlock'
+import { HeroStartupsBlock } from '@/blocks/for-startups/HeroStartupsBlock'
+import { ValueStartupsBlock } from '@/blocks/for-startups/ValueStartupsBlock'
+import { DeliverablesStartupsBlock } from '@/blocks/for-startups/DeliverablesStartupsBlock'
+import { SituationsStartupsBlock } from '@/blocks/for-startups/SituationsStartupsBlock'
+import { ArtifactsStartupsBlock } from '@/blocks/for-startups/ArtifactsStartupsBlock'
+import { ProcessStartupsBlock } from '@/blocks/for-startups/ProcessStartupsBlock'
+import { EfficiencyStartupsBlock } from '@/blocks/for-startups/StartupsBlock'
+import { ConceptsStartupsBlock } from '@/blocks/for-startups/ConceptsStartupsBlock'
+import { CTAStartupsBlock } from '@/blocks/for-startups/CTAStartupsBlock'
+import { FAQStartupsBlock } from '@/blocks/for-startups/FAQStartupsBlock'
+import { HeroAgenciesBlock } from '@/blocks/for-agencies/HeroAgenciesBlock'
+import { PartnersClarificationAgenciesBlock } from '@/blocks/for-agencies/PartnersClarificationAgenciesBlock'
+import { AudienceAgenciesBlock } from '@/blocks/for-agencies/AudienceAgenciesBlock'
+import { ValueAgenciesBlock } from '@/blocks/for-agencies/ValueAgenciesBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -92,6 +106,21 @@ export const Pages: CollectionConfig = {
         ConnectedCtaSolutionsBlock,
         FaqSolutionsBlock,
         //for-startups
+        HeroStartupsBlock,
+        ValueStartupsBlock,
+        DeliverablesStartupsBlock,
+        SituationsStartupsBlock,
+        ArtifactsStartupsBlock,
+        ProcessStartupsBlock,
+        EfficiencyStartupsBlock,
+        ConceptsStartupsBlock,
+        CTAStartupsBlock,
+        FAQStartupsBlock,
+        //for-agencies
+        HeroAgenciesBlock,
+        PartnersClarificationAgenciesBlock,
+        AudienceAgenciesBlock,
+        ValueAgenciesBlock,
       ],
     },
   ],

@@ -765,6 +765,288 @@ export interface Page {
         blockName?: string | null;
         blockType: 'faqSolutions';
       }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        note: string;
+        tags: {
+          label: string;
+          id?: string | null;
+        }[];
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'heroStartups';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        layoutVariant: 'iconCards' | 'numberedCards';
+        items: {
+          number?: string | null;
+          icon?: ('lightbulb' | 'presentation' | 'rocket' | 'arrowRight') | null;
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'valueStartups';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        layoutVariant: 'detailedCards' | 'simpleCards';
+        whenRelevantLabel?: string | null;
+        resultLabel?: string | null;
+        items: {
+          title: string;
+          description: string;
+          whenRelevant?: string | null;
+          result?: string | null;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'deliverablesStartups';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        layoutVariant: 'detailedCards' | 'simpleCards';
+        ctaLabel: string;
+        ctaPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        items: {
+          situation: string;
+          explanation?: string | null;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'situationsStartups';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: {
+          title: string;
+          subtitle: string;
+          imageUrl: string;
+          alt: string;
+          id?: string | null;
+        }[];
+        bottomNote: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'artifactsStartups';
+      }
+    | {
+        sectionId?: string | null;
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: {
+          number: string;
+          title: string;
+          description: string;
+          details: {
+            label: string;
+            id?: string | null;
+          }[];
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'processStartups';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: {
+          icon: 'zap' | 'refreshCw' | 'users' | 'target';
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'efficiencyStartups';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        conceptBadgeLabel: string;
+        challengeLabel: string;
+        clarifiedLabel: string;
+        preparedLabel: string;
+        ctaLabel: string;
+        ctaPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        items: {
+          title: string;
+          challenge: string;
+          clarified: string;
+          prepared: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'conceptsStartups';
+      }
+    | {
+        title: string;
+        description: string;
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        footerNote: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'ctaStartups';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: {
+          question: string;
+          answer: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'faqStartups';
+      }
+    | {
+        eyebrow: string;
+        titlePrefix: string;
+        titleAccent: string;
+        titleSuffix?: string | null;
+        description: string;
+        descriptionSecondary: string;
+        partnerTags: {
+          label: string;
+          id?: string | null;
+        }[];
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'heroAgencies';
+      }
+    | {
+        title: string;
+        description: string;
+        pillars: {
+          label: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'partnersClarificationAgencies';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        items: {
+          title: string;
+          text: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'audienceAgencies';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        layoutVariant: 'detailed' | 'compact';
+        items: {
+          icon?: ('presentation' | 'palette' | 'layout' | 'send') | null;
+          title: string;
+          problem?: string | null;
+          whenRelevant?: string | null;
+          whyHelpful?: string | null;
+          text?: string | null;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'valueAgencies';
+      }
   )[];
   updatedAt: string;
   createdAt: string;
@@ -1401,6 +1683,266 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     question?: T;
                     answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroStartups?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              note?: T;
+              tags?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              id?: T;
+              blockName?: T;
+            };
+        valueStartups?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              layoutVariant?: T;
+              items?:
+                | T
+                | {
+                    number?: T;
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        deliverablesStartups?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              layoutVariant?: T;
+              whenRelevantLabel?: T;
+              resultLabel?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    whenRelevant?: T;
+                    result?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        situationsStartups?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              layoutVariant?: T;
+              ctaLabel?: T;
+              ctaPageKey?: T;
+              items?:
+                | T
+                | {
+                    situation?: T;
+                    explanation?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        artifactsStartups?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    subtitle?: T;
+                    imageUrl?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              bottomNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        processStartups?:
+          | T
+          | {
+              sectionId?: T;
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    description?: T;
+                    details?:
+                      | T
+                      | {
+                          label?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        efficiencyStartups?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        conceptsStartups?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              conceptBadgeLabel?: T;
+              challengeLabel?: T;
+              clarifiedLabel?: T;
+              preparedLabel?: T;
+              ctaLabel?: T;
+              ctaPageKey?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    challenge?: T;
+                    clarified?: T;
+                    prepared?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaStartups?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              footerNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faqStartups?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroAgencies?:
+          | T
+          | {
+              eyebrow?: T;
+              titlePrefix?: T;
+              titleAccent?: T;
+              titleSuffix?: T;
+              description?: T;
+              descriptionSecondary?: T;
+              partnerTags?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              id?: T;
+              blockName?: T;
+            };
+        partnersClarificationAgencies?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              pillars?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        audienceAgencies?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        valueAgencies?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              layoutVariant?: T;
+              items?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    problem?: T;
+                    whenRelevant?: T;
+                    whyHelpful?: T;
+                    text?: T;
                     id?: T;
                   };
               id?: T;

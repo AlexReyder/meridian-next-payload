@@ -23,6 +23,20 @@ import { AudienceSolutionsBlockComponent } from './blocks/solutions/AudienceSolu
 import { WhySolutionsBlockComponent } from './blocks/solutions/WhySolutionsBlock'
 import { ConnectedCtaSolutionsBlockComponent } from './blocks/solutions/ConnectedCtaSolutionsBlock'
 import { FaqSolutionsBlockComponent } from './blocks/solutions/FaqSolutionsBlock'
+import { HeroStartupsBlockComponent } from './blocks/for-startups/HeroStartupsBlock'
+import { ValueStartupsBlockComponent } from './blocks/for-startups/ValueStartupsBlock'
+import { DeliverablesStartupsBlockComponent } from './blocks/for-startups/DeliverablesStartupsBlock'
+import { SituationsStartupsBlockComponent } from './blocks/for-startups/SituationsStartupsBlock'
+import { ArtifactsStartupsBlockComponent } from './blocks/for-startups/ArtifactsStartupsBlock'
+import { ProcessStartupsBlockComponent } from './blocks/for-startups/ProcessStartupsBlock'
+import { EfficiencyStartupsBlockComponent } from './blocks/for-startups/EfficiencyStartupsBlock'
+import { ConceptsStartupsBlockComponent } from './blocks/for-startups/ConceptsStartupsBlock'
+import { CTAStartupsBlockComponent } from './blocks/for-startups/CTAStartupsBlock'
+import { FAQStartupsBlockComponent } from './blocks/for-startups/FAQStartupsBlock'
+import { HeroAgenciesBlockComponent } from './blocks/for-agencies/HeroAgenciesBlock'
+import { PartnersClarificationAgenciesBlockComponent } from './blocks/for-agencies/PartnersClarificationAgenciesBlock'
+import { AudienceAgenciesBlockComponent } from './blocks/for-agencies/AudienceAgenciesBlock'
+import { ValueAgenciesBlockComponent } from './blocks/for-agencies/ValueAgenciesBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -84,7 +98,35 @@ export function BlockRenderer({ blocks, locale }: Props) {
         case 'faqSolutions':
           return <FaqSolutionsBlockComponent key={key} block={block} locale={locale} />
           //for-startups
-        
+        case 'heroStartups':
+          return <HeroStartupsBlockComponent key={key} block={block} locale={locale} />
+        case 'valueStartups':
+          return <ValueStartupsBlockComponent key={key} block={block} locale={locale} />
+        case 'deliverablesStartups':
+          return <DeliverablesStartupsBlockComponent key={key} block={block} locale={locale} />
+        case 'situationsStartups':
+          return <SituationsStartupsBlockComponent key={key} block={block} locale={locale} />
+        case 'artifactsStartups':
+          return <ArtifactsStartupsBlockComponent key={key} block={block} locale={locale} />
+        case 'processStartups':
+          return <ProcessStartupsBlockComponent key={key} block={block} locale={locale} />
+        case 'efficiencyStartups':
+          return <EfficiencyStartupsBlockComponent key={key} block={block} locale={locale} />
+        case 'conceptsStartups':
+          return <ConceptsStartupsBlockComponent key={key} block={block} locale={locale} />
+        case 'ctaStartups':
+          return <CTAStartupsBlockComponent key={key} block={block} locale={locale} />
+        case 'faqStartups':
+          return <FAQStartupsBlockComponent key={key} block={block} locale={locale} />
+          //for-agencies
+        case 'heroAgencies':
+          return <HeroAgenciesBlockComponent key={key} block={block} locale={locale} />
+        case 'partnersClarificationAgencies':
+          return <PartnersClarificationAgenciesBlockComponent key={key} block={block} locale={locale} />
+        case 'audienceAgencies':
+          return <AudienceAgenciesBlockComponent key={key} block={block} locale={locale} />
+        case 'valueAgencies':
+          return <ValueAgenciesBlockComponent key={key} block={block} locale={locale} />
           default:
             return null
         }
