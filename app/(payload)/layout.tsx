@@ -1,8 +1,10 @@
-import type { ServerFunctionClient } from 'payload'
-
+import config from '@payload-config'
 import '@payloadcms/next/css'
+import type { ServerFunctionClient } from 'payload'
+import { handleServerFunctions, RootLayout } from '@payloadcms/next/layouts'
 import React from 'react'
 
+import { importMap } from './admin/importMap.js'
 import './styles.css'
 
 type Args = {
@@ -12,32 +14,17 @@ type Args = {
 const serverFunction: ServerFunctionClient = async function (args) {
   'use server'
 
-  const { handleServerFunctions } = await import('@payloadcms/next/layouts')
-  const config = await import('@payload-config')
-  const { importMap } = await import('./admin/importMap.js')
-
   return handleServerFunctions({
     ...args,
-    config: config.default,
+    config,
     importMap,
   })
 }
 
-const Layout = async ({ children }: Args) => {
-  const { RootLayout } = await import('@payloadcms/next/layouts')
-  const config = await import('@payload-config')
-  const { importMap } = await import('./admin/importMap.js')
-
-  return (
-    <RootLayout
-      config={config.default}
-      importMap={importMap}
-      serverFunction={serverFunction}
-      htmlProps={{ suppressHydrationWarning: true }}
-    >
-      {children}
-    </RootLayout>
-  )
-}
+const Layout = ({ children }: Args) => (
+  <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
+    {children}
+  </RootLayout>
+)
 
 export default Layout
