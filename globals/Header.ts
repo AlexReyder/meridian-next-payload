@@ -1,6 +1,6 @@
 import type { GlobalConfig } from 'payload'
 
-import { PAGE_KEY_OPTIONS } from '../lib/routes'
+import { PAGE_KEY_OPTIONS } from '../lib/routes.ts'
 
 export const Header: GlobalConfig = {
   slug: 'header',

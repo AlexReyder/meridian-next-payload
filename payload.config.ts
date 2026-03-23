@@ -6,11 +6,11 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
-import { Media } from './collections/Media'
-import { Pages } from './collections/Pages'
-import { Users } from './collections/Users'
-import { Footer } from './globals/Footer'
-import { Header } from './globals/Header'
+import { Media } from './collections/Media.ts'
+import { Pages } from './collections/Pages.ts'
+import { Users } from './collections/Users.ts'
+import { Footer } from './globals/Footer.ts'
+import { Header } from './globals/Header.ts'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

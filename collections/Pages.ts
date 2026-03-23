@@ -1,7 +1,10 @@
 import type { CollectionConfig } from 'payload'
 
-import { HeroBlock } from '../blocks/HeroBlock'
-import { PAGE_KEY_OPTIONS } from '../lib/routes'
+import { HeroBlock } from '../blocks/HeroBlock.ts'
+import { PAGE_KEY_OPTIONS } from '../lib/routes.ts'
+import { ValueHomeBlock } from '@/blocks/ValueHomeBlock.ts'
+import { VideoWalkthroughHomeBlock } from '@/blocks/VideoWalkThroughHome'
+import { DeliverablesHomeBlock } from '@/blocks/DeliverablesHomeBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -44,7 +47,7 @@ export const Pages: CollectionConfig = {
       type: 'blocks',
       localized: true,
       required: true,
-      blocks: [HeroBlock],
+      blocks: [HeroBlock, ValueHomeBlock, VideoWalkthroughHomeBlock, DeliverablesHomeBlock],
     },
   ],
 }

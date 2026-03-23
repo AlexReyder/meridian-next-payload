@@ -1,6 +1,9 @@
 import type { Locale } from '@/lib/routes'
 
 import { HeroBlockComponent } from '@/components/cms/blocks/HeroBlock'
+import { ValueHomeBlockComponent } from './blocks/ValueHomeBlock'
+import { VideoWalkthroughHomeBlockComponent } from './blocks/VideoWalkthroughHomeBlock'
+import { DeliverablesHomeBlockComponent } from './blocks/DeliverablesHomeBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -16,6 +19,12 @@ export function BlockRenderer({ blocks, locale }: Props) {
         switch (block.blockType) {
           case 'hero':
             return <HeroBlockComponent key={key} block={block} locale={locale} />
+          case 'valueHome':
+            return <ValueHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'videoWalkthroughHome':
+            return <VideoWalkthroughHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'deliverablesHome':
+            return <DeliverablesHomeBlockComponent key={key} block={block} locale={locale} />
           default:
             return null
         }
