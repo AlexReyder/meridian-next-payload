@@ -713,6 +713,58 @@ export interface Page {
         blockName?: string | null;
         blockType: 'audienceSolutions';
       }
+    | {
+        eyebrow: string;
+        title: string;
+        items: {
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'whySolutions';
+      }
+    | {
+        title: string;
+        description: string;
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'connectedCtaSolutions';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: {
+          question: string;
+          answer: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'faqSolutions';
+      }
   )[];
   updatedAt: string;
   createdAt: string;
@@ -1306,6 +1358,49 @@ export interface PagesSelect<T extends boolean = true> {
                     result?: T;
                     ctaLabel?: T;
                     ctaPageKey?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        whySolutions?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        connectedCtaSolutions?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faqSolutions?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
                     id?: T;
                   };
               id?: T;

@@ -21,6 +21,9 @@ import { GridSolutionsBlock } from '@/blocks/solutions/GridSolutionsBlock'
 import { DetailsSolutionsBlock } from '@/blocks/solutions/DetailsSolutionsBlock'
 import { ClientArtifactsSolutionsBlock } from '@/blocks/solutions/ClientArtifactsSolutions'
 import { AudienceSolutionsBlock } from '@/blocks/solutions/AudienceSolutions'
+import { WhySolutionsBlock } from '@/blocks/solutions/WhySolutionsBlock'
+import { ConnectedCtaSolutionsBlock } from '@/blocks/solutions/ConnectedCtaSolutionsBlock'
+import { FaqSolutionsBlock } from '@/blocks/solutions/FaqSolutionsBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -85,6 +88,10 @@ export const Pages: CollectionConfig = {
         DetailsSolutionsBlock,
         ClientArtifactsSolutionsBlock,
         AudienceSolutionsBlock,
+        WhySolutionsBlock,
+        ConnectedCtaSolutionsBlock,
+        FaqSolutionsBlock,
+        //for-startups
       ],
     },
   ],

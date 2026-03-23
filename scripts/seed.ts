@@ -829,301 +829,565 @@ type BlockData = Record<string, unknown> & {
 //   },
 // }
 
-const SOLUTIONS_CLIENT_ARTIFACTS_SEED: Record<Locale, BlockData> = {
-  ru: {
-    blockType: 'clientArtifactsSolutions',
-    eyebrow: 'Что входит в работу',
-    title: 'Что вы получаете на первом этапе',
-    description:
-      'Каждый проект включает набор структурных и визуальных материалов, которые помогают прояснить решение и перейти к следующему этапу.',
-    items: [
-      {
-        title: 'Структура проекта',
-        subtitle: 'Фиксирует цели, ограничения и приоритеты',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-izxISwxnsh153iue55fxis0BfXpJZy.png',
-        alt: 'Структура проекта',
-      },
-      {
-        title: 'Пользовательские сценарии',
-        subtitle: 'Показывает критичные сценарии и точки перехода',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B8-6Cd1Gr0fJ9T1bQvpwusenVE1qH0EeF.png',
-        alt: 'Пользовательские сценарии',
-      },
-      {
-        title: 'Экранная карта продукта',
-        subtitle: 'Собирает логику экранов в единую систему',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20-CjniSYt05jhRhvZGAnVzEoa5nOSJcb.png',
-        alt: 'Экранная карта продукта',
-      },
-      {
-        title: 'Интерактивный прототип',
-        subtitle: 'Даёт visual preview будущего продукта',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B8%CC%86%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-f73wC5LUW8rwRcU9w00neMYkmRnmYY.png',
-        alt: 'Интерактивный прототип',
-      },
-      {
-        title: 'Базовая система компонентов',
-        subtitle: 'Задаёт основу интерфейсной системы',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%BE%D0%B2%20-jGYBTni2xDRwj42dKtF24HSFdKvWWU.png',
-        alt: 'Базовая система компонентов',
-      },
-      {
-        title: 'Материалы для передачи в разработку',
-        subtitle: 'Помогает перейти к следующему этапу разработки',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B0%D1%87%D0%B8%20%D0%B2%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D1%83-9j8bJBhHm3WST7opiGXatymjBgtw86.png',
-        alt: 'Материалы для передачи в разработку',
-      },
-    ],
-    bottomNote:
-      'Все материалы передаются в Figma и готовы для обсуждения или передачи в разработку',
-  },
-  en: {
-    blockType: 'clientArtifactsSolutions',
-    eyebrow: 'Deliverables',
-    title: 'What clients receive',
-    description:
-      'Every project includes a set of structural and visual materials that help clarify the solution and move to the next stage.',
-    items: [
-      {
-        title: 'Project Structure',
-        subtitle: 'Captures goals, constraints, and priorities',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-izxISwxnsh153iue55fxis0BfXpJZy.png',
-        alt: 'Project Structure',
-      },
-      {
-        title: 'User Flows',
-        subtitle: 'Maps critical scenarios and transition points',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B8-6Cd1Gr0fJ9T1bQvpwusenVE1qH0EeF.png',
-        alt: 'User Flows',
-      },
-      {
-        title: 'Screen Matrix',
-        subtitle: 'Organizes screen logic into a unified system',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20-CjniSYt05jhRhvZGAnVzEoa5nOSJcb.png',
-        alt: 'Screen Matrix',
-      },
-      {
-        title: 'Clickable Prototype',
-        subtitle: 'Provides a visual preview of the future product',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B8%CC%86%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-f73wC5LUW8rwRcU9w00neMYkmRnmYY.png',
-        alt: 'Clickable Prototype',
-      },
-      {
-        title: 'Visual Direction',
-        subtitle: 'Establishes the foundation of the interface system',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%BE%D0%B2%20-jGYBTni2xDRwj42dKtF24HSFdKvWWU.png',
-        alt: 'Visual Direction',
-      },
-      {
-        title: 'Materials for Development',
-        subtitle: 'Enables smooth transition to the development stage',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B0%D1%87%D0%B8%20%D0%B2%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D1%83-9j8bJBhHm3WST7opiGXatymjBgtw86.png',
-        alt: 'Materials for Development',
-      },
-    ],
-    bottomNote:
-      'All materials are delivered in Figma and ready for discussion or development handoff',
-  },
-  ar: {
-    blockType: 'clientArtifactsSolutions',
-    eyebrow: 'المخرجات',
-    title: 'ما الذي يحصل عليه العميل في النتيجة',
-    description:
-      'يتضمن كل مشروع مجموعة من المواد الهيكلية والبصرية التي تساعد على توضيح الحل والانتقال إلى المرحلة التالية.',
-    items: [
-      {
-        title: 'هيكل المشروع',
-        subtitle: 'يوضح الأهداف والقيود والأولويات',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-izxISwxnsh153iue55fxis0BfXpJZy.png',
-        alt: 'هيكل المشروع',
-      },
-      {
-        title: 'مسارات المستخدم',
-        subtitle: 'يبرز المسارات الرئيسية ونقاط الانتقال',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B8-6Cd1Gr0fJ9T1bQvpwusenVE1qH0EeF.png',
-        alt: 'مسارات المستخدم',
-      },
-      {
-        title: 'مصفوفة الشاشات',
-        subtitle: 'ينظم منطق الشاشات في نظام واحد',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20-CjniSYt05jhRhvZGAnVzEoa5nOSJcb.png',
-        alt: 'مصفوفة الشاشات',
-      },
-      {
-        title: 'نموذج أولي قابل للنقر',
-        subtitle: 'يجعل المنتج ملموساً قبل التطوير',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B8%CC%86%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-f73wC5LUW8rwRcU9w00neMYkmRnmYY.png',
-        alt: 'نموذج أولي قابل للنقر',
-      },
-      {
-        title: 'الاتجاه البصري',
-        subtitle: 'يحدد الطابع البصري للواجهة',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B1%D0%B0%D0%B2%D0%BE%D0%B2%D0%B0%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%BE%D0%B2%20-jGYBTni2xDRwj42dKtF24HSFdKvWWU.png',
-        alt: 'الاتجاه البصري',
-      },
-      {
-        title: 'مواد التسليم للتطوير',
-        subtitle: 'يدعم الانتقال السلس إلى التطوير',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B0%D1%87%D0%B8%20%D0%B2%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D1%83-9j8bJBhHm3WST7opiGXatymjBgtw86.png',
-        alt: 'مواد التسليم للتطوير',
-      },
-    ],
-    bottomNote:
-      'جميع المواد تُسلّم في Figma وتكون جاهزة للمناقشة أو التسليم للتطوير',
-  },
-}
+// const SOLUTIONS_CLIENT_ARTIFACTS_SEED: Record<Locale, BlockData> = {
+//   ru: {
+//     blockType: 'clientArtifactsSolutions',
+//     eyebrow: 'Что входит в работу',
+//     title: 'Что вы получаете на первом этапе',
+//     description:
+//       'Каждый проект включает набор структурных и визуальных материалов, которые помогают прояснить решение и перейти к следующему этапу.',
+//     items: [
+//       {
+//         title: 'Структура проекта',
+//         subtitle: 'Фиксирует цели, ограничения и приоритеты',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-izxISwxnsh153iue55fxis0BfXpJZy.png',
+//         alt: 'Структура проекта',
+//       },
+//       {
+//         title: 'Пользовательские сценарии',
+//         subtitle: 'Показывает критичные сценарии и точки перехода',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B8-6Cd1Gr0fJ9T1bQvpwusenVE1qH0EeF.png',
+//         alt: 'Пользовательские сценарии',
+//       },
+//       {
+//         title: 'Экранная карта продукта',
+//         subtitle: 'Собирает логику экранов в единую систему',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20-CjniSYt05jhRhvZGAnVzEoa5nOSJcb.png',
+//         alt: 'Экранная карта продукта',
+//       },
+//       {
+//         title: 'Интерактивный прототип',
+//         subtitle: 'Даёт visual preview будущего продукта',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B8%CC%86%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-f73wC5LUW8rwRcU9w00neMYkmRnmYY.png',
+//         alt: 'Интерактивный прототип',
+//       },
+//       {
+//         title: 'Базовая система компонентов',
+//         subtitle: 'Задаёт основу интерфейсной системы',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%BE%D0%B2%20-jGYBTni2xDRwj42dKtF24HSFdKvWWU.png',
+//         alt: 'Базовая система компонентов',
+//       },
+//       {
+//         title: 'Материалы для передачи в разработку',
+//         subtitle: 'Помогает перейти к следующему этапу разработки',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B0%D1%87%D0%B8%20%D0%B2%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D1%83-9j8bJBhHm3WST7opiGXatymjBgtw86.png',
+//         alt: 'Материалы для передачи в разработку',
+//       },
+//     ],
+//     bottomNote:
+//       'Все материалы передаются в Figma и готовы для обсуждения или передачи в разработку',
+//   },
+//   en: {
+//     blockType: 'clientArtifactsSolutions',
+//     eyebrow: 'Deliverables',
+//     title: 'What clients receive',
+//     description:
+//       'Every project includes a set of structural and visual materials that help clarify the solution and move to the next stage.',
+//     items: [
+//       {
+//         title: 'Project Structure',
+//         subtitle: 'Captures goals, constraints, and priorities',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-izxISwxnsh153iue55fxis0BfXpJZy.png',
+//         alt: 'Project Structure',
+//       },
+//       {
+//         title: 'User Flows',
+//         subtitle: 'Maps critical scenarios and transition points',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B8-6Cd1Gr0fJ9T1bQvpwusenVE1qH0EeF.png',
+//         alt: 'User Flows',
+//       },
+//       {
+//         title: 'Screen Matrix',
+//         subtitle: 'Organizes screen logic into a unified system',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20-CjniSYt05jhRhvZGAnVzEoa5nOSJcb.png',
+//         alt: 'Screen Matrix',
+//       },
+//       {
+//         title: 'Clickable Prototype',
+//         subtitle: 'Provides a visual preview of the future product',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B8%CC%86%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-f73wC5LUW8rwRcU9w00neMYkmRnmYY.png',
+//         alt: 'Clickable Prototype',
+//       },
+//       {
+//         title: 'Visual Direction',
+//         subtitle: 'Establishes the foundation of the interface system',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%BE%D0%B2%20-jGYBTni2xDRwj42dKtF24HSFdKvWWU.png',
+//         alt: 'Visual Direction',
+//       },
+//       {
+//         title: 'Materials for Development',
+//         subtitle: 'Enables smooth transition to the development stage',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B0%D1%87%D0%B8%20%D0%B2%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D1%83-9j8bJBhHm3WST7opiGXatymjBgtw86.png',
+//         alt: 'Materials for Development',
+//       },
+//     ],
+//     bottomNote:
+//       'All materials are delivered in Figma and ready for discussion or development handoff',
+//   },
+//   ar: {
+//     blockType: 'clientArtifactsSolutions',
+//     eyebrow: 'المخرجات',
+//     title: 'ما الذي يحصل عليه العميل في النتيجة',
+//     description:
+//       'يتضمن كل مشروع مجموعة من المواد الهيكلية والبصرية التي تساعد على توضيح الحل والانتقال إلى المرحلة التالية.',
+//     items: [
+//       {
+//         title: 'هيكل المشروع',
+//         subtitle: 'يوضح الأهداف والقيود والأولويات',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-izxISwxnsh153iue55fxis0BfXpJZy.png',
+//         alt: 'هيكل المشروع',
+//       },
+//       {
+//         title: 'مسارات المستخدم',
+//         subtitle: 'يبرز المسارات الرئيسية ونقاط الانتقال',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B8-6Cd1Gr0fJ9T1bQvpwusenVE1qH0EeF.png',
+//         alt: 'مسارات المستخدم',
+//       },
+//       {
+//         title: 'مصفوفة الشاشات',
+//         subtitle: 'ينظم منطق الشاشات في نظام واحد',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20-CjniSYt05jhRhvZGAnVzEoa5nOSJcb.png',
+//         alt: 'مصفوفة الشاشات',
+//       },
+//       {
+//         title: 'نموذج أولي قابل للنقر',
+//         subtitle: 'يجعل المنتج ملموساً قبل التطوير',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B8%CC%86%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-f73wC5LUW8rwRcU9w00neMYkmRnmYY.png',
+//         alt: 'نموذج أولي قابل للنقر',
+//       },
+//       {
+//         title: 'الاتجاه البصري',
+//         subtitle: 'يحدد الطابع البصري للواجهة',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B1%D0%B0%D0%B2%D0%BE%D0%B2%D0%B0%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%BE%D0%B2%20-jGYBTni2xDRwj42dKtF24HSFdKvWWU.png',
+//         alt: 'الاتجاه البصري',
+//       },
+//       {
+//         title: 'مواد التسليم للتطوير',
+//         subtitle: 'يدعم الانتقال السلس إلى التطوير',
+//         imageUrl:
+//           'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B0%D1%87%D0%B8%20%D0%B2%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D1%83-9j8bJBhHm3WST7opiGXatymjBgtw86.png',
+//         alt: 'مواد التسليم للتطوير',
+//       },
+//     ],
+//     bottomNote:
+//       'جميع المواد تُسلّم في Figma وتكون جاهزة للمناقشة أو التسليم للتطوير',
+//   },
+// }
 
-const SOLUTIONS_AUDIENCE_SEED: Record<Locale, BlockData> = {
+// const SOLUTIONS_AUDIENCE_SEED: Record<Locale, BlockData> = {
+//   ru: {
+//     blockType: 'audienceSolutions',
+//     eyebrow: 'Целевая аудитория',
+//     title: 'Кому подходит этот подход',
+//     challengeLabel: 'Типичная задача',
+//     resultLabel: 'Что становится проще',
+//     items: [
+//       {
+//         title: 'Founders и startup-команды',
+//         challenge:
+//           'Идея есть, но продукт ещё не собран в понятную систему. Нужно показать инвестору, согласовать с командой, дать разработке понятную основу.',
+//         result:
+//           'Структурированный продукт, prototype и материалы для следующего этапа — без долгих discovery-процессов.',
+//         ctaLabel: 'Для стартапов',
+//         ctaPageKey: 'for-startups',
+//       },
+//       {
+//         title: 'B2B-команды и внутренние digital-направления',
+//         challenge:
+//           'Сложный бизнес-процесс нужно превратить в digital-систему. Много ролей, сценариев, модулей — и нет ясной структуры.',
+//         result:
+//           'Архитектура продукта, карта ролей, экранная матрица и prototype — готово к передаче в разработку.',
+//         ctaLabel: 'Получить предложение',
+//         ctaPageKey: 'get-proposal',
+//       },
+//       {
+//         title: 'Агентства и integrators',
+//         challenge:
+//           'Нужен внешний premium-партнёр для presale, сложных B2B-интерфейсов или white-label поддержки — без лишнего overhead.',
+//         result:
+//           'Structured deliverables, async-коллаборация, понятная передача в разработку — под вашим брендом или совместно.',
+//         ctaLabel: 'Для партнёров',
+//         ctaPageKey: 'for-partners',
+//       },
+//       {
+//         title: 'Команды, которым нужна понятная передача в разработку',
+//         challenge:
+//           'Есть дизайн или prototype, но его сложно передать в разработку. Не хватает структуры, логики, понятных материалов.',
+//         result:
+//           'Структурированная interface delivery с экранной логикой, компонентами и материалами для dev-команды.',
+//         ctaLabel: 'Получить предложение',
+//         ctaPageKey: 'get-proposal',
+//       },
+//     ],
+//   },
+//   en: {
+//     blockType: 'audienceSolutions',
+//     eyebrow: 'Target Audience',
+//     title: 'Who this is for',
+//     challengeLabel: 'Typical challenge',
+//     resultLabel: 'What becomes easier',
+//     items: [
+//       {
+//         title: 'Founders and startup teams',
+//         challenge:
+//           'The idea exists, but the product is not yet assembled into a clear system. Need to present to investors, align with the team, give development a solid foundation.',
+//         result:
+//           'Structured product, prototype, and materials for the next stage — without lengthy discovery processes.',
+//         ctaLabel: 'For Startups',
+//         ctaPageKey: 'for-startups',
+//       },
+//       {
+//         title: 'B2B teams and internal digital functions',
+//         challenge:
+//           'A complex business process needs to become a digital system. Many roles, scenarios, modules — and no clear structure.',
+//         result:
+//           'Product architecture, role map, screen matrix, and prototype — ready for development handoff.',
+//         ctaLabel: 'Get Proposal',
+//         ctaPageKey: 'get-proposal',
+//       },
+//       {
+//         title: 'Agencies and integrators',
+//         challenge:
+//           'Need an external premium partner for presale, complex B2B interfaces, or white-label support — without unnecessary overhead.',
+//         result:
+//           'Structured deliverables, async collaboration, clear development handoff — under your brand or jointly.',
+//         ctaLabel: 'For Partners',
+//         ctaPageKey: 'for-partners',
+//       },
+//       {
+//         title: 'Teams that need a clearer path into development',
+//         challenge:
+//           'Have design or prototype, but it is hard to hand off to development. Lacking structure, logic, clear materials.',
+//         result:
+//           'Structured interface delivery with screen logic, components, and materials for the dev team.',
+//         ctaLabel: 'Get Proposal',
+//         ctaPageKey: 'get-proposal',
+//       },
+//     ],
+//   },
+//   ar: {
+//     blockType: 'audienceSolutions',
+//     eyebrow: 'الجمهور المستهدف',
+//     title: 'لمن تناسب هذه الحلول',
+//     challengeLabel: 'التحدي النموذجي',
+//     resultLabel: 'ما يصبح أسهل',
+//     items: [
+//       {
+//         title: 'المؤسسون وفرق الشركات الناشئة',
+//         challenge:
+//           'الفكرة موجودة، لكن المنتج لم يُجمع بعد في نظام واضح. يحتاجون إلى عرضه على المستثمرين، أو التوافق مع الفريق، أو إعطاء التطوير أساساً قوياً.',
+//         result:
+//           'منتج مهيكل، ونموذج أولي، ومواد للمرحلة التالية — من دون عمليات اكتشاف طويلة.',
+//         ctaLabel: 'للشركات الناشئة',
+//         ctaPageKey: 'for-startups',
+//       },
+//       {
+//         title: 'فرق B2B والوظائف الرقمية الداخلية',
+//         challenge:
+//           'عملية تجارية معقدة تحتاج إلى أن تصبح نظاماً رقمياً. أدوار متعددة، وسيناريوهات، ووحدات — وبدون هيكل واضح.',
+//         result:
+//           'هندسة المنتج، وخريطة الأدوار، ومصفوفة الشاشات، ونموذج أولي — جاهزة للتسليم إلى التطوير.',
+//         ctaLabel: 'اطلب عرضاً',
+//         ctaPageKey: 'get-proposal',
+//       },
+//       {
+//         title: 'الوكالات وشركاء التنفيذ',
+//         challenge:
+//           'يحتاجون إلى شريك خارجي متميز لعروض ما قبل البيع، أو واجهات B2B المعقدة، أو دعم white-label — من دون أعباء تشغيلية زائدة.',
+//         result:
+//           'مخرجات مهيكلة، وتعاون غير متزامن، وتسليم واضح للتطوير — تحت علامتك التجارية أو بالشراكة.',
+//         ctaLabel: 'للشركاء',
+//         ctaPageKey: 'for-partners',
+//       },
+//       {
+//         title: 'الفرق التي تحتاج إلى وضوح أكبر قبل التطوير',
+//         challenge:
+//           'لديهم تصميم أو نموذج أولي، لكن يصعب تسليمه للتطوير. ينقصهم الهيكل والمنطق والمواد الواضحة.',
+//         result:
+//           'تسليم واجهات مهيكل مع منطق الشاشات والمكونات ومواد لفريق التطوير.',
+//         ctaLabel: 'اطلب عرضاً',
+//         ctaPageKey: 'get-proposal',
+//       },
+//     ],
+//   },
+// }
+
+// const SOLUTIONS_WHY_SEED: Record<Locale, BlockData> = {
+//   ru: {
+//     blockType: 'whySolutions',
+//     eyebrow: 'Почему мы',
+//     title: 'Почему выбирают Atelier Meridian',
+//     items: [
+//       {
+//         title: 'Ясность до начала разработки',
+//         description:
+//           'Помогаем структурировать продукт так, чтобы его было легко согласовать, показать и передать в разработку.',
+//       },
+//       {
+//         title: 'Экспертный подход senior-уровня',
+//         description:
+//           'Работаем напрямую с командой, без junior-прослойки. Каждый проект ведёт senior product designer.',
+//       },
+//       {
+//         title: 'Структурированные спринты',
+//         description:
+//           'Понятный формат работы: фиксированный scope, ясные сроки, предсказуемый результат.',
+//       },
+//       {
+//         title: 'Премиальная подача без лишнего overhead',
+//         description:
+//           'Качество бутиковой студии без лишних процессов, встреч и накладных расходов.',
+//       },
+//     ],
+//   },
+//   en: {
+//     blockType: 'whySolutions',
+//     eyebrow: 'Why Us',
+//     title: 'Why clients choose Atelier Meridian',
+//     items: [
+//       {
+//         title: 'Clarity before development',
+//         description:
+//           'We help structure the product so it is easy to align, present, and hand off to development.',
+//       },
+//       {
+//         title: 'Senior-level product thinking',
+//         description:
+//           'Work directly with the team, no junior layer. Every project is led by a senior product designer.',
+//       },
+//       {
+//         title: 'Structured sprints',
+//         description:
+//           'Clear working format: fixed scope, clear timelines, predictable outcome.',
+//       },
+//       {
+//         title: 'Premium output without unnecessary overhead',
+//         description:
+//           'Boutique studio quality without excessive processes, meetings, and overhead.',
+//       },
+//     ],
+//   },
+//   ar: {
+//     blockType: 'whySolutions',
+//     eyebrow: 'لماذا نحن',
+//     title: 'لماذا يختار العملاء Atelier Meridian',
+//     items: [
+//       {
+//         title: 'وضوح قبل بدء التطوير',
+//         description:
+//           'نساعد على هيكلة المنتج بحيث يسهل التوافق عليه وعرضه وتسليمه للتطوير.',
+//       },
+//       {
+//         title: 'تفكير منتجي على مستوى senior',
+//         description:
+//           'تعمل مباشرة مع الفريق، من دون طبقة مبتدئين. كل مشروع يُقاد بواسطة مصمم منتج senior.',
+//       },
+//       {
+//         title: 'عمل منظم على شكل sprints',
+//         description:
+//           'صيغة عمل واضحة: نطاق محدد، جدول زمني واضح، نتيجة متوقعة.',
+//       },
+//       {
+//         title: 'مخرجات متميزة من دون طبقات تشغيلية زائدة',
+//         description:
+//           'جودة استوديو بوتيكي من دون عمليات مفرطة أو اجتماعات أو أعباء تشغيلية.',
+//       },
+//     ],
+//   },
+// }
+
+// const SOLUTIONS_CONNECTED_CTA_SEED: Record<Locale, BlockData> = {
+//   ru: {
+//     blockType: 'connectedCtaSolutions',
+//     title: 'Не уверены, какое решение подходит именно вам?',
+//     description:
+//       'Опишите задачу — мы предложим подходящий формат работы, ориентир по срокам и следующий шаг.',
+//     primaryButtonLabel: 'Получить предложение',
+//     primaryPageKey: 'get-proposal',
+//     secondaryButtonLabel: 'Посмотреть цены',
+//     secondaryPageKey: 'pricing',
+//   },
+//   en: {
+//     blockType: 'connectedCtaSolutions',
+//     title: 'Not sure which solution fits your project?',
+//     description:
+//       'Tell us what you are building, and we will recommend the right format, timeline range, and next step.',
+//     primaryButtonLabel: 'Get Proposal',
+//     primaryPageKey: 'get-proposal',
+//     secondaryButtonLabel: 'View Pricing',
+//     secondaryPageKey: 'pricing',
+//   },
+//   ar: {
+//     blockType: 'connectedCtaSolutions',
+//     title: 'لست متأكداً أي حل يناسب مشروعك؟',
+//     description:
+//       'شاركنا بما تعمل عليه، وسنقترح عليك الصيغة الأنسب للعمل، والنطاق الزمني المتوقع، والخطوة التالية.',
+//     primaryButtonLabel: 'اطلب عرضاً',
+//     primaryPageKey: 'get-proposal',
+//     secondaryButtonLabel: 'اطلع على الأسعار',
+//     secondaryPageKey: 'pricing',
+//   },
+// }
+
+const SOLUTIONS_FAQ_SEED: Record<Locale, BlockData> = {
   ru: {
-    blockType: 'audienceSolutions',
-    eyebrow: 'Целевая аудитория',
-    title: 'Кому подходит этот подход',
-    challengeLabel: 'Типичная задача',
-    resultLabel: 'Что становится проще',
+    blockType: 'faqSolutions',
+    eyebrow: 'Вопросы',
+    title: 'Частые вопросы',
+    description: 'Ответы на основные вопросы о нашем подходе и форматах работы.',
     items: [
       {
-        title: 'Founders и startup-команды',
-        challenge:
-          'Идея есть, но продукт ещё не собран в понятную систему. Нужно показать инвестору, согласовать с командой, дать разработке понятную основу.',
-        result:
-          'Структурированный продукт, prototype и материалы для следующего этапа — без долгих discovery-процессов.',
-        ctaLabel: 'Для стартапов',
-        ctaPageKey: 'for-startups',
+        question: 'С чего лучше начать: с brief или с материалов?',
+        answer:
+          'Если у вас есть готовые материалы (PRD, презентация, наброски) — можете приложить их сразу. Если проект ещё не оформлен — заполните короткий brief, и мы поможем структурировать задачу на основе ваших ответов.',
       },
       {
-        title: 'B2B-команды и внутренние digital-направления',
-        challenge:
-          'Сложный бизнес-процесс нужно превратить в digital-систему. Много ролей, сценариев, модулей — и нет ясной структуры.',
-        result:
-          'Архитектура продукта, карта ролей, экранная матрица и prototype — готово к передаче в разработку.',
-        ctaLabel: 'Получить предложение',
-        ctaPageKey: 'get-proposal',
+        question: 'Подходит ли это для сайта, digital-системы и mobile app?',
+        answer:
+          'Да, это основные типы задач, с которыми мы работаем. Сайты, корпоративные порталы, B2B-платформы, dashboards и мобильные приложения — всё это входит в наш фокус.',
       },
       {
-        title: 'Агентства и integrators',
-        challenge:
-          'Нужен внешний premium-партнёр для presale, сложных B2B-интерфейсов или white-label поддержки — без лишнего overhead.',
-        result:
-          'Structured deliverables, async-коллаборация, понятная передача в разработку — под вашим брендом или совместно.',
-        ctaLabel: 'Для партнёров',
-        ctaPageKey: 'for-partners',
+        question: 'Можно ли прийти только с идеей?',
+        answer:
+          'Да. Большинство наших клиентов приходят именно на этой стадии — когда есть идея или бизнес-задача, но нет понятной структуры. Мы помогаем прояснить scope, роли и сценарии ещё до того, как начнётся визуальная работа.',
       },
       {
-        title: 'Команды, которым нужна понятная передача в разработку',
-        challenge:
-          'Есть дизайн или prototype, но его сложно передать в разработку. Не хватает структуры, логики, понятных материалов.',
-        result:
-          'Структурированная interface delivery с экранной логикой, компонентами и материалами для dev-команды.',
-        ctaLabel: 'Получить предложение',
-        ctaPageKey: 'get-proposal',
+        question: 'Подходит ли это для redesign?',
+        answer:
+          'Да. Редизайн — одна из частых задач. Мы помогаем пересобрать структуру, улучшить UX и обновить визуальную подачу существующего сайта, системы или приложения.',
+      },
+      {
+        question: 'Работаете ли вы white-label?',
+        answer:
+          'Да. Мы работаем с агентствами и integrators как внешний product/UX/UI-партнёр. Можем выступать под вашим брендом или совместно — без лишнего overhead и с понятным форматом delivery.',
+      },
+      {
+        question: 'Вы помогаете только с визуалом или со структурой тоже?',
+        answer:
+          'Мы начинаем со структуры. Прежде чем рисовать экраны, мы помогаем прояснить роли, сценарии, приоритеты и логику продукта. Интерфейс строится на этой основе — и поэтому работает.',
+      },
+      {
+        question: 'Подписываете ли вы NDA?',
+        answer:
+          'Да. Мы готовы подписать NDA до начала работы. Конфиденциальность — стандартная часть нашего процесса.',
+      },
+      {
+        question: 'Как понять, какое решение подходит моему проекту?',
+        answer:
+          'Опишите задачу в brief — мы предложим подходящий формат, ориентир по срокам и стоимости. Если не уверены — просто напишите, что есть, и мы поможем определиться.',
       },
     ],
   },
   en: {
-    blockType: 'audienceSolutions',
-    eyebrow: 'Target Audience',
-    title: 'Who this is for',
-    challengeLabel: 'Typical challenge',
-    resultLabel: 'What becomes easier',
+    blockType: 'faqSolutions',
+    eyebrow: 'FAQ',
+    title: 'Frequently asked questions',
+    description: 'Answers to common questions about our approach and work formats.',
     items: [
       {
-        title: 'Founders and startup teams',
-        challenge:
-          'The idea exists, but the product is not yet assembled into a clear system. Need to present to investors, align with the team, give development a solid foundation.',
-        result:
-          'Structured product, prototype, and materials for the next stage — without lengthy discovery processes.',
-        ctaLabel: 'For Startups',
-        ctaPageKey: 'for-startups',
+        question: 'Where should I start: with a brief or with existing materials?',
+        answer:
+          'If you have ready materials (PRD, presentation, sketches) — feel free to attach them right away. If the project is not yet formalized — fill out a short brief, and we will help structure the task based on your answers.',
       },
       {
-        title: 'B2B teams and internal digital functions',
-        challenge:
-          'A complex business process needs to become a digital system. Many roles, scenarios, modules — and no clear structure.',
-        result:
-          'Product architecture, role map, screen matrix, and prototype — ready for development handoff.',
-        ctaLabel: 'Get Proposal',
-        ctaPageKey: 'get-proposal',
+        question: 'Is this relevant for websites, digital systems, and mobile apps?',
+        answer:
+          'Yes, these are the main types of projects we work with. Websites, corporate portals, B2B platforms, dashboards, and mobile apps — all fall within our focus.',
       },
       {
-        title: 'Agencies and integrators',
-        challenge:
-          'Need an external premium partner for presale, complex B2B interfaces, or white-label support — without unnecessary overhead.',
-        result:
-          'Structured deliverables, async collaboration, clear development handoff — under your brand or jointly.',
-        ctaLabel: 'For Partners',
-        ctaPageKey: 'for-partners',
+        question: 'Can you help if the project is still just an idea?',
+        answer:
+          'Yes. Most of our clients come at exactly this stage — when there is an idea or business task, but no clear structure. We help clarify scope, roles, and scenarios before visual work begins.',
       },
       {
-        title: 'Teams that need a clearer path into development',
-        challenge:
-          'Have design or prototype, but it is hard to hand off to development. Lacking structure, logic, clear materials.',
-        result:
-          'Structured interface delivery with screen logic, components, and materials for the dev team.',
-        ctaLabel: 'Get Proposal',
-        ctaPageKey: 'get-proposal',
+        question: 'Is this suitable for redesign projects?',
+        answer:
+          'Yes. Redesign is one of the most common tasks. We help restructure, improve UX, and update the visual presentation of an existing website, system, or app.',
+      },
+      {
+        question: 'Do you work white-label?',
+        answer:
+          'Yes. We work with agencies and integrators as an external product/UX/UI partner. We can operate under your brand or jointly — without unnecessary overhead and with a clear delivery format.',
+      },
+      {
+        question: 'Do you help with structure as well as interface design?',
+        answer:
+          'We start with structure. Before drawing screens, we help clarify roles, scenarios, priorities, and product logic. The interface is built on this foundation — which is why it works.',
+      },
+      {
+        question: 'Do you sign NDAs?',
+        answer:
+          'Yes. We are ready to sign an NDA before work begins. Confidentiality is a standard part of our process.',
+      },
+      {
+        question: 'How do I know which format is right for my project?',
+        answer:
+          'Describe your task in the brief — we will suggest the right format, timeline, and cost estimate. If you are unsure — just write what you have, and we will help you decide.',
       },
     ],
   },
   ar: {
-    blockType: 'audienceSolutions',
-    eyebrow: 'الجمهور المستهدف',
-    title: 'لمن تناسب هذه الحلول',
-    challengeLabel: 'التحدي النموذجي',
-    resultLabel: 'ما يصبح أسهل',
+    blockType: 'faqSolutions',
+    eyebrow: 'الأسئلة الشائعة',
+    title: 'أسئلة متكررة',
+    description: 'إجابات على الأسئلة الشائعة حول منهجيتنا وصيغ العمل.',
     items: [
       {
-        title: 'المؤسسون وفرق الشركات الناشئة',
-        challenge:
-          'الفكرة موجودة، لكن المنتج لم يُجمع بعد في نظام واضح. يحتاجون إلى عرضه على المستثمرين، أو التوافق مع الفريق، أو إعطاء التطوير أساساً قوياً.',
-        result:
-          'منتج مهيكل، ونموذج أولي، ومواد للمرحلة التالية — من دون عمليات اكتشاف طويلة.',
-        ctaLabel: 'للشركات الناشئة',
-        ctaPageKey: 'for-startups',
+        question: 'من أين أبدأ: من brief أم من المواد الحالية؟',
+        answer:
+          'إذا كانت لديك مواد جاهزة (PRD، عرض تقديمي، رسومات أولية) — يمكنك إرفاقها مباشرة. إذا لم يكن المشروع مُصاغاً بعد — املأ brief قصير، وسنساعد في هيكلة المهمة بناءً على إجاباتك.',
       },
       {
-        title: 'فرق B2B والوظائف الرقمية الداخلية',
-        challenge:
-          'عملية تجارية معقدة تحتاج إلى أن تصبح نظاماً رقمياً. أدوار متعددة، وسيناريوهات، ووحدات — وبدون هيكل واضح.',
-        result:
-          'هندسة المنتج، وخريطة الأدوار، ومصفوفة الشاشات، ونموذج أولي — جاهزة للتسليم إلى التطوير.',
-        ctaLabel: 'اطلب عرضاً',
-        ctaPageKey: 'get-proposal',
+        question: 'هل هذه الصفحة مناسبة للمواقع والأنظمة الرقمية وتطبيقات الجوال؟',
+        answer:
+          'نعم، هذه هي الأنواع الرئيسية للمشاريع التي نعمل عليها. المواقع، والبوابات المؤسسية، ومنصات B2B، ولوحات التحكم، وتطبيقات الجوال — جميعها ضمن نطاق تركيزنا.',
       },
       {
-        title: 'الوكالات وشركاء التنفيذ',
-        challenge:
-          'يحتاجون إلى شريك خارجي متميز لعروض ما قبل البيع، أو واجهات B2B المعقدة، أو دعم white-label — من دون أعباء تشغيلية زائدة.',
-        result:
-          'مخرجات مهيكلة، وتعاون غير متزامن، وتسليم واضح للتطوير — تحت علامتك التجارية أو بالشراكة.',
-        ctaLabel: 'للشركاء',
-        ctaPageKey: 'for-partners',
+        question: 'هل يمكن البدء إذا كانت الفكرة ما زالت غير مكتملة؟',
+        answer:
+          'نعم. معظم عملائنا يأتون في هذه المرحلة بالضبط — عندما تكون هناك فكرة أو مهمة تجارية، لكن بدون هيكل واضح. نساعد في توضيح النطاق والأدوار والسيناريوهات قبل بدء العمل البصري.',
       },
       {
-        title: 'الفرق التي تحتاج إلى وضوح أكبر قبل التطوير',
-        challenge:
-          'لديهم تصميم أو نموذج أولي، لكن يصعب تسليمه للتطوير. ينقصهم الهيكل والمنطق والمواد الواضحة.',
-        result:
-          'تسليم واجهات مهيكل مع منطق الشاشات والمكونات ومواد لفريق التطوير.',
-        ctaLabel: 'اطلب عرضاً',
-        ctaPageKey: 'get-proposal',
+        question: 'هل هذا مناسب لمشاريع إعادة التصميم؟',
+        answer:
+          'نعم. إعادة التصميم هي من أكثر المهام شيوعاً. نساعد في إعادة الهيكلة، وتحسين UX، وتحديث العرض البصري لموقع أو نظام أو تطبيق قائم.',
+      },
+      {
+        question: 'هل تعملون بنظام white-label؟',
+        answer:
+          'نعم. نعمل مع الوكالات وشركاء التنفيذ كشريك خارجي للمنتج/UX/UI. يمكننا العمل تحت علامتك التجارية أو بالشراكة — من دون أعباء تشغيلية زائدة وبصيغة تسليم واضحة.',
+      },
+      {
+        question: 'هل تساعدون في الهيكل والمنطق إلى جانب التصميم؟',
+        answer:
+          'نبدأ من الهيكل. قبل رسم الشاشات، نساعد في توضيح الأدوار والسيناريوهات والأولويات ومنطق المنتج. الواجهة تُبنى على هذا الأساس — ولهذا تعمل بشكل صحيح.',
+      },
+      {
+        question: 'هل توقعون NDA؟',
+        answer:
+          'نعم. نحن مستعدون لتوقيع NDA قبل بدء العمل. السرية جزء أساسي من طريقة عملنا.',
+      },
+      {
+        question: 'كيف أعرف الصيغة الأنسب لمشروعي؟',
+        answer:
+          'صف مهمتك في brief — وسنقترح الصيغة المناسبة والجدول الزمني وتقدير التكلفة. إذا لم تكن متأكداً — اكتب ما لديك فقط، وسنساعدك في اتخاذ القرار.',
       },
     ],
   },
@@ -1230,13 +1494,26 @@ async function main() {
     // await seedBlockForLocale(payload, homePage.id, 'en', SOLUTIONS_DETAILS_SEED.en)
     // await seedBlockForLocale(payload, homePage.id, 'ar', SOLUTIONS_DETAILS_SEED.ar)
 
-    await seedBlockForLocale(payload, homePage.id, 'ru', SOLUTIONS_CLIENT_ARTIFACTS_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', SOLUTIONS_CLIENT_ARTIFACTS_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', SOLUTIONS_CLIENT_ARTIFACTS_SEED.ar)
+    // await seedBlockForLocale(payload, homePage.id, 'ru', SOLUTIONS_CLIENT_ARTIFACTS_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', SOLUTIONS_CLIENT_ARTIFACTS_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', SOLUTIONS_CLIENT_ARTIFACTS_SEED.ar)
 
-    await seedBlockForLocale(payload, homePage.id, 'ru', SOLUTIONS_AUDIENCE_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', SOLUTIONS_AUDIENCE_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', SOLUTIONS_AUDIENCE_SEED.ar)
+    // await seedBlockForLocale(payload, homePage.id, 'ru', SOLUTIONS_AUDIENCE_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', SOLUTIONS_AUDIENCE_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', SOLUTIONS_AUDIENCE_SEED.ar)
+
+    // await seedBlockForLocale(payload, homePage.id, 'ru', SOLUTIONS_WHY_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', SOLUTIONS_WHY_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', SOLUTIONS_WHY_SEED.ar)
+
+    // await seedBlockForLocale(payload, homePage.id, 'ru', SOLUTIONS_CONNECTED_CTA_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', SOLUTIONS_CONNECTED_CTA_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', SOLUTIONS_CONNECTED_CTA_SEED.ar)
+
+    await seedBlockForLocale(payload, homePage.id, 'ru', SOLUTIONS_FAQ_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', SOLUTIONS_FAQ_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', SOLUTIONS_FAQ_SEED.ar)
+
   console.log('✅ Solutions page seed completed')
   process.exit(0)
 }

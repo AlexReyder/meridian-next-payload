@@ -20,6 +20,9 @@ import { GridSolutionsBlockComponent } from './blocks/solutions/GridSolutionsBlo
 import { DetailsSolutionsBlockComponent } from './blocks/solutions/DetailsSolutionsBlock'
 import { ClientArtifactsSolutionsBlockComponent } from './blocks/solutions/ClientArtifactsSolutions'
 import { AudienceSolutionsBlockComponent } from './blocks/solutions/AudienceSolutions'
+import { WhySolutionsBlockComponent } from './blocks/solutions/WhySolutionsBlock'
+import { ConnectedCtaSolutionsBlockComponent } from './blocks/solutions/ConnectedCtaSolutionsBlock'
+import { FaqSolutionsBlockComponent } from './blocks/solutions/FaqSolutionsBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -74,6 +77,14 @@ export function BlockRenderer({ blocks, locale }: Props) {
           return <ClientArtifactsSolutionsBlockComponent key={key} block={block} locale={locale} />
         case 'audienceSolutions':
           return <AudienceSolutionsBlockComponent key={key} block={block} locale={locale} />
+        case 'whySolutions':
+          return <WhySolutionsBlockComponent key={key} block={block} locale={locale} />
+        case 'connectedCtaSolutions':
+          return <ConnectedCtaSolutionsBlockComponent key={key} block={block} locale={locale} />
+        case 'faqSolutions':
+          return <FaqSolutionsBlockComponent key={key} block={block} locale={locale} />
+          //for-startups
+        
           default:
             return null
         }
