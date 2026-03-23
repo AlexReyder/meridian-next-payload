@@ -38,6 +38,13 @@ import { HeroAgenciesBlock } from '@/blocks/for-agencies/HeroAgenciesBlock'
 import { PartnersClarificationAgenciesBlock } from '@/blocks/for-agencies/PartnersClarificationAgenciesBlock'
 import { AudienceAgenciesBlock } from '@/blocks/for-agencies/AudienceAgenciesBlock'
 import { ValueAgenciesBlock } from '@/blocks/for-agencies/ValueAgenciesBlock'
+import { ProjectsAgenciesBlock } from '@/blocks/for-agencies/ProjectsAgenciesBlock'
+import { ProcessAgenciesBlock } from '@/blocks/for-agencies/ProcessAgenciesBlock'
+import { ArtifactsAgenciesBlock } from '@/blocks/for-agencies/ArtifactsAgenciesBlock'
+import { WhyAgenciesBlock } from '@/blocks/for-agencies/WhyAgenciesBlock'
+import { ConceptsAgenciesBlock } from '@/blocks/for-agencies/ConceptsAgenciesBlock'
+import { CTAAgenciesBlock } from '@/blocks/for-agencies/CTAAgenciesBlock'
+import { FAQAgenciesBlock } from '@/blocks/for-agencies/FAQAgenciesBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -121,6 +128,14 @@ export const Pages: CollectionConfig = {
         PartnersClarificationAgenciesBlock,
         AudienceAgenciesBlock,
         ValueAgenciesBlock,
+        ProjectsAgenciesBlock,
+        ProcessAgenciesBlock,
+        ArtifactsAgenciesBlock,
+        WhyAgenciesBlock,
+        ConceptsAgenciesBlock,
+        CTAAgenciesBlock,
+        FAQAgenciesBlock,
+        
       ],
     },
   ],

@@ -37,6 +37,13 @@ import { HeroAgenciesBlockComponent } from './blocks/for-agencies/HeroAgenciesBl
 import { PartnersClarificationAgenciesBlockComponent } from './blocks/for-agencies/PartnersClarificationAgenciesBlock'
 import { AudienceAgenciesBlockComponent } from './blocks/for-agencies/AudienceAgenciesBlock'
 import { ValueAgenciesBlockComponent } from './blocks/for-agencies/ValueAgenciesBlock'
+import { ProjectsAgenciesBlockComponent } from './blocks/for-agencies/ProjectsAgenciesBlock'
+import { ProcessAgenciesBlockComponent } from './blocks/for-agencies/ProcessAgenciesBlock'
+import { ArtifactsAgenciesBlockComponent } from './blocks/for-agencies/ArtifactsAgenciesBlock'
+import { WhyAgenciesBlockComponent } from './blocks/for-agencies/WhyAgenciesBlock'
+import { ConceptsAgenciesBlockComponent } from './blocks/for-agencies/ConceptsAgenciesBlock'
+import { CTAAgenciesBlockComponent } from './blocks/for-agencies/CTAAgenciesBlock'
+import { FAQAgenciesBlockComponent } from './blocks/for-agencies/FAQAgenciesBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -127,6 +134,20 @@ export function BlockRenderer({ blocks, locale }: Props) {
           return <AudienceAgenciesBlockComponent key={key} block={block} locale={locale} />
         case 'valueAgencies':
           return <ValueAgenciesBlockComponent key={key} block={block} locale={locale} />
+        case 'projectsAgencies':
+          return <ProjectsAgenciesBlockComponent key={key} block={block} locale={locale} />
+        case 'artifactsAgencies':
+          return <ArtifactsAgenciesBlockComponent key={key} block={block} locale={locale} />
+        case 'whyAgencies':
+          return <WhyAgenciesBlockComponent key={key} block={block} locale={locale} />
+        case 'processAgencies':
+          return <ProcessAgenciesBlockComponent key={key} block={block} locale={locale} />
+        case 'conceptsAgencies':
+          return <ConceptsAgenciesBlockComponent key={key} block={block} locale={locale} />
+        case 'ctaAgencies':
+          return <CTAAgenciesBlockComponent key={key} block={block} locale={locale} />
+        case 'faqAgencies':
+          return <FAQAgenciesBlockComponent key={key} block={block} locale={locale} />
           default:
             return null
         }

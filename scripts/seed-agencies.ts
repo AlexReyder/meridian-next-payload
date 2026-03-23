@@ -1275,21 +1275,21 @@ async function main() {
 
   const homePage = await ensureAgenciesPage(payload)
 
-    // await seedBlockForLocale(payload, homePage.id, 'ru', HERO_AGENCIES_SEED.ru)
-    // await seedBlockForLocale(payload, homePage.id, 'en', HERO_AGENCIES_SEED.en)
-    // await seedBlockForLocale(payload, homePage.id, 'ar', HERO_AGENCIES_SEED.ar)
+    await seedBlockForLocale(payload, homePage.id, 'ru', HERO_AGENCIES_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', HERO_AGENCIES_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', HERO_AGENCIES_SEED.ar)
 
-    // await seedBlockForLocale(payload, homePage.id, 'ru', PARTNERS_CLARIFICATION_AGENCIES_SEED.ru)
-    // await seedBlockForLocale(payload, homePage.id, 'en', PARTNERS_CLARIFICATION_AGENCIES_SEED.en)
-    // await seedBlockForLocale(payload, homePage.id, 'ar', PARTNERS_CLARIFICATION_AGENCIES_SEED.ar)
+    await seedBlockForLocale(payload, homePage.id, 'ru', PARTNERS_CLARIFICATION_AGENCIES_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', PARTNERS_CLARIFICATION_AGENCIES_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', PARTNERS_CLARIFICATION_AGENCIES_SEED.ar)
 
-    // await seedBlockForLocale(payload, homePage.id, 'ru', AUDIENCE_AGENCIES_SEED.ru)
-    // await seedBlockForLocale(payload, homePage.id, 'en', AUDIENCE_AGENCIES_SEED.en)
-    // await seedBlockForLocale(payload, homePage.id, 'ar', AUDIENCE_AGENCIES_SEED.ar)
+    await seedBlockForLocale(payload, homePage.id, 'ru', AUDIENCE_AGENCIES_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', AUDIENCE_AGENCIES_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', AUDIENCE_AGENCIES_SEED.ar)
 
-    // await seedBlockForLocale(payload, homePage.id, 'ru', VALUE_AGENCIES_SEED.ru)
-    // await seedBlockForLocale(payload, homePage.id, 'en', VALUE_AGENCIES_SEED.en)
-    // await seedBlockForLocale(payload, homePage.id, 'ar', VALUE_AGENCIES_SEED.ar)
+    await seedBlockForLocale(payload, homePage.id, 'ru', VALUE_AGENCIES_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', VALUE_AGENCIES_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', VALUE_AGENCIES_SEED.ar)
 
     await seedBlockForLocale(payload, homePage.id, 'ru', PROJECTS_AGENCIES_SEED.ru)
     await seedBlockForLocale(payload, homePage.id, 'en', PROJECTS_AGENCIES_SEED.en)

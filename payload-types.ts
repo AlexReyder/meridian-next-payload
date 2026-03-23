@@ -1047,6 +1047,148 @@ export interface Page {
         blockName?: string | null;
         blockType: 'valueAgencies';
       }
+    | {
+        eyebrow: string;
+        title: string;
+        layoutVariant: 'detailed' | 'compact';
+        useCaseLabel?: string | null;
+        outputLabel?: string | null;
+        items: {
+          title: string;
+          explanation: string;
+          useCase: string;
+          output?: string | null;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'projectsAgencies';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        layoutVariant: 'connected' | 'compact';
+        steps: {
+          number: string;
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        markers: {
+          label: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'processAgencies';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        items: {
+          icon:
+            | 'fileText'
+            | 'gitBranch'
+            | 'map'
+            | 'layoutGrid'
+            | 'smartphone'
+            | 'mousePointer'
+            | 'palette'
+            | 'send'
+            | 'fileCheck';
+          title: string;
+          support: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'artifactsAgencies';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        layoutVariant: 'detailed' | 'compact';
+        items: {
+          title: string;
+          description?: string | null;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'whyAgencies';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description?: string | null;
+        layoutVariant: 'grid' | 'carousel';
+        challengeLabel: string;
+        clarifiedLabel: string;
+        preparedLabel: string;
+        viewAllLabel: string;
+        viewAllPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        items: {
+          badge: string;
+          title: string;
+          challenge: string;
+          clarified: string;
+          prepared: string;
+          imageUrl?: string | null;
+          imageAlt?: string | null;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'conceptsAgencies';
+      }
+    | {
+        title: string;
+        description: string;
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        footerNote: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'ctaAgencies';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        items: {
+          question: string;
+          answer: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'faqAgencies';
+      }
   )[];
   updatedAt: string;
   createdAt: string;
@@ -1943,6 +2085,136 @@ export interface PagesSelect<T extends boolean = true> {
                     whenRelevant?: T;
                     whyHelpful?: T;
                     text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        projectsAgencies?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              layoutVariant?: T;
+              useCaseLabel?: T;
+              outputLabel?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    explanation?: T;
+                    useCase?: T;
+                    output?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        processAgencies?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              layoutVariant?: T;
+              steps?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              markers?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        artifactsAgencies?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              items?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    support?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        whyAgencies?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              layoutVariant?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        conceptsAgencies?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              layoutVariant?: T;
+              challengeLabel?: T;
+              clarifiedLabel?: T;
+              preparedLabel?: T;
+              viewAllLabel?: T;
+              viewAllPageKey?: T;
+              items?:
+                | T
+                | {
+                    badge?: T;
+                    title?: T;
+                    challenge?: T;
+                    clarified?: T;
+                    prepared?: T;
+                    imageUrl?: T;
+                    imageAlt?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaAgencies?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              footerNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faqAgencies?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
                     id?: T;
                   };
               id?: T;
