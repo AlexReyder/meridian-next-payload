@@ -610,6 +610,68 @@ export interface Page {
         blockName?: string | null;
         blockType: 'positioningIntroSolutions';
       }
+    | {
+        eyebrow: string;
+        learnMoreLabel: string;
+        items: {
+          anchorId: string;
+          title: string;
+          subtitle: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'gridSolutions';
+      }
+    | {
+        whenRelevantLabel: string;
+        whatWeClarifyLabel: string;
+        whatClientReceivesLabel: string;
+        items: {
+          anchorId: string;
+          title: string;
+          intro: string;
+          whenRelevant: {
+            label: string;
+            id?: string | null;
+          }[];
+          whatWeClarify: {
+            label: string;
+            id?: string | null;
+          }[];
+          whatClientReceives: {
+            label: string;
+            id?: string | null;
+          }[];
+          primaryButtonLabel: string;
+          primaryPageKey:
+            | 'home'
+            | 'solutions'
+            | 'pricing'
+            | 'get-proposal'
+            | 'concepts'
+            | 'for-startups'
+            | 'for-partners'
+            | 'method';
+          secondaryButtonLabel?: string | null;
+          secondaryPageKey?:
+            | (
+                | 'home'
+                | 'solutions'
+                | 'pricing'
+                | 'get-proposal'
+                | 'concepts'
+                | 'for-startups'
+                | 'for-partners'
+                | 'method'
+              )
+            | null;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'detailsSolution';
+      }
   )[];
   updatedAt: string;
   createdAt: string;
@@ -1109,6 +1171,61 @@ export interface PagesSelect<T extends boolean = true> {
                     number?: T;
                     title?: T;
                     description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        gridSolutions?:
+          | T
+          | {
+              eyebrow?: T;
+              learnMoreLabel?: T;
+              items?:
+                | T
+                | {
+                    anchorId?: T;
+                    title?: T;
+                    subtitle?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        detailsSolution?:
+          | T
+          | {
+              whenRelevantLabel?: T;
+              whatWeClarifyLabel?: T;
+              whatClientReceivesLabel?: T;
+              items?:
+                | T
+                | {
+                    anchorId?: T;
+                    title?: T;
+                    intro?: T;
+                    whenRelevant?:
+                      | T
+                      | {
+                          label?: T;
+                          id?: T;
+                        };
+                    whatWeClarify?:
+                      | T
+                      | {
+                          label?: T;
+                          id?: T;
+                        };
+                    whatClientReceives?:
+                      | T
+                      | {
+                          label?: T;
+                          id?: T;
+                        };
+                    primaryButtonLabel?: T;
+                    primaryPageKey?: T;
+                    secondaryButtonLabel?: T;
+                    secondaryPageKey?: T;
                     id?: T;
                   };
               id?: T;

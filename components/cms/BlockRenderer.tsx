@@ -16,6 +16,8 @@ import { PricingHomeBlockComponent } from './blocks/home/PricingHomeBlock'
 import { FinalCtaHomeBlockComponent } from './blocks/home/FinalCtaHomeBlock'
 import { HeroSolutionsBlockComponent } from './blocks/solutions/HeroSolutionsBlock'
 import { PositioningIntroSolutionsBlockComponent } from './blocks/solutions/PositioningIntroSolutionsBlock'
+import { GridSolutionsBlockComponent } from './blocks/solutions/GridSolutionsBlock'
+import { DetailsSolutionsBlockComponent } from './blocks/solutions/DetailsSolutionsBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -62,6 +64,10 @@ export function BlockRenderer({ blocks, locale }: Props) {
             return <HeroSolutionsBlockComponent key={key} block={block} locale={locale} />
           case 'positioningIntroSolutions':
             return <PositioningIntroSolutionsBlockComponent key={key} block={block} locale={locale} />
+        case 'gridSolutions':
+            return <GridSolutionsBlockComponent key={key} block={block} locale={locale} />
+        case 'detailsSolution':
+          return <DetailsSolutionsBlockComponent key={key} block={block} locale={locale} />
           default:
             return null
         }
