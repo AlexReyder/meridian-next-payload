@@ -27,6 +27,7 @@ export const ChoosingGuidePricingBlock: Block = {
     {
       name: 'layoutVariant',
       type: 'select',
+      dbName: 'cgp_layout_v',
       required: true,
       defaultValue: 'detailed',
       options: [

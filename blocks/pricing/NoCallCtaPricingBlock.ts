@@ -36,6 +36,7 @@ export const NoCallCtaPricingBlock: Block = {
         {
           name: 'primaryPageKey',
           type: 'select',
+          dbName: 'nc_pri_pk',
           required: true,
           options: PAGE_KEY_OPTIONS,
           defaultValue: 'get-proposal',
@@ -52,12 +53,13 @@ export const NoCallCtaPricingBlock: Block = {
           defaultValue: 'Написать вместо созвона',
         },
         {
-          name: 'secondaryPageKey',
-          type: 'select',
-          required: true,
-          options: PAGE_KEY_OPTIONS,
-          defaultValue: 'contact',
-        },
+  name: 'secondaryPageKey',
+  type: 'select',
+  dbName: 'nc_sec_pk',
+  required: true,
+  options: PAGE_KEY_OPTIONS,
+  defaultValue: 'get-proposal',
+},
       ],
     },
     {

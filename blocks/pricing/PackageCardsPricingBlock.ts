@@ -86,6 +86,7 @@ export const PackageCardsPricingBlock: Block = {
             {
               name: 'buttonPageKey',
               type: 'select',
+              dbName: 'pcp_btn_pk',
               required: true,
               options: PAGE_KEY_OPTIONS,
               defaultValue: 'get-proposal',

@@ -38,6 +38,7 @@ export const FinalCtaPricingBlock: Block = {
         {
           name: 'primaryPageKey',
           type: 'select',
+          dbName: 'fctp_pri_pk',
           required: true,
           options: PAGE_KEY_OPTIONS,
           defaultValue: 'get-proposal',
@@ -56,6 +57,7 @@ export const FinalCtaPricingBlock: Block = {
         {
           name: 'secondaryPageKey',
           type: 'select',
+          dbName: 'fctp_sec_pk',
           required: true,
           options: PAGE_KEY_OPTIONS,
           defaultValue: 'home',

@@ -727,7 +727,7 @@ const NO_CALL_CTA_PRICING_SEED: Record<Locale, BlockData> = {
     primaryButtonLabel: 'Получить предложение',
     primaryPageKey: 'get-proposal',
     secondaryButtonLabel: 'Написать вместо созвона',
-    secondaryPageKey: 'contact',
+    secondaryPageKey: 'get-proposal',
     footerNote:
       'Подходит для founders, product teams, partners и всех, кто хочет сначала получить понятный ответ в письменном виде.',
     benefits: [
@@ -752,7 +752,7 @@ const NO_CALL_CTA_PRICING_SEED: Record<Locale, BlockData> = {
     primaryButtonLabel: 'Get Proposal',
     primaryPageKey: 'get-proposal',
     secondaryButtonLabel: 'Write Instead of a Call',
-    secondaryPageKey: 'contact',
+    secondaryPageKey: 'get-proposal',
     footerNote:
       'Useful for founders, product teams, and partners who prefer to get a clear written answer before scheduling anything.',
     benefits: [
@@ -777,7 +777,7 @@ const NO_CALL_CTA_PRICING_SEED: Record<Locale, BlockData> = {
     primaryButtonLabel: 'اطلب عرضاً',
     primaryPageKey: 'get-proposal',
     secondaryButtonLabel: 'اكتب بدلاً من المكالمة',
-    secondaryPageKey: 'contact',
+    secondaryPageKey: 'get-proposal',
     footerNote:
       'مناسب للمؤسسين وفرق المنتج والشركاء الذين يفضّلون الحصول على رد واضح مكتوب قبل جدولة أي مكالمة.',
     benefits: [

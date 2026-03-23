@@ -56,6 +56,7 @@ export const HeroPricingBlock: Block = {
         {
           name: 'primaryPageKey',
           type: 'select',
+          dbName: 'hp_pri_pk',
           required: true,
           options: PAGE_KEY_OPTIONS,
           defaultValue: 'get-proposal',
@@ -74,6 +75,7 @@ export const HeroPricingBlock: Block = {
         {
           name: 'secondaryPageKey',
           type: 'select',
+          dbName: 'hp_sec_pk',
           required: true,
           options: PAGE_KEY_OPTIONS,
           defaultValue: 'method',

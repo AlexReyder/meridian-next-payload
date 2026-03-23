@@ -134,7 +134,7 @@ export function NoCallCtaPricingBlockComponent({ block, locale }: Props) {
                 </div>
 
                 <Link
-                  href={getHrefForPageKey(block.secondaryPageKey ?? 'contact', locale)}
+                  href={getHrefForPageKey(block.secondaryPageKey ?? 'get-proposal', locale)}
                   className={cn(
                     'inline-flex h-11 items-center justify-center rounded-md border px-7 text-[11px] font-medium transition-colors',
                     isArabic

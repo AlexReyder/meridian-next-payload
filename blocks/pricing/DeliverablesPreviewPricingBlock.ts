@@ -29,6 +29,7 @@ export const DeliverablesPreviewPricingBlock: Block = {
     {
       name: 'layoutVariant',
       type: 'select',
+      dbName: 'dpp_layout_v',
       required: true,
       defaultValue: 'visuals',
       options: [
@@ -52,6 +53,7 @@ export const DeliverablesPreviewPricingBlock: Block = {
         {
           name: 'topLinkPageKey',
           type: 'select',
+          dbName: 'dpp_top_pk',
           options: PAGE_KEY_OPTIONS,
         },
       ],
@@ -75,6 +77,7 @@ export const DeliverablesPreviewPricingBlock: Block = {
         {
           name: 'visual',
           type: 'select',
+          dbName: 'dpp_vis',
           options: [
             {
               label: 'Structure',
@@ -118,6 +121,7 @@ export const DeliverablesPreviewPricingBlock: Block = {
         {
           name: 'footerLinkPageKey',
           type: 'select',
+          dbName: 'dpp_ftr_pk',
           options: PAGE_KEY_OPTIONS,
         },
       ],
