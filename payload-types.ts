@@ -561,6 +561,55 @@ export interface Page {
         blockName?: string | null;
         blockType: 'finalCtaHome';
       }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        note: string;
+        tags: {
+          label: string;
+          id?: string | null;
+        }[];
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        imageUrl: string;
+        imageAlt: string;
+        floatingLabel: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'heroSolutions';
+      }
+    | {
+        title: string;
+        description: string;
+        items: {
+          number: string;
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'positioningIntroSolutions';
+      }
   )[];
   updatedAt: string;
   createdAt: string;
@@ -1023,6 +1072,45 @@ export interface PagesSelect<T extends boolean = true> {
               secondaryButtonLabel?: T;
               secondaryPageKey?: T;
               footerNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        heroSolutions?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              note?: T;
+              tags?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              imageUrl?: T;
+              imageAlt?: T;
+              floatingLabel?: T;
+              id?: T;
+              blockName?: T;
+            };
+        positioningIntroSolutions?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

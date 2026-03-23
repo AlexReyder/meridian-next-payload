@@ -15,6 +15,8 @@ import { TrustHomeBlock } from '@/blocks/home/TrustHomeBlock'
 import { FaqHomeBlock } from '@/blocks/home/FaqHomeBlock'
 import { PricingHomeBlock } from '@/blocks/home/PricingHomeBlock'
 import { FinalCtaHomeBlock } from '@/blocks/home/FinalCtaHomeBlock'
+import { HeroSolutionsBlock } from '@/blocks/solutions/HeroSolutionsBlock'
+import { PositioningIntroSolutionsBlock } from '@/blocks/solutions/PositioningIntroSolutionsBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -72,6 +74,9 @@ export const Pages: CollectionConfig = {
         TrustHomeBlock,
         FaqHomeBlock,
         FinalCtaHomeBlock,
+        //solutions
+        HeroSolutionsBlock,
+        PositioningIntroSolutionsBlock,
       ],
     },
   ],
