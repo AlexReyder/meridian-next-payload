@@ -1,18 +1,20 @@
 import type { CollectionConfig } from 'payload'
 
-import { HeroBlock } from '../blocks/HeroBlock.ts'
+import { HeroBlock } from '../blocks/home/HeroBlock'
 import { PAGE_KEY_OPTIONS } from '../lib/routes'
-import { ValueHomeBlock } from '@/blocks/ValueHomeBlock'
-import { VideoWalkthroughHomeBlock } from '@/blocks/VideoWalkThroughHome'
-import { DeliverablesHomeBlock } from '@/blocks/DeliverablesHomeBlock'
-import { WhyHomeBlock } from '@/blocks/WhyHomeBlock'
-import { AudienceHomeBlock } from '@/blocks/AudienceHomeBlock'
-import { ConceptsHomeBlock } from '@/blocks/ConceptsHomeBlock'
-import { MethodHomeBlock } from '@/blocks/MethodHomeBlock'
-import { ProposalHomeBlock } from '@/blocks/ProposalHomeBlock'
-import { SamplePreviewHomeBlock } from '@/blocks/SamplePreviewHomeBlock'
-import { TrustHomeBlock } from '@/blocks/TrustHomeBlock'
-import { FaqHomeBlock } from '@/blocks/FaqHomeBlock'
+import { ValueHomeBlock } from '@/blocks/home/ValueHomeBlock'
+import { VideoWalkthroughHomeBlock } from '@/blocks/home/VideoWalkThroughHome'
+import { DeliverablesHomeBlock } from '@/blocks/home/DeliverablesHomeBlock'
+import { WhyHomeBlock } from '@/blocks/home/WhyHomeBlock'
+import { AudienceHomeBlock } from '@/blocks/home/AudienceHomeBlock'
+import { ConceptsHomeBlock } from '@/blocks/home/ConceptsHomeBlock'
+import { MethodHomeBlock } from '@/blocks/home/MethodHomeBlock'
+import { ProposalHomeBlock } from '@/blocks/home/ProposalHomeBlock'
+import { SamplePreviewHomeBlock } from '@/blocks/home/SamplePreviewHomeBlock'
+import { TrustHomeBlock } from '@/blocks/home/TrustHomeBlock'
+import { FaqHomeBlock } from '@/blocks/home/FaqHomeBlock'
+import { PricingHomeBlock } from '@/blocks/home/PricingHomeBlock'
+import { FinalCtaHomeBlock } from '@/blocks/home/FinalCtaHomeBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -64,10 +66,12 @@ export const Pages: CollectionConfig = {
         AudienceHomeBlock,
         ConceptsHomeBlock,
         MethodHomeBlock,
+        PricingHomeBlock,
         ProposalHomeBlock,
         SamplePreviewHomeBlock,
         TrustHomeBlock,
-        FaqHomeBlock
+        FaqHomeBlock,
+        FinalCtaHomeBlock,
       ],
     },
   ],

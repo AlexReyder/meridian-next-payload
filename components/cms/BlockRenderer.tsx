@@ -1,17 +1,19 @@
 import type { Locale } from '@/lib/routes'
 
-import { HeroBlockComponent } from '@/components/cms/blocks/HeroBlock'
-import { ValueHomeBlockComponent } from './blocks/ValueHomeBlock'
-import { VideoWalkthroughHomeBlockComponent } from './blocks/VideoWalkthroughHomeBlock'
-import { DeliverablesHomeBlockComponent } from './blocks/DeliverablesHomeBlock'
-import { WhyHomeBlockComponent } from './blocks/WhyHomeBlock'
-import { AudienceHomeBlockComponent } from './blocks/AudienceHomeBlock'
-import { ConceptsHomeBlockComponent } from './blocks/ConceptsHomeBlock'
-import { MethodHomeBlockComponent } from './blocks/MethodHomeBlock'
-import { ProposalHomeBlockComponent } from './blocks/ProposalHomeBlock'
-import { SamplePreviewHomeBlockComponent } from './blocks/SamplePreviewHomeBlock'
-import { TrustHomeBlockComponent } from './blocks/TrustHomeBlock'
-import { FaqHomeBlockComponent } from './blocks/FaqHomeBlock'
+import { HeroBlockComponent } from '@/components/cms/blocks/home/HeroBlock'
+import { ValueHomeBlockComponent } from './blocks/home/ValueHomeBlock'
+import { VideoWalkthroughHomeBlockComponent } from './blocks/home/VideoWalkthroughHomeBlock'
+import { DeliverablesHomeBlockComponent } from './blocks/home/DeliverablesHomeBlock'
+import { WhyHomeBlockComponent } from './blocks/home/WhyHomeBlock'
+import { AudienceHomeBlockComponent } from './blocks/home/AudienceHomeBlock'
+import { ConceptsHomeBlockComponent } from './blocks/home/ConceptsHomeBlock'
+import { MethodHomeBlockComponent } from './blocks/home/MethodHomeBlock'
+import { ProposalHomeBlockComponent } from './blocks/home/ProposalHomeBlock'
+import { SamplePreviewHomeBlockComponent } from './blocks/home/SamplePreviewHomeBlock'
+import { TrustHomeBlockComponent } from './blocks/home/TrustHomeBlock'
+import { FaqHomeBlockComponent } from './blocks/home/FaqHomeBlock'
+import { PricingHomeBlockComponent } from './blocks/home/PricingHomeBlock'
+import { FinalCtaHomeBlockComponent } from './blocks/home/FinalCtaHomeBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -49,6 +51,10 @@ export function BlockRenderer({ blocks, locale }: Props) {
             return <TrustHomeBlockComponent key={key} block={block} locale={locale} />
           case 'faqHome':
             return <FaqHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'pricingHome':
+            return <PricingHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'finalCtaHome':
+            return <FinalCtaHomeBlockComponent key={key} block={block} locale={locale} />
           default:
             return null
         }

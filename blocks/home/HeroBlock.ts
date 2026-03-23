@@ -1,6 +1,6 @@
 import type { Block } from 'payload'
 
-import { PAGE_KEY_OPTIONS } from '../lib/routes.ts'
+import { PAGE_KEY_OPTIONS } from '../../lib/routes'
 
 export const HeroBlock: Block = {
   slug: 'hero',

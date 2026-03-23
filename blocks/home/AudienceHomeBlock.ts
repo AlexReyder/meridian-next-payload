@@ -1,6 +1,6 @@
 import type { Block } from 'payload'
 
-import { PAGE_KEY_OPTIONS } from '../lib/routes'
+import { PAGE_KEY_OPTIONS } from '../../lib/routes'
 
 export const AudienceHomeBlock: Block = {
   slug: 'audienceHome',

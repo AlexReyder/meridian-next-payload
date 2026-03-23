@@ -1486,6 +1486,216 @@ const HOME_FAQ_SEED: Record<Locale, BlockData> = {
   },
 }
 
+const HOME_PRICING_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'pricingHome',
+    sectionId: 'formats',
+    eyebrow: 'Packages',
+    title: 'Форматы работы',
+    ctaLabel: 'Получить предложение',
+    ctaPageKey: 'get-proposal',
+    featuredBadge: 'Популярный выбор',
+    items: [
+      {
+        name: 'Product Framing Sprint',
+        price: 'от $5,400',
+        timeline: '2-3 недели',
+        description:
+          'Структурирование продукта с нуля. Product framing, роли, core flows, экранная матрица.',
+        featured: false,
+        includes: [
+          { label: 'Структурная рамка проекта' },
+          { label: 'Карта ролей и прав' },
+          { label: 'Core user flows' },
+          { label: 'Экранная матрица' },
+          { label: 'Рекомендации по визуальному направлению' },
+        ],
+      },
+      {
+        name: 'Build-Ready Prototype',
+        price: 'от $6,900',
+        timeline: '4-5 недель',
+        description:
+          'Полный цикл от идеи до прототипа. Всё для презентации инвестору или старта разработки.',
+        featured: true,
+        includes: [
+          { label: 'Всё из Framing Sprint' },
+          { label: 'Визуальное направление' },
+          { label: 'Интерактивный прототип' },
+          { label: 'Базовая система компонентов' },
+          { label: 'Материалы для передачи в разработку' },
+        ],
+      },
+      {
+        name: 'White-Label Partner Desk',
+        price: 'от $6,500',
+        timeline: 'Ongoing',
+        description:
+          'Для партнёров и integrators. Продуктовый дизайн под вашим брендом для ваших клиентов.',
+        featured: false,
+        includes: [
+          { label: 'Выделенный capacity' },
+          { label: 'White-label deliverables' },
+          { label: 'Прямая коммуникация' },
+          { label: 'Гибкий scope' },
+          { label: 'Приоритетное планирование' },
+        ],
+      },
+    ],
+  },
+  en: {
+    blockType: 'pricingHome',
+    sectionId: 'formats',
+    eyebrow: 'Packages',
+    title: 'Engagement Formats',
+    ctaLabel: 'Get Proposal',
+    ctaPageKey: 'get-proposal',
+    featuredBadge: 'Popular Choice',
+    items: [
+      {
+        name: 'Product Framing Sprint',
+        price: 'from $5,400',
+        timeline: '2-3 weeks',
+        description:
+          'Product structuring from scratch. Product framing, roles, core flows, screen matrix.',
+        featured: false,
+        includes: [
+          { label: 'Structural project framework' },
+          { label: 'Role and permissions map' },
+          { label: 'Core user flows' },
+          { label: 'Screen matrix' },
+          { label: 'Visual direction recommendations' },
+        ],
+      },
+      {
+        name: 'Build-Ready Prototype',
+        price: 'from $6,900',
+        timeline: '4-5 weeks',
+        description:
+          'Full cycle from idea to prototype. Everything for investor presentation or dev kickoff.',
+        featured: true,
+        includes: [
+          { label: 'Everything from Framing Sprint' },
+          { label: 'Visual direction' },
+          { label: 'Interactive prototype' },
+          { label: 'Basic component system' },
+          { label: 'Dev handoff materials' },
+        ],
+      },
+      {
+        name: 'White-Label Partner Desk',
+        price: 'from $6,500',
+        timeline: 'Ongoing',
+        description:
+          'For partners and integrators. Product design under your brand for your clients.',
+        featured: false,
+        includes: [
+          { label: 'Dedicated capacity' },
+          { label: 'White-label deliverables' },
+          { label: 'Direct communication' },
+          { label: 'Flexible scope' },
+          { label: 'Priority planning' },
+        ],
+      },
+    ],
+  },
+  ar: {
+    blockType: 'pricingHome',
+    sectionId: 'formats',
+    eyebrow: 'الباقات',
+    title: 'صيغ التعاون',
+    ctaLabel: 'طلب عرض',
+    ctaPageKey: 'get-proposal',
+    featuredBadge: 'الخيار الشائع',
+    items: [
+      {
+        name: 'سبرنت هيكلة المنتج',
+        price: 'من $5,400',
+        timeline: '2-3 أسابيع',
+        description:
+          'هيكلة المنتج من الصفر. إطار المنتج، الأدوار، التدفقات الأساسية، مصفوفة الشاشات.',
+        featured: false,
+        includes: [
+          { label: 'إطار المشروع الهيكلي' },
+          { label: 'خريطة الأدوار والصلاحيات' },
+          { label: 'تدفقات المستخدم الأساسية' },
+          { label: 'مصفوفة الشاشات' },
+          { label: 'توصيات التوجه البصري' },
+        ],
+      },
+      {
+        name: 'نموذج جاهز للتطوير',
+        price: 'من $6,900',
+        timeline: '4-5 أسابيع',
+        description:
+          'دورة كاملة من الفكرة إلى النموذج. كل شيء لعرض المستثمرين أو بدء التطوير.',
+        featured: true,
+        includes: [
+          { label: 'كل شيء من سبرنت الهيكلة' },
+          { label: 'التوجه البصري' },
+          { label: 'النموذج التفاعلي' },
+          { label: 'نظام المكونات الأساسي' },
+          { label: 'مواد تسليم المطورين' },
+        ],
+      },
+      {
+        name: 'مكتب شراكة White-Label',
+        price: 'من $6,500',
+        timeline: 'مستمر',
+        description:
+          'للشركاء والمتكاملين. تصميم المنتجات تحت علامتك التجارية لعملائك.',
+        featured: false,
+        includes: [
+          { label: 'قدرة مخصصة' },
+          { label: 'تسليمات White-label' },
+          { label: 'تواصل مباشر' },
+          { label: 'نطاق مرن' },
+          { label: 'تخطيط بأولوية' },
+        ],
+      },
+    ],
+  },
+}
+
+const HOME_FINAL_CTA_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'finalCtaHome',
+    title: 'Закажите дизайн сайта, digital-системы или мобильного приложения',
+    description:
+      'Опишите проект — сайт, портал, B2B-платформу или mobile app. Мы подготовим структурированное предложение с форматом работы, сроками и стоимостью.',
+    primaryButtonLabel: 'Получить предложение',
+    primaryPageKey: 'get-proposal',
+    secondaryButtonLabel: 'Посмотреть цены',
+    secondaryPageKey: 'pricing',
+    footerNote:
+      'Для сайтов, корпоративных порталов, B2B-систем, dashboards и mobile apps',
+  },
+  en: {
+    blockType: 'finalCtaHome',
+    title: 'Order Website, Digital System, or Mobile App Design',
+    description:
+      "Describe your project — website, portal, B2B platform, or mobile app. We'll prepare a structured proposal with work format, timeline, and pricing.",
+    primaryButtonLabel: 'Get Proposal',
+    primaryPageKey: 'get-proposal',
+    secondaryButtonLabel: 'View Pricing',
+    secondaryPageKey: 'pricing',
+    footerNote:
+      'For websites, corporate portals, B2B systems, dashboards, and mobile apps',
+  },
+  ar: {
+    blockType: 'finalCtaHome',
+    title: 'هل تريد هذا المستوى من الوضوح والجودة لمشروعك؟',
+    description:
+      'شاركنا فكرتك أو متطلبات مشروعك، وسنقترح عليك الصيغة الأنسب للعمل، والنطاق الزمني المتوقع، والخطوة التالية.',
+    primaryButtonLabel: 'اطلب عرضاً',
+    primaryPageKey: 'get-proposal',
+    secondaryButtonLabel: 'اطلع على الأسعار',
+    secondaryPageKey: 'pricing',
+    footerNote:
+      'للمواقع والبوابات المؤسسية وأنظمة B2B ولوحات التحكم وتطبيقات الموبايل',
+  },
+}
+
 function upsertBlock(layout: BlockData[], nextBlock: BlockData): BlockData[] {
   const existingIndex = layout.findIndex((block) => block?.blockType === nextBlock.blockType)
 
@@ -1639,13 +1849,21 @@ async function main() {
     // await seedBlockForLocale(payload, homePage.id, 'en', HOME_SAMPLE_PREVIEW_SEED.en)
     // await seedBlockForLocale(payload, homePage.id, 'ar', HOME_SAMPLE_PREVIEW_SEED.ar)
 
-    await seedBlockForLocale(payload, homePage.id, 'ru', HOME_TRUST_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', HOME_TRUST_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', HOME_TRUST_SEED.ar)
+    // await seedBlockForLocale(payload, homePage.id, 'ru', HOME_TRUST_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', HOME_TRUST_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', HOME_TRUST_SEED.ar)
 
-    await seedBlockForLocale(payload, homePage.id, 'ru', HOME_FAQ_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', HOME_FAQ_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', HOME_FAQ_SEED.ar)
+    // await seedBlockForLocale(payload, homePage.id, 'ru', HOME_FAQ_SEED.ru)
+    // await seedBlockForLocale(payload, homePage.id, 'en', HOME_FAQ_SEED.en)
+    // await seedBlockForLocale(payload, homePage.id, 'ar', HOME_FAQ_SEED.ar)
+
+    await seedBlockForLocale(payload, homePage.id, 'ru', HOME_PRICING_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', HOME_PRICING_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', HOME_PRICING_SEED.ar)
+
+    await seedBlockForLocale(payload, homePage.id, 'ru', HOME_FINAL_CTA_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', HOME_FINAL_CTA_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', HOME_FINAL_CTA_SEED.ar)
   console.log('✅ Home hero seed completed')
   process.exit(0)
 }

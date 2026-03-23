@@ -442,6 +442,37 @@ export interface Page {
       }
     | {
         sectionId?: string | null;
+        eyebrow: string;
+        title: string;
+        ctaLabel: string;
+        ctaPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        featuredBadge: string;
+        items: {
+          name: string;
+          price: string;
+          timeline: string;
+          description: string;
+          featured?: boolean | null;
+          includes: {
+            label: string;
+            id?: string | null;
+          }[];
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pricingHome';
+      }
+    | {
+        sectionId?: string | null;
         title: string;
         description: string;
         steps: {
@@ -501,6 +532,34 @@ export interface Page {
         id?: string | null;
         blockName?: string | null;
         blockType: 'faqHome';
+      }
+    | {
+        title: string;
+        description: string;
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        footerNote: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'finalCtaHome';
       }
   )[];
   updatedAt: string;
@@ -860,6 +919,34 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        pricingHome?:
+          | T
+          | {
+              sectionId?: T;
+              eyebrow?: T;
+              title?: T;
+              ctaLabel?: T;
+              ctaPageKey?: T;
+              featuredBadge?: T;
+              items?:
+                | T
+                | {
+                    name?: T;
+                    price?: T;
+                    timeline?: T;
+                    description?: T;
+                    featured?: T;
+                    includes?:
+                      | T
+                      | {
+                          label?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
         proposalHome?:
           | T
           | {
@@ -923,6 +1010,19 @@ export interface PagesSelect<T extends boolean = true> {
                     answer?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        finalCtaHome?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              footerNote?: T;
               id?: T;
               blockName?: T;
             };
