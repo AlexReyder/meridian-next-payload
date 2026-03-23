@@ -45,6 +45,15 @@ import { WhyAgenciesBlock } from '@/blocks/for-agencies/WhyAgenciesBlock'
 import { ConceptsAgenciesBlock } from '@/blocks/for-agencies/ConceptsAgenciesBlock'
 import { CTAAgenciesBlock } from '@/blocks/for-agencies/CTAAgenciesBlock'
 import { FAQAgenciesBlock } from '@/blocks/for-agencies/FAQAgenciesBlock'
+import { HeroPricingBlock } from '@/blocks/pricing/HeroPricingBlock'
+import { PositioningBlockPricingBlock } from '@/blocks/pricing/PositioningBlockPricingBlock'
+import { PackageCardsPricingBlock } from '@/blocks/pricing/PackageCardsPricingBlock'
+import { ChoosingGuidePricingBlock } from '@/blocks/pricing/ChoosingGuidePricingBlock'
+import { DeliverablesPreviewPricingBlock } from '@/blocks/pricing/DeliverablesPreviewPricingBlock'
+import { PriceExplanationPricingBlock } from '@/blocks/pricing/PriceExplanationPricingBlock'
+import { NoCallCtaPricingBlock } from '@/blocks/pricing/NoCallCtaPricingBlock'
+import { FaqPricingBlock } from '@/blocks/pricing/FaqPricingBlock'
+import { FinalCtaPricingBlock } from '@/blocks/pricing/FinalCtaPricingBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -135,7 +144,16 @@ export const Pages: CollectionConfig = {
         ConceptsAgenciesBlock,
         CTAAgenciesBlock,
         FAQAgenciesBlock,
-        
+        //pricing
+        HeroPricingBlock,
+        PositioningBlockPricingBlock,
+        PackageCardsPricingBlock,
+        ChoosingGuidePricingBlock,
+        DeliverablesPreviewPricingBlock,
+        PriceExplanationPricingBlock,
+        NoCallCtaPricingBlock,
+        FaqPricingBlock,
+        FinalCtaPricingBlock,
       ],
     },
   ],

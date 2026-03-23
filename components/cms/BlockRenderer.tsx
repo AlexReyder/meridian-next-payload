@@ -44,6 +44,15 @@ import { WhyAgenciesBlockComponent } from './blocks/for-agencies/WhyAgenciesBloc
 import { ConceptsAgenciesBlockComponent } from './blocks/for-agencies/ConceptsAgenciesBlock'
 import { CTAAgenciesBlockComponent } from './blocks/for-agencies/CTAAgenciesBlock'
 import { FAQAgenciesBlockComponent } from './blocks/for-agencies/FAQAgenciesBlock'
+import { HeroPricingBlockComponent } from './blocks/pricing/HeroPricingBlock'
+import { PositioningBlockPricingBlockComponent } from './blocks/pricing/PositioningBlockPricingBlock'
+import { PackageCardsPricingBlockComponent } from './blocks/pricing/PackageCardsPricingBlock'
+import { ChoosingGuidePricingBlockComponent } from './blocks/pricing/ChoosingGuidePricingBlock'
+import { DeliverablesPreviewPricingBlockComponent } from './blocks/pricing/DeliverablesPreviewPricingBlock'
+import { PriceExplanationPricingBlockComponent } from './blocks/pricing/PriceExplanationPricingBlock'
+import { NoCallCtaPricingBlockComponent } from './blocks/pricing/NoCallCtaPricingBlock'
+import { FaqPricingBlockComponent } from './blocks/pricing/FaqPricingBlock'
+import { FinalCtaPricingBlockComponent } from './blocks/pricing/FinalCtaPricingBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -148,6 +157,26 @@ export function BlockRenderer({ blocks, locale }: Props) {
           return <CTAAgenciesBlockComponent key={key} block={block} locale={locale} />
         case 'faqAgencies':
           return <FAQAgenciesBlockComponent key={key} block={block} locale={locale} />
+          //pricing
+        case 'heroPricing':
+          return <HeroPricingBlockComponent key={key} block={block} locale={locale} />
+        case 'positioningBlockPricing':
+          return <PositioningBlockPricingBlockComponent key={key} block={block} locale={locale} />
+        case 'packageCardsPricing':
+          return <PackageCardsPricingBlockComponent key={key} block={block} locale={locale} />
+        case 'choosingGuidePricing':
+          return <ChoosingGuidePricingBlockComponent key={key} block={block} locale={locale} />
+        case 'deliverablesPreviewPricing':
+          return <DeliverablesPreviewPricingBlockComponent key={key} block={block} locale={locale} />
+        case 'priceExplanationPricing':
+          return <PriceExplanationPricingBlockComponent key={key} block={block} locale={locale} />
+        case 'noCallCtaPricing':
+          //TSerror
+          return <NoCallCtaPricingBlockComponent key={key} block={block} locale={locale} />
+        case 'faqPricing':
+          return <FaqPricingBlockComponent key={key} block={block} locale={locale} />
+        case 'finalCtaPricing':
+          return <FinalCtaPricingBlockComponent key={key} block={block} locale={locale} />
           default:
             return null
         }

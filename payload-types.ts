@@ -1189,6 +1189,242 @@ export interface Page {
         blockName?: string | null;
         blockType: 'faqAgencies';
       }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        descriptionSecondary: string;
+        trustLabels: {
+          label: string;
+          id?: string | null;
+        }[];
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'heroPricing';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        descriptionSecondary?: string | null;
+        rightTitle: string;
+        pillars?:
+          | {
+              label: string;
+              description: string;
+              id?: string | null;
+            }[]
+          | null;
+        deliveryElements: {
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'positioningBlockPricing';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        packages: {
+          badge?: string | null;
+          title: string;
+          price: string;
+          timeline: string;
+          idealFor: string;
+          featured?: boolean | null;
+          items: {
+            label: string;
+            id?: string | null;
+          }[];
+          buttonLabel: string;
+          buttonPageKey:
+            | 'home'
+            | 'solutions'
+            | 'pricing'
+            | 'get-proposal'
+            | 'concepts'
+            | 'for-startups'
+            | 'for-partners'
+            | 'method';
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'packageCardsPricing';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        layoutVariant: 'detailed' | 'compact';
+        items: {
+          title: string;
+          description: string;
+          bestForLabel: string;
+          bestForValue: string;
+          resultLabel: string;
+          resultValue: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'choosingGuidePricing';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        layoutVariant: 'visuals' | 'simple';
+        topLinkLabel?: string | null;
+        topLinkPageKey?:
+          | (
+              | 'home'
+              | 'solutions'
+              | 'pricing'
+              | 'get-proposal'
+              | 'concepts'
+              | 'for-startups'
+              | 'for-partners'
+              | 'method'
+            )
+          | null;
+        items: {
+          name: string;
+          subtitle: string;
+          visual?: ('structure' | 'scenarios' | 'screen-map' | 'prototype' | 'design-system' | 'dev-materials') | null;
+          id?: string | null;
+        }[];
+        footerNote?: string | null;
+        footerLinkLabel?: string | null;
+        footerLinkPageKey?:
+          | (
+              | 'home'
+              | 'solutions'
+              | 'pricing'
+              | 'get-proposal'
+              | 'concepts'
+              | 'for-startups'
+              | 'for-partners'
+              | 'method'
+            )
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'deliverablesPreviewPricing';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        descriptionSecondary: string;
+        quote: string;
+        points: {
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'priceExplanationPricing';
+      }
+    | {
+        title: string;
+        description: string;
+        descriptionSecondary?: string | null;
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        footerNote: string;
+        benefits: {
+          label: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'noCallCtaPricing';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description?: string | null;
+        items: {
+          question: string;
+          answer: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'faqPricing';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        footerNote: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'finalCtaPricing';
+      }
   )[];
   updatedAt: string;
   createdAt: string;
@@ -2217,6 +2453,191 @@ export interface PagesSelect<T extends boolean = true> {
                     answer?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        heroPricing?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              descriptionSecondary?: T;
+              trustLabels?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              id?: T;
+              blockName?: T;
+            };
+        positioningBlockPricing?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              descriptionSecondary?: T;
+              rightTitle?: T;
+              pillars?:
+                | T
+                | {
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              deliveryElements?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        packageCardsPricing?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              packages?:
+                | T
+                | {
+                    badge?: T;
+                    title?: T;
+                    price?: T;
+                    timeline?: T;
+                    idealFor?: T;
+                    featured?: T;
+                    items?:
+                      | T
+                      | {
+                          label?: T;
+                          id?: T;
+                        };
+                    buttonLabel?: T;
+                    buttonPageKey?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        choosingGuidePricing?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              layoutVariant?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    bestForLabel?: T;
+                    bestForValue?: T;
+                    resultLabel?: T;
+                    resultValue?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        deliverablesPreviewPricing?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              layoutVariant?: T;
+              topLinkLabel?: T;
+              topLinkPageKey?: T;
+              items?:
+                | T
+                | {
+                    name?: T;
+                    subtitle?: T;
+                    visual?: T;
+                    id?: T;
+                  };
+              footerNote?: T;
+              footerLinkLabel?: T;
+              footerLinkPageKey?: T;
+              id?: T;
+              blockName?: T;
+            };
+        priceExplanationPricing?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              descriptionSecondary?: T;
+              quote?: T;
+              points?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        noCallCtaPricing?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              descriptionSecondary?: T;
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              footerNote?: T;
+              benefits?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faqPricing?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        finalCtaPricing?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              footerNote?: T;
               id?: T;
               blockName?: T;
             };
