@@ -11,17 +11,13 @@ export const FaqPricingBlock: Block = {
       name: 'eyebrow',
       type: 'text',
       required: true,
-      defaultValue: 'FAQ',
+      defaultValue: 'Вопросы',
     },
     {
       name: 'title',
       type: 'textarea',
       required: true,
-      defaultValue: 'Частые вопросы по стоимости и формату работы',
-    },
-    {
-      name: 'description',
-      type: 'textarea',
+      defaultValue: 'Частые вопросы о форматах и стоимости',
     },
     {
       name: 'items',

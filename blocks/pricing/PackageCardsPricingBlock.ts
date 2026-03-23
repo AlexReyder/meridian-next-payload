@@ -13,18 +13,34 @@ export const PackageCardsPricingBlock: Block = {
       name: 'eyebrow',
       type: 'text',
       required: true,
-      defaultValue: 'Пакеты',
+      defaultValue: 'Форматы работы',
     },
     {
       name: 'title',
       type: 'textarea',
       required: true,
-      defaultValue: 'Основные форматы работы',
+      defaultValue: 'Три формата работы',
     },
     {
       name: 'description',
       type: 'textarea',
       required: true,
+    },
+    {
+      name: 'contextLine',
+      type: 'textarea',
+    },
+    {
+      name: 'forWhomLabel',
+      type: 'text',
+      required: true,
+      defaultValue: 'Для кого',
+    },
+    {
+      name: 'includesLabel',
+      type: 'text',
+      required: true,
+      defaultValue: 'Что входит',
     },
     {
       name: 'packages',
@@ -33,8 +49,9 @@ export const PackageCardsPricingBlock: Block = {
       minRows: 1,
       fields: [
         {
-          name: 'badge',
+          name: 'packageKey',
           type: 'text',
+          required: true,
         },
         {
           name: 'title',
@@ -42,7 +59,17 @@ export const PackageCardsPricingBlock: Block = {
           required: true,
         },
         {
+          name: 'subtitle',
+          type: 'textarea',
+          required: true,
+        },
+        {
           name: 'price',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'priceNote',
           type: 'text',
           required: true,
         },
@@ -52,17 +79,12 @@ export const PackageCardsPricingBlock: Block = {
           required: true,
         },
         {
-          name: 'idealFor',
+          name: 'forWhom',
           type: 'textarea',
           required: true,
         },
         {
-          name: 'featured',
-          type: 'checkbox',
-          defaultValue: false,
-        },
-        {
-          name: 'items',
+          name: 'includes',
           type: 'array',
           required: true,
           minRows: 1,
@@ -75,23 +97,36 @@ export const PackageCardsPricingBlock: Block = {
           ],
         },
         {
-          type: 'row',
-          fields: [
-            {
-              name: 'buttonLabel',
-              type: 'text',
-              required: true,
-              defaultValue: 'Получить предложение',
-            },
-            {
-              name: 'buttonPageKey',
-              type: 'select',
-              dbName: 'pcp_btn_pk',
-              required: true,
-              options: PAGE_KEY_OPTIONS,
-              defaultValue: 'get-proposal',
-            },
-          ],
+          name: 'primaryButtonLabel',
+          type: 'text',
+          required: true,
+          defaultValue: 'Получить предложение',
+        },
+        {
+          name: 'primaryPageKey',
+          type: 'select',
+          dbName: 'pcp_pri_pk',
+          required: true,
+          options: PAGE_KEY_OPTIONS,
+          defaultValue: 'get-proposal',
+        },
+        {
+          name: 'secondaryLinkLabel',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'secondaryPageKey',
+          type: 'select',
+          dbName: 'pcp_sec_pk',
+          required: true,
+          options: PAGE_KEY_OPTIONS,
+          defaultValue: 'for-startups',
+        },
+        {
+          name: 'featured',
+          type: 'checkbox',
+          defaultValue: false,
         },
       ],
     },

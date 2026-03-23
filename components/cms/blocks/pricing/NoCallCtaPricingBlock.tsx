@@ -1,23 +1,25 @@
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle, FileText, MessageSquare, type LucideIcon } from 'lucide-react'
 
+import { Button } from '@/components/ui/button'
 import { getHrefForPageKey, isRTL, type Locale, type PageKey } from '@/lib/routes'
-import { cn } from '@/lib/utils'
 
-type BenefitItem = {
-  label?: string | null
+type StepItem = {
+  icon?: 'fileText' | 'messageSquare' | 'checkCircle' | null
+  step?: string | null
+  title?: string | null
+  description?: string | null
 }
 
 type NoCallCtaPricingBlockData = {
+  eyebrow?: string | null
   title?: string | null
   description?: string | null
-  descriptionSecondary?: string | null
+  steps?: StepItem[] | null
   primaryButtonLabel?: string | null
   primaryPageKey?: PageKey | null
   secondaryButtonLabel?: string | null
   secondaryPageKey?: PageKey | null
-  footerNote?: string | null
-  benefits?: BenefitItem[] | null
 }
 
 type Props = {
@@ -25,188 +27,84 @@ type Props = {
   locale: Locale
 }
 
+const ICONS: Record<string, LucideIcon> = {
+  fileText: FileText,
+  messageSquare: MessageSquare,
+  checkCircle: CheckCircle,
+}
+
 export function NoCallCtaPricingBlockComponent({ block, locale }: Props) {
   const rtl = isRTL(locale)
-  const isArabic = locale === 'ar'
 
   return (
-    <section dir={rtl ? 'rtl' : 'ltr'} className="py-20 lg:py-28">
+    <section dir={rtl ? 'rtl' : 'ltr'} className="bg-secondary/30 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div
-          className={cn(
-            'relative overflow-hidden rounded-sm border p-8 lg:p-12',
-            isArabic
-              ? 'border-background/10 bg-foreground text-background'
-              : 'border-border/60 bg-card text-foreground',
-          )}
-        >
-          <div
-            className={cn(
-              'absolute inset-0 pointer-events-none',
-              isArabic
-                ? 'bg-gradient-to-bl from-background/5 via-transparent to-transparent'
-                : 'bg-gradient-to-br from-secondary/30 via-transparent to-transparent',
-            )}
-          />
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-accent">{block.eyebrow}</p>
 
-          <div className="relative grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-14">
-            <div className={cn(rtl && 'lg:order-2')}>
-              <div className="mb-8 flex items-center gap-1">
-                <div className={cn('h-px w-12', isArabic ? 'bg-background/20' : 'bg-border')} />
+          <h2 className="text-balance font-serif text-3xl font-light leading-tight text-foreground lg:text-4xl xl:text-5xl">
+            {block.title}
+          </h2>
 
-                {rtl ? (
-                  <>
-                    <div className="h-[2px] w-1.5 rounded-full bg-signature-brass" />
-                    <div className="h-[2px] w-2.5 rounded-full bg-signature-cobalt" />
-                  </>
-                ) : (
-                  <>
-                    <div className="h-[2px] w-2.5 rounded-full bg-signature-cobalt" />
-                    <div className="h-[2px] w-1.5 rounded-full bg-signature-brass" />
-                  </>
-                )}
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            {block.description}
+          </p>
+        </div>
 
-                <div className={cn('h-px w-12', isArabic ? 'bg-background/20' : 'bg-border')} />
-              </div>
+        <div className="mx-auto mt-16 grid max-w-4xl gap-8 sm:grid-cols-3 lg:gap-12">
+          {block.steps?.map((item, index) => {
+            if (!item?.step || !item?.title || !item?.description) return null
+            const Icon = item.icon ? ICONS[item.icon] : FileText
 
-              <h2
-                className={cn(
-                  'max-w-2xl font-serif text-2xl font-light leading-snug sm:text-3xl lg:text-[2.25rem]',
-                  isArabic ? 'text-background' : 'text-foreground',
-                )}
-              >
-                {block.title}
-              </h2>
+            return (
+              <div key={`${item.step}-${index}`} className="relative text-center">
+                {index < (block.steps?.length ?? 0) - 1 ? (
+                  <div className="absolute left-[60%] top-8 hidden h-px w-[80%] bg-border sm:block" />
+                ) : null}
 
-              <p
-                className={cn(
-                  'mt-4 max-w-2xl text-base leading-relaxed lg:text-lg',
-                  isArabic ? 'text-background/70' : 'text-muted-foreground',
-                )}
-              >
-                {block.description}
-              </p>
-
-              {block.descriptionSecondary ? (
-                <p
-                  className={cn(
-                    'mt-3 max-w-2xl text-sm leading-relaxed lg:text-base',
-                    isArabic ? 'text-background/60' : 'text-muted-foreground/90',
-                  )}
-                >
-                  {block.descriptionSecondary}
-                </p>
-              ) : null}
-
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <div className="relative group">
-                  <Link
-                    href={getHrefForPageKey(block.primaryPageKey ?? 'get-proposal', locale)}
-                    className={cn(
-                      'inline-flex h-11 items-center justify-center rounded-md px-7 text-[11px] font-medium transition-colors',
-                      isArabic
-                        ? 'bg-background text-foreground hover:bg-background/90'
-                        : 'bg-foreground text-background hover:bg-foreground/90',
-                      rtl ? 'tracking-[0.12em]' : 'uppercase tracking-[0.15em]',
-                    )}
-                  >
-                    {rtl ? (
-                      <>
-                        <ArrowLeft className="ml-2 h-3.5 w-3.5" />
-                        {block.primaryButtonLabel}
-                      </>
-                    ) : (
-                      <>
-                        {block.primaryButtonLabel}
-                        <ArrowRight className="ml-2 h-3.5 w-3.5" />
-                      </>
-                    )}
-                  </Link>
-
-                  <div
-                    className={cn(
-                      'absolute -bottom-1 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full transition-all duration-300 group-hover:w-1/2',
-                      rtl
-                        ? 'bg-gradient-to-r from-signature-brass to-signature-cobalt'
-                        : 'bg-gradient-to-r from-signature-cobalt to-signature-brass',
-                    )}
-                  />
+                <div className="relative z-10 mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full border border-border bg-card">
+                  <Icon className="h-6 w-6 text-foreground/60" />
                 </div>
 
-                <Link
-                  href={getHrefForPageKey(block.secondaryPageKey ?? 'get-proposal', locale)}
-                  className={cn(
-                    'inline-flex h-11 items-center justify-center rounded-md border px-7 text-[11px] font-medium transition-colors',
-                    isArabic
-                      ? 'border-background/20 text-background hover:bg-background/10'
-                      : 'border-foreground/15 text-foreground hover:bg-foreground/5',
-                    rtl ? 'tracking-[0.12em]' : 'uppercase tracking-[0.15em]',
-                  )}
-                >
-                  {block.secondaryButtonLabel}
-                </Link>
+                <p className="mb-2 text-xs uppercase tracking-wider text-accent">{item.step}</p>
+                <h3 className="mb-2 font-serif text-lg text-foreground">{item.title}</h3>
+                <p className="text-sm text-muted-foreground">{item.description}</p>
               </div>
+            )
+          })}
+        </div>
 
-              <p
-                className={cn(
-                  'mt-6 text-sm',
-                  isArabic ? 'text-background/50' : 'text-muted-foreground',
-                )}
-              >
-                {block.footerNote}
-              </p>
-            </div>
+        <div className="mt-16 flex flex-col justify-center gap-4 sm:flex-row">
+          <Button
+            asChild
+            size="lg"
+            className="h-12 bg-foreground px-8 text-[11px] uppercase tracking-[0.15em] text-background hover:bg-foreground/90"
+          >
+            <Link href={getHrefForPageKey(block.primaryPageKey ?? 'get-proposal', locale)}>
+              {rtl ? (
+                <>
+                  <ArrowLeft className="ml-2 h-4 w-4" />
+                  {block.primaryButtonLabel}
+                </>
+              ) : (
+                <>
+                  {block.primaryButtonLabel}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </>
+              )}
+            </Link>
+          </Button>
 
-            <div className={cn(rtl && 'lg:order-1')}>
-              <div
-                className={cn(
-                  'rounded-sm border p-5 lg:p-6',
-                  isArabic
-                    ? 'border-background/10 bg-background/5'
-                    : 'border-border/60 bg-secondary/20',
-                )}
-              >
-                <div
-                  className={cn(
-                    'mb-4 text-[10px] uppercase tracking-[0.18em]',
-                    isArabic ? 'text-background/40' : 'text-muted-foreground',
-                  )}
-                >
-                  {locale === 'ru'
-                    ? 'Без обязательного звонка'
-                    : locale === 'ar'
-                      ? 'من دون مكالمة إلزامية'
-                      : 'No mandatory call'}
-                </div>
-
-                <div className="space-y-3">
-                  {block.benefits?.map((benefit, index) =>
-                    benefit?.label ? (
-                      <div
-                        key={`${benefit.label}-${index}`}
-                        className={cn(
-                          'flex items-start gap-3 rounded-sm border px-4 py-3',
-                          isArabic
-                            ? 'border-background/10 bg-background/5'
-                            : 'border-border/50 bg-background/60',
-                        )}
-                      >
-                        <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-signature-cobalt" />
-                        <span
-                          className={cn(
-                            'text-sm leading-relaxed',
-                            isArabic ? 'text-background/80' : 'text-foreground/80',
-                          )}
-                        >
-                          {benefit.label}
-                        </span>
-                      </div>
-                    ) : null,
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="h-12 border-foreground/15 px-8 text-[11px] uppercase tracking-[0.15em] text-foreground hover:bg-foreground/5"
+          >
+            <Link href={getHrefForPageKey(block.secondaryPageKey ?? 'get-proposal', locale)}>
+              {block.secondaryButtonLabel}
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

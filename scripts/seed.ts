@@ -210,175 +210,248 @@ const POSITIONING_BLOCK_PRICING_SEED: Record<Locale, BlockData> = {
 const PACKAGE_CARDS_PRICING_SEED: Record<Locale, BlockData> = {
   ru: {
     blockType: 'packageCardsPricing',
-    eyebrow: 'Пакеты',
-    title: 'Основные форматы работы',
+    eyebrow: 'Форматы работы',
+    title: 'Три формата работы',
     description:
-      'Ниже — базовые форматы, которые помогают быстро понять масштаб, уровень проработки и тип результата. Финальный scope уточняется после brief.',
+      'Выберите подходящий формат — или расскажите о проекте, и мы порекомендуем оптимальный.',
+    contextLine:
+      'Эти форматы подходят для проектов разного типа — от дизайна сайта или редизайна корпоративного сайта до client portal, B2B systems, SaaS interfaces и mobile apps.',
+    forWhomLabel: 'Для кого',
+    includesLabel: 'Что входит',
     packages: [
       {
-        badge: 'Стартовый формат',
-        title: 'Concept Package',
-        price: 'от $2,000',
-        timeline: '1–2 недели',
-        idealFor:
-          'Подходит, когда нужно быстро собрать направление, показать идею, подготовить первый prototype или client-facing concept.',
-        items: [
-          { label: 'Структура основного сценария' },
-          { label: 'Ключевые экраны или блоки' },
-          { label: 'Базовое визуальное направление' },
-          { label: 'Материалы для обсуждения или презентации' },
+        packageKey: 'framing',
+        title: 'Product Framing Sprint',
+        subtitle: 'Структурирование продукта до начала дизайна и разработки',
+        price: '$5,400',
+        priceNote: 'от',
+        timeline: 'Ориентир: 1–2 недели',
+        forWhom:
+          'Для founders, startup-команд и B2B-проектов, которым нужно сначала собрать продуктовую логику, роли, сценарии и scope.',
+        includes: [
+          { label: 'Структурная рамка проекта' },
+          { label: 'Роли и права доступа' },
+          { label: 'Ключевые пользовательские сценарии' },
+          { label: 'Экранная карта продукта' },
+          { label: 'Приоритеты и логика модулей' },
+          { label: 'Рекомендации по следующему этапу' },
         ],
-        buttonLabel: 'Получить предложение',
-        buttonPageKey: 'get-proposal',
+        primaryButtonLabel: 'Выбрать этот формат',
+        primaryPageKey: 'get-proposal',
+        secondaryLinkLabel: 'Подходит для старта продукта',
+        secondaryPageKey: 'for-startups',
+        featured: false,
       },
       {
-        badge: 'Основной формат',
-        title: 'Product Structure Package',
-        price: 'от $4,500',
-        timeline: '2–4 недели',
+        packageKey: 'prototype',
+        title: 'Build-Ready Prototype',
+        subtitle: 'Прототип и ключевые интерфейсы для презентации или передачи в разработку',
+        price: '$6,900',
+        priceNote: 'от',
+        timeline: 'Ориентир: 2–4 недели',
+        forWhom:
+          'Для команд, которым нужен premium-прототип, понятная структура экранов и материалы, которые можно использовать для презентации или передачи в разработку.',
+        includes: [
+          { label: 'Продуктовая логика и user flows' },
+          { label: 'Набор ключевых интерфейсов' },
+          { label: 'Интерактивный прототип' },
+          { label: 'Визуальное направление' },
+          { label: 'Базовая система компонентов' },
+          { label: 'Сводка для передачи в разработку' },
+        ],
+        primaryButtonLabel: 'Получить предложение',
+        primaryPageKey: 'get-proposal',
+        secondaryLinkLabel: 'Посмотреть метод работы',
+        secondaryPageKey: 'method',
         featured: true,
-        idealFor:
-          'Подходит, когда важно собрать продуктовую логику, user flows, экранную карту и подготовить понятную базу до этапа детального UI.',
-        items: [
-          { label: 'Product framing и roles/scenarios' },
-          { label: 'User flows и screen map' },
-          { label: 'Логика структуры и навигации' },
-          { label: 'Материалы для следующего этапа' },
-        ],
-        buttonLabel: 'Обсудить формат',
-        buttonPageKey: 'get-proposal',
       },
       {
-        badge: 'Расширенный формат',
-        title: 'Prototype + Handoff Package',
-        price: 'от $8,000',
-        timeline: '3–6 недель',
-        idealFor:
-          'Подходит для проектов, где нужен уже build-ready результат: сильный prototype, visual layer и материалы для передачи в разработку.',
-        items: [
-          { label: 'Подробный prototype' },
-          { label: 'Visual direction и основные компоненты' },
-          { label: 'Ключевые состояния экранов' },
-          { label: 'Материалы для dev handoff' },
+        packageKey: 'partner',
+        title: 'White-Label Partner Desk',
+        subtitle: 'Партнёрский формат для агентств, integrators и delivery-команд',
+        price: '$6,500',
+        priceNote: 'от',
+        timeline: 'По scope проекта / возможен постоянный формат',
+        forWhom:
+          'Для партнёров, integrators и digital-команд, которым нужен внешний premium-партнёр по product architecture, UX и интерфейсам.',
+        includes: [
+          { label: 'White-label поддержка' },
+          { label: 'Упаковка концепций и presale-материалов' },
+          { label: 'Prototype и interface delivery' },
+          { label: 'Async-взаимодействие' },
+          { label: 'Структурные материалы для клиента' },
+          { label: 'Сводка для команды разработки' },
         ],
-        buttonLabel: 'Запросить scope',
-        buttonPageKey: 'get-proposal',
+        primaryButtonLabel: 'Обсудить формат',
+        primaryPageKey: 'get-proposal',
+        secondaryLinkLabel: 'Подробнее для партнёров',
+        secondaryPageKey: 'for-agencies',
+        featured: false,
       },
     ],
   },
+
   en: {
     blockType: 'packageCardsPricing',
-    eyebrow: 'Packages',
-    title: 'Core engagement formats',
+    eyebrow: 'Engagement formats',
+    title: 'Three ways to work together',
     description:
-      'These are the baseline formats that help understand scale, depth, and expected output. Final scope is clarified after the brief.',
+      'Choose the format that fits your stage — or tell us about your project, and we will recommend the right one.',
+    contextLine:
+      'These formats are suitable for a range of digital projects — from corporate websites and website redesign to client portals, B2B systems, SaaS interfaces, and mobile apps.',
+    forWhomLabel: 'Who it is for',
+    includesLabel: 'What is included',
     packages: [
       {
-        badge: 'Starter format',
-        title: 'Concept Package',
-        price: 'from $2,000',
-        timeline: '1–2 weeks',
-        idealFor:
-          'Useful when you need a clear direction, an early prototype, or a client-facing concept that can be reviewed quickly.',
-        items: [
-          { label: 'Core scenario structure' },
-          { label: 'Key screens or blocks' },
-          { label: 'Initial visual direction' },
-          { label: 'Presentation-ready materials' },
+        packageKey: 'framing',
+        title: 'Product Framing Sprint',
+        subtitle: 'Structure the product before design and development begin',
+        price: '$5,400',
+        priceNote: 'from',
+        timeline: 'Typical timeline: 1–2 weeks',
+        forWhom:
+          'For founders, startup teams, and B2B projects that need clarity around product logic, roles, user flows, and scope before moving forward.',
+        includes: [
+          { label: 'Project structure' },
+          { label: 'Roles and permissions logic' },
+          { label: 'Key user flows' },
+          { label: 'Screen map / screen matrix' },
+          { label: 'Priorities and product scope logic' },
+          { label: 'Recommendations for the next stage' },
         ],
-        buttonLabel: 'Get Proposal',
-        buttonPageKey: 'get-proposal',
+        primaryButtonLabel: 'Choose this format',
+        primaryPageKey: 'get-proposal',
+        secondaryLinkLabel: 'Ideal for product launch',
+        secondaryPageKey: 'for-startups',
+        featured: false,
       },
       {
-        badge: 'Core format',
-        title: 'Product Structure Package',
-        price: 'from $4,500',
-        timeline: '2–4 weeks',
+        packageKey: 'prototype',
+        title: 'Build-Ready Prototype',
+        subtitle: 'Prototype and key interfaces for presentation or development',
+        price: '$6,900',
+        priceNote: 'from',
+        timeline: 'Typical timeline: 2–4 weeks',
+        forWhom:
+          'For teams that need a premium prototype, a clear screen structure, and materials that can support product delivery or handoff to development.',
+        includes: [
+          { label: 'Product logic and user flows' },
+          { label: 'Key interface set' },
+          { label: 'Clickable prototype' },
+          { label: 'Visual direction' },
+          { label: 'Basic component system' },
+          { label: 'Materials for development' },
+        ],
+        primaryButtonLabel: 'Get Proposal',
+        primaryPageKey: 'get-proposal',
+        secondaryLinkLabel: 'See how we work',
+        secondaryPageKey: 'method',
         featured: true,
-        idealFor:
-          'Useful when product logic, user flows, and screen architecture need to be clarified before the detailed UI stage.',
-        items: [
-          { label: 'Product framing and roles/scenarios' },
-          { label: 'User flows and screen map' },
-          { label: 'Navigation and structure logic' },
-          { label: 'Clear foundation for the next stage' },
-        ],
-        buttonLabel: 'Discuss Format',
-        buttonPageKey: 'get-proposal',
       },
       {
-        badge: 'Extended format',
-        title: 'Prototype + Handoff Package',
-        price: 'from $8,000',
-        timeline: '3–6 weeks',
-        idealFor:
-          'Useful when you need a stronger, build-ready result: prototype, visual layer, and structured development handoff.',
-        items: [
-          { label: 'Detailed prototype' },
-          { label: 'Visual direction and core components' },
-          { label: 'Key screen states' },
-          { label: 'Development handoff materials' },
+        packageKey: 'partner',
+        title: 'White-Label Partner Desk',
+        subtitle: 'Partner model for agencies, integrators, and delivery teams',
+        price: '$6,500',
+        priceNote: 'from',
+        timeline: 'Depends on project scope / ongoing format possible',
+        forWhom:
+          'For agencies, integrators, and delivery teams that need an external premium partner for product structure, UX, and interface work.',
+        includes: [
+          { label: 'White-label support' },
+          { label: 'Concept and presale packaging' },
+          { label: 'Prototype and interface delivery' },
+          { label: 'Async collaboration' },
+          { label: 'Structured outputs for the client' },
+          { label: 'Summary for the development team' },
         ],
-        buttonLabel: 'Request Scope',
-        buttonPageKey: 'get-proposal',
+        primaryButtonLabel: 'Discuss this format',
+        primaryPageKey: 'get-proposal',
+        secondaryLinkLabel: 'More for partners',
+        secondaryPageKey: 'for-agencies',
+        featured: false,
       },
     ],
   },
+
   ar: {
     blockType: 'packageCardsPricing',
-    eyebrow: 'الباقات',
-    title: 'صيغ العمل الأساسية',
+    eyebrow: 'صيغ العمل',
+    title: 'ثلاث طرق للعمل معاً',
     description:
-      'هذه هي الصيغ الأساسية التي تساعد على فهم حجم العمل ومستوى العمق ونوع النتيجة المتوقعة. يتم تحديد النطاق النهائي بعد مراجعة brief.',
+      'اختر الصيغة التي تناسب مرحلتك — أو أخبرنا عن مشروعك وسنقترح عليك الصيغة المناسبة.',
+    contextLine:
+      'هذه الصيغ مناسبة لأنواع مختلفة من المشاريع الرقمية — من مواقع الشركات وإعادة تصميم المواقع إلى بوابات العملاء والأنظمة الرقمية وواجهات SaaS وتطبيقات الجوال.',
+    forWhomLabel: 'لمن تناسب',
+    includesLabel: 'ما تتضمنه',
     packages: [
       {
-        badge: 'صيغة البداية',
-        title: 'Concept Package',
-        price: 'ابتداءً من $2,000',
-        timeline: '1–2 أسبوع',
-        idealFor:
-          'مناسبة عندما تحتاج إلى اتجاه واضح أو نموذج أولي مبكر أو concept يمكن عرضه بسرعة على العميل أو الفريق.',
-        items: [
-          { label: 'هيكل السيناريو الأساسي' },
-          { label: 'الشاشات أو الكتل الرئيسية' },
-          { label: 'اتجاه بصري أولي' },
-          { label: 'مواد جاهزة للعرض والمراجعة' },
+        packageKey: 'framing',
+        title: 'Sprint لهيكلة المنتج',
+        subtitle: 'لبناء وضوح المنتج قبل بدء التصميم والتطوير',
+        price: '$5,400',
+        priceNote: 'يبدأ من',
+        timeline: 'المدة المعتادة: من أسبوع إلى أسبوعين',
+        forWhom:
+          'مناسب للمؤسسين وفرق الشركات الناشئة ومشاريع B2B التي تحتاج إلى وضوح أكبر حول منطق المنتج والأدوار ومسارات الاستخدام وحدود النطاق قبل الانتقال إلى المرحلة التالية.',
+        includes: [
+          { label: 'هيكل المشروع' },
+          { label: 'منطق الأدوار والصلاحيات' },
+          { label: 'مسارات الاستخدام الأساسية' },
+          { label: 'خريطة أو مصفوفة الشاشات' },
+          { label: 'أولويات المنتج وحدود النطاق' },
+          { label: 'توصيات للمرحلة التالية' },
         ],
-        buttonLabel: 'اطلب عرضاً',
-        buttonPageKey: 'get-proposal',
+        primaryButtonLabel: 'اختر هذه الصيغة',
+        primaryPageKey: 'get-proposal',
+        secondaryLinkLabel: 'مثالي لإطلاق المنتجات',
+        secondaryPageKey: 'for-startups',
+        featured: false,
       },
       {
-        badge: 'الصيغة الأساسية',
-        title: 'Product Structure Package',
-        price: 'ابتداءً من $4,500',
-        timeline: '2–4 أسابيع',
+        packageKey: 'prototype',
+        title: 'نموذج أولي جاهز للتطوير',
+        subtitle: 'نموذج أولي وواجهات أساسية للعرض أو للتنفيذ',
+        price: '$6,900',
+        priceNote: 'يبدأ من',
+        timeline: 'المدة المعتادة: من أسبوعين إلى أربعة أسابيع',
+        forWhom:
+          'مناسب للفرق التي تحتاج إلى نموذج أولي متميز وهيكل واضح للشاشات ومخرجات يمكن الاعتماد عليها في العرض أو في الانتقال إلى التطوير.',
+        includes: [
+          { label: 'منطق المنتج ومسارات المستخدم' },
+          { label: 'مجموعة الواجهات الأساسية' },
+          { label: 'نموذج أولي قابل للنقر' },
+          { label: 'اتجاه بصري' },
+          { label: 'نظام مكونات أساسي' },
+          { label: 'مواد جاهزة للتطوير' },
+        ],
+        primaryButtonLabel: 'اطلب عرضاً',
+        primaryPageKey: 'get-proposal',
+        secondaryLinkLabel: 'شاهد طريقة عملنا',
+        secondaryPageKey: 'method',
         featured: true,
-        idealFor:
-          'مناسبة عندما تحتاج إلى توضيح منطق المنتج ومسارات المستخدم وبنية الشاشات قبل الدخول في مرحلة UI التفصيلية.',
-        items: [
-          { label: 'Product framing والأدوار والسيناريوهات' },
-          { label: 'مسارات المستخدم وخريطة الشاشات' },
-          { label: 'منطق التنقل وبنية الواجهة' },
-          { label: 'أساس واضح للمرحلة التالية' },
-        ],
-        buttonLabel: 'ناقش الصيغة',
-        buttonPageKey: 'get-proposal',
       },
       {
-        badge: 'صيغة موسعة',
-        title: 'Prototype + Handoff Package',
-        price: 'ابتداءً من $8,000',
-        timeline: '3–6 أسابيع',
-        idealFor:
-          'مناسبة عندما تحتاج إلى نتيجة أقرب للتنفيذ: prototype قوي وطبقة بصرية واضحة ومواد مرتبة للتطوير.',
-        items: [
-          { label: 'نموذج أولي مفصل' },
-          { label: 'اتجاه بصري ومكونات أساسية' },
-          { label: 'الحالات الرئيسية للشاشات' },
-          { label: 'مواد تسليم منظمة للتطوير' },
+        packageKey: 'partner',
+        title: 'صيغة الشراكة للوكالات وفرق التنفيذ',
+        subtitle: 'نموذج عمل للشركاء والوكالات وشركات التنفيذ',
+        price: '$6,500',
+        priceNote: 'يبدأ من',
+        timeline: 'بحسب نطاق المشروع / مع إمكانية التعاون المستمر',
+        forWhom:
+          'مناسب للوكالات وشركاء التنفيذ والفرق التي تحتاج إلى شريك خارجي متميز في هيكلة المنتج والواجهات ودعم المشاريع الموجهة للعملاء.',
+        includes: [
+          { label: 'دعم بنظام white-label' },
+          { label: 'إعداد concept وعروض تمهيدية' },
+          { label: 'نماذج أولية ومخرجات واجهات' },
+          { label: 'تعاون مرن وعملي' },
+          { label: 'مخرجات منظمة للعميل أو لفريق التطوير' },
         ],
-        buttonLabel: 'اطلب النطاق',
-        buttonPageKey: 'get-proposal',
+        primaryButtonLabel: 'ناقش هذه الصيغة',
+        primaryPageKey: 'get-proposal',
+        secondaryLinkLabel: 'المزيد للشركاء',
+        secondaryPageKey: 'for-agencies',
+        featured: false,
       },
     ],
   },
@@ -719,226 +792,240 @@ const PRICE_EXPLANATION_PRICING_SEED: Record<Locale, BlockData> = {
 const NO_CALL_CTA_PRICING_SEED: Record<Locale, BlockData> = {
   ru: {
     blockType: 'noCallCtaPricing',
-    title: 'Не хотите начинать с созвона?',
+    eyebrow: 'Старт без звонков',
+    title: 'Получите рекомендацию по проекту без обязательного стартового звонка',
     description:
-      'Это нормально. Большинство проектов можно начать асинхронно: вы присылаете задачу, контекст и ссылки, а мы возвращаем формат работы и ориентир по scope.',
-    descriptionSecondary:
-      'Без обязательной встречи на старте. Сначала — ясность по задаче, потом уже созвон, если он действительно нужен.',
+      'Оставьте brief — мы предложим подходящий формат, ориентир по срокам и стартовую стоимость.',
+    steps: [
+      {
+        icon: 'fileText',
+        step: '01',
+        title: 'Описываете задачу',
+        description: 'Заполняете brief или загружаете материалы',
+      },
+      {
+        icon: 'messageSquare',
+        step: '02',
+        title: 'Получаете рекомендацию',
+        description: 'Подходящий формат, сроки и стоимость',
+      },
+      {
+        icon: 'checkCircle',
+        step: '03',
+        title: 'Переходите к следующему шагу',
+        description: 'Согласование и старт работы',
+      },
+    ],
     primaryButtonLabel: 'Получить предложение',
     primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'Написать вместо созвона',
+    secondaryButtonLabel: 'Загрузить материалы',
     secondaryPageKey: 'get-proposal',
-    footerNote:
-      'Подходит для founders, product teams, partners и всех, кто хочет сначала получить понятный ответ в письменном виде.',
-    benefits: [
-      {
-        label: 'Можно начать с brief, заметок или даже rough context',
-      },
-      {
-        label: 'Мы сами структурируем входящие данные и предложим формат работы',
-      },
-      {
-        label: 'Созвон подключаем только там, где он действительно ускоряет процесс',
-      },
-    ],
   },
+
   en: {
     blockType: 'noCallCtaPricing',
-    title: "Don't want to start with a call?",
+    eyebrow: 'Start without calls',
+    title: 'Get a recommendation without a mandatory kickoff call',
     description:
-      "That's completely fine. Most projects can begin asynchronously: you send the brief, context, and links, and we reply with the suggested format and scope direction.",
-    descriptionSecondary:
-      'No mandatory intro call. First — clarity on the task. Then a call only if it genuinely helps.',
+      'Tell us what you are building, and we will recommend the right format, a timeline range, and a starting price.',
+    steps: [
+      {
+        icon: 'fileText',
+        step: '01',
+        title: 'Describe your project',
+        description: 'Fill in a brief or upload materials',
+      },
+      {
+        icon: 'messageSquare',
+        step: '02',
+        title: 'Get a recommendation',
+        description: 'Format, timeline range, and starting price',
+      },
+      {
+        icon: 'checkCircle',
+        step: '03',
+        title: 'Move to the next step',
+        description: 'Alignment and project start',
+      },
+    ],
     primaryButtonLabel: 'Get Proposal',
     primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'Write Instead of a Call',
-    secondaryPageKey: 'get-proposal',
-    footerNote:
-      'Useful for founders, product teams, and partners who prefer to get a clear written answer before scheduling anything.',
-    benefits: [
-      {
-        label: 'You can start from a brief, notes, or rough context',
-      },
-      {
-        label: 'We structure the input and suggest the right working format',
-      },
-      {
-        label: 'A call is added only when it genuinely speeds things up',
-      },
-    ],
+    secondaryButtonLabel: 'View Solutions',
+    secondaryPageKey: 'solutions',
   },
+
   ar: {
     blockType: 'noCallCtaPricing',
-    title: 'لا تريد أن تبدأ بمكالمة؟',
+    eyebrow: 'ابدأ من دون مكالمات',
+    title: 'احصل على توصية من دون الحاجة إلى مكالمة أولية إلزامية',
     description:
-      'هذا طبيعي تماماً. يمكن بدء معظم المشاريع بشكل غير متزامن: ترسل brief والسياق والروابط، ونعود إليك بصيغة العمل المقترحة واتجاه النطاق.',
-    descriptionSecondary:
-      'لا توجد مكالمة إلزامية في البداية. أولاً نفهم المهمة بوضوح، ثم نضيف مكالمة فقط إذا كانت مفيدة فعلاً.',
-    primaryButtonLabel: 'اطلب عرضاً',
-    primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'اكتب بدلاً من المكالمة',
-    secondaryPageKey: 'get-proposal',
-    footerNote:
-      'مناسب للمؤسسين وفرق المنتج والشركاء الذين يفضّلون الحصول على رد واضح مكتوب قبل جدولة أي مكالمة.',
-    benefits: [
+      'شاركنا بما تعمل عليه، وسنقترح عليك الصيغة الأنسب للعمل، والنطاق الزمني المتوقع، ونقطة بداية السعر، والخطوة التالية.',
+    steps: [
       {
-        label: 'يمكنك البدء من brief أو ملاحظات أو حتى سياق أولي بسيط',
+        icon: 'fileText',
+        step: '٠١',
+        title: 'صِف مشروعك',
+        description: 'املأ brief أو ارفع المواد',
       },
       {
-        label: 'نقوم نحن بتنظيم المدخلات واقتراح صيغة العمل الأنسب',
+        icon: 'messageSquare',
+        step: '٠٢',
+        title: 'احصل على توصية',
+        description: 'الصيغة والنطاق الزمني ونقطة بداية السعر',
       },
       {
-        label: 'لا نضيف مكالمة إلا إذا كانت ستسرّع العملية فعلاً',
+        icon: 'checkCircle',
+        step: '٠٣',
+        title: 'انتقل إلى الخطوة التالية',
+        description: 'التوافق وبدء المشروع',
       },
     ],
+    primaryButtonLabel: 'اطلب عرضاً',
+    primaryPageKey: 'get-proposal',
+    secondaryButtonLabel: 'اطلع على الحلول',
+    secondaryPageKey: 'solutions',
   },
 }
 
 const FAQ_PRICING_SEED: Record<Locale, BlockData> = {
   ru: {
     blockType: 'faqPricing',
-    eyebrow: 'FAQ',
-    title: 'Частые вопросы по стоимости и формату работы',
-    description:
-      'Коротко о том, как формируется цена, что влияет на scope и как устроен старт проекта.',
+    eyebrow: 'Вопросы',
+    title: 'Частые вопросы о форматах и стоимости',
     items: [
       {
-        question: 'Это фиксированные цены или ориентиры?',
+        question: 'Что входит в стартовую стоимость?',
         answer:
-          'Это стартовые ориентиры по типовым форматам. Финальная стоимость зависит от объёма, сложности, количества ролей, состояния продукта и требуемого уровня детализации.',
+          'Стартовая стоимость покрывает базовый объём работ для типового проекта в рамках каждого формата. Финальная цена зависит от сложности, количества ролей, экранов и специфических требований — и определяется после изучения brief.',
       },
       {
-        question: 'Что сильнее всего влияет на стоимость?',
+        question: 'Смогу ли я сразу получить фиксированную цену?',
         answer:
-          'Больше всего на цену влияют: объём продукта, сложность сценариев, количество экранов и состояний, необходимость в prototype, а также степень готовности входных материалов.',
+          'После заявки вы получите диапазон стоимости в течение 24-48 часов. Если нужен точный fixed quote — проводим короткий scoping и даём детальное предложение.',
       },
       {
-        question: 'Можно ли прийти без чёткого scope?',
+        question: 'Можно ли начать без созвонов?',
         answer:
-          'Да. Это нормальный сценарий. Мы помогаем прояснить scope на старте и предложим подходящий формат работы под ваш этап.',
+          'Да, мы работаем async-first. Вы можете прислать brief, получить рекомендацию и согласовать scope полностью письменно. Звонки — только по необходимости и с понятной повесткой.',
       },
       {
-        question: 'Можно ли начать с маленького этапа, а потом расширить?',
+        question: 'Какой формат подходит startup-команде?',
         answer:
-          'Да. Часто работа начинается с concept или structure stage, а затем расширяется до prototype и handoff, когда появляется ясность по продукту.',
+          'Для ранних стадий рекомендуем Product Framing Sprint — это структурирование продукта до начала дизайна или разработки. Если уже нужен прототип для инвесторов или разработчиков — Build-Ready Prototype.',
       },
       {
-        question: 'Считаете ли вы по часам?',
+        question: 'Подходит ли это для B2B-систем и внутренних платформ?',
         answer:
-          'Нет, базово мы работаем пакетами и этапами. Это даёт более предсказуемый результат и убирает размытость, которая часто бывает в почасовой модели.',
+          'Да, B2B-системы, порталы и внутренние инструменты — одна из наших специализаций. Мы структурируем сложную бизнес-логику, роли и права доступа, admin-панели и операционные интерфейсы.',
       },
       {
-        question: 'Подходит ли это для партнёров и white-label работы?',
+        question: 'Работаете ли вы с white-label проектами?',
         answer:
-          'Да. Эти же форматы подходят для partners, agencies, integrators и white-label collaboration, если нужно усилить delivery без расширения штата.',
+          'Да, White-Label Partner Desk создан специально для агентств и integrators. Вы получаете premium-материалы под своим брендом для ваших клиентов.',
       },
       {
-        question: 'Что происходит после заявки?',
+        question: 'Подписываете ли вы NDA?',
         answer:
-          'Вы присылаете brief или контекст, мы смотрим задачу, уточняем scope и возвращаем предложенный формат, ориентир по срокам и следующий шаг.',
+          'Да, это стандартная практика. Отправьте ваш NDA или используйте наш шаблон — подпишем до начала обсуждения деталей проекта.',
       },
       {
-        question: 'Нужен ли созвон перед стартом?',
+        question: 'Что делать, если мне нужен нестандартный объём работ?',
         answer:
-          'Не обязательно. Часто достаточно письменного контекста. Созвон нужен только там, где он действительно ускоряет понимание задачи.',
+          'Опишите задачу в brief — мы предложим подходящий формат или создадим индивидуальный scope. Packages — это ориентиры, а не жёсткие рамки.',
       },
     ],
   },
   en: {
     blockType: 'faqPricing',
-    eyebrow: 'FAQ',
-    title: 'Frequently asked questions about pricing and working format',
-    description:
-      'A quick explanation of how pricing is shaped, what affects scope, and how projects usually start.',
+    eyebrow: 'Questions',
+    title: 'Common questions about formats and pricing',
     items: [
       {
-        question: 'Are these fixed prices or starting ranges?',
+        question: 'What is included in the starting price?',
         answer:
-          'These are starting ranges for typical engagement formats. Final pricing depends on scope, complexity, number of roles, current product state, and required level of detail.',
+          'The starting price covers the base scope for a typical project within each format. The final price depends on complexity, number of roles, screens, and specific requirements — and is determined after we review your brief.',
       },
       {
-        question: 'What affects pricing the most?',
+        question: 'Will I get a fixed price immediately?',
         answer:
-          'The main factors are product size, scenario complexity, number of screens and states, whether a prototype is needed, and how structured the input materials already are.',
+          'After submitting your brief, you will receive a price range within 24–48 hours. If you need an exact fixed quote, we conduct a short scoping session and provide a detailed proposal.',
       },
       {
-        question: 'Can we come without a clearly defined scope?',
+        question: 'Can we start without calls?',
         answer:
-          'Yes. This is a common case. We can help clarify the scope and suggest the right engagement format for your current stage.',
+          'Yes, we work async-first. You can submit a brief, receive a recommendation, and align on scope entirely in writing. Calls are optional and always have a clear agenda.',
       },
       {
-        question: 'Can we start with a smaller stage and expand later?',
+        question: 'Which format is right for a startup team?',
         answer:
-          'Yes. Many projects start with concept or structure work and then expand into prototype and handoff once the product direction becomes clearer.',
+          'For early-stage teams, we recommend the Product Framing Sprint — it structures the product before design or development. If you already need a prototype for investors or developers, go with Build-Ready Prototype.',
       },
       {
-        question: 'Do you bill by the hour?',
+        question: 'Is this suitable for B2B systems and internal platforms?',
         answer:
-          'Not by default. We usually work through defined packages and stages, because that creates a more predictable result than a vague hourly model.',
+          'Yes, B2B systems, portals, and internal tools are one of our specializations. We structure complex business logic, roles and permissions, admin panels, and operational interfaces.',
       },
       {
-        question: 'Does this work for partners and white-label delivery?',
+        question: 'Do you work white-label?',
         answer:
-          'Yes. The same formats also work for partners, agencies, integrators, and white-label collaboration when delivery needs to be strengthened without growing internal headcount.',
+          'Yes, the White-Label Partner Desk is designed specifically for agencies and integrators. You receive premium materials under your own brand for your clients.',
       },
       {
-        question: 'What happens after I submit a request?',
+        question: 'Do you sign NDAs?',
         answer:
-          'You send the brief or context, we review the task, clarify the scope, and return the suggested format, timeline range, and next step.',
+          'Yes, this is standard practice. Send us your NDA or use our template — we sign before discussing project details.',
       },
       {
-        question: 'Is a call required before starting?',
+        question: 'What if my scope is still unclear?',
         answer:
-          'Not always. Written context is often enough. A call is used only when it truly helps speed up understanding.',
+          'Describe your project in the brief — we will recommend the right format or create a custom scope. The packages are starting points, not rigid constraints.',
       },
     ],
   },
   ar: {
     blockType: 'faqPricing',
-    eyebrow: 'الأسئلة الشائعة',
-    title: 'أسئلة متكررة حول التسعير وصيغة العمل',
-    description:
-      'شرح سريع لكيفية تحديد السعر، وما الذي يؤثر على النطاق، وكيف تبدأ المشاريع عادة.',
+    eyebrow: 'أسئلة شائعة',
+    title: 'أسئلة شائعة حول الصيغ والأسعار',
     items: [
       {
-        question: 'هل هذه أسعار ثابتة أم نطاقات بداية؟',
+        question: 'ماذا يشمل السعر الابتدائي؟',
         answer:
-          'هذه نطاقات بداية لصيغ العمل المعتادة. السعر النهائي يعتمد على حجم النطاق، وتعقيد المنتج، وعدد الأدوار، وحالة المنتج الحالية، ومستوى التفصيل المطلوب.',
+          'السعر الابتدائي يغطي النطاق الأساسي لمشروع نموذجي ضمن كل صيغة. السعر النهائي يعتمد على التعقيد وعدد الأدوار والشاشات والمتطلبات الخاصة — ويُحدد بعد مراجعة brief المشروع.',
       },
       {
-        question: 'ما الذي يؤثر أكثر على السعر؟',
+        question: 'هل سأحصل على سعر ثابت مباشرة؟',
         answer:
-          'أكثر ما يؤثر على السعر هو حجم المنتج، وتعقيد السيناريوهات، وعدد الشاشات والحالات، والحاجة إلى prototype، ومدى تنظيم المواد الأولية.',
+          'بعد إرسال brief المشروع، ستحصل على نطاق سعري خلال 24-48 ساعة. إذا كنت تحتاج إلى عرض سعر ثابت ومحدد، نجري جلسة قصيرة لتحديد النطاق ونقدم لك عرضاً تفصيلياً.',
       },
       {
-        question: 'هل يمكن أن نبدأ من دون نطاق واضح تماماً؟',
+        question: 'هل يمكن البدء من دون مكالمة؟',
         answer:
-          'نعم. هذا سيناريو شائع. يمكننا المساعدة في توضيح النطاق في البداية واقتراح الصيغة الأنسب لمرحلتك الحالية.',
+          'نعم، نعمل بأسلوب async-first. يمكنك إرسال brief والحصول على توصية والتوافق على النطاق بالكامل كتابياً. المكالمات اختيارية ودائماً تكون بأجندة واضحة.',
       },
       {
-        question: 'هل يمكن أن نبدأ بمرحلة صغيرة ثم نتوسع لاحقاً؟',
+        question: 'أي صيغة تناسب فرق الشركات الناشئة؟',
         answer:
-          'نعم. كثير من المشاريع تبدأ بمرحلة concept أو structure ثم تتوسع لاحقاً إلى prototype وhandoff عندما يصبح اتجاه المنتج أوضح.',
+          'للفرق في مراحلها الأولى، ننصح بـ Sprint لهيكلة المنتج — فهو يبني هيكل المنتج قبل التصميم أو التطوير. إذا كنت تحتاج بالفعل إلى نموذج أولي للمستثمرين أو المطورين، اختر النموذج الأولي الجاهز للتطوير.',
       },
       {
-        question: 'هل تعتمدون على التسعير بالساعة؟',
+        question: 'هل هذا مناسب للأنظمة الرقمية ومنصات B2B؟',
         answer:
-          'ليس بشكل افتراضي. نحن نعمل عادة من خلال حزم ومراحل واضحة، لأن ذلك يعطي نتيجة أكثر قابلية للتنبؤ من نموذج الساعات المفتوح.',
+          'نعم، أنظمة B2B والبوابات والأدوات الداخلية هي من تخصصاتنا الأساسية. نحن نهيكل منطق العمل المعقد والأدوار والصلاحيات ولوحات الإدارة والواجهات التشغيلية.',
       },
       {
-        question: 'هل هذا مناسب للشركاء والعمل بنظام white-label؟',
+        question: 'هل تعملون بنظام white-label؟',
         answer:
-          'نعم. الصيغ نفسها مناسبة أيضاً للشركاء والوكالات والـ integrators والعمل بنظام white-label عندما تكون الحاجة إلى تقوية delivery من دون توسيع الفريق الداخلي.',
+          'نعم، صيغة الشراكة White-Label مصممة خصيصاً للوكالات والـ integrators. تحصل على مواد متميزة تحت علامتك التجارية لعملائك.',
       },
       {
-        question: 'ماذا يحدث بعد إرسال الطلب؟',
+        question: 'هل توقعون NDA؟',
         answer:
-          'ترسل brief أو سياق المشروع، ونراجع المهمة، ونوضح النطاق، ثم نعود إليك بصيغة العمل المقترحة، والنطاق الزمني المتوقع، والخطوة التالية.',
+          'نعم، هذه ممارسة معتادة. أرسل لنا NDA الخاص بك أو استخدم قالبنا — نوقع قبل مناقشة تفاصيل المشروع.',
       },
       {
-        question: 'هل المكالمة مطلوبة قبل البداية؟',
+        question: 'ماذا لو كان نطاق المشروع غير واضح بعد؟',
         answer:
-          'ليس دائماً. غالباً ما يكفي السياق المكتوب. نستخدم المكالمة فقط عندما تساعد فعلاً على تسريع الفهم.',
+          'صِف مشروعك في brief — سنقترح الصيغة المناسبة أو نبني نطاقاً مخصصاً. الحزم هي نقاط انطلاق، وليست قيوداً جامدة.',
       },
     ],
   },

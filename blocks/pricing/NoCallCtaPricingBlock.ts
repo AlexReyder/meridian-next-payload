@@ -10,20 +10,51 @@ export const NoCallCtaPricingBlock: Block = {
   },
   fields: [
     {
+      name: 'eyebrow',
+      type: 'text',
+      required: true,
+      defaultValue: 'Старт без звонков',
+    },
+    {
       name: 'title',
       type: 'textarea',
       required: true,
-      defaultValue: 'Не хотите начинать с созвона?',
+      defaultValue: 'Получите рекомендацию по проекту без обязательного стартового звонка',
     },
     {
       name: 'description',
       type: 'textarea',
       required: true,
     },
+   {
+  name: 'steps',
+  type: 'array',
+  required: true,
+  minRows: 1,
+  fields: [
     {
-      name: 'descriptionSecondary',
-      type: 'textarea',
+      name: 'icon',
+      type: 'text',
+      required: true,
+      defaultValue: 'fileText',
     },
+    {
+      name: 'step',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'description',
+      type: 'text',
+      required: true,
+    },
+  ],
+},
     {
       type: 'row',
       fields: [
@@ -36,7 +67,7 @@ export const NoCallCtaPricingBlock: Block = {
         {
           name: 'primaryPageKey',
           type: 'select',
-          dbName: 'nc_pri_pk',
+          dbName: 'nccp_pri_pk',
           required: true,
           options: PAGE_KEY_OPTIONS,
           defaultValue: 'get-proposal',
@@ -50,33 +81,14 @@ export const NoCallCtaPricingBlock: Block = {
           name: 'secondaryButtonLabel',
           type: 'text',
           required: true,
-          defaultValue: 'Написать вместо созвона',
         },
         {
-  name: 'secondaryPageKey',
-  type: 'select',
-  dbName: 'nc_sec_pk',
-  required: true,
-  options: PAGE_KEY_OPTIONS,
-  defaultValue: 'get-proposal',
-},
-      ],
-    },
-    {
-      name: 'footerNote',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'benefits',
-      type: 'array',
-      required: true,
-      minRows: 1,
-      fields: [
-        {
-          name: 'label',
-          type: 'text',
+          name: 'secondaryPageKey',
+          type: 'select',
+          dbName: 'nccp_sec_pk',
           required: true,
+          options: PAGE_KEY_OPTIONS,
+          defaultValue: 'get-proposal',
         },
       ],
     },

@@ -1248,19 +1248,23 @@ export interface Page {
         eyebrow: string;
         title: string;
         description: string;
+        contextLine?: string | null;
+        forWhomLabel: string;
+        includesLabel: string;
         packages: {
-          badge?: string | null;
+          packageKey: string;
           title: string;
+          subtitle: string;
           price: string;
+          priceNote: string;
           timeline: string;
-          idealFor: string;
-          featured?: boolean | null;
-          items: {
+          forWhom: string;
+          includes: {
             label: string;
             id?: string | null;
           }[];
-          buttonLabel: string;
-          buttonPageKey:
+          primaryButtonLabel: string;
+          primaryPageKey:
             | 'home'
             | 'solutions'
             | 'pricing'
@@ -1269,6 +1273,17 @@ export interface Page {
             | 'for-startups'
             | 'for-partners'
             | 'method';
+          secondaryLinkLabel: string;
+          secondaryPageKey:
+            | 'home'
+            | 'solutions'
+            | 'pricing'
+            | 'get-proposal'
+            | 'concepts'
+            | 'for-startups'
+            | 'for-partners'
+            | 'method';
+          featured?: boolean | null;
           id?: string | null;
         }[];
         id?: string | null;
@@ -1351,9 +1366,16 @@ export interface Page {
         blockType: 'priceExplanationPricing';
       }
     | {
+        eyebrow: string;
         title: string;
         description: string;
-        descriptionSecondary?: string | null;
+        steps: {
+          icon: string;
+          step: string;
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
         primaryButtonLabel: string;
         primaryPageKey:
           | 'home'
@@ -1374,11 +1396,6 @@ export interface Page {
           | 'for-startups'
           | 'for-partners'
           | 'method';
-        footerNote: string;
-        benefits: {
-          label: string;
-          id?: string | null;
-        }[];
         id?: string | null;
         blockName?: string | null;
         blockType: 'noCallCtaPricing';
@@ -1386,7 +1403,6 @@ export interface Page {
     | {
         eyebrow: string;
         title: string;
-        description?: string | null;
         items: {
           question: string;
           answer: string;
@@ -2507,23 +2523,30 @@ export interface PagesSelect<T extends boolean = true> {
               eyebrow?: T;
               title?: T;
               description?: T;
+              contextLine?: T;
+              forWhomLabel?: T;
+              includesLabel?: T;
               packages?:
                 | T
                 | {
-                    badge?: T;
+                    packageKey?: T;
                     title?: T;
+                    subtitle?: T;
                     price?: T;
+                    priceNote?: T;
                     timeline?: T;
-                    idealFor?: T;
-                    featured?: T;
-                    items?:
+                    forWhom?: T;
+                    includes?:
                       | T
                       | {
                           label?: T;
                           id?: T;
                         };
-                    buttonLabel?: T;
-                    buttonPageKey?: T;
+                    primaryButtonLabel?: T;
+                    primaryPageKey?: T;
+                    secondaryLinkLabel?: T;
+                    secondaryPageKey?: T;
+                    featured?: T;
                     id?: T;
                   };
               id?: T;
@@ -2594,20 +2617,22 @@ export interface PagesSelect<T extends boolean = true> {
         noCallCtaPricing?:
           | T
           | {
+              eyebrow?: T;
               title?: T;
               description?: T;
-              descriptionSecondary?: T;
+              steps?:
+                | T
+                | {
+                    icon?: T;
+                    step?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
               primaryButtonLabel?: T;
               primaryPageKey?: T;
               secondaryButtonLabel?: T;
               secondaryPageKey?: T;
-              footerNote?: T;
-              benefits?:
-                | T
-                | {
-                    label?: T;
-                    id?: T;
-                  };
               id?: T;
               blockName?: T;
             };
@@ -2616,7 +2641,6 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               eyebrow?: T;
               title?: T;
-              description?: T;
               items?:
                 | T
                 | {

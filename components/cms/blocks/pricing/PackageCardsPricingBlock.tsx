@@ -1,30 +1,37 @@
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 
+import { Button } from '@/components/ui/button'
 import { getHrefForPageKey, isRTL, type Locale, type PageKey } from '@/lib/routes'
-import { cn } from '@/lib/utils'
 
-type PackageItem = {
+type IncludeItem = {
   label?: string | null
 }
 
-type PackageCard = {
-  badge?: string | null
+type PackageItem = {
+  packageKey?: string | null
   title?: string | null
+  subtitle?: string | null
   price?: string | null
+  priceNote?: string | null
   timeline?: string | null
-  idealFor?: string | null
+  forWhom?: string | null
+  includes?: IncludeItem[] | null
+  primaryButtonLabel?: string | null
+  primaryPageKey?: PageKey | null
+  secondaryLinkLabel?: string | null
+  secondaryPageKey?: PageKey | null
   featured?: boolean | null
-  items?: PackageItem[] | null
-  buttonLabel?: string | null
-  buttonPageKey?: PageKey | null
 }
 
 type PackageCardsPricingBlockData = {
   eyebrow?: string | null
   title?: string | null
   description?: string | null
-  packages?: PackageCard[] | null
+  contextLine?: string | null
+  forWhomLabel?: string | null
+  includesLabel?: string | null
+  packages?: PackageItem[] | null
 }
 
 type Props = {
@@ -32,143 +39,144 @@ type Props = {
   locale: Locale
 }
 
+function getProposalHref(pageKey: PageKey | null | undefined, locale: Locale, packageKey?: string | null) {
+  const href = getHrefForPageKey(pageKey ?? 'get-proposal', locale)
+
+  if ((pageKey ?? 'get-proposal') === 'get-proposal' && packageKey) {
+    return `${href}?package=${encodeURIComponent(packageKey)}`
+  }
+
+  return href
+}
+
 export function PackageCardsPricingBlockComponent({ block, locale }: Props) {
   const rtl = isRTL(locale)
   const isArabic = locale === 'ar'
 
   return (
-    <section dir={rtl ? 'rtl' : 'ltr'} className="py-20 lg:py-28 bg-secondary/30">
+    <section id="packages" dir={rtl ? 'rtl' : 'ltr'} className="bg-secondary/30 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className={cn('flex items-center gap-3 mb-6', rtl && 'flex-row-reverse')}>
-          {rtl ? (
-            <>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                {block.eyebrow}
-              </span>
-              <div className="flex items-center">
-                <span className="h-[2px] w-2 bg-signature-brass rounded-full" />
-                <span className="h-[2px] w-3 bg-signature-cobalt mr-0.5 rounded-full" />
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex items-center">
-                <span className="h-[2px] w-3 bg-signature-cobalt rounded-full" />
-                <span className="h-[2px] w-2 bg-signature-brass ml-0.5 rounded-full" />
-              </div>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                {block.eyebrow}
-              </span>
-            </>
-          )}
-        </div>
+        <div className="mb-16 max-w-2xl">
+          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-accent">{block.eyebrow}</p>
 
-        <div className="max-w-3xl">
-          <h2 className="font-serif text-3xl lg:text-4xl font-light leading-tight text-foreground">
+          <h2 className="text-balance font-serif text-3xl font-light leading-tight text-foreground lg:text-4xl xl:text-5xl">
             {block.title}
           </h2>
 
-          <p className="mt-6 text-base lg:text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-6 text-base leading-relaxed text-muted-foreground">
             {block.description}
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
-          {block.packages?.map((pkg, index) =>
-            pkg?.title && pkg?.price && pkg?.timeline && pkg?.idealFor ? (
+        {block.contextLine ? (
+          <p className="mb-8 max-w-3xl text-sm text-muted-foreground">{block.contextLine}</p>
+        ) : null}
+
+        <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
+          {block.packages?.map((pkg) =>
+            pkg?.title &&
+            pkg?.subtitle &&
+            pkg?.price &&
+            pkg?.priceNote &&
+            pkg?.timeline &&
+            pkg?.forWhom ? (
               <div
-                key={`${pkg.title}-${index}`}
-                className={cn(
-                  'relative rounded-sm border p-6 lg:p-8 transition-colors hover:border-foreground/20',
+                key={pkg.packageKey ?? pkg.title}
+                id={pkg.packageKey || undefined}
+                className={`relative flex flex-col overflow-hidden rounded-sm border bg-card transition-all ${
                   pkg.featured
-                    ? 'bg-card border-foreground/20'
-                    : 'bg-background border-border',
-                )}
+                    ? 'border-foreground/30 shadow-lg lg:scale-[1.02]'
+                    : 'border-border/60 hover:border-foreground/20'
+                }`}
               >
-                {(index === 0 || pkg.featured) && (
-                  <div className={cn('absolute top-0', rtl ? 'right-0' : 'left-0')}>
-                    <div
-                      className={cn(
-                        'absolute top-0 w-4 h-[2px] bg-signature-cobalt',
-                        rtl ? 'right-0 rounded-l-full' : 'left-0 rounded-r-full',
-                      )}
-                    />
-                    <div
-                      className={cn(
-                        'absolute top-0 h-4 w-[2px] bg-signature-cobalt rounded-b-full',
-                        rtl ? 'right-0' : 'left-0',
-                      )}
-                    />
-                    <div
-                      className={cn(
-                        'absolute top-[2px] w-2 h-[1.5px] bg-signature-brass/70 rounded-full',
-                        rtl ? 'right-4' : 'left-4',
-                      )}
-                    />
-                  </div>
-                )}
+                {pkg.featured ? <div className="absolute left-0 right-0 top-0 h-1 bg-accent" /> : null}
 
-                <div className="min-h-[28px]">
-                  {pkg.badge ? (
-                    <span className="inline-flex items-center rounded-sm border border-signature-cobalt/25 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-signature-cobalt">
-                      {pkg.badge}
-                    </span>
-                  ) : null}
-                </div>
+                <div className="flex flex-1 flex-col p-6 lg:p-8">
+                  <div className="mb-6">
+                    <h3 className="font-serif text-xl font-light text-foreground lg:text-2xl">
+                      {pkg.title}
+                    </h3>
 
-                <h3 className="mt-4 font-serif text-2xl font-light text-foreground">
-                  {pkg.title}
-                </h3>
-
-                <div className="mt-6 flex items-end justify-between gap-4">
-                  <div>
-                    <p className="font-serif text-3xl font-light text-foreground">{pkg.price}</p>
-                    <p className="mt-2 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                      {pkg.timeline}
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {pkg.subtitle}
                     </p>
                   </div>
-                </div>
 
-                <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-                  {pkg.idealFor}
-                </p>
+                  <div className="mb-6 border-b border-border/50 pb-6">
+                    <p className="mb-1 text-xs uppercase tracking-wider text-muted-foreground">
+                      {pkg.priceNote}
+                    </p>
 
-                <div className="mt-6 space-y-3 border-t border-border/50 pt-6">
-                  {pkg.items?.map((item, itemIndex) =>
-                    item?.label ? (
-                      <div key={`${item.label}-${itemIndex}`} className="flex items-start gap-3">
-                        <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-signature-cobalt shrink-0" />
-                        <span className="text-sm leading-relaxed text-foreground/75">
-                          {item.label}
-                        </span>
-                      </div>
-                    ) : null,
-                  )}
-                </div>
+                    <p className="text-3xl font-light text-foreground lg:text-4xl" dir={isArabic ? 'ltr' : undefined}>
+                      {pkg.price}
+                    </p>
 
-                <div className="mt-8">
-                  <Link
-                    href={getHrefForPageKey(pkg.buttonPageKey ?? 'get-proposal', locale)}
-                    className={cn(
-                      'inline-flex h-11 items-center justify-center rounded-md px-6 text-[11px] font-medium transition-colors',
-                      pkg.featured
-                        ? 'bg-foreground text-background hover:bg-foreground/90'
-                        : 'border border-foreground/15 text-foreground hover:bg-foreground/5',
-                      rtl ? 'tracking-[0.12em]' : 'uppercase tracking-[0.15em]',
-                    )}
-                  >
-                    {rtl ? (
-                      <>
-                        <ArrowLeft className="ml-2 h-4 w-4" />
-                        {pkg.buttonLabel}
-                      </>
-                    ) : (
-                      <>
-                        {pkg.buttonLabel}
-                        {!isArabic ? <ArrowRight className="ml-2 h-4 w-4" /> : null}
-                      </>
-                    )}
-                  </Link>
+                    <p className="mt-2 text-xs text-muted-foreground">{pkg.timeline}</p>
+                  </div>
+
+                  <div className="mb-6">
+                    <p className="mb-3 text-xs uppercase tracking-wider text-muted-foreground">
+                      {block.forWhomLabel}
+                    </p>
+
+                    <p className="text-sm leading-relaxed text-foreground/80">
+                      {pkg.forWhom}
+                    </p>
+                  </div>
+
+                  <div className="mb-8 flex-1">
+                    <p className="mb-3 text-xs uppercase tracking-wider text-muted-foreground">
+                      {block.includesLabel}
+                    </p>
+
+                    <ul className="space-y-2">
+                      {pkg.includes?.map((item) =>
+                        item?.label ? (
+                          <li
+                            key={item.label}
+                            className="flex items-start gap-2 text-sm text-foreground/70"
+                          >
+                            <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                            {item.label}
+                          </li>
+                        ) : null,
+                      )}
+                    </ul>
+                  </div>
+
+                  <div className="mt-auto space-y-3">
+                    <Button
+                      asChild
+                      className={`h-11 w-full text-[11px] uppercase tracking-[0.12em] ${
+                        pkg.featured
+                          ? 'bg-foreground text-background hover:bg-foreground/90'
+                          : 'border border-border bg-secondary text-foreground hover:bg-secondary/80'
+                      }`}
+                    >
+                      <Link href={getProposalHref(pkg.primaryPageKey, locale, pkg.packageKey)}>
+                        {rtl ? (
+                          <>
+                            <ArrowLeft className="ml-2 h-3.5 w-3.5" />
+                            {pkg.primaryButtonLabel}
+                          </>
+                        ) : (
+                          <>
+                            {pkg.primaryButtonLabel}
+                            <ArrowRight className="ml-2 h-3.5 w-3.5" />
+                          </>
+                        )}
+                      </Link>
+                    </Button>
+
+                    {pkg.secondaryLinkLabel && pkg.secondaryPageKey ? (
+                      <Link
+                        href={getHrefForPageKey(pkg.secondaryPageKey, locale)}
+                        className="block text-center text-xs text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        {pkg.secondaryLinkLabel}
+                      </Link>
+                    ) : null}
+                  </div>
                 </div>
               </div>
             ) : null,
