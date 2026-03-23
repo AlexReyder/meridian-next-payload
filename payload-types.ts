@@ -672,6 +672,47 @@ export interface Page {
         blockName?: string | null;
         blockType: 'detailsSolution';
       }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: {
+          title: string;
+          subtitle: string;
+          imageUrl: string;
+          alt: string;
+          id?: string | null;
+        }[];
+        bottomNote: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'clientArtifactsSolutions';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        challengeLabel: string;
+        resultLabel: string;
+        items: {
+          title: string;
+          challenge: string;
+          result: string;
+          ctaLabel: string;
+          ctaPageKey:
+            | 'home'
+            | 'solutions'
+            | 'pricing'
+            | 'get-proposal'
+            | 'concepts'
+            | 'for-startups'
+            | 'for-partners'
+            | 'method';
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'audienceSolutions';
+      }
   )[];
   updatedAt: string;
   createdAt: string;
@@ -1226,6 +1267,45 @@ export interface PagesSelect<T extends boolean = true> {
                     primaryPageKey?: T;
                     secondaryButtonLabel?: T;
                     secondaryPageKey?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        clientArtifactsSolutions?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    subtitle?: T;
+                    imageUrl?: T;
+                    alt?: T;
+                    id?: T;
+                  };
+              bottomNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        audienceSolutions?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              challengeLabel?: T;
+              resultLabel?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    challenge?: T;
+                    result?: T;
+                    ctaLabel?: T;
+                    ctaPageKey?: T;
                     id?: T;
                   };
               id?: T;

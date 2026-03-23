@@ -19,6 +19,8 @@ import { HeroSolutionsBlock } from '@/blocks/solutions/HeroSolutionsBlock'
 import { PositioningIntroSolutionsBlock } from '@/blocks/solutions/PositioningIntroSolutionsBlock'
 import { GridSolutionsBlock } from '@/blocks/solutions/GridSolutionsBlock'
 import { DetailsSolutionsBlock } from '@/blocks/solutions/DetailsSolutionsBlock'
+import { ClientArtifactsSolutionsBlock } from '@/blocks/solutions/ClientArtifactsSolutions'
+import { AudienceSolutionsBlock } from '@/blocks/solutions/AudienceSolutions'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -81,6 +83,8 @@ export const Pages: CollectionConfig = {
         PositioningIntroSolutionsBlock,
         GridSolutionsBlock,
         DetailsSolutionsBlock,
+        ClientArtifactsSolutionsBlock,
+        AudienceSolutionsBlock,
       ],
     },
   ],

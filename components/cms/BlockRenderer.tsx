@@ -18,6 +18,8 @@ import { HeroSolutionsBlockComponent } from './blocks/solutions/HeroSolutionsBlo
 import { PositioningIntroSolutionsBlockComponent } from './blocks/solutions/PositioningIntroSolutionsBlock'
 import { GridSolutionsBlockComponent } from './blocks/solutions/GridSolutionsBlock'
 import { DetailsSolutionsBlockComponent } from './blocks/solutions/DetailsSolutionsBlock'
+import { ClientArtifactsSolutionsBlockComponent } from './blocks/solutions/ClientArtifactsSolutions'
+import { AudienceSolutionsBlockComponent } from './blocks/solutions/AudienceSolutions'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -68,6 +70,10 @@ export function BlockRenderer({ blocks, locale }: Props) {
             return <GridSolutionsBlockComponent key={key} block={block} locale={locale} />
         case 'detailsSolution':
           return <DetailsSolutionsBlockComponent key={key} block={block} locale={locale} />
+        case 'clientArtifactsSolutions':
+          return <ClientArtifactsSolutionsBlockComponent key={key} block={block} locale={locale} />
+        case 'audienceSolutions':
+          return <AudienceSolutionsBlockComponent key={key} block={block} locale={locale} />
           default:
             return null
         }
