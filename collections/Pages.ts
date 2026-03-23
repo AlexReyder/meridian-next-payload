@@ -5,6 +5,8 @@ import { PAGE_KEY_OPTIONS } from '../lib/routes.ts'
 import { ValueHomeBlock } from '@/blocks/ValueHomeBlock.ts'
 import { VideoWalkthroughHomeBlock } from '@/blocks/VideoWalkThroughHome'
 import { DeliverablesHomeBlock } from '@/blocks/DeliverablesHomeBlock'
+import { WhyHomeBlock } from '@/blocks/WhyHomeBlock'
+import { AudienceHomeBlock } from '@/blocks/AudienceHomeBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -47,7 +49,8 @@ export const Pages: CollectionConfig = {
       type: 'blocks',
       localized: true,
       required: true,
-      blocks: [HeroBlock, ValueHomeBlock, VideoWalkthroughHomeBlock, DeliverablesHomeBlock],
+      blocks: [HeroBlock, ValueHomeBlock, VideoWalkthroughHomeBlock, DeliverablesHomeBlock, WhyHomeBlock,
+  AudienceHomeBlock,],
     },
   ],
 }

@@ -348,6 +348,47 @@ export interface Page {
         blockName?: string | null;
         blockType: 'deliverablesHome';
       }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: {
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'whyHome';
+      }
+    | {
+        sectionId?: string | null;
+        eyebrow: string;
+        title: string;
+        problemLabel: string;
+        solutionLabel: string;
+        resultLabel: string;
+        ctaLabel: string;
+        ctaPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        items: {
+          title: string;
+          problem: string;
+          solution: string;
+          result: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'audienceHome';
+      }
   )[];
   updatedAt: string;
   createdAt: string;
@@ -611,6 +652,45 @@ export interface PagesSelect<T extends boolean = true> {
                     icon?: T;
                     title?: T;
                     description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        whyHome?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        audienceHome?:
+          | T
+          | {
+              sectionId?: T;
+              eyebrow?: T;
+              title?: T;
+              problemLabel?: T;
+              solutionLabel?: T;
+              resultLabel?: T;
+              ctaLabel?: T;
+              ctaPageKey?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    problem?: T;
+                    solution?: T;
+                    result?: T;
                     id?: T;
                   };
               id?: T;

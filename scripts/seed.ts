@@ -484,6 +484,192 @@ const HOME_DELIVERABLES_SEED: Record<Locale, BlockData> = {
   },
 }
 
+const HOME_WHY_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'whyHome',
+    eyebrow: 'Почему мы',
+    title: 'Почему Atelier Meridian',
+    description:
+      'Проектируем дизайн сайтов, digital-систем и мобильных приложений с продуктовым подходом.',
+    items: [
+      {
+        title: 'Экспертный подход senior-уровня',
+        description:
+          'Каждый проект ведёт опытный product-архитектор. Без junior-итераций, без пересогласований основ.',
+      },
+      {
+        title: 'AI-ускоренный workflow',
+        description:
+          'Используем AI для рутинных задач — больше времени на стратегические решения и качество.',
+      },
+      {
+        title: 'Структурированные спринты',
+        description:
+          'Понятный scope, фиксированные сроки, предсказуемый результат. Никаких сюрпризов.',
+      },
+      {
+        title: 'Без agency overhead',
+        description:
+          'Бутиковый формат без лишних слоёв менеджмента. Работаете напрямую с теми, кто делает.',
+      },
+    ],
+  },
+  en: {
+    blockType: 'whyHome',
+    eyebrow: 'Why Us',
+    title: 'Why Atelier Meridian',
+    description:
+      'We design websites, digital systems, and mobile apps with a product-first approach.',
+    items: [
+      {
+        title: 'Senior-level expertise',
+        description:
+          'Every project is led by an experienced product architect. No junior iterations, no re-aligning fundamentals.',
+      },
+      {
+        title: 'AI-accelerated workflow',
+        description:
+          'We use AI for routine tasks — freeing more time for strategic decisions and quality refinement.',
+      },
+      {
+        title: 'Structured sprints',
+        description:
+          'Clear scope, fixed timelines, predictable outcomes. No surprises along the way.',
+      },
+      {
+        title: 'No agency overhead',
+        description:
+          'Boutique format without unnecessary management layers. You work directly with the people who do the work.',
+      },
+    ],
+  },
+  ar: {
+    blockType: 'whyHome',
+    eyebrow: 'لماذا نحن',
+    title: 'لماذا Atelier Meridian',
+    description:
+      'نصمم المواقع والأنظمة الرقمية وتطبيقات الموبايل بمنهجية تضع المنتج أولاً.',
+    items: [
+      {
+        title: 'خبرة على مستوى كبار المحترفين',
+        description:
+          'كل مشروع يقوده معماري منتجات ذو خبرة. لا تكرارات مبتدئة، ولا إعادة توجيه للأساسيات.',
+      },
+      {
+        title: 'سير عمل معزز بالذكاء الاصطناعي',
+        description:
+          'نستخدم الذكاء الاصطناعي للمهام الروتينية — مما يوفر المزيد من الوقت للقرارات الاستراتيجية وتحسين الجودة.',
+      },
+      {
+        title: 'سباقات منظمة',
+        description:
+          'نطاق واضح، جداول زمنية ثابتة، نتائج متوقعة. لا مفاجآت على طول الطريق.',
+      },
+      {
+        title: 'بدون أعباء الوكالات',
+        description:
+          'نموذج بوتيكي بدون طبقات إدارية غير ضرورية. تعمل مباشرة مع من ينفذون العمل.',
+      },
+    ],
+  },
+}
+
+const HOME_AUDIENCE_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'audienceHome',
+    sectionId: 'startups',
+    eyebrow: 'Для кого',
+    title: 'Кому мы помогаем',
+    problemLabel: 'Проблема',
+    solutionLabel: 'Что упрощаем',
+    resultLabel: 'Результат',
+    ctaLabel: 'Получить предложение',
+    ctaPageKey: 'get-proposal',
+    items: [
+      {
+        title: 'Founders и startup-команды',
+        problem: 'Нужен дизайн сайта, landing page или mobile app для презентации инвестору',
+        solution: 'Превращаем идею в структурированный прототип сайта или приложения',
+        result: 'Investor-ready визуализация и понятный scope для первой версии',
+      },
+      {
+        title: 'Агентства и integrators',
+        problem: 'Нужен дизайн сайта, портала или системы для клиента, но нет ресурсов',
+        solution: 'White-label дизайн сайтов, mobile apps, B2B-систем под вашим брендом',
+        result: 'Готовый deliverable для вашего клиента без расширения штата',
+      },
+      {
+        title: 'B2B-команды и enterprise',
+        problem: 'Нужен дизайн портала, dashboard или внутренней системы с ясной логикой',
+        solution: 'Проектируем интерфейсы B2B-платформ, порталов и корпоративных систем',
+        result: 'Документация и прототип для уверенного старта разработки',
+      },
+    ],
+  },
+  en: {
+    blockType: 'audienceHome',
+    sectionId: 'startups',
+    eyebrow: 'Who We Help',
+    title: 'Who we work with',
+    problemLabel: 'Challenge',
+    solutionLabel: 'What We Simplify',
+    resultLabel: 'Outcome',
+    ctaLabel: 'Get Proposal',
+    ctaPageKey: 'get-proposal',
+    items: [
+      {
+        title: 'Founders & Startup Teams',
+        problem: 'Need a website, landing page, or mobile app to present to investors',
+        solution: 'We turn your idea into a structured prototype ready for stakeholders',
+        result: 'Investor-ready visualization and a clear scope for your first version',
+      },
+      {
+        title: 'Agencies & Integrators',
+        problem: 'Need website, portal, or system design for a client but lack capacity',
+        solution: 'White-label design for websites, mobile apps, B2B systems under your brand',
+        result: 'Ready deliverable for your client without expanding your team',
+      },
+      {
+        title: 'B2B Teams & Enterprise',
+        problem: 'Need a portal, dashboard, or internal system with clear logic',
+        solution: 'We design interfaces for B2B platforms, portals, and corporate systems',
+        result: 'Documentation and prototype for a confident development start',
+      },
+    ],
+  },
+  ar: {
+    blockType: 'audienceHome',
+    sectionId: 'startups',
+    eyebrow: 'من نساعد',
+    title: 'مع من نعمل',
+    problemLabel: 'التحدي',
+    solutionLabel: 'ما نبسطه',
+    resultLabel: 'النتيجة',
+    ctaLabel: 'طلب عرض',
+    ctaPageKey: 'get-proposal',
+    items: [
+      {
+        title: 'المؤسسون وفرق الشركات الناشئة',
+        problem: 'تحتاج موقعاً أو صفحة هبوط أو تطبيق موبايل لعرضه على المستثمرين',
+        solution: 'نحول فكرتك إلى نموذج أولي منظم جاهز لأصحاب المصلحة',
+        result: 'عرض مرئي جاهز للمستثمرين ونطاق واضح للنسخة الأولى',
+      },
+      {
+        title: 'الوكالات والشركاء',
+        problem: 'تحتاج تصميم موقع أو بوابة أو نظام لعميل لكن ليس لديك القدرة',
+        solution: 'تصميم White-label للمواقع وتطبيقات الموبايل وأنظمة B2B تحت علامتك التجارية',
+        result: 'تسليم جاهز لعميلك بدون توسيع فريقك',
+      },
+      {
+        title: 'فرق B2B والشركات الكبرى',
+        problem: 'تحتاج بوابة أو لوحة تحكم أو نظام داخلي بمنطق واضح',
+        solution: 'نصمم واجهات لمنصات B2B والبوابات والأنظمة المؤسسية',
+        result: 'توثيق ونموذج أولي لبداية تطوير واثقة',
+      },
+    ],
+  },
+}
+
 function upsertBlock(layout: BlockData[], nextBlock: BlockData): BlockData[] {
   const existingIndex = layout.findIndex((block) => block?.blockType === nextBlock.blockType)
 
@@ -613,6 +799,14 @@ async function main() {
 //   await seedBlockForLocale(payload, homePage.id, 'en', HOME_DELIVERABLES_SEED.en)
 //   await seedBlockForLocale(payload, homePage.id, 'ar', HOME_DELIVERABLES_SEED.ar)
 
+await seedBlockForLocale(payload, homePage.id, 'ru', HOME_WHY_SEED.ru)
+await seedBlockForLocale(payload, homePage.id, 'en', HOME_WHY_SEED.en)
+await seedBlockForLocale(payload, homePage.id, 'ar', HOME_WHY_SEED.ar)
+
+await seedBlockForLocale(payload, homePage.id, 'ru', HOME_AUDIENCE_SEED.ru)
+await seedBlockForLocale(payload, homePage.id, 'en', HOME_AUDIENCE_SEED.en)
+await seedBlockForLocale(payload, homePage.id, 'ar', HOME_AUDIENCE_SEED.ar)
+  
   console.log('✅ Home hero seed completed')
   process.exit(0)
 }

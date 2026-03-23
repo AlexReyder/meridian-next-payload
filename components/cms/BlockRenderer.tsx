@@ -4,6 +4,8 @@ import { HeroBlockComponent } from '@/components/cms/blocks/HeroBlock'
 import { ValueHomeBlockComponent } from './blocks/ValueHomeBlock'
 import { VideoWalkthroughHomeBlockComponent } from './blocks/VideoWalkthroughHomeBlock'
 import { DeliverablesHomeBlockComponent } from './blocks/DeliverablesHomeBlock'
+import { WhyHomeBlockComponent } from './blocks/WhyHomeBlock'
+import { AudienceHomeBlockComponent } from './blocks/AudienceHomeBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -25,6 +27,10 @@ export function BlockRenderer({ blocks, locale }: Props) {
             return <VideoWalkthroughHomeBlockComponent key={key} block={block} locale={locale} />
           case 'deliverablesHome':
             return <DeliverablesHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'whyHome':
+            return <WhyHomeBlockComponent key={key} block={block} locale={locale} />
+          case 'audienceHome':
+            return <AudienceHomeBlockComponent key={key} block={block} locale={locale} />
           default:
             return null
         }
