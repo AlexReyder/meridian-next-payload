@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import { headers } from 'next/headers'
 import { Cormorant_Garamond, Inter } from 'next/font/google'
-
 import './globals.css'
+import { ReactNode } from 'react'
+import { DEFAULT_LOCALE, getLocaleDirection, resolveLocaleAndPageKey } from '@/lib/routes'
+
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin', 'cyrillic'],
@@ -22,11 +24,21 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
-export default async function FrontendLayout({ children, segments }: { children: React.ReactNode, segments?: string[]}) {
-  await headers()
+type Props = {
+  children: ReactNode
+  params: Promise<{ segments?: string[] }> | { segments?: string[] }
+}
+
+export default async function FrontendLayout({ children, params }: Props) {
+  const resolvedParams = await Promise.resolve(params)
+  const route = resolveLocaleAndPageKey(resolvedParams.segments)
+
+  const locale = route?.locale ?? DEFAULT_LOCALE
+  const dir = getLocaleDirection(locale)
+
 
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang={locale} dir={dir} suppressHydrationWarning>
       <body className={`${cormorant.variable} ${inter.variable} font-sans antialiased`}>
         {children}
       </body>
