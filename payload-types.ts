@@ -3410,27 +3410,24 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: number;
-  brandTitle?: string | null;
-  brandSubtitle?: string | null;
-  navItems?:
-    | {
-        label: string;
-        pageKey:
-          | 'home'
-          | 'solutions'
-          | 'pricing'
-          | 'get-proposal'
-          | 'concepts'
-          | 'for-startups'
-          | 'for-partners'
-          | 'method';
-        id?: string | null;
-      }[]
-    | null;
-  ctaLabel?: string | null;
-  ctaPageKey?:
-    | ('home' | 'solutions' | 'pricing' | 'get-proposal' | 'concepts' | 'for-startups' | 'for-partners' | 'method')
-    | null;
+  brandName: string;
+  brandTagline: string;
+  navigation: {
+    label: string;
+    pageKey:
+      | 'home'
+      | 'solutions'
+      | 'pricing'
+      | 'get-proposal'
+      | 'concepts'
+      | 'for-startups'
+      | 'for-partners'
+      | 'method';
+    id?: string | null;
+  }[];
+  proposalButtonLabel: string;
+  mobileLanguageLabel: string;
+  menuAriaLabel: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -3440,17 +3437,19 @@ export interface Header {
  */
 export interface Footer {
   id: number;
-  brandTitle?: string | null;
-  brandSubtitle?: string | null;
-  description?: string | null;
-  email?: string | null;
-  columns?:
-    | {
-        title: string;
-        links?:
-          | {
-              label: string;
-              pageKey:
+  variant: 'dark' | 'light';
+  brandName: string;
+  brandTagline: string;
+  description: string;
+  brandEmail?: string | null;
+  columns: {
+    type: 'links' | 'cta';
+    title: string;
+    links?:
+      | {
+          label: string;
+          pageKey?:
+            | (
                 | 'home'
                 | 'solutions'
                 | 'pricing'
@@ -3458,14 +3457,43 @@ export interface Footer {
                 | 'concepts'
                 | 'for-startups'
                 | 'for-partners'
-                | 'method';
-              id?: string | null;
-            }[]
+                | 'method'
+              )
+            | null;
+          href?: string | null;
+          anchor?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    body?: string | null;
+    buttonLabel?: string | null;
+    buttonPageKey?:
+      | ('home' | 'solutions' | 'pricing' | 'get-proposal' | 'concepts' | 'for-startups' | 'for-partners' | 'method')
+      | null;
+    buttonHref?: string | null;
+    id?: string | null;
+  }[];
+  bottomTextTemplate: string;
+  bottomLinks?:
+    | {
+        label: string;
+        pageKey?:
+          | (
+              | 'home'
+              | 'solutions'
+              | 'pricing'
+              | 'get-proposal'
+              | 'concepts'
+              | 'for-startups'
+              | 'for-partners'
+              | 'method'
+            )
           | null;
+        href?: string | null;
+        anchor?: string | null;
         id?: string | null;
       }[]
     | null;
-  copyright?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -3474,17 +3502,18 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
-  brandTitle?: T;
-  brandSubtitle?: T;
-  navItems?:
+  brandName?: T;
+  brandTagline?: T;
+  navigation?:
     | T
     | {
         label?: T;
         pageKey?: T;
         id?: T;
       };
-  ctaLabel?: T;
-  ctaPageKey?: T;
+  proposalButtonLabel?: T;
+  mobileLanguageLabel?: T;
+  menuAriaLabel?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -3494,24 +3523,41 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  brandTitle?: T;
-  brandSubtitle?: T;
+  variant?: T;
+  brandName?: T;
+  brandTagline?: T;
   description?: T;
-  email?: T;
+  brandEmail?: T;
   columns?:
     | T
     | {
+        type?: T;
         title?: T;
         links?:
           | T
           | {
               label?: T;
               pageKey?: T;
+              href?: T;
+              anchor?: T;
               id?: T;
             };
+        body?: T;
+        buttonLabel?: T;
+        buttonPageKey?: T;
+        buttonHref?: T;
         id?: T;
       };
-  copyright?: T;
+  bottomTextTemplate?: T;
+  bottomLinks?:
+    | T
+    | {
+        label?: T;
+        pageKey?: T;
+        href?: T;
+        anchor?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

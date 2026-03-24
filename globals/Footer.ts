@@ -1,71 +1,154 @@
 import type { GlobalConfig } from 'payload'
 
-import { PAGE_KEY_OPTIONS } from '../lib/routes.ts'
+import { PAGE_KEY_OPTIONS } from '@/lib/routes'
+
+const linkFields = [
+  {
+    name: 'label',
+    type: 'text',
+    required: true,
+  },
+  {
+    name: 'pageKey',
+    type: 'select',
+    required: false,
+    options: PAGE_KEY_OPTIONS,
+  },
+  {
+    name: 'href',
+    type: 'text',
+    required: false,
+  },
+  {
+    name: 'anchor',
+    type: 'text',
+    required: false,
+  },
+]
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
+  label: 'Footer',
   access: {
     read: () => true,
   },
+  admin: {
+    group: 'Globals',
+  },
   fields: [
     {
-      name: 'brandTitle',
-      type: 'text',
+      name: 'variant',
+      type: 'select',
       localized: true,
-      defaultValue: 'Atelier Meridian',
+      required: true,
+      defaultValue: 'dark',
+      options: [
+        { label: 'Dark / RU style', value: 'dark' },
+        { label: 'Light / EN-AR style', value: 'light' },
+      ],
     },
     {
-      name: 'brandSubtitle',
+      name: 'brandName',
       type: 'text',
       localized: true,
-      defaultValue: 'Product Architecture & Interface Studio',
+      required: true,
+    },
+    {
+      name: 'brandTagline',
+      type: 'text',
+      localized: true,
+      required: true,
     },
     {
       name: 'description',
       type: 'textarea',
       localized: true,
-      defaultValue: 'Бутиковая студия продуктовой архитектуры. Структурируем сложные digital-продукты до начала разработки.',
+      required: true,
     },
     {
-      name: 'email',
+      name: 'brandEmail',
       type: 'email',
-      defaultValue: 'hello@atelier-meridian.com',
+      localized: true,
+      required: false,
     },
     {
       name: 'columns',
       type: 'array',
+      localized: true,
+      required: true,
+      minRows: 1,
       fields: [
+        {
+          name: 'type',
+          type: 'select',
+          required: true,
+          defaultValue: 'links',
+          options: [
+            { label: 'Links', value: 'links' },
+            { label: 'CTA', value: 'cta' },
+          ],
+        },
         {
           name: 'title',
           type: 'text',
-          localized: true,
           required: true,
         },
         {
           name: 'links',
           type: 'array',
-          fields: [
-            {
-              name: 'label',
-              type: 'text',
-              localized: true,
-              required: true,
-            },
-            {
-              name: 'pageKey',
-              type: 'select',
-              required: true,
-              options: PAGE_KEY_OPTIONS,
-            },
-          ],
+          required: false,
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'links',
+          },
+          fields: linkFields,
+        },
+        {
+          name: 'body',
+          type: 'textarea',
+          required: false,
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'cta',
+          },
+        },
+        {
+          name: 'buttonLabel',
+          type: 'text',
+          required: false,
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'cta',
+          },
+        },
+        {
+          name: 'buttonPageKey',
+          type: 'select',
+          required: false,
+          options: PAGE_KEY_OPTIONS,
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'cta',
+          },
+        },
+        {
+          name: 'buttonHref',
+          type: 'text',
+          required: false,
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'cta',
+          },
         },
       ],
     },
     {
-      name: 'copyright',
+      name: 'bottomTextTemplate',
       type: 'text',
       localized: true,
-      defaultValue: '© 2026 Atelier Meridian. Все права защищены.',
+      required: true,
+    },
+    {
+      name: 'bottomLinks',
+      type: 'array',
+      localized: true,
+      required: false,
+      fields: linkFields,
     },
   ],
 }

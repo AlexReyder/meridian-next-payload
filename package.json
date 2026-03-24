@@ -9,6 +9,7 @@
     "start": "next start",
     "generate:types": "cross-env NODE_OPTIONS=--no-experimental-require-module payload generate:types",
     "generate:db": "cross-env NODE_OPTIONS=--no-experimental-require-module payload generate:db-schema",
+    "generate:importmap": "payload generate:importmap",
     "seed": "tsx scripts/seed.ts"
   },
   "dependencies": {

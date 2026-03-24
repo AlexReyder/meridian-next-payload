@@ -1,33 +1,39 @@
 import type { GlobalConfig } from 'payload'
 
-import { PAGE_KEY_OPTIONS } from '../lib/routes.ts'
+import { PAGE_KEY_OPTIONS } from '@/lib/routes'
 
 export const Header: GlobalConfig = {
   slug: 'header',
+  label: 'Header',
   access: {
     read: () => true,
   },
+  admin: {
+    group: 'Globals',
+  },
   fields: [
     {
-      name: 'brandTitle',
+      name: 'brandName',
       type: 'text',
       localized: true,
-      defaultValue: 'Atelier Meridian',
+      required: true,
     },
     {
-      name: 'brandSubtitle',
+      name: 'brandTagline',
       type: 'text',
       localized: true,
-      defaultValue: 'Product Architecture & Interface Studio',
+      required: true,
     },
     {
-      name: 'navItems',
+      name: 'navigation',
       type: 'array',
+      localized: true,
+      required: true,
+      minRows: 1,
       fields: [
         {
           name: 'label',
           type: 'text',
-          localized: true,
           required: true,
         },
         {
@@ -39,16 +45,23 @@ export const Header: GlobalConfig = {
       ],
     },
     {
-      name: 'ctaLabel',
+      name: 'proposalButtonLabel',
       type: 'text',
       localized: true,
-      defaultValue: 'Получить предложение',
+      required: true,
     },
     {
-      name: 'ctaPageKey',
-      type: 'select',
-      options: PAGE_KEY_OPTIONS,
-      defaultValue: 'get-proposal',
+      name: 'mobileLanguageLabel',
+      type: 'text',
+      localized: true,
+      required: true,
+    },
+    {
+      name: 'menuAriaLabel',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: 'Toggle menu',
     },
   ],
 }

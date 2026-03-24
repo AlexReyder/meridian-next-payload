@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const payload = await getPayloadClient()
 
-  const result = await payload.find({
+  const pageResult = await payload.find({
     collection: 'pages',
     where: {
       pageKey: {
@@ -32,20 +32,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     depth: 0,
   })
 
-  const page = result.docs[0] as any
+  const page = pageResult.docs[0] as any
   if (!page) return {}
-
+  
   return {
-    title: page?.meta?.title || page?.title || 'Atelier Meridian',
-    description: page?.meta?.description || '',
-    openGraph: {
-      title: page?.meta?.title || page?.title || 'Atelier Meridian',
-      description: page?.meta?.description || '',
-    },
-    twitter: {
-      title: page?.meta?.title || page?.title || 'Atelier Meridian',
-      description: page?.meta?.description || '',
-    },
+    title: page?.metaTitle|| 'Atelier Meridian1',
+    description: page?.metaDescription || '',
   }
 }
 
@@ -53,7 +45,9 @@ export default async function FrontendPage({ params }: Props) {
   const resolvedParams = await Promise.resolve(params)
   const route = resolveLocaleAndPageKey(resolvedParams.segments)
 
-  if (!route) notFound()
+  if (!route) {
+    notFound()
+  }
 
   const payload = await getPayloadClient()
 
@@ -71,11 +65,24 @@ export default async function FrontendPage({ params }: Props) {
   })
 
   const page = pageResult.docs[0]
-  if (!page) notFound()
+
+  if (!page) {
+    notFound()
+  }
 
   const [header, footer] = await Promise.all([
-    payload.findGlobal({ slug: 'header', locale: route.locale, fallbackLocale: 'none', depth: 1 }),
-    payload.findGlobal({ slug: 'footer', locale: route.locale, fallbackLocale: 'none', depth: 1 }),
+    payload.findGlobal({
+      slug: 'header',
+      locale: route.locale,
+      fallbackLocale: 'none',
+      depth: 1,
+    }),
+    payload.findGlobal({
+      slug: 'footer',
+      locale: route.locale,
+      fallbackLocale: 'none',
+      depth: 1,
+    }),
   ])
 
   return (
