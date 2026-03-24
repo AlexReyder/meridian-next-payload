@@ -10,1063 +10,536 @@ type BlockData = Record<string, unknown> & {
   id?: string
 }
 
-const HERO_PRICING_SEED: Record<Locale, BlockData> = {
+const HERO_PROPOSAL_SEED: Record<Locale, BlockData> = {
   ru: {
-    blockType: 'heroPricing',
-    eyebrow: 'Форматы и стоимость',
-    title: 'Цены и форматы работы',
+    blockType: 'heroProposal',
+    eyebrow: 'Получить предложение',
+    title: 'Закажите дизайн сайта, системы или мобильного приложения',
     description:
-      'Эти форматы подходят для проектов разного типа — от дизайна сайта или редизайна корпоративного сайта до mobile app, клиентского портала или интерфейса сложной B2B-системы.',
-    descriptionSecondary:
-      'Работаем с сайтами, digital-системами, порталами, dashboards и мобильными приложениями. Сначала структура и объём — потом prototype и материалы для разработки.',
-    trustLabels: [
-      { label: 'Структурированная работа' },
-      { label: 'Готовность к разработке' },
-      { label: 'Партнёрский формат' },
-      { label: 'Прямое взаимодействие' },
+      'Расскажите, что вы планируете — сайт, корпоративный портал, B2B-систему, dashboard или mobile app. Мы предложим формат работы, сроки и стоимость без обязательного стартового звонка.',
+    reassuranceItems: [
+      { icon: 'clock', text: 'Brief на 7 минут' },
+      { icon: 'fileText', text: 'Без обязательного звонка' },
+      { icon: 'shield', text: 'NDA-friendly' },
+      { icon: 'users', text: 'Сайты, системы, приложения' },
     ],
-    primaryButtonLabel: 'Получить предложение',
-    primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'Посмотреть метод',
-    secondaryPageKey: 'method',
+    brandParagraph:
+      'Atelier Meridian помогает founders, B2B-командам, агентствам и integrators превращать идеи, сложные процессы и product requirements в понятную структуру, prototype и материалы для передачи в разработку.',
   },
+
   en: {
-    blockType: 'heroPricing',
-    eyebrow: 'Formats & Pricing',
-    title: 'Pricing and engagement formats',
+    blockType: 'heroProposal',
+    eyebrow: 'Get Proposal',
+    title: 'Get proposal, scope, and next step',
     description:
-      'Atelier Meridian works in a small number of structured formats — from product framing and investor-ready preparation to build-ready prototypes and white-label support for partners.',
-    descriptionSecondary:
-      'Suitable for websites, redesign, digital systems, portals, dashboards, and mobile apps.',
-    trustLabels: [
-      { label: 'Structured delivery' },
-      { label: 'Build-ready output' },
-      { label: 'Partner-level support' },
-      { label: 'Direct collaboration' },
+      'Share your task, brief, links, or existing materials, and Atelier Meridian will recommend the right format of work, a timeline range, and a starting pricing direction.',
+    reassuranceItems: [
+      { icon: 'clock', text: '7-minute brief' },
+      { icon: 'fileText', text: 'No call required' },
+      { icon: 'shield', text: 'NDA-friendly' },
+      { icon: 'users', text: 'Websites, systems, apps' },
     ],
-    primaryButtonLabel: 'Get Proposal',
-    primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'Solutions',
-    secondaryPageKey: 'solutions',
+    brandParagraph:
+      'Atelier Meridian helps founders, B2B teams, agencies, and integrators turn ideas, complex processes, and product requirements into clear structure, prototype, and build-ready materials.',
   },
+
   ar: {
-    blockType: 'heroPricing',
-    eyebrow: 'صيغ العمل والأسعار',
-    title: 'الأسعار وصيغ العمل',
+    blockType: 'heroProposal',
+    eyebrow: 'اطلب عرضاً',
+    title: 'اطلب عرضاً ونطاق العمل والخطوة التالية',
     description:
-      'يعمل Atelier Meridian من خلال عدد محدود من الصيغ الواضحة والمنظمة — من هيكلة المنتج في مراحله الأولى إلى النماذج الأولية الجاهزة للعرض أو للتطوير، وصولاً إلى دعم الشركاء بنظام مرن واحترافي.',
-    descriptionSecondary:
-      'مناسب للمواقع، وإعادة التصميم، والأنظمة الرقمية، والبوابات، ولوحات التحكم، وتطبيقات الجوال.',
-    trustLabels: [
-      { label: 'تسليم منظم' },
-      { label: 'مخرجات جاهزة للتطوير' },
-      { label: 'دعم على مستوى الشركاء' },
-      { label: 'تعاون مباشر' },
+      'شاركنا بالمهمة أو الـ brief أو الروابط أو المواد المتوفرة لديك، وسيقترح Atelier Meridian صيغة العمل الأنسب، والنطاق الزمني المتوقع، واتجاهاً أولياً للتكلفة.',
+    supportLine: 'لا حاجة إلى مكالمة إلزامية في الخطوة الأولى.',
+    reassuranceItems: [
+      { icon: 'clock', text: 'brief من 7 دقائق' },
+      { icon: 'fileText', text: 'لا مكالمة إلزامية' },
+      { icon: 'shield', text: 'NDA متاح' },
+      { icon: 'users', text: 'مواقع، أنظمة، تطبيقات' },
     ],
-    primaryButtonLabel: 'اطلب عرضاً',
-    primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'اطلع على الحلول',
-    secondaryPageKey: 'solutions',
+    brandParagraph:
+      'يساعد Atelier Meridian المؤسسين وفرق B2B والوكالات وشركاء التنفيذ على تحويل الأفكار والعمليات المعقدة ومتطلبات المنتجات إلى هيكل واضح ونموذج أولي ومواد جاهزة للتطوير.',
   },
 }
 
-const POSITIONING_BLOCK_PRICING_SEED: Record<Locale, BlockData> = {
+const TRUST_PROPOSAL_SEED: Record<Locale, BlockData> = {
   ru: {
-    blockType: 'positioningBlockPricing',
-    eyebrow: 'Понятный процесс работы',
-    title: 'Не прайс на дизайн, а понятные форматы продуктовой работы',
-    description:
-      'Atelier Meridian продаёт не набор экранов, а структурированный результат — от понимания продукта до готовности к передаче в разработку.',
-    descriptionSecondary:
-      'Каждый формат — это законченный этап с понятным результатом, а не почасовая работа с размытым объёмом.',
-    rightTitle: 'Работа напрямую с командой',
-    deliveryElements: [
+    blockType: 'trustProposal',
+    title: 'Структурный intake для сложных digital-проектов',
+    description: 'Формат работы, который подходит для серьёзных продуктовых задач',
+    items: [
       {
-        title: 'Прояснение структуры продукта',
-        description: 'Роли, приоритеты и логика',
+        icon: 'layers',
+        title: 'Подходит для сложных workflow',
+        description: 'Структурируем многоуровневые процессы, role-based системы и enterprise-задачи',
       },
       {
-        title: 'Пользовательские сценарии',
-        description: 'Ключевые flows и точки перехода',
+        icon: 'users',
+        title: 'Удобно для startup, B2B и enterprise',
+        description: 'Работаем с founders, product teams, агентствами и integrators',
       },
       {
-        title: 'Архитектура экранов',
-        description: 'Карта экранов и состояний',
+        icon: 'building2',
+        title: 'Поддерживает white-label модель',
+        description: 'Готовим материалы под бренд клиента для агентств и партнёров',
       },
       {
-        title: 'Интерактивный прототип',
-        description: 'Кликабельный preview продукта',
-      },
-      {
-        title: 'Визуальное направление',
-        description: 'Стиль и компоненты',
-      },
-      {
-        title: 'Передача в разработку',
-        description: 'Готовность к следующему этапу',
-      },
-    ],
-  },
-  en: {
-    blockType: 'positioningBlockPricing',
-    eyebrow: 'Clear process',
-    title: 'Not just pricing, but clear formats of work',
-    description:
-      'Atelier Meridian does not sell isolated screens. We structure product logic, user flows, interface direction, and tangible outputs that make the next stage easier.',
-    descriptionSecondary:
-      'Whether that means investor presentation, client alignment, or development handoff — each format is a complete milestone with a clear result.',
-    rightTitle: 'Direct collaboration with the team',
-    pillars: [
-      {
-        label: 'Clear scope',
-        description: 'Defined boundaries',
-      },
-      {
-        label: 'Premium output',
-        description: 'Quality materials',
-      },
-      {
-        label: 'Defined next step',
-        description: 'What happens after',
-      },
-    ],
-    deliveryElements: [
-      {
-        title: 'Product structure clarification',
-        description: 'Scenarios, roles, and priorities',
-      },
-      {
-        title: 'User flows',
-        description: 'Key paths and transitions',
-      },
-      {
-        title: 'Screen architecture',
-        description: 'Screen map and states',
-      },
-      {
-        title: 'Interactive prototype',
-        description: 'Clickable product preview',
-      },
-      {
-        title: 'Visual direction',
-        description: 'Style and components',
-      },
-      {
-        title: 'Development handoff',
-        description: 'Ready for the next stage',
-      },
-    ],
-  },
-  ar: {
-    blockType: 'positioningBlockPricing',
-    eyebrow: 'عملية واضحة',
-    title: 'ليست أسعاراً فقط، بل صيغ عمل واضحة',
-    description:
-      'لا يبيع Atelier Meridian شاشات منفصلة أو مخرجات سطحية. نحن نبني منطق المنتج، ومسارات المستخدم، والاتجاه البصري، والمخرجات التي تجعل المرحلة التالية أوضح — سواء كان الهدف عرضاً للمستثمرين أو توافقاً داخلياً أو انتقالاً منظماً إلى التطوير.',
-    rightTitle: 'تعاون مباشر مع الفريق',
-    pillars: [
-      {
-        label: 'نطاق عمل واضح',
-        description: 'حدود محددة',
-      },
-      {
-        label: 'مخرجات متميزة',
-        description: 'مواد عالية الجودة',
-      },
-      {
-        label: 'خطوة تالية محددة',
-        description: 'ما يحدث بعد ذلك',
-      },
-    ],
-    deliveryElements: [
-      {
-        title: 'توضيح هيكل المنتج',
-        description: 'السيناريوهات والأدوار والأولويات',
-      },
-      {
-        title: 'مسارات المستخدم',
-        description: 'المسارات الرئيسية ونقاط الانتقال',
-      },
-      {
-        title: 'هندسة الشاشات',
-        description: 'خريطة الشاشات والحالات',
-      },
-      {
-        title: 'نموذج تفاعلي',
-        description: 'معاينة المنتج القابلة للنقر',
-      },
-      {
-        title: 'الاتجاه البصري',
-        description: 'الأسلوب والمكونات',
-      },
-      {
-        title: 'تسليم للتطوير',
-        description: 'جاهز للمرحلة التالية',
-      },
-    ],
-  },
-}
-
-const PACKAGE_CARDS_PRICING_SEED: Record<Locale, BlockData> = {
-  ru: {
-    blockType: 'packageCardsPricing',
-    eyebrow: 'Форматы работы',
-    title: 'Три формата работы',
-    description:
-      'Выберите подходящий формат — или расскажите о проекте, и мы порекомендуем оптимальный.',
-    contextLine:
-      'Эти форматы подходят для проектов разного типа — от дизайна сайта или редизайна корпоративного сайта до client portal, B2B systems, SaaS interfaces и mobile apps.',
-    forWhomLabel: 'Для кого',
-    includesLabel: 'Что входит',
-    packages: [
-      {
-        packageKey: 'framing',
-        title: 'Product Framing Sprint',
-        subtitle: 'Структурирование продукта до начала дизайна и разработки',
-        price: '$5,400',
-        priceNote: 'от',
-        timeline: 'Ориентир: 1–2 недели',
-        forWhom:
-          'Для founders, startup-команд и B2B-проектов, которым нужно сначала собрать продуктовую логику, роли, сценарии и scope.',
-        includes: [
-          { label: 'Структурная рамка проекта' },
-          { label: 'Роли и права доступа' },
-          { label: 'Ключевые пользовательские сценарии' },
-          { label: 'Экранная карта продукта' },
-          { label: 'Приоритеты и логика модулей' },
-          { label: 'Рекомендации по следующему этапу' },
-        ],
-        primaryButtonLabel: 'Выбрать этот формат',
-        primaryPageKey: 'get-proposal',
-        secondaryLinkLabel: 'Подходит для старта продукта',
-        secondaryPageKey: 'for-startups',
-        featured: false,
-      },
-      {
-        packageKey: 'prototype',
-        title: 'Build-Ready Prototype',
-        subtitle: 'Прототип и ключевые интерфейсы для презентации или передачи в разработку',
-        price: '$6,900',
-        priceNote: 'от',
-        timeline: 'Ориентир: 2–4 недели',
-        forWhom:
-          'Для команд, которым нужен premium-прототип, понятная структура экранов и материалы, которые можно использовать для презентации или передачи в разработку.',
-        includes: [
-          { label: 'Продуктовая логика и user flows' },
-          { label: 'Набор ключевых интерфейсов' },
-          { label: 'Интерактивный прототип' },
-          { label: 'Визуальное направление' },
-          { label: 'Базовая система компонентов' },
-          { label: 'Сводка для передачи в разработку' },
-        ],
-        primaryButtonLabel: 'Получить предложение',
-        primaryPageKey: 'get-proposal',
-        secondaryLinkLabel: 'Посмотреть метод работы',
-        secondaryPageKey: 'method',
-        featured: true,
-      },
-      {
-        packageKey: 'partner',
-        title: 'White-Label Partner Desk',
-        subtitle: 'Партнёрский формат для агентств, integrators и delivery-команд',
-        price: '$6,500',
-        priceNote: 'от',
-        timeline: 'По scope проекта / возможен постоянный формат',
-        forWhom:
-          'Для партнёров, integrators и digital-команд, которым нужен внешний premium-партнёр по product architecture, UX и интерфейсам.',
-        includes: [
-          { label: 'White-label поддержка' },
-          { label: 'Упаковка концепций и presale-материалов' },
-          { label: 'Prototype и interface delivery' },
-          { label: 'Async-взаимодействие' },
-          { label: 'Структурные материалы для клиента' },
-          { label: 'Сводка для команды разработки' },
-        ],
-        primaryButtonLabel: 'Обсудить формат',
-        primaryPageKey: 'get-proposal',
-        secondaryLinkLabel: 'Подробнее для партнёров',
-        secondaryPageKey: 'for-agencies',
-        featured: false,
+        icon: 'arrowRightLeft',
+        title: 'Упрощает передачу в разработку',
+        description: 'Формируем build-ready материалы и документацию для разработки',
       },
     ],
   },
 
   en: {
-    blockType: 'packageCardsPricing',
-    eyebrow: 'Engagement formats',
-    title: 'Three ways to work together',
-    description:
-      'Choose the format that fits your stage — or tell us about your project, and we will recommend the right one.',
-    contextLine:
-      'These formats are suitable for a range of digital projects — from corporate websites and website redesign to client portals, B2B systems, SaaS interfaces, and mobile apps.',
-    forWhomLabel: 'Who it is for',
-    includesLabel: 'What is included',
-    packages: [
+    blockType: 'trustProposal',
+    title: 'A structured start for complex digital work',
+    description: 'A format designed for teams that want clarity without unnecessary sales friction',
+    items: [
       {
-        packageKey: 'framing',
-        title: 'Product Framing Sprint',
-        subtitle: 'Structure the product before design and development begin',
-        price: '$5,400',
-        priceNote: 'from',
-        timeline: 'Typical timeline: 1–2 weeks',
-        forWhom:
-          'For founders, startup teams, and B2B projects that need clarity around product logic, roles, user flows, and scope before moving forward.',
-        includes: [
-          { label: 'Project structure' },
-          { label: 'Roles and permissions logic' },
-          { label: 'Key user flows' },
-          { label: 'Screen map / screen matrix' },
-          { label: 'Priorities and product scope logic' },
-          { label: 'Recommendations for the next stage' },
-        ],
-        primaryButtonLabel: 'Choose this format',
-        primaryPageKey: 'get-proposal',
-        secondaryLinkLabel: 'Ideal for product launch',
-        secondaryPageKey: 'for-startups',
-        featured: false,
+        icon: 'layers',
+        title: 'Built for complex workflows',
+        description: 'We structure multi-layered processes, role-based systems, and enterprise-level tasks',
       },
       {
-        packageKey: 'prototype',
-        title: 'Build-Ready Prototype',
-        subtitle: 'Prototype and key interfaces for presentation or development',
-        price: '$6,900',
-        priceNote: 'from',
-        timeline: 'Typical timeline: 2–4 weeks',
-        forWhom:
-          'For teams that need a premium prototype, a clear screen structure, and materials that can support product delivery or handoff to development.',
-        includes: [
-          { label: 'Product logic and user flows' },
-          { label: 'Key interface set' },
-          { label: 'Clickable prototype' },
-          { label: 'Visual direction' },
-          { label: 'Basic component system' },
-          { label: 'Materials for development' },
-        ],
-        primaryButtonLabel: 'Get Proposal',
-        primaryPageKey: 'get-proposal',
-        secondaryLinkLabel: 'See how we work',
-        secondaryPageKey: 'method',
-        featured: true,
+        icon: 'users',
+        title: 'Works for startups, B2B, and enterprise',
+        description: 'We collaborate with founders, product teams, agencies, and integrators',
       },
       {
-        packageKey: 'partner',
-        title: 'White-Label Partner Desk',
-        subtitle: 'Partner model for agencies, integrators, and delivery teams',
-        price: '$6,500',
-        priceNote: 'from',
-        timeline: 'Depends on project scope / ongoing format possible',
-        forWhom:
-          'For agencies, integrators, and delivery teams that need an external premium partner for product structure, UX, and interface work.',
-        includes: [
-          { label: 'White-label support' },
-          { label: 'Concept and presale packaging' },
-          { label: 'Prototype and interface delivery' },
-          { label: 'Async collaboration' },
-          { label: 'Structured outputs for the client' },
-          { label: 'Summary for the development team' },
-        ],
-        primaryButtonLabel: 'Discuss this format',
-        primaryPageKey: 'get-proposal',
-        secondaryLinkLabel: 'More for partners',
-        secondaryPageKey: 'for-agencies',
-        featured: false,
+        icon: 'building2',
+        title: 'Supports white-label model',
+        description: "We prepare materials under your client's brand for agencies and partners",
+      },
+      {
+        icon: 'arrowRightLeft',
+        title: 'Simplifies dev handoff',
+        description: 'We create build-ready materials and documentation for development teams',
       },
     ],
   },
 
   ar: {
-    blockType: 'packageCardsPricing',
-    eyebrow: 'صيغ العمل',
-    title: 'ثلاث طرق للعمل معاً',
-    description:
-      'اختر الصيغة التي تناسب مرحلتك — أو أخبرنا عن مشروعك وسنقترح عليك الصيغة المناسبة.',
-    contextLine:
-      'هذه الصيغ مناسبة لأنواع مختلفة من المشاريع الرقمية — من مواقع الشركات وإعادة تصميم المواقع إلى بوابات العملاء والأنظمة الرقمية وواجهات SaaS وتطبيقات الجوال.',
-    forWhomLabel: 'لمن تناسب',
-    includesLabel: 'ما تتضمنه',
-    packages: [
+    blockType: 'trustProposal',
+    title: 'بداية منظمة للمشاريع الرقمية المعقدة',
+    description: 'صُممت هذه الصفحة للفرق التي تحتاج إلى وضوح من دون احتكاك بيعي غير ضروري',
+    items: [
       {
-        packageKey: 'framing',
-        title: 'Sprint لهيكلة المنتج',
-        subtitle: 'لبناء وضوح المنتج قبل بدء التصميم والتطوير',
-        price: '$5,400',
-        priceNote: 'يبدأ من',
-        timeline: 'المدة المعتادة: من أسبوع إلى أسبوعين',
-        forWhom:
-          'مناسب للمؤسسين وفرق الشركات الناشئة ومشاريع B2B التي تحتاج إلى وضوح أكبر حول منطق المنتج والأدوار ومسارات الاستخدام وحدود النطاق قبل الانتقال إلى المرحلة التالية.',
-        includes: [
-          { label: 'هيكل المشروع' },
-          { label: 'منطق الأدوار والصلاحيات' },
-          { label: 'مسارات الاستخدام الأساسية' },
-          { label: 'خريطة أو مصفوفة الشاشات' },
-          { label: 'أولويات المنتج وحدود النطاق' },
-          { label: 'توصيات للمرحلة التالية' },
-        ],
-        primaryButtonLabel: 'اختر هذه الصيغة',
-        primaryPageKey: 'get-proposal',
-        secondaryLinkLabel: 'مثالي لإطلاق المنتجات',
-        secondaryPageKey: 'for-startups',
-        featured: false,
+        icon: 'layers',
+        title: 'مصمم للعمليات المعقدة',
+        description: 'نهيكل العمليات متعددة الطبقات والأنظمة القائمة على الأدوار والمهام على مستوى المؤسسات',
       },
       {
-        packageKey: 'prototype',
-        title: 'نموذج أولي جاهز للتطوير',
-        subtitle: 'نموذج أولي وواجهات أساسية للعرض أو للتنفيذ',
-        price: '$6,900',
-        priceNote: 'يبدأ من',
-        timeline: 'المدة المعتادة: من أسبوعين إلى أربعة أسابيع',
-        forWhom:
-          'مناسب للفرق التي تحتاج إلى نموذج أولي متميز وهيكل واضح للشاشات ومخرجات يمكن الاعتماد عليها في العرض أو في الانتقال إلى التطوير.',
-        includes: [
-          { label: 'منطق المنتج ومسارات المستخدم' },
-          { label: 'مجموعة الواجهات الأساسية' },
-          { label: 'نموذج أولي قابل للنقر' },
-          { label: 'اتجاه بصري' },
-          { label: 'نظام مكونات أساسي' },
-          { label: 'مواد جاهزة للتطوير' },
-        ],
-        primaryButtonLabel: 'اطلب عرضاً',
-        primaryPageKey: 'get-proposal',
-        secondaryLinkLabel: 'شاهد طريقة عملنا',
-        secondaryPageKey: 'method',
-        featured: true,
+        icon: 'users',
+        title: 'يعمل للشركات الناشئة وB2B والمؤسسات',
+        description: 'نتعاون مع المؤسسين وفرق المنتجات والوكالات وشركاء التكامل',
       },
       {
-        packageKey: 'partner',
-        title: 'صيغة الشراكة للوكالات وفرق التنفيذ',
-        subtitle: 'نموذج عمل للشركاء والوكالات وشركات التنفيذ',
-        price: '$6,500',
-        priceNote: 'يبدأ من',
-        timeline: 'بحسب نطاق المشروع / مع إمكانية التعاون المستمر',
-        forWhom:
-          'مناسب للوكالات وشركاء التنفيذ والفرق التي تحتاج إلى شريك خارجي متميز في هيكلة المنتج والواجهات ودعم المشاريع الموجهة للعملاء.',
-        includes: [
-          { label: 'دعم بنظام white-label' },
-          { label: 'إعداد concept وعروض تمهيدية' },
-          { label: 'نماذج أولية ومخرجات واجهات' },
-          { label: 'تعاون مرن وعملي' },
-          { label: 'مخرجات منظمة للعميل أو لفريق التطوير' },
-        ],
-        primaryButtonLabel: 'ناقش هذه الصيغة',
-        primaryPageKey: 'get-proposal',
-        secondaryLinkLabel: 'المزيد للشركاء',
-        secondaryPageKey: 'for-agencies',
-        featured: false,
+        icon: 'building2',
+        title: 'يدعم نموذج White-label',
+        description: 'نعد المواد تحت علامتك التجارية للوكالات والشركاء',
       },
+      {
+        icon: 'arrowRightLeft',
+        title: 'يسهل تسليم التطوير',
+        description: 'ننشىء مواد ووثائق جاهزة للتطوير لفرق البرمجة',
+      },
+    ],
+    supportPoints: [
+      { label: 'لا حاجة إلى مكالمة إلزامية في البداية' },
+      { label: 'مناسب للمواقع والأنظمة وتطبيقات الجوال' },
+      { label: 'توصية واضحة بعد المراجعة' },
     ],
   },
 }
 
-const CHOOSING_GUIDE_PRICING_SEED: Record<Locale, BlockData> = {
+const FAQ_PROPOSAL_SEED: Record<Locale, BlockData> = {
   ru: {
-    blockType: 'choosingGuidePricing',
-    eyebrow: 'Как выбрать',
-    title: 'Как понять, какой формат вам подходит',
-    description:
-      'Обычно выбор зависит не от количества экранов, а от того, на каком этапе находится проект и какой следующий шаг вам нужен.',
-    layoutVariant: 'detailed',
+    blockType: 'faqProposal',
+    title: 'Частые вопросы',
     items: [
       {
-        title: 'Нужен быстрый concept или investor-facing материал',
-        description:
-          'Если вы только формулируете идею, хотите показать направление или подготовить первую презентационную версию.',
-        bestForLabel: 'Подходит для',
-        bestForValue: 'Старта идеи, pitch, presale, раннего согласования',
-        resultLabel: 'Результат',
-        resultValue: 'Concept Package',
+        question: 'Что я получу после отправки brief?',
+        answer: 'Вы получите структурированное предложение с рекомендацией по формату работы, ориентиром по срокам и стартовой стоимостью. Если потребуется уточнение — мы свяжемся с вами напрямую.',
       },
       {
-        title: 'Нужно собрать продуктовую логику до UI',
-        description:
-          'Если сценарии, роли, экранная карта и структура ещё не собраны, но нужно двигаться к понятному решению.',
-        bestForLabel: 'Подходит для',
-        bestForValue: 'Discovery, product framing, сложных digital-систем',
-        resultLabel: 'Результат',
-        resultValue: 'Product Structure Package',
+        question: 'Можно ли работать без звонков?',
+        answer: 'Да. Мы поддерживаем no-call-first формат. Большинство вопросов решается через brief, email и asynchronous коммуникацию. Звонок нужен только для сложных случаев, и только по согласованию.',
       },
       {
-        title: 'Нужен готовый prototype и handoff',
-        description:
-          'Если структура уже понятна и проекту нужен сильный интерфейсный слой, ключевые состояния и материалы для разработки.',
-        bestForLabel: 'Подходит для',
-        bestForValue: 'Build-ready этапа, client delivery, передачи в разработку',
-        resultLabel: 'Результат',
-        resultValue: 'Prototype + Handoff Package',
-      },
-    ],
-  },
-  en: {
-    blockType: 'choosingGuidePricing',
-    eyebrow: 'How to choose',
-    title: 'How to understand which format fits you',
-    description:
-      'The right format usually depends not on the number of screens, but on the stage of the project and what the next practical step should be.',
-    layoutVariant: 'detailed',
-    items: [
-      {
-        title: 'You need a fast concept or investor-facing material',
-        description:
-          'Useful when the idea is still being shaped and you need something presentable for alignment, pitch, or early review.',
-        bestForLabel: 'Best for',
-        bestForValue: 'Idea stage, pitch, presale, early alignment',
-        resultLabel: 'Result',
-        resultValue: 'Concept Package',
+        question: 'Поддерживаете ли вы white-label формат?',
+        answer: 'Да. Мы работаем с агентствами, integrators и консультантами, которые готовят материалы для своих клиентов. Все артефакты могут быть под ваш бренд.',
       },
       {
-        title: 'You need product logic before UI',
-        description:
-          'Useful when roles, scenarios, and screen architecture are not yet clarified, but the project needs a clear structural base.',
-        bestForLabel: 'Best for',
-        bestForValue: 'Discovery, product framing, complex digital systems',
-        resultLabel: 'Result',
-        resultValue: 'Product Structure Package',
+        question: 'Можно ли прийти с rough notes или старой системой?',
+        answer: 'Да. Вы можете загрузить любые материалы — заметки, screenshots, старые экраны, PRD или просто описание. Мы поможем структурировать проект с того места, где вы находитесь.',
       },
       {
-        title: 'You need a stronger prototype and handoff',
-        description:
-          'Useful when structure is already clear and the project needs a visual layer, key states, and better readiness for development.',
-        bestForLabel: 'Best for',
-        bestForValue: 'Build-ready stage, client delivery, dev handoff',
-        resultLabel: 'Result',
-        resultValue: 'Prototype + Handoff Package',
-      },
-    ],
-  },
-  ar: {
-    blockType: 'choosingGuidePricing',
-    eyebrow: 'كيف تختار',
-    title: 'كيف تفهم الصيغة الأنسب لك',
-    description:
-      'الاختيار الصحيح لا يعتمد غالباً على عدد الشاشات، بل على مرحلة المشروع وما هي الخطوة العملية التالية التي تحتاجها.',
-    layoutVariant: 'compact',
-    items: [
-      {
-        title: 'تحتاج إلى concept سريع أو مادة جاهزة للعرض',
-        description:
-          'مناسب عندما تكون الفكرة ما زالت في طور الصياغة وتحتاج إلى شيء واضح يمكن عرضه أو مراجعته بسرعة.',
-        bestForLabel: 'مناسب لـ',
-        bestForValue: 'مرحلة الفكرة، العروض، presale، التوافق الأولي',
-        resultLabel: 'النتيجة',
-        resultValue: 'Concept Package',
-      },
-      {
-        title: 'تحتاج إلى منطق المنتج قبل مرحلة UI',
-        description:
-          'مناسب عندما لا تزال الأدوار والسيناريوهات وبنية الشاشات غير واضحة وتحتاج إلى أساس هيكلي واضح.',
-        bestForLabel: 'مناسب لـ',
-        bestForValue: 'Discovery، product framing، الأنظمة الرقمية المعقدة',
-        resultLabel: 'النتيجة',
-        resultValue: 'Product Structure Package',
-      },
-      {
-        title: 'تحتاج إلى prototype أقوى وتسليم أوضح',
-        description:
-          'مناسب عندما تكون البنية واضحة بالفعل ويحتاج المشروع إلى طبقة بصرية وحالات رئيسية واستعداد أفضل للتطوير.',
-        bestForLabel: 'مناسب لـ',
-        bestForValue: 'المرحلة الجاهزة للتنفيذ، التسليم للعميل، handoff للتطوير',
-        resultLabel: 'النتيجة',
-        resultValue: 'Prototype + Handoff Package',
-      },
-    ],
-  },
-}
-
-const DELIVERABLES_PREVIEW_PRICING_SEED: Record<Locale, BlockData> = {
-  ru: {
-    blockType: 'deliverablesPreviewPricing',
-    eyebrow: 'Состав работ',
-    title: 'Что входит в каждый формат работы',
-    description:
-      'Каждый артефакт — готовый к использованию материал, а не промежуточный набросок. Реальные документы для продуктовой работы и передачи в разработку.',
-    layoutVariant: 'visuals',
-    topLinkLabel: 'Посмотреть концепты',
-    topLinkPageKey: 'concepts',
-    items: [
-      {
-        name: 'Структура проекта',
-        subtitle: 'Фиксирует цели, ограничения и приоритеты',
-        visual: 'structure',
-      },
-      {
-        name: 'Пользовательские сценарии',
-        subtitle: 'Показывает ключевые сценарии и точки перехода',
-        visual: 'scenarios',
-      },
-      {
-        name: 'Экранная карта продукта',
-        subtitle: 'Собирает логику экранов в единую систему',
-        visual: 'screen-map',
-      },
-      {
-        name: 'Интерактивный прототип',
-        subtitle: 'Даёт visual preview будущего продукта',
-        visual: 'prototype',
-      },
-      {
-        name: 'Базовая система компонентов',
-        subtitle: 'Задаёт основу интерфейсной системы',
-        visual: 'design-system',
-      },
-      {
-        name: 'Материалы для передачи в разработку',
-        subtitle: 'Помогает команде перейти к разработке',
-        visual: 'dev-materials',
-      },
-    ],
-    footerNote: 'Это реальные, серьёзные материалы — не просто наборы слайдов.',
-    footerLinkLabel: 'Получить предложение',
-    footerLinkPageKey: 'get-proposal',
-  },
-  en: {
-    blockType: 'deliverablesPreviewPricing',
-    eyebrow: 'Deliverables',
-    title: 'What clients receive',
-    description:
-      'Every format includes tangible outputs — not just concepts, but materials that support the next stage of work.',
-    layoutVariant: 'simple',
-    items: [
-      {
-        name: 'Project Structure',
-        subtitle: 'Captures goals, constraints, and priorities',
-      },
-      {
-        name: 'User Flows',
-        subtitle: 'Shows critical user paths and transitions',
-      },
-      {
-        name: 'Screen Matrix',
-        subtitle: 'Organizes screen logic into one system',
-      },
-      {
-        name: 'Clickable Prototype',
-        subtitle: 'Makes the product tangible before development',
-      },
-      {
-        name: 'Basic Component System',
-        subtitle: 'Sets the foundation for interface consistency',
-      },
-      {
-        name: 'Materials for Development',
-        subtitle: 'Helps move cleanly into development',
-      },
-    ],
-    footerLinkLabel: 'See all solutions and formats',
-    footerLinkPageKey: 'solutions',
-  },
-  ar: {
-    blockType: 'deliverablesPreviewPricing',
-    eyebrow: 'المخرجات',
-    title: 'ما الذي يحصل عليه العميل',
-    description:
-      'كل صيغة تتضمن مخرجات ملموسة — ليست مجرد مفاهيم، بل مواد تدعم المرحلة التالية من العمل.',
-    layoutVariant: 'simple',
-    items: [
-      {
-        name: 'هيكل المشروع',
-        subtitle: 'يوضح الأهداف والقيود والأولويات',
-      },
-      {
-        name: 'مسارات المستخدم',
-        subtitle: 'يبين المسارات الرئيسية ونقاط الانتقال',
-      },
-      {
-        name: 'مصفوفة الشاشات',
-        subtitle: 'يجمع الشاشات في نظام منتج واحد',
-      },
-      {
-        name: 'نموذج أولي قابل للنقر',
-        subtitle: 'يجعل المنتج ملموساً قبل التطوير',
-      },
-      {
-        name: 'نظام مكونات أساسي',
-        subtitle: 'يدعم اتساق الواجهة',
-      },
-      {
-        name: 'مواد التسليم للتطوير',
-        subtitle: 'يسهل الانتقال المنظم إلى التطوير',
-      },
-    ],
-    footerLinkLabel: 'اطلع على جميع الحلول والصيغ',
-    footerLinkPageKey: 'solutions',
-  },
-}
-
-const PRICE_EXPLANATION_PRICING_SEED: Record<Locale, BlockData> = {
-  ru: {
-    blockType: 'priceExplanationPricing',
-    eyebrow: 'Почему так',
-    title: 'Почему это стоит столько',
-    description:
-      'Atelier Meridian стоит ниже крупных агентств не потому, что делает меньше, а потому что работает без лишних накладных расходов.',
-    descriptionSecondary:
-      'Premium-результат с более рациональной моделью работы. Быстрее за счёт структуры, а не компромисса по качеству.',
-    quote:
-      '«Мы не продаём часы. Мы продаём результат — структурированный продукт, готовый к следующему этапу.»',
-    points: [
-      {
-        title: 'Опытный специалист ведёт проект',
-        description: 'Работу ведёт senior, а не джуниор под присмотром',
-      },
-      {
-        title: 'Ускоренные внутренние процессы',
-        description: 'AI-assisted workflow без потери качества',
-      },
-      {
-        title: 'Структурированные форматы работы',
-        description: 'Понятные packages вместо размытого почасового биллинга',
-      },
-      {
-        title: 'Без лишних слоёв',
-        description: 'Прямая работа без account-менеджеров и промежуточных согласований',
-      },
-      {
-        title: 'Быстрая итерация',
-        description: 'Скорость за счёт структуры, а не компромисса по качеству',
-      },
-    ],
-  },
-  en: {
-    blockType: 'priceExplanationPricing',
-    eyebrow: 'Why it is priced this way',
-    title: 'Premium and efficient',
-    description:
-      'Atelier Meridian is more efficient than a traditional layered agency model because the work is senior-led, AI-accelerated internally, and structured into focused delivery formats.',
-    descriptionSecondary:
-      'This is not about being cheap. It is about delivering premium output with a more rational working model.',
-    quote:
-      '"We do not sell hours. We sell results — a structured product ready for the next stage."',
-    points: [
-      {
-        title: 'Senior-level product thinking',
-        description: 'Work is led by a senior, not a junior under supervision',
-      },
-      {
-        title: 'Fewer layers and less overhead',
-        description: 'Direct work without account managers or intermediate approvals',
-      },
-      {
-        title: 'AI-accelerated internal workflow',
-        description: 'Faster delivery without compromising quality',
-      },
-      {
-        title: 'Structured sprints',
-        description: 'Clear packages instead of vague hourly billing',
-      },
-      {
-        title: 'Premium output, efficient model',
-        description: 'Speed through structure, not through shortcuts',
-      },
-    ],
-  },
-  ar: {
-    blockType: 'priceExplanationPricing',
-    eyebrow: 'لماذا تم تسعير العمل بهذه الطريقة',
-    title: 'متميز وفعّال',
-    description:
-      'يعمل Atelier Meridian بكفاءة أعلى من نموذج الوكالة التقليدية متعدد الطبقات، لأن العمل يقاد بخبرة senior، ويدار داخلياً بأسلوب أكثر مرونة، ويقدَّم ضمن صيغ مركزة وواضحة.',
-    descriptionSecondary:
-      'هذا ليس عن أن نكون رخيصين. بل عن تقديم مخرجات متميزة بنموذج عمل أكثر عقلانية.',
-    quote:
-      '"نحن لا نبيع ساعات. نبيع نتائج — منتج منظم جاهز للمرحلة التالية."',
-    points: [
-      {
-        title: 'تفكير منتجي على مستوى senior',
-        description: 'العمل يقوده خبير متمرس، وليس مبتدئاً تحت إشراف',
-      },
-      {
-        title: 'طبقات تشغيل أقل وفعالية أعلى',
-        description: 'عمل مباشر من دون مديري حسابات أو موافقات وسيطة',
-      },
-      {
-        title: 'عمل منظم على شكل sprints',
-        description: 'حزم واضحة بدلاً من فوترة ساعات غامضة',
-      },
-      {
-        title: 'مخرجات متميزة بنموذج تنفيذ أكثر كفاءة',
-        description: 'سرعة من خلال الهيكلة، وليس من خلال الاختصارات',
-      },
-    ],
-  },
-}
-
-const NO_CALL_CTA_PRICING_SEED: Record<Locale, BlockData> = {
-  ru: {
-    blockType: 'noCallCtaPricing',
-    eyebrow: 'Старт без звонков',
-    title: 'Получите рекомендацию по проекту без обязательного стартового звонка',
-    description:
-      'Оставьте brief — мы предложим подходящий формат, ориентир по срокам и стартовую стоимость.',
-    steps: [
-      {
-        icon: 'fileText',
-        step: '01',
-        title: 'Описываете задачу',
-        description: 'Заполняете brief или загружаете материалы',
-      },
-      {
-        icon: 'messageSquare',
-        step: '02',
-        title: 'Получаете рекомендацию',
-        description: 'Подходящий формат, сроки и стоимость',
-      },
-      {
-        icon: 'checkCircle',
-        step: '03',
-        title: 'Переходите к следующему шагу',
-        description: 'Согласование и старт работы',
-      },
-    ],
-    primaryButtonLabel: 'Получить предложение',
-    primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'Загрузить материалы',
-    secondaryPageKey: 'get-proposal',
-  },
-
-  en: {
-    blockType: 'noCallCtaPricing',
-    eyebrow: 'Start without calls',
-    title: 'Get a recommendation without a mandatory kickoff call',
-    description:
-      'Tell us what you are building, and we will recommend the right format, a timeline range, and a starting price.',
-    steps: [
-      {
-        icon: 'fileText',
-        step: '01',
-        title: 'Describe your project',
-        description: 'Fill in a brief or upload materials',
-      },
-      {
-        icon: 'messageSquare',
-        step: '02',
-        title: 'Get a recommendation',
-        description: 'Format, timeline range, and starting price',
-      },
-      {
-        icon: 'checkCircle',
-        step: '03',
-        title: 'Move to the next step',
-        description: 'Alignment and project start',
-      },
-    ],
-    primaryButtonLabel: 'Get Proposal',
-    primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'View Solutions',
-    secondaryPageKey: 'solutions',
-  },
-
-  ar: {
-    blockType: 'noCallCtaPricing',
-    eyebrow: 'ابدأ من دون مكالمات',
-    title: 'احصل على توصية من دون الحاجة إلى مكالمة أولية إلزامية',
-    description:
-      'شاركنا بما تعمل عليه، وسنقترح عليك الصيغة الأنسب للعمل، والنطاق الزمني المتوقع، ونقطة بداية السعر، والخطوة التالية.',
-    steps: [
-      {
-        icon: 'fileText',
-        step: '٠١',
-        title: 'صِف مشروعك',
-        description: 'املأ brief أو ارفع المواد',
-      },
-      {
-        icon: 'messageSquare',
-        step: '٠٢',
-        title: 'احصل على توصية',
-        description: 'الصيغة والنطاق الزمني ونقطة بداية السعر',
-      },
-      {
-        icon: 'checkCircle',
-        step: '٠٣',
-        title: 'انتقل إلى الخطوة التالية',
-        description: 'التوافق وبدء المشروع',
-      },
-    ],
-    primaryButtonLabel: 'اطلب عرضاً',
-    primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'اطلع على الحلول',
-    secondaryPageKey: 'solutions',
-  },
-}
-
-const FAQ_PRICING_SEED: Record<Locale, BlockData> = {
-  ru: {
-    blockType: 'faqPricing',
-    eyebrow: 'Вопросы',
-    title: 'Частые вопросы о форматах и стоимости',
-    items: [
-      {
-        question: 'Что входит в стартовую стоимость?',
-        answer:
-          'Стартовая стоимость покрывает базовый объём работ для типового проекта в рамках каждого формата. Финальная цена зависит от сложности, количества ролей, экранов и специфических требований — и определяется после изучения brief.',
-      },
-      {
-        question: 'Смогу ли я сразу получить фиксированную цену?',
-        answer:
-          'После заявки вы получите диапазон стоимости в течение 24-48 часов. Если нужен точный fixed quote — проводим короткий scoping и даём детальное предложение.',
-      },
-      {
-        question: 'Можно ли начать без созвонов?',
-        answer:
-          'Да, мы работаем async-first. Вы можете прислать brief, получить рекомендацию и согласовать scope полностью письменно. Звонки — только по необходимости и с понятной повесткой.',
-      },
-      {
-        question: 'Какой формат подходит startup-команде?',
-        answer:
-          'Для ранних стадий рекомендуем Product Framing Sprint — это структурирование продукта до начала дизайна или разработки. Если уже нужен прототип для инвесторов или разработчиков — Build-Ready Prototype.',
-      },
-      {
-        question: 'Подходит ли это для B2B-систем и внутренних платформ?',
-        answer:
-          'Да, B2B-системы, порталы и внутренние инструменты — одна из наших специализаций. Мы структурируем сложную бизнес-логику, роли и права доступа, admin-панели и операционные интерфейсы.',
-      },
-      {
-        question: 'Работаете ли вы с white-label проектами?',
-        answer:
-          'Да, White-Label Partner Desk создан специально для агентств и integrators. Вы получаете premium-материалы под своим брендом для ваших клиентов.',
+        question: 'Работаете ли вы с multilingual-продуктами и Arabic / RTL?',
+        answer: 'Да. У нас есть опыт работы с многоязычными продуктами, включая арабский язык и RTL-интерфейсы. Это учитывается в оценке сложности.',
       },
       {
         question: 'Подписываете ли вы NDA?',
-        answer:
-          'Да, это стандартная практика. Отправьте ваш NDA или используйте наш шаблон — подпишем до начала обсуждения деталей проекта.',
+        answer: 'Да. Если вам нужно защитить чувствительную информацию до отправки материалов — укажите это в форме, и мы подготовим NDA.',
       },
       {
-        question: 'Что делать, если мне нужен нестандартный объём работ?',
-        answer:
-          'Опишите задачу в brief — мы предложим подходящий формат или создадим индивидуальный scope. Packages — это ориентиры, а не жёсткие рамки.',
+        question: 'Получу ли я сразу фиксированную цену?',
+        answer: 'Вы получите стартовую стоимость и ориентир. Финальная цена зависит от глубины проработки, числа ролей, модулей и дополнительных требований. Мы не начинаем работу без согласованного scope.',
+      },
+      {
+        question: 'Что делать, если я не уверен, какой формат мне нужен?',
+        answer: 'Заполните brief или загрузите материалы — мы предложим подходящий формат на основе ваших задач, сроков и бюджета.',
       },
     ],
   },
+
   en: {
-    blockType: 'faqPricing',
-    eyebrow: 'Questions',
-    title: 'Common questions about formats and pricing',
+    blockType: 'faqProposal',
+    title: 'Frequently Asked Questions',
     items: [
       {
-        question: 'What is included in the starting price?',
-        answer:
-          'The starting price covers the base scope for a typical project within each format. The final price depends on complexity, number of roles, screens, and specific requirements — and is determined after we review your brief.',
+        question: 'Do I need to book a call first?',
+        answer: 'No. We support a no-call-first format. You can start by submitting a brief or uploading materials. Most questions are resolved through email and asynchronous communication. A call is only needed for complex cases, and only by mutual agreement.',
       },
       {
-        question: 'Will I get a fixed price immediately?',
-        answer:
-          'After submitting your brief, you will receive a price range within 24–48 hours. If you need an exact fixed quote, we conduct a short scoping session and provide a detailed proposal.',
+        question: 'Can I start with rough notes or links?',
+        answer: 'Absolutely. You can upload any materials you have — notes, screenshots, existing screens, PRD, or just a description. We will help structure your project from wherever you are.',
       },
       {
-        question: 'Can we start without calls?',
-        answer:
-          'Yes, we work async-first. You can submit a brief, receive a recommendation, and align on scope entirely in writing. Calls are optional and always have a clear agenda.',
+        question: 'What if the scope is still unclear?',
+        answer: 'That is perfectly fine. Fill in the brief or upload what you have — we will help clarify the scope and recommend an appropriate format of work based on your goals and constraints.',
       },
       {
-        question: 'Which format is right for a startup team?',
-        answer:
-          'For early-stage teams, we recommend the Product Framing Sprint — it structures the product before design or development. If you already need a prototype for investors or developers, go with Build-Ready Prototype.',
+        question: 'Is this suitable for redesign projects?',
+        answer: 'Yes. We work with website redesigns, digital product redesigns, and UX/UI improvements. You can share existing screens, user feedback, or analytics, and we will structure the improvement plan.',
       },
       {
-        question: 'Is this suitable for B2B systems and internal platforms?',
-        answer:
-          'Yes, B2B systems, portals, and internal tools are one of our specializations. We structure complex business logic, roles and permissions, admin panels, and operational interfaces.',
+        question: 'Can agencies and integrators use this page too?',
+        answer: 'Yes. We work with agencies, integrators, and consultants who prepare materials for their own clients. All deliverables can be white-labeled under your brand.',
       },
       {
-        question: 'Do you work white-label?',
-        answer:
-          'Yes, the White-Label Partner Desk is designed specifically for agencies and integrators. You receive premium materials under your own brand for your clients.',
+        question: 'What happens after I submit?',
+        answer: 'We review your brief or materials, identify the right format of work, estimate a timeline range and starting price direction, and propose the most practical next step.',
       },
       {
         question: 'Do you sign NDAs?',
-        answer:
-          'Yes, this is standard practice. Send us your NDA or use our template — we sign before discussing project details.',
+        answer: 'Yes. If you need to protect sensitive information before sharing materials, indicate this in the form and we will prepare an NDA for your review.',
       },
       {
-        question: 'What if my scope is still unclear?',
-        answer:
-          'Describe your project in the brief — we will recommend the right format or create a custom scope. The packages are starting points, not rigid constraints.',
+        question: 'How quickly do you respond?',
+        answer: 'Most submissions receive a response within 1–2 business days. Complex requests may take slightly longer as we prepare a thoughtful recommendation.',
       },
     ],
   },
+
   ar: {
-    blockType: 'faqPricing',
-    eyebrow: 'أسئلة شائعة',
-    title: 'أسئلة شائعة حول الصيغ والأسعار',
+    blockType: 'faqProposal',
+    title: 'الأسئلة الشائعة',
     items: [
       {
-        question: 'ماذا يشمل السعر الابتدائي؟',
-        answer:
-          'السعر الابتدائي يغطي النطاق الأساسي لمشروع نموذجي ضمن كل صيغة. السعر النهائي يعتمد على التعقيد وعدد الأدوار والشاشات والمتطلبات الخاصة — ويُحدد بعد مراجعة brief المشروع.',
+        question: 'هل أحتاج إلى حجز مكالمة أولاً؟',
+        answer: 'لا. ندعم صيغة بدون مكالمة أولية. يمكنك البدء بإرسال brief أو رفع مواد. معظم الأسئلة تُحل عبر البريد الإلكتروني والتواصل غير المتزامن. المكالمة تُطلب فقط للحالات المعقدة وبالاتفاق المتبادل.',
       },
       {
-        question: 'هل سأحصل على سعر ثابت مباشرة؟',
-        answer:
-          'بعد إرسال brief المشروع، ستحصل على نطاق سعري خلال 24-48 ساعة. إذا كنت تحتاج إلى عرض سعر ثابت ومحدد، نجري جلسة قصيرة لتحديد النطاق ونقدم لك عرضاً تفصيلياً.',
-      },
-      {
-        question: 'هل يمكن البدء من دون مكالمة؟',
-        answer:
-          'نعم، نعمل بأسلوب async-first. يمكنك إرسال brief والحصول على توصية والتوافق على النطاق بالكامل كتابياً. المكالمات اختيارية ودائماً تكون بأجندة واضحة.',
-      },
-      {
-        question: 'أي صيغة تناسب فرق الشركات الناشئة؟',
-        answer:
-          'للفرق في مراحلها الأولى، ننصح بـ Sprint لهيكلة المنتج — فهو يبني هيكل المنتج قبل التصميم أو التطوير. إذا كنت تحتاج بالفعل إلى نموذج أولي للمستثمرين أو المطورين، اختر النموذج الأولي الجاهز للتطوير.',
-      },
-      {
-        question: 'هل هذا مناسب للأنظمة الرقمية ومنصات B2B؟',
-        answer:
-          'نعم، أنظمة B2B والبوابات والأدوات الداخلية هي من تخصصاتنا الأساسية. نحن نهيكل منطق العمل المعقد والأدوار والصلاحيات ولوحات الإدارة والواجهات التشغيلية.',
-      },
-      {
-        question: 'هل تعملون بنظام white-label؟',
-        answer:
-          'نعم، صيغة الشراكة White-Label مصممة خصيصاً للوكالات والـ integrators. تحصل على مواد متميزة تحت علامتك التجارية لعملائك.',
-      },
-      {
-        question: 'هل توقعون NDA؟',
-        answer:
-          'نعم، هذه ممارسة معتادة. أرسل لنا NDA الخاص بك أو استخدم قالبنا — نوقع قبل مناقشة تفاصيل المشروع.',
+        question: 'هل يمكنني البدء من خلال ملاحظات أولية أو روابط فقط؟',
+        answer: 'بالتأكيد. يمكنك رفع أي مواد متوفرة لديك — ملاحظات، لقطات شاشة، شاشات قائمة، PRD، أو مجرد وصف. سنساعدك على هيكلة مشروعك من أي نقطة بداية.',
       },
       {
         question: 'ماذا لو كان نطاق المشروع غير واضح بعد؟',
-        answer:
-          'صِف مشروعك في brief — سنقترح الصيغة المناسبة أو نبني نطاقاً مخصصاً. الحزم هي نقاط انطلاق، وليست قيوداً جامدة.',
+        answer: 'هذا طبيعي تماماً. املأ الـ brief أو ارفع ما لديك — سنساعدك على توضيح النطاق والتوصية بصيغة عمل مناسبة بناءً على أهدافك وقيودك.',
+      },
+      {
+        question: 'هل هذه الصفحة مناسبة لمشاريع إعادة التصميم؟',
+        answer: 'نعم. نعمل على إعادة تصميم المواقع والمنتجات الرقمية وتحسينات UX/UI. يمكنك مشاركة الشاشات الحالية أو ملاحظات المستخدمين أو التحليلات، وسنقوم بهيكلة خطة التحسين.',
+      },
+      {
+        question: 'هل يمكن للوكالات وشركاء التنفيذ استخدام هذه الصفحة أيضاً؟',
+        answer: 'نعم. نعمل مع الوكالات وشركات التكامل والمستشارين الذين يحضّرون مواد لعملائهم. جميع المخرجات يمكن تقديمها تحت علامتك التجارية (White-label).',
+      },
+      {
+        question: 'ماذا يحدث بعد أن أرسل الطلب؟',
+        answer: 'نراجع الـ brief أو المواد، نحدد صيغة العمل المناسبة، نقدر نطاقاً زمنياً واتجاهاً أولياً للسعر، ونقترح الخطوة التالية الأكثر عملية.',
+      },
+      {
+        question: 'هل توقّعون NDA؟',
+        answer: 'نعم. إذا كنت بحاجة إلى حماية معلومات حساسة قبل مشاركة المواد، أشر إلى ذلك في النموذج وسنعد NDA لمراجعتك.',
+      },
+      {
+        question: 'كم تستغرقون عادة للرد؟',
+        answer: 'معظم الطلبات تتلقى رداً خلال 1-2 يوم عمل. الطلبات المعقدة قد تستغرق وقتاً أطول قليلاً لأننا نعد توصية مدروسة.',
       },
     ],
   },
 }
 
-const FINAL_CTA_PRICING_SEED: Record<Locale, BlockData> = {
+const PROPOSAL_FLOW_PROPOSAL_SEED: Record<Locale, BlockData> = {
   ru: {
-    blockType: 'finalCtaPricing',
-    eyebrow: 'Следующий шаг',
-    title: 'Закажите дизайн сайта, системы или приложения',
-    description:
-      'Опишите проект — сайт, портал, B2B-платформу или mobile app. Мы предложим формат, сроки и стоимость.',
-    primaryButtonLabel: 'Получить предложение',
-    primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'На главную',
-    secondaryPageKey: 'home',
-    footerNote: 'Для сайтов · Digital-систем · Порталов · Mobile apps',
+    blockType: 'proposalFlowProposal',
+    briefCardTitle: 'Заполнить brief проекта',
+    briefCardDescription:
+      'Подходит, если вы хотите получить рекомендацию по формату работы, ориентир по срокам и стартовую стоимость.',
+    briefButtonLabel: 'Перейти к brief',
+
+    uploadCardTitle: 'Загрузить материалы проекта',
+    uploadCardDescription:
+      'Подходит, если у вас уже есть notes, PRD, старые screens, документы, ссылки или draft-описание проекта.',
+    uploadButtonLabel: 'Загрузить материалы',
+
+    processEyebrow: 'Что происходит дальше',
+    processTitle: 'Как мы разбираем ваш проект',
+    processDescription:
+      'После отправки brief или материалов мы структурируем задачу, определяем ограничения, собираем ключевые сценарии и готовим понятный следующий шаг по проекту.',
+    processSteps: [
+      {
+        icon: 'target',
+        title: 'Цели проекта',
+        description: 'Фиксируем, зачем нужен проект и какой результат для вас важен.',
+      },
+      {
+        icon: 'users',
+        title: 'Роли и сценарии',
+        description: 'Определяем, кто будет работать с продуктом и какие сценарии критичны.',
+      },
+      {
+        icon: 'layers',
+        title: 'Ограничения и scope',
+        description: 'Учитываем сроки, сложность, доступные материалы и объём проработки.',
+      },
+      {
+        icon: 'arrowUpRight',
+        title: 'Следующий шаг',
+        description: 'Предлагаем подходящий формат работы, ориентир по срокам и стартовую стоимость.',
+      },
+    ],
+
+    uploadViewTitle: 'Есть материалы по проекту?',
+    uploadViewDescription:
+      'Загрузите brief, заметки, screenshots, PRD, ссылки или старые экраны — этого достаточно, чтобы мы подготовили рекомендацию по следующему шагу.',
+    uploadBackLabel: 'Назад к выбору',
+    uploadFilesLabel: 'Загрузить файлы',
+    uploadFilesHint: 'Перетащите файлы сюда или нажмите для выбора',
+    uploadLinksLabel: 'Добавить ссылки',
+    uploadLinksPlaceholder: 'Figma, Google Docs, Notion, Miro...',
+    uploadDescriptionLabel: 'Краткое описание проекта',
+    uploadDescriptionPlaceholder:
+      'Расскажите, что вы планируете делать, какая главная задача, и что ожидаете получить...',
+    uploadContactLabel: 'Контакт для связи',
+    uploadNamePlaceholder: 'Имя',
+    uploadEmailPlaceholder: 'Email',
+    uploadCancelLabel: 'Отмена',
+    uploadSubmitLabel: 'Отправить материалы',
+
+    successTitle: 'Ваш brief получен',
+    successDescription: 'Мы готовим структурированное предложение по вашему проекту.',
+    successStepsTitle: 'Что будет дальше',
+    successSteps: [
+      {
+        number: '01',
+        title: 'Review brief',
+        description: 'Изучаем материалы и требования',
+      },
+      {
+        number: '02',
+        title: 'Recommend format',
+        description: 'Подбираем подходящий формат работы',
+      },
+      {
+        number: '03',
+        title: 'Share timeline & price',
+        description: 'Отправляем сроки и стартовую стоимость',
+      },
+      {
+        number: '04',
+        title: 'Request details',
+        description: 'Уточняем детали только при необходимости',
+      },
+    ],
+    successHomeLabel: 'Вернуться на главную',
+    successHomePageKey: 'home',
+    successPricingLabel: 'Посмотреть форматы работы',
+    successPricingPageKey: 'pricing',
+    successUploadMoreLabel: 'Загрузить ещё материалы',
+    supportNotePrefix: 'Есть вопросы? Напишите на',
+    supportEmail: 'hello@atelier-meridian.com',
   },
+
   en: {
-    blockType: 'finalCtaPricing',
-    eyebrow: 'Next step',
-    title: 'Ready to discuss your project?',
-    description:
-      'Describe your project — a website, portal, B2B platform, or mobile app. We will recommend the format, timeline, and starting price.',
-    primaryButtonLabel: 'Get Proposal',
-    primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'Back to Home',
-    secondaryPageKey: 'home',
-    footerNote: 'For websites · Digital systems · Portals · Mobile apps',
+    blockType: 'proposalFlowProposal',
+    briefCardTitle: 'Fill in a structured brief',
+    briefCardDescription:
+      'Best if you want a clear recommendation on format, timeline, and starting price.',
+    briefButtonLabel: 'Open Brief',
+
+    uploadCardTitle: 'Upload project materials',
+    uploadCardDescription:
+      'Best if you already have notes, PRD, screenshots, links, an old interface, or a draft project description.',
+    uploadButtonLabel: 'Upload Materials',
+
+    processEyebrow: 'What happens next',
+    processTitle: 'How we process your project',
+    processDescription:
+      'After you submit your brief or materials, we structure the task, identify constraints, map out key scenarios, and prepare a clear next step for your project.',
+    processSteps: [
+      {
+        icon: 'target',
+        title: 'Project Goals',
+        description: 'We clarify why you need this project and what outcome matters most.',
+      },
+      {
+        icon: 'users',
+        title: 'Roles & Scenarios',
+        description: 'We identify who will use the product and what user journeys are critical.',
+      },
+      {
+        icon: 'layers',
+        title: 'Constraints & Scope',
+        description: 'We factor in timeline, complexity, available materials, and depth of work.',
+      },
+      {
+        icon: 'arrowUpRight',
+        title: 'Next Step',
+        description: 'We recommend a fitting format, timeline range, and starting price.',
+      },
+    ],
+
+    uploadViewTitle: 'Have project materials ready?',
+    uploadViewDescription:
+      'Upload a brief, notes, screenshots, PRD, links, or existing screens — that is enough for us to prepare a recommendation for your next step.',
+    uploadBackLabel: 'Back to options',
+    uploadFilesLabel: 'Upload Files',
+    uploadFilesHint: 'Drag and drop files here or click to browse',
+    uploadLinksLabel: 'Add Links',
+    uploadLinksPlaceholder: 'Figma, Google Docs, Notion, Miro...',
+    uploadDescriptionLabel: 'Brief Project Description',
+    uploadDescriptionPlaceholder:
+      'Tell us what you are building, what the main goal is, and what outcome you expect...',
+    uploadContactLabel: 'Contact Information',
+    uploadNamePlaceholder: 'Your name',
+    uploadEmailPlaceholder: 'Work email',
+    uploadCancelLabel: 'Cancel',
+    uploadSubmitLabel: 'Send Materials',
+
+    successTitle: 'Your brief has been received',
+    successDescription: 'We are preparing a structured proposal for your project.',
+    successStepsTitle: 'What happens next',
+    successSteps: [
+      {
+        number: '01',
+        title: 'Review brief',
+        description: 'We study your materials and requirements',
+      },
+      {
+        number: '02',
+        title: 'Recommend format',
+        description: 'We identify the right format of work',
+      },
+      {
+        number: '03',
+        title: 'Share timeline & price',
+        description: 'We send estimated timeline and starting price',
+      },
+      {
+        number: '04',
+        title: 'Request details',
+        description: 'We clarify details only if needed',
+      },
+    ],
+    successHomeLabel: 'Return to Homepage',
+    successHomePageKey: 'home',
+    successPricingLabel: 'View Work Formats',
+    successPricingPageKey: 'pricing',
+    successUploadMoreLabel: 'Upload More Materials',
+    supportNotePrefix: 'Have questions? Reach out at',
+    supportEmail: 'hello@atelier-meridian.com',
   },
+
   ar: {
-    blockType: 'finalCtaPricing',
-    eyebrow: 'الخطوة التالية',
-    title: 'هل أنت جاهز لمناقشة مشروعك؟',
-    description:
-      'صِف مشروعك — موقع أو بوابة أو منصة B2B أو تطبيق جوال. سنقترح عليك الصيغة والجدول الزمني ونقطة بداية السعر.',
-    primaryButtonLabel: 'اطلب عرضاً',
-    primaryPageKey: 'get-proposal',
-    secondaryButtonLabel: 'العودة للرئيسية',
-    secondaryPageKey: 'home',
-    footerNote: 'للمواقع · الأنظمة الرقمية · البوابات · تطبيقات الجوال',
+    blockType: 'proposalFlowProposal',
+    briefCardTitle: 'املأ brief منظم',
+    briefCardDescription:
+      'الخيار الأنسب إذا كنت تريد توصية واضحة حول صيغة العمل، والمدة المتوقعة، واتجاه السعر.',
+    briefButtonLabel: 'افتح الـ brief',
+
+    uploadCardTitle: 'ارفع مواد المشروع',
+    uploadCardDescription:
+      'الخيار الأنسب إذا كانت لديك بالفعل ملاحظات أو PRD أو لقطات شاشة أو روابط أو واجهة قديمة أو وصف أولي للمشروع.',
+    uploadButtonLabel: 'ارفع المواد',
+
+    processEyebrow: 'ماذا يحدث بعد الإرسال',
+    processTitle: 'كيف نعالج طلبك',
+    processDescription:
+      'بعد إرسال الـ brief أو المواد، نقوم بهيكلة المهمة وتحديد القيود ورسم السيناريوهات الأساسية وإعداد خطوة تالية واضحة لمشروعك.',
+    processSteps: [
+      {
+        icon: 'target',
+        title: 'نراجع المهمة أو المواد المرسلة',
+        description: 'ندرس ما أرسلته ونفهم السياق والأهداف.',
+      },
+      {
+        icon: 'users',
+        title: 'نحدد صيغة العمل الأنسب',
+        description: 'نختار الصيغة الأنسب بناءً على نوع المشروع ومتطلباته.',
+      },
+      {
+        icon: 'layers',
+        title: 'نقدر المدة المتوقعة ونقطة بداية السعر',
+        description: 'نحدد نطاقاً زمنياً واقعياً واتجاهاً أولياً للتكلفة.',
+      },
+      {
+        icon: 'arrowUpLeft',
+        title: 'نقترح الخطوة التالية الأكثر عملية',
+        description: 'نقدم توصية واضحة بالإجراء التالي.',
+      },
+    ],
+
+    uploadViewTitle: 'لديك مواد جاهزة؟',
+    uploadViewDescription:
+      'ارفع brief أو ملاحظات أو لقطات شاشة أو PRD أو روابط أو شاشات قائمة — هذا كافٍ لنا لإعداد توصية بالخطوة التالية.',
+    uploadBackLabel: 'رجوع للخيارات',
+    uploadFilesLabel: 'ارفع الملفات',
+    uploadFilesHint: 'اسحب الملفات هنا أو انقر للتصفح',
+    uploadLinksLabel: 'أضف الروابط',
+    uploadLinksPlaceholder: 'Figma، Google Docs، Notion، Miro...',
+    uploadDescriptionLabel: 'وصف مختصر للمشروع',
+    uploadDescriptionPlaceholder:
+      'أخبرنا بما تعمل عليه، وما الهدف الرئيسي، وما النتيجة التي تتوقعها...',
+    uploadContactLabel: 'معلومات التواصل',
+    uploadNamePlaceholder: 'الاسم',
+    uploadEmailPlaceholder: 'البريد الإلكتروني',
+    uploadCancelLabel: 'إلغاء',
+    uploadSubmitLabel: 'إرسال المواد',
+
+    successTitle: 'تم استلام طلبك',
+    successDescription: 'نحن نعد عرضاً منظماً لمشروعك.',
+    successStepsTitle: 'ماذا يحدث بعد ذلك',
+    successSteps: [
+      {
+        number: '01',
+        title: 'مراجعة الـ brief',
+        description: 'ندرس موادك ومتطلباتك',
+      },
+      {
+        number: '02',
+        title: 'التوصية بالصيغة',
+        description: 'نحدد صيغة العمل المناسبة',
+      },
+      {
+        number: '03',
+        title: 'مشاركة الجدول والسعر',
+        description: 'نرسل الجدول الزمني المقدر ونقطة بداية السعر',
+      },
+      {
+        number: '04',
+        title: 'طلب التفاصيل',
+        description: 'نوضح التفاصيل فقط عند الحاجة',
+      },
+    ],
+    successHomeLabel: 'العودة للرئيسية',
+    successHomePageKey: 'home',
+    successPricingLabel: 'صيغ العمل',
+    successPricingPageKey: 'pricing',
+    successUploadMoreLabel: 'رفع مواد إضافية',
+    supportNotePrefix: 'لديك أسئلة؟ تواصل معنا على',
+    supportEmail: 'hello@atelier-meridian.com',
   },
 }
 
@@ -1086,12 +559,12 @@ function upsertBlock(layout: BlockData[], nextBlock: BlockData): BlockData[] {
   return nextLayout
 }
 
-async function getPricingPage(payload: Awaited<ReturnType<typeof getPayload>>) {
+async function getProposalPage(payload: Awaited<ReturnType<typeof getPayload>>) {
   const result = await payload.find({
     collection: 'pages',
     where: {
       pageKey: {
-        equals: 'pricing',
+        equals: 'method',
       },
     },
     limit: 1,
@@ -1103,8 +576,8 @@ async function getPricingPage(payload: Awaited<ReturnType<typeof getPayload>>) {
   return result.docs[0] ?? null
 }
 
-async function ensurePricingPage(payload: Awaited<ReturnType<typeof getPayload>>) {
-  const existing = await getPricingPage(payload)
+async function ensureProposalPage(payload: Awaited<ReturnType<typeof getPayload>>) {
+  const existing = await getProposalPage(payload)
 
   if (existing) {
     return existing
@@ -1115,8 +588,8 @@ async function ensurePricingPage(payload: Awaited<ReturnType<typeof getPayload>>
     locale: 'ru',
     depth: 0,
     data: {
-      pageKey: 'pricing',
-      internalName: 'pricing',
+      pageKey: 'get-proposal',
+      internalName: 'get-proposal',
       layout: [],
     },
   })
@@ -1153,51 +626,32 @@ async function seedBlockForLocale(
 async function main() {
   const payload = await getPayload({ config })
 
-  const homePage = await ensurePricingPage(payload)
-
-    await seedBlockForLocale(payload, homePage.id, 'ru', HERO_PRICING_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', HERO_PRICING_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', HERO_PRICING_SEED.ar)
-
-    await seedBlockForLocale(payload, homePage.id, 'ru', POSITIONING_BLOCK_PRICING_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', POSITIONING_BLOCK_PRICING_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', POSITIONING_BLOCK_PRICING_SEED.ar)
-
-    await seedBlockForLocale(payload, homePage.id, 'ru', PACKAGE_CARDS_PRICING_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', PACKAGE_CARDS_PRICING_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', PACKAGE_CARDS_PRICING_SEED.ar)
-
-    await seedBlockForLocale(payload, homePage.id, 'ru', CHOOSING_GUIDE_PRICING_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', CHOOSING_GUIDE_PRICING_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', CHOOSING_GUIDE_PRICING_SEED.ar)
-
-    await seedBlockForLocale(payload, homePage.id, 'ru', DELIVERABLES_PREVIEW_PRICING_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', DELIVERABLES_PREVIEW_PRICING_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', DELIVERABLES_PREVIEW_PRICING_SEED.ar)
-
-    await seedBlockForLocale(payload, homePage.id, 'ru', PRICE_EXPLANATION_PRICING_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', PRICE_EXPLANATION_PRICING_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', PRICE_EXPLANATION_PRICING_SEED.ar)
-
-    await seedBlockForLocale(payload, homePage.id, 'ru', NO_CALL_CTA_PRICING_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', NO_CALL_CTA_PRICING_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', NO_CALL_CTA_PRICING_SEED.ar)
-
-    await seedBlockForLocale(payload, homePage.id, 'ru', FAQ_PRICING_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', FAQ_PRICING_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', FAQ_PRICING_SEED.ar)
-
-    await seedBlockForLocale(payload, homePage.id, 'ru', FINAL_CTA_PRICING_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', FINAL_CTA_PRICING_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', FINAL_CTA_PRICING_SEED.ar)
+  const homePage = await ensureProposalPage(payload)
 
 
-  console.log('✅ Pricing page seed completed')
+    await seedBlockForLocale(payload, homePage.id, 'ru', HERO_PROPOSAL_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', HERO_PROPOSAL_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', HERO_PROPOSAL_SEED.ar)
+
+    await seedBlockForLocale(payload, homePage.id, 'ru', TRUST_PROPOSAL_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', TRUST_PROPOSAL_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', TRUST_PROPOSAL_SEED.ar)
+
+    await seedBlockForLocale(payload, homePage.id, 'ru', FAQ_PROPOSAL_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', FAQ_PROPOSAL_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', FAQ_PROPOSAL_SEED.ar)
+
+    await seedBlockForLocale(payload, homePage.id, 'ru', PROPOSAL_FLOW_PROPOSAL_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', PROPOSAL_FLOW_PROPOSAL_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', PROPOSAL_FLOW_PROPOSAL_SEED.ar)
+
+
+  console.log('✅ Method page seed completed')
   process.exit(0)
 }
 
 main().catch((error) => {
-  console.error('❌ Pricing page seed failed')
+  console.error('❌ Method page seed failed')
   console.error(error)
   process.exit(1)
 })

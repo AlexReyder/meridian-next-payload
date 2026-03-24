@@ -1,5 +1,7 @@
 import type { Block } from 'payload'
 
+import { PAGE_KEY_OPTIONS } from '../../lib/routes'
+
 export const ChoosingGuidePricingBlock: Block = {
   slug: 'choosingGuidePricing',
   labels: {
@@ -11,35 +13,37 @@ export const ChoosingGuidePricingBlock: Block = {
       name: 'eyebrow',
       type: 'text',
       required: true,
-      defaultValue: 'Как выбрать',
+      defaultValue: 'Рекомендации',
     },
     {
       name: 'title',
       type: 'textarea',
       required: true,
-      defaultValue: 'Как понять, какой формат вам подходит',
+      defaultValue: 'Как понять, какой формат подходит вам',
     },
     {
-      name: 'description',
-      type: 'textarea',
+      name: 'situationLabel',
+      type: 'text',
       required: true,
+      defaultValue: 'Ситуация',
     },
     {
-      name: 'layoutVariant',
-      type: 'select',
-      dbName: 'cgp_layout_v',
+      name: 'solutionLabel',
+      type: 'text',
       required: true,
-      defaultValue: 'detailed',
-      options: [
-        {
-          label: 'Detailed',
-          value: 'detailed',
-        },
-        {
-          label: 'Compact',
-          value: 'compact',
-        },
-      ],
+      defaultValue: 'Решение',
+    },
+    {
+      name: 'recommendedLabel',
+      type: 'text',
+      required: true,
+      defaultValue: 'Рекомендуем',
+    },
+    {
+      name: 'buttonLabel',
+      type: 'text',
+      required: true,
+      defaultValue: 'Выбрать',
     },
     {
       name: 'items',
@@ -48,36 +52,44 @@ export const ChoosingGuidePricingBlock: Block = {
       minRows: 1,
       fields: [
         {
-          name: 'title',
+          name: 'condition',
           type: 'text',
           required: true,
         },
         {
-          name: 'description',
+          name: 'problem',
           type: 'textarea',
           required: true,
         },
         {
-          name: 'bestForLabel',
-          type: 'text',
-          required: true,
-          defaultValue: 'Подходит для',
-        },
-        {
-          name: 'bestForValue',
-          type: 'text',
+          name: 'solution',
+          type: 'textarea',
           required: true,
         },
         {
-          name: 'resultLabel',
+          name: 'package',
           type: 'text',
           required: true,
-          defaultValue: 'Результат',
         },
         {
-          name: 'resultValue',
-          type: 'text',
+          name: 'packageKey',
+          type: 'select',
+          dbName: 'cgp_pkg_key',
           required: true,
+          options: [
+            { label: 'Framing', value: 'framing' },
+            { label: 'Prototype', value: 'prototype' },
+            { label: 'Partner', value: 'partner' },
+          ],
+          defaultValue: 'framing',
+        },
+        {
+          name: 'pageKey',
+          type: 'select',
+          dbName: 'cgp_page_key',
+          required: true,
+          options: PAGE_KEY_OPTIONS,
+          defaultValue: 'get-proposal',
         },
       ],
     },

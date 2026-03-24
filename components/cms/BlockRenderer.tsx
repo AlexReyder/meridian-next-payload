@@ -53,6 +53,14 @@ import { PriceExplanationPricingBlockComponent } from './blocks/pricing/PriceExp
 import { NoCallCtaPricingBlockComponent } from './blocks/pricing/NoCallCtaPricingBlock'
 import { FaqPricingBlockComponent } from './blocks/pricing/FaqPricingBlock'
 import { FinalCtaPricingBlockComponent } from './blocks/pricing/FinalCtaPricingBlock'
+import { HeroMethodBlockComponent } from './blocks/method/HeroMethodBlock'
+import { StepsMethodBlockComponent } from './blocks/method/StepsMethodBlock'
+import { DeliverablesMethodBlockComponent } from './blocks/method/DeliverablesMethodBlock'
+import { CTAMethodBlockComponent } from './blocks/method/CTAMethodBlock'
+import { HeroProposalBlockComponent } from './blocks/get-proposal/HeroProposalBlock'
+import { TrustProposalBlockComponent } from './blocks/get-proposal/TrustProposalBlock'
+import { FaqProposalBlockComponent } from './blocks/get-proposal/FaqProposalBlock'
+import { ProposalFlowProposalBlockComponent } from './blocks/get-proposal/ProposalFlowProposalBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -177,6 +185,24 @@ export function BlockRenderer({ blocks, locale }: Props) {
           return <FaqPricingBlockComponent key={key} block={block} locale={locale} />
         case 'finalCtaPricing':
           return <FinalCtaPricingBlockComponent key={key} block={block} locale={locale} />
+          //method
+        case 'heroMethod':
+          return <HeroMethodBlockComponent key={key} block={block} locale={locale} />
+        case 'stepsMethod':
+          return <StepsMethodBlockComponent key={key} block={block} locale={locale} />
+        case 'deliverablesMethod':
+          return <DeliverablesMethodBlockComponent key={key} block={block} locale={locale} />
+        case 'ctaMethod':
+          return <CTAMethodBlockComponent key={key} block={block} locale={locale} />
+          //proposal
+        case 'heroProposal':
+          return <HeroProposalBlockComponent key={key} block={block} locale={locale} />
+        case 'trustProposal':
+          return <TrustProposalBlockComponent key={key} block={block} locale={locale} />
+        case 'faqProposal':
+          return <FaqProposalBlockComponent key={key} block={block} locale={locale} />
+        case 'proposalFlowProposal':
+          return <ProposalFlowProposalBlockComponent key={key} block={block} locale={locale} />
           default:
             return null
         }

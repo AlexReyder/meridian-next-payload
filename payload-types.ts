@@ -1293,15 +1293,25 @@ export interface Page {
     | {
         eyebrow: string;
         title: string;
-        description: string;
-        layoutVariant: 'detailed' | 'compact';
+        situationLabel: string;
+        solutionLabel: string;
+        recommendedLabel: string;
+        buttonLabel: string;
         items: {
-          title: string;
-          description: string;
-          bestForLabel: string;
-          bestForValue: string;
-          resultLabel: string;
-          resultValue: string;
+          condition: string;
+          problem: string;
+          solution: string;
+          package: string;
+          packageKey: 'framing' | 'prototype' | 'partner';
+          pageKey:
+            | 'home'
+            | 'solutions'
+            | 'pricing'
+            | 'get-proposal'
+            | 'concepts'
+            | 'for-startups'
+            | 'for-partners'
+            | 'method';
           id?: string | null;
         }[];
         id?: string | null;
@@ -1440,6 +1450,203 @@ export interface Page {
         id?: string | null;
         blockName?: string | null;
         blockType: 'finalCtaPricing';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        descriptionSecondary: string;
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'heroMethod';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        layoutVariant: 'detailed' | 'grid';
+        steps: {
+          number: string;
+          title: string;
+          subtitle?: string | null;
+          description: string;
+          duration?: string | null;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'stepsMethod';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: {
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'deliverablesMethod';
+      }
+    | {
+        title: string;
+        description: string;
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        footerNote: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'ctaMethod';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        supportLine?: string | null;
+        reassuranceItems: {
+          icon: 'clock' | 'fileText' | 'shield' | 'users';
+          text: string;
+          id?: string | null;
+        }[];
+        brandParagraph: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'heroProposal';
+      }
+    | {
+        title: string;
+        description: string;
+        items: {
+          icon: 'layers' | 'users' | 'building2' | 'arrowRightLeft';
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        supportPoints?:
+          | {
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'trustProposal';
+      }
+    | {
+        title: string;
+        items: {
+          question: string;
+          answer: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'faqProposal';
+      }
+    | {
+        briefCardTitle: string;
+        briefCardDescription: string;
+        briefButtonLabel: string;
+        uploadCardTitle: string;
+        uploadCardDescription: string;
+        uploadButtonLabel: string;
+        processEyebrow: string;
+        processTitle: string;
+        processDescription: string;
+        processSteps: {
+          icon: 'target' | 'users' | 'layers' | 'arrowUpRight' | 'arrowUpLeft';
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        uploadViewTitle: string;
+        uploadViewDescription: string;
+        uploadBackLabel: string;
+        uploadFilesLabel: string;
+        uploadFilesHint: string;
+        uploadLinksLabel: string;
+        uploadLinksPlaceholder: string;
+        uploadDescriptionLabel: string;
+        uploadDescriptionPlaceholder: string;
+        uploadContactLabel: string;
+        uploadNamePlaceholder: string;
+        uploadEmailPlaceholder: string;
+        uploadCancelLabel: string;
+        uploadSubmitLabel: string;
+        successTitle: string;
+        successDescription: string;
+        successStepsTitle: string;
+        successSteps: {
+          number: string;
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        successHomeLabel: string;
+        successHomePageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        successPricingLabel: string;
+        successPricingPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        successUploadMoreLabel: string;
+        supportNotePrefix: string;
+        supportEmail: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'proposalFlowProposal';
       }
   )[];
   updatedAt: string;
@@ -2557,17 +2764,19 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               eyebrow?: T;
               title?: T;
-              description?: T;
-              layoutVariant?: T;
+              situationLabel?: T;
+              solutionLabel?: T;
+              recommendedLabel?: T;
+              buttonLabel?: T;
               items?:
                 | T
                 | {
-                    title?: T;
-                    description?: T;
-                    bestForLabel?: T;
-                    bestForValue?: T;
-                    resultLabel?: T;
-                    resultValue?: T;
+                    condition?: T;
+                    problem?: T;
+                    solution?: T;
+                    package?: T;
+                    packageKey?: T;
+                    pageKey?: T;
                     id?: T;
                   };
               id?: T;
@@ -2662,6 +2871,177 @@ export interface PagesSelect<T extends boolean = true> {
               secondaryButtonLabel?: T;
               secondaryPageKey?: T;
               footerNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        heroMethod?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              descriptionSecondary?: T;
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              id?: T;
+              blockName?: T;
+            };
+        stepsMethod?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              layoutVariant?: T;
+              steps?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    subtitle?: T;
+                    description?: T;
+                    duration?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        deliverablesMethod?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaMethod?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              footerNote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        heroProposal?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              supportLine?: T;
+              reassuranceItems?:
+                | T
+                | {
+                    icon?: T;
+                    text?: T;
+                    id?: T;
+                  };
+              brandParagraph?: T;
+              id?: T;
+              blockName?: T;
+            };
+        trustProposal?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              supportPoints?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faqProposal?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        proposalFlowProposal?:
+          | T
+          | {
+              briefCardTitle?: T;
+              briefCardDescription?: T;
+              briefButtonLabel?: T;
+              uploadCardTitle?: T;
+              uploadCardDescription?: T;
+              uploadButtonLabel?: T;
+              processEyebrow?: T;
+              processTitle?: T;
+              processDescription?: T;
+              processSteps?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              uploadViewTitle?: T;
+              uploadViewDescription?: T;
+              uploadBackLabel?: T;
+              uploadFilesLabel?: T;
+              uploadFilesHint?: T;
+              uploadLinksLabel?: T;
+              uploadLinksPlaceholder?: T;
+              uploadDescriptionLabel?: T;
+              uploadDescriptionPlaceholder?: T;
+              uploadContactLabel?: T;
+              uploadNamePlaceholder?: T;
+              uploadEmailPlaceholder?: T;
+              uploadCancelLabel?: T;
+              uploadSubmitLabel?: T;
+              successTitle?: T;
+              successDescription?: T;
+              successStepsTitle?: T;
+              successSteps?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              successHomeLabel?: T;
+              successHomePageKey?: T;
+              successPricingLabel?: T;
+              successPricingPageKey?: T;
+              successUploadMoreLabel?: T;
+              supportNotePrefix?: T;
+              supportEmail?: T;
               id?: T;
               blockName?: T;
             };

@@ -1,20 +1,25 @@
-import { isRTL, type Locale } from '@/lib/routes'
-import { cn } from '@/lib/utils'
+import Link from 'next/link'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
+import { getHrefForPageKey, isRTL, type Locale, type PageKey } from '@/lib/routes'
 
 type ChoosingGuideItem = {
-  title?: string | null
-  description?: string | null
-  bestForLabel?: string | null
-  bestForValue?: string | null
-  resultLabel?: string | null
-  resultValue?: string | null
+  condition?: string | null
+  problem?: string | null
+  solution?: string | null
+  package?: string | null
+  packageKey?: 'framing' | 'prototype' | 'partner' | null
+  pageKey?: PageKey | null
 }
 
 type ChoosingGuidePricingBlockData = {
   eyebrow?: string | null
   title?: string | null
-  description?: string | null
-  layoutVariant?: 'detailed' | 'compact' | null
+  situationLabel?: string | null
+  solutionLabel?: string | null
+  recommendedLabel?: string | null
+  buttonLabel?: string | null
   items?: ChoosingGuideItem[] | null
 }
 
@@ -23,120 +28,97 @@ type Props = {
   locale: Locale
 }
 
+function getProposalHref(pageKey: PageKey | null | undefined, locale: Locale, packageKey?: string | null) {
+  const href = getHrefForPageKey(pageKey ?? 'get-proposal', locale)
+
+  if ((pageKey ?? 'get-proposal') === 'get-proposal' && packageKey) {
+    return `${href}?package=${encodeURIComponent(packageKey)}`
+  }
+
+  return href
+}
+
 export function ChoosingGuidePricingBlockComponent({ block, locale }: Props) {
   const rtl = isRTL(locale)
-  const compact = block.layoutVariant === 'compact'
+  const isArabic = locale === 'ar'
 
   return (
-    <section dir={rtl ? 'rtl' : 'ltr'} className="py-20 lg:py-28 border-t border-border/50">
+    <section dir={rtl ? 'rtl' : 'ltr'} className="border-t border-border/50 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className={cn('lg:col-span-4', rtl && 'text-right')}>
-            <div className={cn('mb-6 flex items-center gap-3', rtl && 'flex-row-reverse justify-end')}>
-              {rtl ? (
-                <>
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                    {block.eyebrow}
+        <div className="mb-16 max-w-2xl">
+          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-accent">{block.eyebrow}</p>
+
+          <h2 className="text-balance font-serif text-3xl font-light leading-tight text-foreground lg:text-4xl">
+            {block.title}
+          </h2>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
+          {block.items?.map((item, index) =>
+            item?.condition && item?.problem && item?.solution && item?.package ? (
+              <div
+                key={`${item.package}-${index}`}
+                className="group relative rounded-sm border border-border/60 bg-card p-6 transition-colors hover:border-foreground/20 lg:p-8"
+              >
+                <div className={isArabic ? 'absolute left-6 top-6 lg:left-8 lg:top-8' : 'absolute right-6 top-6 lg:right-8 lg:top-8'}>
+                  <span className="text-xs uppercase tracking-wider text-muted-foreground/50">
+                    {String(index + 1).padStart(2, '0')}
                   </span>
-                  <div className="flex items-center">
-                    <span className="h-[2px] w-2 bg-signature-brass rounded-full" />
-                    <span className="h-[2px] w-3 bg-signature-cobalt mr-0.5 rounded-full" />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="flex items-center">
-                    <span className="h-[2px] w-3 bg-signature-cobalt rounded-full" />
-                    <span className="h-[2px] w-2 bg-signature-brass ml-0.5 rounded-full" />
-                  </div>
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                    {block.eyebrow}
-                  </span>
-                </>
-              )}
-            </div>
+                </div>
 
-            <h2 className="font-serif text-3xl lg:text-4xl font-light leading-tight text-foreground">
-              {block.title}
-            </h2>
+                <div className={isArabic ? 'pl-8 pr-0' : 'pr-8'}>
+                  <p className="mb-4 font-serif text-lg leading-snug text-foreground">
+                    {item.condition}
+                  </p>
 
-            <p className="mt-6 text-base lg:text-lg leading-relaxed text-muted-foreground">
-              {block.description}
-            </p>
-          </div>
+                  <div className="mb-8 space-y-4">
+                    <div>
+                      <p className="mb-1 text-xs uppercase tracking-wider text-muted-foreground">
+                        {block.situationLabel}
+                      </p>
+                      <p className="text-sm text-foreground/70">{item.problem}</p>
+                    </div>
 
-          <div className="lg:col-span-8">
-            <div className={cn('grid gap-6', compact ? 'sm:grid-cols-2 lg:grid-cols-3' : 'md:grid-cols-2')}>
-              {block.items?.map((item, index) =>
-                item?.title &&
-                item?.description &&
-                item?.bestForLabel &&
-                item?.bestForValue &&
-                item?.resultLabel &&
-                item?.resultValue ? (
-                  <div
-                    key={`${item.title}-${index}`}
-                    className="relative rounded-sm border border-border bg-card p-6 transition-colors hover:border-foreground/20"
-                  >
-                    {index === 0 && (
-                      <div className={cn('absolute top-0', rtl ? 'right-0' : 'left-0')}>
-                        <div
-                          className={cn(
-                            'absolute top-0 w-4 h-[2px] bg-signature-cobalt',
-                            rtl ? 'right-0 rounded-l-full' : 'left-0 rounded-r-full',
-                          )}
-                        />
-                        <div
-                          className={cn(
-                            'absolute top-0 h-4 w-[2px] bg-signature-cobalt rounded-b-full',
-                            rtl ? 'right-0' : 'left-0',
-                          )}
-                        />
-                        <div
-                          className={cn(
-                            'absolute top-[2px] w-2 h-[1.5px] bg-signature-brass/70 rounded-full',
-                            rtl ? 'right-4' : 'left-4',
-                          )}
-                        />
-                      </div>
-                    )}
-
-                    <span className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-
-                    <h3 className="mt-3 font-serif text-xl font-light text-foreground">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                      {item.description}
-                    </p>
-
-                    <div className="mt-6 space-y-4 border-t border-border/50 pt-5">
-                      <div>
-                        <span className="text-[9px] uppercase tracking-wider text-muted-foreground/70">
-                          {item.bestForLabel}
-                        </span>
-                        <p className="mt-1 text-sm leading-relaxed text-foreground/75">
-                          {item.bestForValue}
-                        </p>
-                      </div>
-
-                      <div>
-                        <span className="text-[9px] uppercase tracking-wider text-muted-foreground/70">
-                          {item.resultLabel}
-                        </span>
-                        <p className="mt-1 text-sm leading-relaxed text-foreground/75">
-                          {item.resultValue}
-                        </p>
-                      </div>
+                    <div>
+                      <p className="mb-1 text-xs uppercase tracking-wider text-muted-foreground">
+                        {block.solutionLabel}
+                      </p>
+                      <p className="text-sm text-foreground/70">{item.solution}</p>
                     </div>
                   </div>
-                ) : null,
-              )}
-            </div>
-          </div>
+
+                  <div className="border-t border-border/50 pt-6">
+                    <p className="mb-3 text-xs uppercase tracking-wider text-accent">
+                      {block.recommendedLabel}
+                    </p>
+
+                    <p className="mb-4 font-serif text-base text-foreground">{item.package}</p>
+
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="sm"
+                      className="border-foreground/15 text-[10px] uppercase tracking-wider text-foreground hover:bg-foreground/5"
+                    >
+                      <Link href={getProposalHref(item.pageKey, locale, item.packageKey)}>
+                        {isArabic ? (
+                          <>
+                            <ArrowLeft className="ml-2 h-3 w-3" />
+                            {block.buttonLabel}
+                          </>
+                        ) : (
+                          <>
+                            {block.buttonLabel}
+                            <ArrowRight className="ml-2 h-3 w-3" />
+                          </>
+                        )}
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ) : null,
+          )}
         </div>
       </div>
     </section>

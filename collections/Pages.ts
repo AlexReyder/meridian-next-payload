@@ -54,6 +54,14 @@ import { PriceExplanationPricingBlock } from '@/blocks/pricing/PriceExplanationP
 import { NoCallCtaPricingBlock } from '@/blocks/pricing/NoCallCtaPricingBlock'
 import { FaqPricingBlock } from '@/blocks/pricing/FaqPricingBlock'
 import { FinalCtaPricingBlock } from '@/blocks/pricing/FinalCtaPricingBlock'
+import { HeroMethodBlock } from '@/blocks/method/HeroMethodBlock'
+import { StepsMethodBlock } from '@/blocks/method/StepsMethodBlock'
+import { DeliverablesMethodBlock } from '@/blocks/method/DeliverablesMethodBlock'
+import { CTAMethodBlock } from '@/blocks/method/CTAMethodBlock'
+import { HeroProposalBlock } from '@/blocks/get-proposal/HeroProposalBlock'
+import { TrustProposalBlock } from '@/blocks/get-proposal/TrustProposalBlock'
+import { FaqProposalBlock } from '@/blocks/get-proposal/FaqProposalBlock'
+import { ProposalFlowProposalBlock } from '@/blocks/get-proposal/ProposalFlowProposal'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -154,6 +162,16 @@ export const Pages: CollectionConfig = {
         NoCallCtaPricingBlock,
         FaqPricingBlock,
         FinalCtaPricingBlock,
+        //method
+        HeroMethodBlock,
+        StepsMethodBlock,
+        DeliverablesMethodBlock,
+        CTAMethodBlock,
+        //proposal
+        HeroProposalBlock,
+        TrustProposalBlock,
+        FaqProposalBlock,
+        ProposalFlowProposalBlock,
       ],
     },
   ],
