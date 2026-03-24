@@ -1583,184 +1583,226 @@ export interface Page {
         blockType: 'faqProposal';
       }
     | {
-        intro: {
-          briefCardTitle: string;
-          briefCardDescription: string;
-          briefButtonLabel: string;
-          uploadCardTitle: string;
-          uploadCardDescription: string;
-          uploadButtonLabel: string;
-          processEyebrow: string;
-          processTitle: string;
-          processDescription: string;
-          processSteps: {
-            icon: 'target' | 'users' | 'layers' | 'arrowUpRight' | 'arrowUpLeft';
-            title: string;
-            description: string;
-            id?: string | null;
-          }[];
-        };
-        wizard: {
-          stepLabels: {
-            value: string;
-            id?: string | null;
-          }[];
-          backToOptionsLabel: string;
-          previousStepLabel: string;
-          backLabel: string;
-          cancelLabel: string;
-          stepCounterPrefix: string;
-          stepCounterConnector: string;
-          projectTypeTitle: string;
-          projectTypeDescription: string;
-          projectTypes: {
-            value: string;
-            label: string;
-            description?: string | null;
-            id?: string | null;
-          }[];
-          goalTitle: string;
-          goalDescription: string;
-          projectGoals: {
-            value: string;
-            label: string;
-            id?: string | null;
-          }[];
-          teamTitle: string;
-          teamDescription: string;
-          teamTypes: {
-            value: string;
-            label: string;
-            id?: string | null;
-          }[];
-          companyNameLabel: string;
-          companyNamePlaceholder: string;
-          websiteLabel: string;
-          websitePlaceholder: string;
-          teamSizeLabel: string;
-          teamSizePlaceholder: string;
-          complexityTitle: string;
-          complexityDescription: string;
-          rolesCountLabel: string;
-          rolesCountPlaceholder: string;
-          screenCountLabel: string;
-          screenCountPlaceholder: string;
-          complexityFlags: {
-            value: string;
-            id?: string | null;
-          }[];
-          materialsTitle: string;
-          materialsDescription: string;
-          materialsOptions: {
-            value: string;
-            label: string;
-            id?: string | null;
-          }[];
-          wizardUploadLabel: string;
-          wizardUploadHint: string;
-          timelineTitle: string;
-          timelineDescription: string;
-          timelineLabel: string;
-          timelineOptions: {
-            value: string;
-            label: string;
-            id?: string | null;
-          }[];
-          budgetLabel: string;
-          budgetOptions: {
-            value: string;
-            label: string;
-            id?: string | null;
-          }[];
-          notesLabel: string;
-          notesPlaceholder: string;
-          contactTitle: string;
-          contactDescription: string;
-          nameLabel: string;
-          namePlaceholder: string;
-          emailLabel: string;
-          emailPlaceholder: string;
-          companyLabel: string;
-          companyPlaceholder: string;
-          roleLabel: string;
-          rolePlaceholder: string;
-          regionLabel: string;
-          regionPlaceholder: string;
-          phoneLabel: string;
-          phonePlaceholder: string;
-          commentLabel: string;
-          commentPlaceholder: string;
-          noCallLabel: string;
-          expertReviewLabel: string;
-          ndaLabel: string;
-          nextLabel: string;
-          submitLabel: string;
-          summaryTitle: string;
-          summaryProjectTypeLabel: string;
-          summaryGoalLabel: string;
-          summaryTeamLabel: string;
-          summaryTimelineLabel: string;
-          summaryResultsTitle: string;
-          summaryResults: {
-            value: string;
-            id?: string | null;
-          }[];
-          summaryFooter: string;
-        };
-        upload: {
+        introCopy: {
+          key: string;
+          value: string;
+          id?: string | null;
+        }[];
+        introProcessSteps: {
+          icon: 'target' | 'users' | 'layers' | 'arrowUpRight' | 'arrowUpLeft';
           title: string;
           description: string;
-          backLabel: string;
-          filesLabel: string;
-          filesTitle: string;
-          filesHint: string;
-          linksLabel: string;
-          linksPlaceholder: string;
-          descriptionLabel: string;
-          descriptionPlaceholder: string;
-          contactLabel: string;
-          namePlaceholder: string;
-          emailPlaceholder: string;
-          cancelLabel: string;
-          submitLabel: string;
-        };
-        success: {
+          id?: string | null;
+        }[];
+        wizardCopy: {
+          key: string;
+          value: string;
+          id?: string | null;
+        }[];
+        wizardStepLabels: {
+          value: string;
+          id?: string | null;
+        }[];
+        projectTypes: {
+          value: string;
+          label: string;
+          description?: string | null;
+          id?: string | null;
+        }[];
+        projectGoals: {
+          value: string;
+          label: string;
+          id?: string | null;
+        }[];
+        teamTypes: {
+          value: string;
+          label: string;
+          id?: string | null;
+        }[];
+        complexityFlags: {
+          value: string;
+          id?: string | null;
+        }[];
+        materialsOptions: {
+          value: string;
+          label: string;
+          id?: string | null;
+        }[];
+        timelineOptions: {
+          value: string;
+          label: string;
+          id?: string | null;
+        }[];
+        budgetOptions: {
+          value: string;
+          label: string;
+          id?: string | null;
+        }[];
+        summaryResults: {
+          value: string;
+          id?: string | null;
+        }[];
+        uploadCopy: {
+          key: string;
+          value: string;
+          id?: string | null;
+        }[];
+        successCopy: {
+          key: string;
+          value: string;
+          id?: string | null;
+        }[];
+        successHomePageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        successPricingPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        successSteps: {
+          number: string;
           title: string;
           description: string;
-          stepsTitle: string;
-          steps: {
-            number: string;
-            title: string;
-            description: string;
-            id?: string | null;
-          }[];
-          homeLabel: string;
-          homePageKey:
-            | 'home'
-            | 'solutions'
-            | 'pricing'
-            | 'get-proposal'
-            | 'concepts'
-            | 'for-startups'
-            | 'for-partners'
-            | 'method';
-          pricingLabel: string;
-          pricingPageKey:
-            | 'home'
-            | 'solutions'
-            | 'pricing'
-            | 'get-proposal'
-            | 'concepts'
-            | 'for-startups'
-            | 'for-partners'
-            | 'method';
-          uploadMoreLabel: string;
-          supportNotePrefix: string;
-          supportEmail: string;
-        };
+          id?: string | null;
+        }[];
         id?: string | null;
         blockName?: string | null;
         blockType: 'proposalFlowProposal';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        supportLine: string;
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        tags: {
+          label: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'heroConcepts';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        pillars: {
+          icon: 'layers' | 'penTool' | 'arrowRight' | 'arrowLeft';
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'introConcepts';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'navConcepts';
+      }
+    | {
+        /**
+         * Уникальный anchor для навигации. Например: medflow, aurora, pulse
+         */
+        anchorId: string;
+        navLabel: string;
+        eyebrow: string;
+        title: string;
+        description: string;
+        category?: string | null;
+        year?: string | null;
+        services?:
+          | {
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        results?:
+          | {
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        visualCaption?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'conceptSectionConcept';
+      }
+    | {
+        eyebrow: string;
+        title: string;
+        description: string;
+        items: {
+          title: string;
+          description: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'whyConcepts';
+      }
+    | {
+        title: string;
+        description: string;
+        primaryButtonLabel: string;
+        primaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        secondaryButtonLabel: string;
+        secondaryPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        footerNote: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'ctaConcepts';
       }
   )[];
   updatedAt: string;
@@ -3107,195 +3149,214 @@ export interface PagesSelect<T extends boolean = true> {
         proposalFlowProposal?:
           | T
           | {
-              intro?:
+              introCopy?:
                 | T
                 | {
-                    briefCardTitle?: T;
-                    briefCardDescription?: T;
-                    briefButtonLabel?: T;
-                    uploadCardTitle?: T;
-                    uploadCardDescription?: T;
-                    uploadButtonLabel?: T;
-                    processEyebrow?: T;
-                    processTitle?: T;
-                    processDescription?: T;
-                    processSteps?:
-                      | T
-                      | {
-                          icon?: T;
-                          title?: T;
-                          description?: T;
-                          id?: T;
-                        };
+                    key?: T;
+                    value?: T;
+                    id?: T;
                   };
-              wizard?:
+              introProcessSteps?:
                 | T
                 | {
-                    stepLabels?:
-                      | T
-                      | {
-                          value?: T;
-                          id?: T;
-                        };
-                    backToOptionsLabel?: T;
-                    previousStepLabel?: T;
-                    backLabel?: T;
-                    cancelLabel?: T;
-                    stepCounterPrefix?: T;
-                    stepCounterConnector?: T;
-                    projectTypeTitle?: T;
-                    projectTypeDescription?: T;
-                    projectTypes?:
-                      | T
-                      | {
-                          value?: T;
-                          label?: T;
-                          description?: T;
-                          id?: T;
-                        };
-                    goalTitle?: T;
-                    goalDescription?: T;
-                    projectGoals?:
-                      | T
-                      | {
-                          value?: T;
-                          label?: T;
-                          id?: T;
-                        };
-                    teamTitle?: T;
-                    teamDescription?: T;
-                    teamTypes?:
-                      | T
-                      | {
-                          value?: T;
-                          label?: T;
-                          id?: T;
-                        };
-                    companyNameLabel?: T;
-                    companyNamePlaceholder?: T;
-                    websiteLabel?: T;
-                    websitePlaceholder?: T;
-                    teamSizeLabel?: T;
-                    teamSizePlaceholder?: T;
-                    complexityTitle?: T;
-                    complexityDescription?: T;
-                    rolesCountLabel?: T;
-                    rolesCountPlaceholder?: T;
-                    screenCountLabel?: T;
-                    screenCountPlaceholder?: T;
-                    complexityFlags?:
-                      | T
-                      | {
-                          value?: T;
-                          id?: T;
-                        };
-                    materialsTitle?: T;
-                    materialsDescription?: T;
-                    materialsOptions?:
-                      | T
-                      | {
-                          value?: T;
-                          label?: T;
-                          id?: T;
-                        };
-                    wizardUploadLabel?: T;
-                    wizardUploadHint?: T;
-                    timelineTitle?: T;
-                    timelineDescription?: T;
-                    timelineLabel?: T;
-                    timelineOptions?:
-                      | T
-                      | {
-                          value?: T;
-                          label?: T;
-                          id?: T;
-                        };
-                    budgetLabel?: T;
-                    budgetOptions?:
-                      | T
-                      | {
-                          value?: T;
-                          label?: T;
-                          id?: T;
-                        };
-                    notesLabel?: T;
-                    notesPlaceholder?: T;
-                    contactTitle?: T;
-                    contactDescription?: T;
-                    nameLabel?: T;
-                    namePlaceholder?: T;
-                    emailLabel?: T;
-                    emailPlaceholder?: T;
-                    companyLabel?: T;
-                    companyPlaceholder?: T;
-                    roleLabel?: T;
-                    rolePlaceholder?: T;
-                    regionLabel?: T;
-                    regionPlaceholder?: T;
-                    phoneLabel?: T;
-                    phonePlaceholder?: T;
-                    commentLabel?: T;
-                    commentPlaceholder?: T;
-                    noCallLabel?: T;
-                    expertReviewLabel?: T;
-                    ndaLabel?: T;
-                    nextLabel?: T;
-                    submitLabel?: T;
-                    summaryTitle?: T;
-                    summaryProjectTypeLabel?: T;
-                    summaryGoalLabel?: T;
-                    summaryTeamLabel?: T;
-                    summaryTimelineLabel?: T;
-                    summaryResultsTitle?: T;
-                    summaryResults?:
-                      | T
-                      | {
-                          value?: T;
-                          id?: T;
-                        };
-                    summaryFooter?: T;
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
                   };
-              upload?:
+              wizardCopy?:
+                | T
+                | {
+                    key?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              wizardStepLabels?:
+                | T
+                | {
+                    value?: T;
+                    id?: T;
+                  };
+              projectTypes?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              projectGoals?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              teamTypes?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              complexityFlags?:
+                | T
+                | {
+                    value?: T;
+                    id?: T;
+                  };
+              materialsOptions?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              timelineOptions?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              budgetOptions?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              summaryResults?:
+                | T
+                | {
+                    value?: T;
+                    id?: T;
+                  };
+              uploadCopy?:
+                | T
+                | {
+                    key?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              successCopy?:
+                | T
+                | {
+                    key?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              successHomePageKey?: T;
+              successPricingPageKey?: T;
+              successSteps?:
+                | T
+                | {
+                    number?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroConcepts?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              supportLine?: T;
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              tags?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        introConcepts?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              pillars?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        navConcepts?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+        conceptSectionConcept?:
+          | T
+          | {
+              anchorId?: T;
+              navLabel?: T;
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              category?: T;
+              year?: T;
+              services?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              results?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              visualCaption?: T;
+              id?: T;
+              blockName?: T;
+            };
+        whyConcepts?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              description?: T;
+              items?:
                 | T
                 | {
                     title?: T;
                     description?: T;
-                    backLabel?: T;
-                    filesLabel?: T;
-                    filesTitle?: T;
-                    filesHint?: T;
-                    linksLabel?: T;
-                    linksPlaceholder?: T;
-                    descriptionLabel?: T;
-                    descriptionPlaceholder?: T;
-                    contactLabel?: T;
-                    namePlaceholder?: T;
-                    emailPlaceholder?: T;
-                    cancelLabel?: T;
-                    submitLabel?: T;
+                    id?: T;
                   };
-              success?:
-                | T
-                | {
-                    title?: T;
-                    description?: T;
-                    stepsTitle?: T;
-                    steps?:
-                      | T
-                      | {
-                          number?: T;
-                          title?: T;
-                          description?: T;
-                          id?: T;
-                        };
-                    homeLabel?: T;
-                    homePageKey?: T;
-                    pricingLabel?: T;
-                    pricingPageKey?: T;
-                    uploadMoreLabel?: T;
-                    supportNotePrefix?: T;
-                    supportEmail?: T;
-                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaConcepts?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              primaryButtonLabel?: T;
+              primaryPageKey?: T;
+              secondaryButtonLabel?: T;
+              secondaryPageKey?: T;
+              footerNote?: T;
               id?: T;
               blockName?: T;
             };

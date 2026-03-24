@@ -62,6 +62,12 @@ import { HeroProposalBlock } from '@/blocks/get-proposal/HeroProposalBlock'
 import { TrustProposalBlock } from '@/blocks/get-proposal/TrustProposalBlock'
 import { FaqProposalBlock } from '@/blocks/get-proposal/FaqProposalBlock'
 import { ProposalFlowProposalBlock } from '@/blocks/get-proposal/ProposalFlowProposal'
+import { HeroConceptsBlock } from '@/blocks/concepts/HeroConceptsBlock'
+import { IntroConceptsBlock } from '@/blocks/concepts/IntroConceptsBlock'
+import { NavConceptsBlock } from '@/blocks/concepts/NavConceptsBlock'
+import { ConceptSectionConceptBlock } from '@/blocks/concepts/ConceptSectionConceptBlock'
+import { WhyConceptsBlock } from '@/blocks/concepts/WhyConceptsBlock'
+import { CtaConceptsBlock } from '@/blocks/concepts/CtaConceptBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -172,6 +178,13 @@ export const Pages: CollectionConfig = {
         TrustProposalBlock,
         FaqProposalBlock,
         ProposalFlowProposalBlock,
+        //concepts
+        HeroConceptsBlock,
+        IntroConceptsBlock,
+        NavConceptsBlock,
+        ConceptSectionConceptBlock,
+        WhyConceptsBlock,
+        CtaConceptsBlock,
       ],
     },
   ],

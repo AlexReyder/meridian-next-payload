@@ -61,6 +61,12 @@ import { HeroProposalBlockComponent } from './blocks/get-proposal/HeroProposalBl
 import { TrustProposalBlockComponent } from './blocks/get-proposal/TrustProposalBlock'
 import { FaqProposalBlockComponent } from './blocks/get-proposal/FaqProposalBlock'
 import { ProposalFlowProposalBlockComponent } from './blocks/get-proposal/ProposalFlowProposalBlock'
+import { HeroConceptsBlockComponent } from './blocks/concepts/HeroConceptsBlock'
+import { IntroConceptsBlockComponent } from './blocks/concepts/IntroConceptsBlock'
+import { ConceptNavItem, NavConceptsBlockComponent } from './blocks/concepts/NavConceptsBlock'
+import { ConceptSectionConceptBlockComponent } from './blocks/concepts/ConceptSectionConceptBlock'
+import { WhyConceptsBlockComponent } from './blocks/concepts/WhyConceptBlock'
+import { CtaConceptsBlockComponent } from './blocks/concepts/CtaConceptBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -68,6 +74,12 @@ type Props = {
 }
 
 export function BlockRenderer({ blocks, locale }: Props) {
+  const conceptSections= blocks
+  .filter((item) => item?.blockType === 'conceptSectionConcept')
+  .map((item, index) => ({
+    anchorId: item.anchorId || `concept-${index + 1}`,
+    navLabel: item.navLabel || item.title || `Concept ${index + 1}`,
+  })) as ConceptNavItem[] 
   return (
     <>
       {blocks.map((block, index) => {
@@ -203,6 +215,34 @@ export function BlockRenderer({ blocks, locale }: Props) {
           return <FaqProposalBlockComponent key={key} block={block} locale={locale} />
         case 'proposalFlowProposal':
           return <ProposalFlowProposalBlockComponent key={key} block={block} locale={locale} />
+          //concepts
+        case 'heroConcepts':
+          return <HeroConceptsBlockComponent key={key} block={block} locale={locale} />
+        case 'introConcepts':
+          return <IntroConceptsBlockComponent key={key} block={block} locale={locale} />   
+        case 'navConcepts':
+          return (
+            <NavConceptsBlockComponent
+              key={key}
+              block={block}
+              locale={locale}
+              items={conceptSections}
+            />
+          )
+        case 'conceptSectionConcept':
+          return (
+            <ConceptSectionConceptBlockComponent
+              key={key}
+              block={block}
+              locale={locale}
+              index={index}
+            />
+          )       
+      case 'whyConcepts':
+        return <WhyConceptsBlockComponent key={key} block={block} locale={locale} />
+
+      case 'ctaConcepts':
+        return <CtaConceptsBlockComponent key={key} block={block} locale={locale} />          
           default:
             return null
         }

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
-export default async function FrontendLayout({ children }: { children: React.ReactNode }) {
+export default async function FrontendLayout({ children, segments }: { children: React.ReactNode, segments?: string[]}) {
   await headers()
 
   return (
@@ -33,3 +33,4 @@ export default async function FrontendLayout({ children }: { children: React.Rea
     </html>
   )
 }
+

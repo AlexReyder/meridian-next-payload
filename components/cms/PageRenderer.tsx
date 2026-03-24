@@ -14,6 +14,7 @@ type Props = {
 }
 
 export function PageRenderer({ locale, pageKey, page, header, footer }: Props) {
+  
   return (
     <main className="min-h-screen bg-background text-foreground">
       <SiteHeader data={header} locale={locale} currentPageKey={pageKey} />
