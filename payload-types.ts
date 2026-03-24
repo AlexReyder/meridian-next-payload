@@ -1583,67 +1583,181 @@ export interface Page {
         blockType: 'faqProposal';
       }
     | {
-        briefCardTitle: string;
-        briefCardDescription: string;
-        briefButtonLabel: string;
-        uploadCardTitle: string;
-        uploadCardDescription: string;
-        uploadButtonLabel: string;
-        processEyebrow: string;
-        processTitle: string;
-        processDescription: string;
-        processSteps: {
-          icon: 'target' | 'users' | 'layers' | 'arrowUpRight' | 'arrowUpLeft';
+        intro: {
+          briefCardTitle: string;
+          briefCardDescription: string;
+          briefButtonLabel: string;
+          uploadCardTitle: string;
+          uploadCardDescription: string;
+          uploadButtonLabel: string;
+          processEyebrow: string;
+          processTitle: string;
+          processDescription: string;
+          processSteps: {
+            icon: 'target' | 'users' | 'layers' | 'arrowUpRight' | 'arrowUpLeft';
+            title: string;
+            description: string;
+            id?: string | null;
+          }[];
+        };
+        wizard: {
+          stepLabels: {
+            value: string;
+            id?: string | null;
+          }[];
+          backToOptionsLabel: string;
+          previousStepLabel: string;
+          backLabel: string;
+          cancelLabel: string;
+          stepCounterPrefix: string;
+          stepCounterConnector: string;
+          projectTypeTitle: string;
+          projectTypeDescription: string;
+          projectTypes: {
+            value: string;
+            label: string;
+            description?: string | null;
+            id?: string | null;
+          }[];
+          goalTitle: string;
+          goalDescription: string;
+          projectGoals: {
+            value: string;
+            label: string;
+            id?: string | null;
+          }[];
+          teamTitle: string;
+          teamDescription: string;
+          teamTypes: {
+            value: string;
+            label: string;
+            id?: string | null;
+          }[];
+          companyNameLabel: string;
+          companyNamePlaceholder: string;
+          websiteLabel: string;
+          websitePlaceholder: string;
+          teamSizeLabel: string;
+          teamSizePlaceholder: string;
+          complexityTitle: string;
+          complexityDescription: string;
+          rolesCountLabel: string;
+          rolesCountPlaceholder: string;
+          screenCountLabel: string;
+          screenCountPlaceholder: string;
+          complexityFlags: {
+            value: string;
+            id?: string | null;
+          }[];
+          materialsTitle: string;
+          materialsDescription: string;
+          materialsOptions: {
+            value: string;
+            label: string;
+            id?: string | null;
+          }[];
+          wizardUploadLabel: string;
+          wizardUploadHint: string;
+          timelineTitle: string;
+          timelineDescription: string;
+          timelineLabel: string;
+          timelineOptions: {
+            value: string;
+            label: string;
+            id?: string | null;
+          }[];
+          budgetLabel: string;
+          budgetOptions: {
+            value: string;
+            label: string;
+            id?: string | null;
+          }[];
+          notesLabel: string;
+          notesPlaceholder: string;
+          contactTitle: string;
+          contactDescription: string;
+          nameLabel: string;
+          namePlaceholder: string;
+          emailLabel: string;
+          emailPlaceholder: string;
+          companyLabel: string;
+          companyPlaceholder: string;
+          roleLabel: string;
+          rolePlaceholder: string;
+          regionLabel: string;
+          regionPlaceholder: string;
+          phoneLabel: string;
+          phonePlaceholder: string;
+          commentLabel: string;
+          commentPlaceholder: string;
+          noCallLabel: string;
+          expertReviewLabel: string;
+          ndaLabel: string;
+          nextLabel: string;
+          submitLabel: string;
+          summaryTitle: string;
+          summaryProjectTypeLabel: string;
+          summaryGoalLabel: string;
+          summaryTeamLabel: string;
+          summaryTimelineLabel: string;
+          summaryResultsTitle: string;
+          summaryResults: {
+            value: string;
+            id?: string | null;
+          }[];
+          summaryFooter: string;
+        };
+        upload: {
           title: string;
           description: string;
-          id?: string | null;
-        }[];
-        uploadViewTitle: string;
-        uploadViewDescription: string;
-        uploadBackLabel: string;
-        uploadFilesLabel: string;
-        uploadFilesHint: string;
-        uploadLinksLabel: string;
-        uploadLinksPlaceholder: string;
-        uploadDescriptionLabel: string;
-        uploadDescriptionPlaceholder: string;
-        uploadContactLabel: string;
-        uploadNamePlaceholder: string;
-        uploadEmailPlaceholder: string;
-        uploadCancelLabel: string;
-        uploadSubmitLabel: string;
-        successTitle: string;
-        successDescription: string;
-        successStepsTitle: string;
-        successSteps: {
-          number: string;
+          backLabel: string;
+          filesLabel: string;
+          filesTitle: string;
+          filesHint: string;
+          linksLabel: string;
+          linksPlaceholder: string;
+          descriptionLabel: string;
+          descriptionPlaceholder: string;
+          contactLabel: string;
+          namePlaceholder: string;
+          emailPlaceholder: string;
+          cancelLabel: string;
+          submitLabel: string;
+        };
+        success: {
           title: string;
           description: string;
-          id?: string | null;
-        }[];
-        successHomeLabel: string;
-        successHomePageKey:
-          | 'home'
-          | 'solutions'
-          | 'pricing'
-          | 'get-proposal'
-          | 'concepts'
-          | 'for-startups'
-          | 'for-partners'
-          | 'method';
-        successPricingLabel: string;
-        successPricingPageKey:
-          | 'home'
-          | 'solutions'
-          | 'pricing'
-          | 'get-proposal'
-          | 'concepts'
-          | 'for-startups'
-          | 'for-partners'
-          | 'method';
-        successUploadMoreLabel: string;
-        supportNotePrefix: string;
-        supportEmail: string;
+          stepsTitle: string;
+          steps: {
+            number: string;
+            title: string;
+            description: string;
+            id?: string | null;
+          }[];
+          homeLabel: string;
+          homePageKey:
+            | 'home'
+            | 'solutions'
+            | 'pricing'
+            | 'get-proposal'
+            | 'concepts'
+            | 'for-startups'
+            | 'for-partners'
+            | 'method';
+          pricingLabel: string;
+          pricingPageKey:
+            | 'home'
+            | 'solutions'
+            | 'pricing'
+            | 'get-proposal'
+            | 'concepts'
+            | 'for-startups'
+            | 'for-partners'
+            | 'method';
+          uploadMoreLabel: string;
+          supportNotePrefix: string;
+          supportEmail: string;
+        };
         id?: string | null;
         blockName?: string | null;
         blockType: 'proposalFlowProposal';
@@ -2993,55 +3107,195 @@ export interface PagesSelect<T extends boolean = true> {
         proposalFlowProposal?:
           | T
           | {
-              briefCardTitle?: T;
-              briefCardDescription?: T;
-              briefButtonLabel?: T;
-              uploadCardTitle?: T;
-              uploadCardDescription?: T;
-              uploadButtonLabel?: T;
-              processEyebrow?: T;
-              processTitle?: T;
-              processDescription?: T;
-              processSteps?:
+              intro?:
                 | T
                 | {
-                    icon?: T;
-                    title?: T;
-                    description?: T;
-                    id?: T;
+                    briefCardTitle?: T;
+                    briefCardDescription?: T;
+                    briefButtonLabel?: T;
+                    uploadCardTitle?: T;
+                    uploadCardDescription?: T;
+                    uploadButtonLabel?: T;
+                    processEyebrow?: T;
+                    processTitle?: T;
+                    processDescription?: T;
+                    processSteps?:
+                      | T
+                      | {
+                          icon?: T;
+                          title?: T;
+                          description?: T;
+                          id?: T;
+                        };
                   };
-              uploadViewTitle?: T;
-              uploadViewDescription?: T;
-              uploadBackLabel?: T;
-              uploadFilesLabel?: T;
-              uploadFilesHint?: T;
-              uploadLinksLabel?: T;
-              uploadLinksPlaceholder?: T;
-              uploadDescriptionLabel?: T;
-              uploadDescriptionPlaceholder?: T;
-              uploadContactLabel?: T;
-              uploadNamePlaceholder?: T;
-              uploadEmailPlaceholder?: T;
-              uploadCancelLabel?: T;
-              uploadSubmitLabel?: T;
-              successTitle?: T;
-              successDescription?: T;
-              successStepsTitle?: T;
-              successSteps?:
+              wizard?:
                 | T
                 | {
-                    number?: T;
+                    stepLabels?:
+                      | T
+                      | {
+                          value?: T;
+                          id?: T;
+                        };
+                    backToOptionsLabel?: T;
+                    previousStepLabel?: T;
+                    backLabel?: T;
+                    cancelLabel?: T;
+                    stepCounterPrefix?: T;
+                    stepCounterConnector?: T;
+                    projectTypeTitle?: T;
+                    projectTypeDescription?: T;
+                    projectTypes?:
+                      | T
+                      | {
+                          value?: T;
+                          label?: T;
+                          description?: T;
+                          id?: T;
+                        };
+                    goalTitle?: T;
+                    goalDescription?: T;
+                    projectGoals?:
+                      | T
+                      | {
+                          value?: T;
+                          label?: T;
+                          id?: T;
+                        };
+                    teamTitle?: T;
+                    teamDescription?: T;
+                    teamTypes?:
+                      | T
+                      | {
+                          value?: T;
+                          label?: T;
+                          id?: T;
+                        };
+                    companyNameLabel?: T;
+                    companyNamePlaceholder?: T;
+                    websiteLabel?: T;
+                    websitePlaceholder?: T;
+                    teamSizeLabel?: T;
+                    teamSizePlaceholder?: T;
+                    complexityTitle?: T;
+                    complexityDescription?: T;
+                    rolesCountLabel?: T;
+                    rolesCountPlaceholder?: T;
+                    screenCountLabel?: T;
+                    screenCountPlaceholder?: T;
+                    complexityFlags?:
+                      | T
+                      | {
+                          value?: T;
+                          id?: T;
+                        };
+                    materialsTitle?: T;
+                    materialsDescription?: T;
+                    materialsOptions?:
+                      | T
+                      | {
+                          value?: T;
+                          label?: T;
+                          id?: T;
+                        };
+                    wizardUploadLabel?: T;
+                    wizardUploadHint?: T;
+                    timelineTitle?: T;
+                    timelineDescription?: T;
+                    timelineLabel?: T;
+                    timelineOptions?:
+                      | T
+                      | {
+                          value?: T;
+                          label?: T;
+                          id?: T;
+                        };
+                    budgetLabel?: T;
+                    budgetOptions?:
+                      | T
+                      | {
+                          value?: T;
+                          label?: T;
+                          id?: T;
+                        };
+                    notesLabel?: T;
+                    notesPlaceholder?: T;
+                    contactTitle?: T;
+                    contactDescription?: T;
+                    nameLabel?: T;
+                    namePlaceholder?: T;
+                    emailLabel?: T;
+                    emailPlaceholder?: T;
+                    companyLabel?: T;
+                    companyPlaceholder?: T;
+                    roleLabel?: T;
+                    rolePlaceholder?: T;
+                    regionLabel?: T;
+                    regionPlaceholder?: T;
+                    phoneLabel?: T;
+                    phonePlaceholder?: T;
+                    commentLabel?: T;
+                    commentPlaceholder?: T;
+                    noCallLabel?: T;
+                    expertReviewLabel?: T;
+                    ndaLabel?: T;
+                    nextLabel?: T;
+                    submitLabel?: T;
+                    summaryTitle?: T;
+                    summaryProjectTypeLabel?: T;
+                    summaryGoalLabel?: T;
+                    summaryTeamLabel?: T;
+                    summaryTimelineLabel?: T;
+                    summaryResultsTitle?: T;
+                    summaryResults?:
+                      | T
+                      | {
+                          value?: T;
+                          id?: T;
+                        };
+                    summaryFooter?: T;
+                  };
+              upload?:
+                | T
+                | {
                     title?: T;
                     description?: T;
-                    id?: T;
+                    backLabel?: T;
+                    filesLabel?: T;
+                    filesTitle?: T;
+                    filesHint?: T;
+                    linksLabel?: T;
+                    linksPlaceholder?: T;
+                    descriptionLabel?: T;
+                    descriptionPlaceholder?: T;
+                    contactLabel?: T;
+                    namePlaceholder?: T;
+                    emailPlaceholder?: T;
+                    cancelLabel?: T;
+                    submitLabel?: T;
                   };
-              successHomeLabel?: T;
-              successHomePageKey?: T;
-              successPricingLabel?: T;
-              successPricingPageKey?: T;
-              successUploadMoreLabel?: T;
-              supportNotePrefix?: T;
-              supportEmail?: T;
+              success?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    stepsTitle?: T;
+                    steps?:
+                      | T
+                      | {
+                          number?: T;
+                          title?: T;
+                          description?: T;
+                          id?: T;
+                        };
+                    homeLabel?: T;
+                    homePageKey?: T;
+                    pricingLabel?: T;
+                    pricingPageKey?: T;
+                    uploadMoreLabel?: T;
+                    supportNotePrefix?: T;
+                    supportEmail?: T;
+                  };
               id?: T;
               blockName?: T;
             };
