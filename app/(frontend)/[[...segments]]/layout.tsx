@@ -1,9 +1,10 @@
-import type { Metadata } from 'next'
-import { headers } from 'next/headers'
-import { Cormorant_Garamond, Inter } from 'next/font/google'
-import './globals.css'
 import { ReactNode } from 'react'
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { Cormorant_Garamond, Inter } from 'next/font/google'
 import { DEFAULT_LOCALE, getLocaleDirection, resolveLocaleAndPageKey } from '@/lib/routes'
+import { buildPageMetadata, getFrontendPageData } from '@/lib/getFrontendPageData'
+import './globals.css'
 
 
 const cormorant = Cormorant_Garamond({
@@ -17,22 +18,35 @@ const inter = Inter({
   variable: '--font-sans',
 })
 
-export const metadata: Metadata = {
-  title: 'Atelier Meridian',
-  description: 'Atelier Meridian on Next.js + Payload CMS',
-}
-
-export const dynamic = 'force-dynamic'
-
 type Props = {
   children: ReactNode
   params: Promise<{ segments?: string[] }> | { segments?: string[] }
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await Promise.resolve(params)
+  const data = await getFrontendPageData(resolvedParams.segments)
+
+  if (!data) {
+    return {}
+  }
+
+  return buildPageMetadata({
+    page: data.page,
+    locale: data.route.locale,
+    pageKey: data.route.pageKey,
+  })
+}
+
 export default async function FrontendLayout({ children, params }: Props) {
   const resolvedParams = await Promise.resolve(params)
   const route = resolveLocaleAndPageKey(resolvedParams.segments)
+  const data = await getFrontendPageData(resolvedParams.segments)
 
+  if (!data) {
+    notFound()
+  }
+  
   const locale = route?.locale ?? DEFAULT_LOCALE
   const dir = getLocaleDirection(locale)
 
