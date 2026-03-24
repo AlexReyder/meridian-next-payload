@@ -194,7 +194,7 @@ export interface Media {
  */
 export interface Page {
   id: number;
-  pageKey: 'home' | 'solutions' | 'pricing' | 'get-proposal' | 'concepts' | 'for-startups' | 'for-agencies' | 'method';
+  pageKey: 'home' | 'solutions' | 'pricing' | 'get-proposal' | 'concepts' | 'for-startups' | 'for-partners' | 'method';
   /**
    * Human-readable page name for editors.
    */
@@ -241,7 +241,7 @@ export interface Page {
               | 'get-proposal'
               | 'concepts'
               | 'for-startups'
-              | 'for-agencies'
+              | 'for-partners'
               | 'method'
             )
           | null;
@@ -254,7 +254,7 @@ export interface Page {
               | 'get-proposal'
               | 'concepts'
               | 'for-startups'
-              | 'for-agencies'
+              | 'for-partners'
               | 'method'
             )
           | null;
@@ -319,7 +319,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -329,7 +329,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         id?: string | null;
         blockName?: string | null;
@@ -376,7 +376,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         items: {
           title: string;
@@ -404,7 +404,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         previousAriaLabel: string;
         nextAriaLabel: string;
@@ -452,7 +452,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         featuredBadge: string;
         items: {
@@ -489,7 +489,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         footerNote: string;
         id?: string | null;
@@ -544,7 +544,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -554,7 +554,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         footerNote: string;
         id?: string | null;
@@ -578,7 +578,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -588,7 +588,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         imageUrl: string;
         imageAlt: string;
@@ -651,7 +651,7 @@ export interface Page {
             | 'get-proposal'
             | 'concepts'
             | 'for-startups'
-            | 'for-agencies'
+            | 'for-partners'
             | 'method';
           secondaryButtonLabel?: string | null;
           secondaryPageKey?:
@@ -662,7 +662,7 @@ export interface Page {
                 | 'get-proposal'
                 | 'concepts'
                 | 'for-startups'
-                | 'for-agencies'
+                | 'for-partners'
                 | 'method'
               )
             | null;
@@ -705,7 +705,7 @@ export interface Page {
             | 'get-proposal'
             | 'concepts'
             | 'for-startups'
-            | 'for-agencies'
+            | 'for-partners'
             | 'method';
           id?: string | null;
         }[];
@@ -736,7 +736,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -746,7 +746,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         id?: string | null;
         blockName?: string | null;
@@ -782,7 +782,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -792,7 +792,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         id?: string | null;
         blockName?: string | null;
@@ -843,7 +843,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         items: {
           situation: string;
@@ -918,7 +918,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         items: {
           title: string;
@@ -942,7 +942,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -952,7 +952,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         footerNote: string;
         id?: string | null;
@@ -991,7 +991,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -1001,7 +1001,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         id?: string | null;
         blockName?: string | null;
@@ -1133,7 +1133,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         items: {
           badge: string;
@@ -1160,7 +1160,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -1170,7 +1170,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         footerNote: string;
         id?: string | null;
@@ -1206,7 +1206,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -1216,7 +1216,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         id?: string | null;
         blockName?: string | null;
@@ -1271,7 +1271,7 @@ export interface Page {
             | 'get-proposal'
             | 'concepts'
             | 'for-startups'
-            | 'for-agencies'
+            | 'for-partners'
             | 'method';
           secondaryLinkLabel: string;
           secondaryPageKey:
@@ -1281,7 +1281,7 @@ export interface Page {
             | 'get-proposal'
             | 'concepts'
             | 'for-startups'
-            | 'for-agencies'
+            | 'for-partners'
             | 'method';
           featured?: boolean | null;
           id?: string | null;
@@ -1310,7 +1310,7 @@ export interface Page {
             | 'get-proposal'
             | 'concepts'
             | 'for-startups'
-            | 'for-agencies'
+            | 'for-partners'
             | 'method';
           id?: string | null;
         }[];
@@ -1332,7 +1332,7 @@ export interface Page {
               | 'get-proposal'
               | 'concepts'
               | 'for-startups'
-              | 'for-agencies'
+              | 'for-partners'
               | 'method'
             )
           | null;
@@ -1352,7 +1352,7 @@ export interface Page {
               | 'get-proposal'
               | 'concepts'
               | 'for-startups'
-              | 'for-agencies'
+              | 'for-partners'
               | 'method'
             )
           | null;
@@ -1394,7 +1394,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -1404,7 +1404,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         id?: string | null;
         blockName?: string | null;
@@ -1434,7 +1434,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -1444,7 +1444,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         footerNote: string;
         id?: string | null;
@@ -1464,7 +1464,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -1474,7 +1474,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         id?: string | null;
         blockName?: string | null;
@@ -1520,7 +1520,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -1530,7 +1530,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         footerNote: string;
         id?: string | null;
@@ -1659,7 +1659,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         successPricingPageKey:
           | 'home'
@@ -1668,7 +1668,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         successSteps: {
           number: string;
@@ -1693,7 +1693,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -1703,7 +1703,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         tags: {
           label: string;
@@ -1787,7 +1787,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         secondaryButtonLabel: string;
         secondaryPageKey:
@@ -1797,7 +1797,7 @@ export interface Page {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         footerNote: string;
         id?: string | null;
@@ -3422,14 +3422,14 @@ export interface Header {
           | 'get-proposal'
           | 'concepts'
           | 'for-startups'
-          | 'for-agencies'
+          | 'for-partners'
           | 'method';
         id?: string | null;
       }[]
     | null;
   ctaLabel?: string | null;
   ctaPageKey?:
-    | ('home' | 'solutions' | 'pricing' | 'get-proposal' | 'concepts' | 'for-startups' | 'for-agencies' | 'method')
+    | ('home' | 'solutions' | 'pricing' | 'get-proposal' | 'concepts' | 'for-startups' | 'for-partners' | 'method')
     | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -3457,7 +3457,7 @@ export interface Footer {
                 | 'get-proposal'
                 | 'concepts'
                 | 'for-startups'
-                | 'for-agencies'
+                | 'for-partners'
                 | 'method';
               id?: string | null;
             }[]

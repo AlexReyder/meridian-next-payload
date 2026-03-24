@@ -1,5 +1,4 @@
 export type Locale = 'ru' | 'en' | 'ar'
-
 export type PageKey =
   | 'home'
   | 'solutions'
@@ -7,7 +6,7 @@ export type PageKey =
   | 'get-proposal'
   | 'concepts'
   | 'for-startups'
-  | 'for-agencies'
+  | 'for-partners'
   | 'method'
 
 export const DEFAULT_LOCALE: Locale = 'ru'
@@ -20,7 +19,7 @@ export const PAGE_KEYS: PageKey[] = [
   'get-proposal',
   'concepts',
   'for-startups',
-  'for-agencies',
+  'for-partners',
   'method',
 ]
 
@@ -60,10 +59,10 @@ const ROUTE_MAP: Record<PageKey, Record<Locale, string[]>> = {
     en: ['en', 'for-startups'],
     ar: ['ar', 'for-startups'],
   },
-  'for-agencies': {
+  'for-partners': {
     ru: ['for-agencies'],
-    en: ['en', 'for-agencies'],
-    ar: ['ar', 'for-agencies'],
+    en: ['en', 'for-partners'],
+    ar: ['ar', 'for-partners'],
   },
   method: {
     ru: ['method'],
@@ -81,13 +80,7 @@ export function getLocaleDirection(locale: Locale) {
 }
 
 export function getHrefForPageKey(pageKey: PageKey, locale: Locale): string {
-  const route = ROUTE_MAP[pageKey]
-
-  if (!route) {
-    return '/'
-  }
-
-  const segments = route[locale] ?? route[DEFAULT_LOCALE] ?? []
+  const segments = ROUTE_MAP[pageKey][locale]
   return segments.length ? `/${segments.join('/')}` : '/'
 }
 
@@ -133,8 +126,4 @@ export function getLanguageSwitcher(pageKey: PageKey) {
       href: getHrefForPageKey(pageKey, 'ar'),
     },
   ]
-}
-
-export const getLanguageOptions = (pathname: string) =>{
-
 }
