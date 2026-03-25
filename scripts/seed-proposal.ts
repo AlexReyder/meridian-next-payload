@@ -1421,9 +1421,9 @@
 //     // await seedBlockForLocale(payload, homePage.id, 'en', PROPOSAL_FLOW_PROPOSAL_SEED.en)
 //     // await seedBlockForLocale(payload, homePage.id, 'ar', PROPOSAL_FLOW_PROPOSAL_SEED.ar)
 
-// await seedProposalLayoutForLocale(payload, homePage.id, 'ru')
-// await seedProposalLayoutForLocale(payload, homePage.id, 'en')
-// await seedProposalLayoutForLocale(payload, homePage.id, 'ar')
+// // await seedProposalLayoutForLocale(payload, homePage.id, 'ru')
+// // await seedProposalLayoutForLocale(payload, homePage.id, 'en')
+// // await seedProposalLayoutForLocale(payload, homePage.id, 'ar')
 
 
 //   console.log('✅ Proposal page seed completed')

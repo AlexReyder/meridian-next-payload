@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type ChangeEvent } from 'react'
+import { useMemo, useState, type ChangeEvent } from 'react'
 import Link from 'next/link'
 import {
   ArrowLeft,
@@ -8,6 +8,7 @@ import {
   ArrowUpLeft,
   ArrowUpRight,
   Check,
+  Clock,
   FileText,
   Home,
   Layers,
@@ -69,6 +70,7 @@ type ProposalFlowProposalBlockData = {
 
   wizardCopy?: CopyItem[] | null
   wizardStepLabels?: { value?: string | null }[] | null
+
   projectTypes?: TextOptionWithDescription[] | null
   projectGoals?: TextOption[] | null
   teamTypes?: TextOption[] | null
@@ -97,17 +99,21 @@ type WizardData = {
   projectType?: string
   projectGoal?: string
   teamType?: string
-  companyName?: string
-  website?: string
-  teamSize?: string
+
+  teamField1?: string
+  teamField2?: string
+  teamField3?: string
+
   rolesCount?: string
   screenCount?: string
   complexityFlags: string[]
+
   materials: string[]
   uploadedFiles: File[]
+
   timeline?: string
   budget?: string
-  briefNotes?: string
+
   name?: string
   email?: string
   company?: string
@@ -115,6 +121,7 @@ type WizardData = {
   region?: string
   phone?: string
   comment?: string
+
   noCallFirst?: boolean
   expertReview?: boolean
   nda?: boolean
@@ -128,11 +135,13 @@ const PROCESS_ICONS: Record<string, LucideIcon> = {
   arrowUpLeft: ArrowUpLeft,
 }
 
-const getCopyValue = (
+function getCopyValue(
   items: CopyItem[] | null | undefined,
   key: string,
   fallback = '',
-) => items?.find((item) => item?.key === key)?.value ?? fallback
+) {
+  return items?.find((item) => item?.key === key)?.value ?? fallback
+}
 
 function appendString(formData: FormData, key: string, value?: string | null) {
   formData.append(key, value ?? '')
@@ -144,6 +153,16 @@ function appendBoolean(formData: FormData, key: string, value?: boolean) {
 
 function appendJsonArray(formData: FormData, key: string, value: string[]) {
   formData.append(key, JSON.stringify(value))
+}
+
+function getOptionLabel(
+  options: (TextOption | TextOptionWithDescription | { value?: string | null })[] | null | undefined,
+  value?: string,
+) {
+  if (!value) return null
+  const found = options?.find((item) => item?.value === value)
+  if (!found) return null
+  return 'label' in found ? found.label ?? null : found.value ?? null
 }
 
 function ChoiceCard({
@@ -165,7 +184,9 @@ function ChoiceCard({
       onClick={onClick}
       className={cn(
         'rounded-sm border p-4 transition-all',
-        active ? 'border-foreground bg-foreground/5' : 'border-border hover:border-foreground/30',
+        active
+          ? 'border-foreground bg-foreground/5'
+          : 'border-border hover:border-foreground/30',
         rtl ? 'text-right' : 'text-left',
       )}
     >
@@ -226,13 +247,11 @@ function UploadChip({
 function WizardStepHeader({
   currentStep,
   totalSteps,
-  stepLabels,
   wizardCopy,
   rtl,
 }: {
   currentStep: number
   totalSteps: number
-  stepLabels: { value?: string | null }[]
   wizardCopy?: CopyItem[] | null
   rtl: boolean
 }) {
@@ -245,25 +264,24 @@ function WizardStepHeader({
   return (
     <div className="border-b border-border px-8 py-6">
       <div className={cn('mb-4 flex items-center justify-between', rtl && 'flex-row-reverse')}>
+        <button
+          type="button"
+          className={cn(
+            'flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground',
+            rtl && 'flex-row-reverse',
+          )}
+        >
+          {rtl ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
+          {getCopyValue(
+            wizardCopy,
+            currentStep === 1 ? 'firstBackLabel' : 'backStepLabel',
+            currentStep === 1 ? 'Back' : 'Previous step',
+          )}
+        </button>
+
         <span className="text-xs uppercase tracking-wider text-muted-foreground">
           {counter}
         </span>
-
-        <div className={cn('hidden gap-2 md:flex', rtl && 'flex-row-reverse')}>
-          {stepLabels.map((step, index) => (
-            <div
-              key={`${step.value}-${index}`}
-              className={cn(
-                'rounded-sm px-2 py-1 text-[10px] uppercase tracking-[0.12em]',
-                index + 1 === currentStep
-                  ? 'bg-foreground text-background'
-                  : 'text-muted-foreground',
-              )}
-            >
-              {step.value}
-            </div>
-          ))}
-        </div>
       </div>
 
       <div className="flex gap-1.5">
@@ -291,6 +309,360 @@ function WizardStepHeader({
   )
 }
 
+function IntroView({
+  block,
+  locale,
+  onStartWizard,
+  onStartUpload,
+}: {
+  block: ProposalFlowProposalBlockData
+  locale: Locale
+  onStartWizard: () => void
+  onStartUpload: () => void
+}) {
+  const rtl = isRTL(locale)
+  const isArabic = locale === 'ar'
+
+  return (
+    <section className="py-12 lg:py-16">
+      <div className="mx-auto max-w-4xl px-6 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div
+            className={cn(
+              'group relative rounded-sm border border-border bg-card p-8 transition-colors hover:border-accent/40',
+              rtl && 'text-right',
+            )}
+          >
+            <div className={cn('absolute top-6', isArabic ? 'left-6' : 'right-6')}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10">
+                <FileText className="h-5 w-5 text-accent" />
+              </div>
+            </div>
+
+            <div className={isArabic ? 'pl-14' : 'pr-14'}>
+              <h3 className="mb-3 font-serif text-xl font-medium text-foreground">
+                {getCopyValue(block.introCopy, 'briefCardTitle')}
+              </h3>
+              <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                {getCopyValue(block.introCopy, 'briefCardDescription')}
+              </p>
+            </div>
+
+            <Button
+              type="button"
+              onClick={onStartWizard}
+              className="h-10 bg-foreground px-6 text-[11px] uppercase tracking-[0.12em] text-background hover:bg-foreground/90"
+            >
+              {getCopyValue(block.introCopy, 'briefButtonLabel')}
+              {rtl ? (
+                <ArrowLeft className="mr-2 h-3.5 w-3.5" />
+              ) : (
+                <ArrowRight className="ml-2 h-3.5 w-3.5" />
+              )}
+            </Button>
+          </div>
+
+          <div
+            className={cn(
+              'group relative rounded-sm border border-border bg-card p-8 transition-colors hover:border-accent/40',
+              rtl && 'text-right',
+            )}
+          >
+            <div className={cn('absolute top-6', isArabic ? 'left-6' : 'right-6')}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary">
+                <Upload className="h-5 w-5 text-muted-foreground" />
+              </div>
+            </div>
+
+            <div className={isArabic ? 'pl-14' : 'pr-14'}>
+              <h3 className="mb-3 font-serif text-xl font-medium text-foreground">
+                {getCopyValue(block.introCopy, 'uploadCardTitle')}
+              </h3>
+              <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                {getCopyValue(block.introCopy, 'uploadCardDescription')}
+              </p>
+            </div>
+
+            <Button
+              type="button"
+              onClick={onStartUpload}
+              variant="outline"
+              className="h-10 border-foreground/20 px-6 text-[11px] uppercase tracking-[0.12em] text-foreground hover:bg-foreground/5"
+              data-proposal-upload-trigger
+            >
+              {getCopyValue(block.introCopy, 'uploadButtonLabel')}
+              {rtl ? (
+                <ArrowLeft className="mr-2 h-3.5 w-3.5" />
+              ) : (
+                <ArrowRight className="ml-2 h-3.5 w-3.5" />
+              )}
+            </Button>
+          </div>
+        </div>
+
+        <div className="mt-16 lg:mt-20">
+          <div className="mb-8 flex items-center gap-4">
+            <span className="h-px flex-1 bg-border/60" />
+            <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground/70">
+              {getCopyValue(block.introCopy, 'processEyebrow')}
+            </span>
+            <span className="h-px flex-1 bg-border/60" />
+          </div>
+
+          <div className="mb-10 text-center">
+            <h3 className="mb-4 font-serif text-2xl font-light text-foreground lg:text-[1.75rem]">
+              {getCopyValue(block.introCopy, 'processTitle')}
+            </h3>
+            <p className="mx-auto max-w-2xl text-sm leading-relaxed text-muted-foreground lg:text-base">
+              {getCopyValue(block.introCopy, 'processDescription')}
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+            {block.introProcessSteps?.map((step, index) => {
+              if (!step?.title || !step?.description) return null
+
+              const iconKey =
+                step.icon === 'arrowUpRight' && isArabic
+                  ? 'arrowUpLeft'
+                  : step.icon ?? 'target'
+
+              const Icon = PROCESS_ICONS[iconKey] ?? Target
+
+              return (
+                <div
+                  key={`${step.title}-${index}`}
+                  className={cn(
+                    'relative rounded-sm border border-border/50 bg-secondary/30 p-5',
+                    rtl && 'text-right',
+                  )}
+                >
+                  <div
+                    className={cn(
+                      'absolute top-4 text-[10px] font-medium text-muted-foreground/40',
+                      isArabic ? 'left-4' : 'right-4',
+                    )}
+                  >
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+
+                  <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background">
+                    <Icon className="h-4 w-4 text-foreground/70" />
+                  </div>
+
+                  <h4 className="mb-2 text-sm font-medium text-foreground">{step.title}</h4>
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    {step.description}
+                  </p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function WizardSidebar({
+  block,
+  locale,
+  currentStep,
+  data,
+}: {
+  block: ProposalFlowProposalBlockData
+  locale: Locale
+  currentStep: number
+  data: WizardData
+}) {
+  const rtl = isRTL(locale)
+  const isRussian = locale === 'ru'
+  const isArabic = locale === 'ar'
+  const steps = block.wizardStepLabels ?? []
+
+  if (isRussian) {
+    return (
+      <div className="hidden lg:block">
+        <div className="sticky top-24 rounded-sm border border-border bg-card p-6">
+          <h3 className="mb-4 font-serif text-lg font-medium text-foreground">
+            {getCopyValue(block.wizardCopy, 'sidebarTitle', 'Ваш brief')}
+          </h3>
+
+          <div className="space-y-4 text-sm">
+            <div className={cn('flex items-start gap-3', rtl && 'flex-row-reverse')}>
+              <FileText className="mt-0.5 h-4 w-4 text-muted-foreground" />
+              <div>
+                <div className="mb-1 text-xs uppercase tracking-wider text-muted-foreground">
+                  {getCopyValue(block.wizardCopy, 'sidebarProjectTypeLabel', 'Тип проекта')}
+                </div>
+                <div className="text-foreground">
+                  {getOptionLabel(block.projectTypes, data.projectType) ??
+                    getCopyValue(block.wizardCopy, 'sidebarEmptyValue', 'Не выбрано')}
+                </div>
+              </div>
+            </div>
+
+            <div className={cn('flex items-start gap-3', rtl && 'flex-row-reverse')}>
+              <Target className="mt-0.5 h-4 w-4 text-muted-foreground" />
+              <div>
+                <div className="mb-1 text-xs uppercase tracking-wider text-muted-foreground">
+                  {getCopyValue(block.wizardCopy, 'sidebarGoalLabel', 'Цель')}
+                </div>
+                <div className="text-foreground">
+                  {getOptionLabel(block.projectGoals, data.projectGoal) ??
+                    getCopyValue(block.wizardCopy, 'sidebarEmptyValue', 'Не выбрано')}
+                </div>
+              </div>
+            </div>
+
+            <div className={cn('flex items-start gap-3', rtl && 'flex-row-reverse')}>
+              <Users className="mt-0.5 h-4 w-4 text-muted-foreground" />
+              <div>
+                <div className="mb-1 text-xs uppercase tracking-wider text-muted-foreground">
+                  {getCopyValue(block.wizardCopy, 'sidebarTeamLabel', 'Команда')}
+                </div>
+                <div className="text-foreground">
+                  {getOptionLabel(block.teamTypes, data.teamType) ??
+                    getCopyValue(block.wizardCopy, 'sidebarEmptyValue', 'Не выбрано')}
+                </div>
+              </div>
+            </div>
+
+            <div className={cn('flex items-start gap-3', rtl && 'flex-row-reverse')}>
+              <Clock className="mt-0.5 h-4 w-4 text-muted-foreground" />
+              <div>
+                <div className="mb-1 text-xs uppercase tracking-wider text-muted-foreground">
+                  {getCopyValue(block.wizardCopy, 'sidebarTimelineLabel', 'Сроки')}
+                </div>
+                <div className="text-foreground">
+                  {getOptionLabel(block.timelineOptions, data.timeline) ??
+                    getCopyValue(block.wizardCopy, 'sidebarEmptyValue', 'Не выбрано')}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 border-t border-border pt-6">
+            <div className="mb-3 text-xs uppercase tracking-wider text-muted-foreground">
+              {getCopyValue(
+                block.wizardCopy,
+                'sidebarResultsTitle',
+                'После отправки вы получите',
+              )}
+            </div>
+
+            <ul className="space-y-2 text-sm text-foreground">
+              {block.summaryResults?.map((item) =>
+                item?.value ? (
+                  <li
+                    key={item.value}
+                    className={cn('flex items-center gap-2', rtl && 'flex-row-reverse')}
+                  >
+                    <Check className="h-3.5 w-3.5 text-accent" />
+                    {item.value}
+                  </li>
+                ) : null,
+              )}
+            </ul>
+          </div>
+
+          <div className="mt-6 border-t border-border pt-4">
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              {getCopyValue(block.wizardCopy, 'sidebarFooter')}
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="hidden lg:block space-y-6">
+      <div
+        className={cn(
+          'rounded-sm p-6',
+          isArabic
+            ? 'sticky top-32 border border-border/50 bg-secondary/30'
+            : 'border border-border/50 bg-secondary/30',
+        )}
+      >
+        <h4 className="mb-4 text-xs uppercase tracking-wider text-muted-foreground">
+          {getCopyValue(
+            block.wizardCopy,
+            'progressTitle',
+            locale === 'ar' ? 'خطوات الـ Brief' : 'Brief Progress',
+          )}
+        </h4>
+
+        <div className="space-y-3">
+          {steps.map((step, index) => {
+            const stepId = index + 1
+            const completed = stepId < currentStep
+            const active = stepId === currentStep
+
+            return (
+              <div
+                key={`${step.value}-${stepId}`}
+                className={cn(
+                  'flex items-center gap-3 text-sm',
+                  rtl && 'flex-row-reverse',
+                  active
+                    ? 'font-medium text-foreground'
+                    : completed
+                      ? 'text-muted-foreground'
+                      : locale === 'ar'
+                        ? 'text-muted-foreground/50'
+                        : 'text-muted-foreground',
+                )}
+              >
+                <div
+                  className={cn(
+                    'flex h-6 w-6 items-center justify-center rounded-full text-xs',
+                    completed
+                      ? 'bg-signature-cobalt text-white'
+                      : active
+                        ? 'bg-foreground text-background'
+                        : locale === 'ar'
+                          ? 'bg-border text-muted-foreground'
+                          : 'bg-secondary text-muted-foreground',
+                  )}
+                >
+                  {completed ? <Check className="h-3 w-3" /> : stepId}
+                </div>
+                <span>{step.value}</span>
+              </div>
+            )
+          })}
+        </div>
+
+        {getCopyValue(block.wizardCopy, 'supportNoteText') ? (
+          <div className="mt-8 border-t border-border/50 pt-6">
+            {getCopyValue(block.wizardCopy, 'supportNoteTitle') ? (
+              <h4 className="mb-2 text-sm font-medium text-foreground">
+                {getCopyValue(block.wizardCopy, 'supportNoteTitle')}
+              </h4>
+            ) : null}
+
+            <p className="mb-4 text-xs leading-relaxed text-muted-foreground">
+              {getCopyValue(block.wizardCopy, 'supportNoteText')}
+            </p>
+
+            {getCopyValue(block.wizardCopy, 'supportEmail') ? (
+              <a
+                href={`mailto:${getCopyValue(block.wizardCopy, 'supportEmail')}`}
+                className="text-xs text-accent hover:underline"
+                dir="ltr"
+              >
+                {getCopyValue(block.wizardCopy, 'supportEmail')}
+              </a>
+            ) : null}
+          </div>
+        ) : null}
+      </div>
+    </div>
+  )
+}
+
 function ProposalWizard({
   block,
   locale,
@@ -313,8 +685,11 @@ function ProposalWizard({
     uploadedFiles: [],
   })
 
-  const stepLabels = block.wizardStepLabels ?? []
-  const totalSteps = stepLabels.length || 7
+  const totalSteps = (block.wizardStepLabels?.length || 7)
+
+  const showNoCall = Boolean(getCopyValue(block.wizardCopy, 'noCallLabel'))
+  const showExpert = Boolean(getCopyValue(block.wizardCopy, 'expertReviewLabel'))
+  const showNda = Boolean(getCopyValue(block.wizardCopy, 'ndaLabel'))
 
   const toggleArrayValue = (key: 'complexityFlags' | 'materials', value: string) => {
     setData((prev) => {
@@ -347,7 +722,6 @@ function ProposalWizard({
       ...prev,
       uploadedFiles: mergedFiles,
     }))
-
     e.target.value = ''
   }
 
@@ -372,16 +746,16 @@ function ProposalWizard({
       projectType: data.projectType ?? '',
       projectGoal: data.projectGoal ?? '',
       teamType: data.teamType ?? '',
-      companyName: data.companyName ?? '',
-      website: data.website ?? '',
-      teamSize: data.teamSize ?? '',
+      companyName: data.teamField1 ?? '',
+      website: data.teamField2 ?? '',
+      teamSize: data.teamField3 ?? '',
       rolesCount: data.rolesCount ?? '',
       screenCount: data.screenCount ?? '',
       complexityFlags: data.complexityFlags,
       materials: data.materials,
       timeline: data.timeline ?? '',
       budget: data.budget ?? '',
-      briefNotes: data.briefNotes ?? '',
+      briefNotes: '',
       name: data.name ?? '',
       email: data.email ?? '',
       company: data.company ?? '',
@@ -422,15 +796,15 @@ function ProposalWizard({
       appendString(formData, 'companyName', parsed.data.companyName)
       appendString(formData, 'website', parsed.data.website)
       appendString(formData, 'teamSize', parsed.data.teamSize)
+
       appendString(formData, 'rolesCount', parsed.data.rolesCount)
       appendString(formData, 'screenCount', parsed.data.screenCount)
-
       appendJsonArray(formData, 'complexityFlags', parsed.data.complexityFlags)
+
       appendJsonArray(formData, 'materials', parsed.data.materials)
 
       appendString(formData, 'timeline', parsed.data.timeline)
       appendString(formData, 'budget', parsed.data.budget)
-      appendString(formData, 'briefNotes', parsed.data.briefNotes)
 
       appendString(formData, 'name', parsed.data.name)
       appendString(formData, 'email', parsed.data.email)
@@ -471,685 +845,661 @@ function ProposalWizard({
 
   return (
     <section className="py-8 lg:py-12">
-      <div className="mx-auto max-w-4xl px-6 lg:px-8">
-        <div className="overflow-hidden rounded-sm border border-border bg-card">
-          <WizardStepHeader
-            currentStep={currentStep}
-            totalSteps={totalSteps}
-            stepLabels={stepLabels}
-            wizardCopy={block.wizardCopy}
-            rtl={rtl}
-          />
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[1fr,320px] lg:gap-12">
+          <div className="rounded-sm border border-border bg-card">
+            <WizardStepHeader
+              currentStep={currentStep}
+              totalSteps={totalSteps}
+              wizardCopy={block.wizardCopy}
+              rtl={rtl}
+            />
 
-          <div className="p-8">
-            {currentStep === 1 ? (
-              <div>
-                <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
-                  {getCopyValue(block.wizardCopy, 'projectTypeTitle')}
-                </h2>
-                <p className="mb-8 text-sm text-muted-foreground">
-                  {getCopyValue(block.wizardCopy, 'projectTypeDescription')}
-                </p>
+            <div className="p-8">
+              {currentStep === 1 ? (
+                <div>
+                  <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
+                    {getCopyValue(block.wizardCopy, 'projectTypeTitle')}
+                  </h2>
+                  <p className="mb-8 text-sm text-muted-foreground">
+                    {getCopyValue(block.wizardCopy, 'projectTypeDescription')}
+                  </p>
 
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {block.projectTypes?.map((type) =>
-                    type?.value && type?.label ? (
-                      <ChoiceCard
-                        key={type.value}
-                        active={data.projectType === type.value}
-                        title={type.label}
-                        description={type.description}
-                        rtl={rtl}
-                        onClick={() =>
-                          setData((prev) => ({
-                            ...prev,
-                            projectType: type.value!,
-                          }))
-                        }
-                      />
-                    ) : null,
-                  )}
-                </div>
-              </div>
-            ) : null}
-
-            {currentStep === 2 ? (
-              <div>
-                <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
-                  {getCopyValue(block.wizardCopy, 'goalTitle')}
-                </h2>
-                <p className="mb-8 text-sm text-muted-foreground">
-                  {getCopyValue(block.wizardCopy, 'goalDescription')}
-                </p>
-
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {block.projectGoals?.map((goal) =>
-                    goal?.value && goal?.label ? (
-                      <ChoiceCard
-                        key={goal.value}
-                        active={data.projectGoal === goal.value}
-                        title={goal.label}
-                        rtl={rtl}
-                        onClick={() =>
-                          setData((prev) => ({
-                            ...prev,
-                            projectGoal: goal.value!,
-                          }))
-                        }
-                      />
-                    ) : null,
-                  )}
-                </div>
-              </div>
-            ) : null}
-
-            {currentStep === 3 ? (
-              <div>
-                <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
-                  {getCopyValue(block.wizardCopy, 'teamTitle')}
-                </h2>
-                <p className="mb-8 text-sm text-muted-foreground">
-                  {getCopyValue(block.wizardCopy, 'teamDescription')}
-                </p>
-
-                <div className="mb-8 grid gap-3 sm:grid-cols-2">
-                  {block.teamTypes?.map((team) =>
-                    team?.value && team?.label ? (
-                      <ChoiceCard
-                        key={team.value}
-                        active={data.teamType === team.value}
-                        title={team.label}
-                        rtl={rtl}
-                        onClick={() =>
-                          setData((prev) => ({
-                            ...prev,
-                            teamType: team.value!,
-                          }))
-                        }
-                      />
-                    ) : null,
-                  )}
-                </div>
-
-                <div className="grid gap-4 border-t border-border pt-6 sm:grid-cols-3">
-                  <div>
-                    <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                      {getCopyValue(block.wizardCopy, 'companyNameLabel')}
-                    </label>
-                    <Input
-                      value={data.companyName ?? ''}
-                      onChange={(e) =>
-                        setData((prev) => ({
-                          ...prev,
-                          companyName: e.target.value,
-                        }))
-                      }
-                      placeholder={getCopyValue(block.wizardCopy, 'companyNamePlaceholder')}
-                      className="h-10"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                      {getCopyValue(block.wizardCopy, 'websiteLabel')}
-                    </label>
-                    <Input
-                      value={data.website ?? ''}
-                      onChange={(e) =>
-                        setData((prev) => ({
-                          ...prev,
-                          website: e.target.value,
-                        }))
-                      }
-                      placeholder={getCopyValue(block.wizardCopy, 'websitePlaceholder')}
-                      className="h-10"
-                      dir="ltr"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                      {getCopyValue(block.wizardCopy, 'teamSizeLabel')}
-                    </label>
-                    <Input
-                      value={data.teamSize ?? ''}
-                      onChange={(e) =>
-                        setData((prev) => ({
-                          ...prev,
-                          teamSize: e.target.value,
-                        }))
-                      }
-                      placeholder={getCopyValue(block.wizardCopy, 'teamSizePlaceholder')}
-                      className="h-10"
-                    />
-                  </div>
-                </div>
-              </div>
-            ) : null}
-
-            {currentStep === 4 ? (
-              <div>
-                <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
-                  {getCopyValue(block.wizardCopy, 'complexityTitle')}
-                </h2>
-                <p className="mb-8 text-sm text-muted-foreground">
-                  {getCopyValue(block.wizardCopy, 'complexityDescription')}
-                </p>
-
-                <div className="space-y-6">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                        {getCopyValue(block.wizardCopy, 'rolesCountLabel')}
-                      </label>
-                      <Input
-                        value={data.rolesCount ?? ''}
-                        onChange={(e) =>
-                          setData((prev) => ({
-                            ...prev,
-                            rolesCount: e.target.value,
-                          }))
-                        }
-                        placeholder={getCopyValue(block.wizardCopy, 'rolesCountPlaceholder')}
-                        className="h-10"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                        {getCopyValue(block.wizardCopy, 'screenCountLabel')}
-                      </label>
-                      <Input
-                        value={data.screenCount ?? ''}
-                        onChange={(e) =>
-                          setData((prev) => ({
-                            ...prev,
-                            screenCount: e.target.value,
-                          }))
-                        }
-                        placeholder={getCopyValue(block.wizardCopy, 'screenCountPlaceholder')}
-                        className="h-10"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid gap-3 pt-2 sm:grid-cols-2 lg:grid-cols-3">
-                    {block.complexityFlags?.map((flag) =>
-                      flag?.value ? (
-                        <label
-                          key={flag.value}
-                          className={cn(
-                            'flex cursor-pointer items-start gap-3 rounded-sm border border-border p-3',
-                            rtl && 'flex-row-reverse',
-                          )}
-                        >
-                          <Checkbox
-                            checked={data.complexityFlags.includes(flag.value)}
-                            onCheckedChange={() =>
-                              toggleArrayValue('complexityFlags', flag.value!)
-                            }
-                            className="mt-0.5"
-                          />
-                          <span className="text-sm text-foreground">{flag.value}</span>
-                        </label>
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {block.projectTypes?.map((type) =>
+                      type?.value && type?.label ? (
+                        <ChoiceCard
+                          key={type.value}
+                          active={data.projectType === type.value}
+                          title={type.label}
+                          description={type.description}
+                          rtl={rtl}
+                          onClick={() =>
+                            setData((prev) => ({
+                              ...prev,
+                              projectType: type.value!,
+                            }))
+                          }
+                        />
                       ) : null,
                     )}
                   </div>
                 </div>
-              </div>
-            ) : null}
+              ) : null}
 
-            {currentStep === 5 ? (
-              <div>
-                <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
-                  {getCopyValue(block.wizardCopy, 'materialsTitle')}
-                </h2>
-                <p className="mb-8 text-sm text-muted-foreground">
-                  {getCopyValue(block.wizardCopy, 'materialsDescription')}
-                </p>
+              {currentStep === 2 ? (
+                <div>
+                  <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
+                    {getCopyValue(block.wizardCopy, 'goalTitle')}
+                  </h2>
+                  <p className="mb-8 text-sm text-muted-foreground">
+                    {getCopyValue(block.wizardCopy, 'goalDescription')}
+                  </p>
 
-                <div className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                  {block.materialsOptions?.map((material) =>
-                    material?.value && material?.label ? (
-                      <button
-                        key={material.value}
-                        type="button"
-                        onClick={() => toggleArrayValue('materials', material.value!)}
-                        className={cn(
-                          'rounded-sm border p-4 transition-all',
-                          data.materials.includes(material.value)
-                            ? 'border-foreground bg-foreground/5'
-                            : 'border-border hover:border-foreground/30',
-                          rtl ? 'text-right' : 'text-left',
-                        )}
-                      >
-                        <div className={cn('flex items-center gap-2', rtl && 'flex-row-reverse')}>
-                          {data.materials.includes(material.value) ? (
-                            <Check className="h-4 w-4 text-foreground" />
-                          ) : null}
-                          <span className="text-sm font-medium text-foreground">
-                            {material.label}
-                          </span>
-                        </div>
-                      </button>
-                    ) : null,
-                  )}
-                </div>
-
-                <label className="block">
-                  <span className="mb-3 block text-xs uppercase tracking-wider text-muted-foreground">
-                    {getCopyValue(block.wizardCopy, 'wizardUploadLabel')}
-                  </span>
-
-                  <input
-                    type="file"
-                    multiple
-                    className="hidden"
-                    onChange={handleUploadFiles}
-                  />
-
-                  <div className="cursor-pointer rounded-sm border-2 border-dashed border-border p-8 text-center transition-colors hover:border-foreground/30">
-                    <Upload className="mx-auto mb-3 h-8 w-8 text-muted-foreground" />
-                    <p className="text-sm text-foreground">
-                      {getCopyValue(block.wizardCopy, 'wizardUploadHint')}
-                    </p>
-                  </div>
-                </label>
-
-                {data.uploadedFiles.length ? (
-                  <div className="mt-4 space-y-2">
-                    {data.uploadedFiles.map((file, index) => (
-                      <UploadChip
-                        key={`${file.name}-${index}`}
-                        label={file.name}
-                        icon="file"
-                        rtl={rtl}
-                        onRemove={() =>
-                          setData((prev) => ({
-                            ...prev,
-                            uploadedFiles: prev.uploadedFiles.filter((_, i) => i !== index),
-                          }))
-                        }
-                      />
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            ) : null}
-
-            {currentStep === 6 ? (
-              <div>
-                <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
-                  {getCopyValue(block.wizardCopy, 'timelineTitle')}
-                </h2>
-                <p className="mb-8 text-sm text-muted-foreground">
-                  {getCopyValue(block.wizardCopy, 'timelineDescription')}
-                </p>
-
-                <div className="space-y-8">
-                  <div>
-                    <label className="mb-3 block text-xs uppercase tracking-wider text-muted-foreground">
-                      {getCopyValue(block.wizardCopy, 'timelineLabel')}
-                    </label>
-
-                    <div className="flex flex-wrap gap-2">
-                      {block.timelineOptions?.map((option) =>
-                        option?.value && option?.label ? (
-                          <button
-                            key={option.value}
-                            type="button"
-                            onClick={() =>
-                              setData((prev) => ({
-                                ...prev,
-                                timeline: option.value!,
-                              }))
-                            }
-                            className={cn(
-                              'rounded-sm border px-4 py-2 text-sm transition-all',
-                              data.timeline === option.value
-                                ? 'border-foreground bg-foreground text-background'
-                                : 'border-border text-foreground hover:border-foreground/30',
-                            )}
-                          >
-                            {option.label}
-                          </button>
-                        ) : null,
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="mb-3 block text-xs uppercase tracking-wider text-muted-foreground">
-                      {getCopyValue(block.wizardCopy, 'budgetLabel')}
-                    </label>
-
-                    <div className="flex flex-wrap gap-2">
-                      {block.budgetOptions?.map((option) =>
-                        option?.value && option?.label ? (
-                          <button
-                            key={option.value}
-                            type="button"
-                            onClick={() =>
-                              setData((prev) => ({
-                                ...prev,
-                                budget: option.value!,
-                              }))
-                            }
-                            className={cn(
-                              'rounded-sm border px-4 py-2 text-sm transition-all',
-                              data.budget === option.value
-                                ? 'border-foreground bg-foreground text-background'
-                                : 'border-border text-foreground hover:border-foreground/30',
-                            )}
-                          >
-                            {option.label}
-                          </button>
-                        ) : null,
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="mb-3 block text-xs uppercase tracking-wider text-muted-foreground">
-                      {getCopyValue(block.wizardCopy, 'notesLabel')}
-                    </label>
-
-                    <Textarea
-                      value={data.briefNotes ?? ''}
-                      onChange={(e) =>
-                        setData((prev) => ({
-                          ...prev,
-                          briefNotes: e.target.value,
-                        }))
-                      }
-                      placeholder={getCopyValue(block.wizardCopy, 'notesPlaceholder')}
-                      rows={4}
-                      dir={isArabic ? 'rtl' : 'ltr'}
-                      className={rtl ? 'text-right' : undefined}
-                    />
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {block.projectGoals?.map((goal) =>
+                      goal?.value && goal?.label ? (
+                        <ChoiceCard
+                          key={goal.value}
+                          active={data.projectGoal === goal.value}
+                          title={goal.label}
+                          rtl={rtl}
+                          onClick={() =>
+                            setData((prev) => ({
+                              ...prev,
+                              projectGoal: goal.value!,
+                            }))
+                          }
+                        />
+                      ) : null,
+                    )}
                   </div>
                 </div>
-              </div>
-            ) : null}
+              ) : null}
 
-            {currentStep === 7 ? (
-              <div>
-                <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
-                  {getCopyValue(block.wizardCopy, 'contactTitle')}
-                </h2>
-                <p className="mb-8 text-sm text-muted-foreground">
-                  {getCopyValue(block.wizardCopy, 'contactDescription')}
-                </p>
+              {currentStep === 3 ? (
+                <div>
+                  <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
+                    {getCopyValue(block.wizardCopy, 'teamTitle')}
+                  </h2>
+                  <p className="mb-8 text-sm text-muted-foreground">
+                    {getCopyValue(block.wizardCopy, 'teamDescription')}
+                  </p>
 
-                <div className="space-y-6">
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="mb-8 grid gap-3 sm:grid-cols-2">
+                    {block.teamTypes?.map((team) =>
+                      team?.value && team?.label ? (
+                        <ChoiceCard
+                          key={team.value}
+                          active={data.teamType === team.value}
+                          title={team.label}
+                          rtl={rtl}
+                          onClick={() =>
+                            setData((prev) => ({
+                              ...prev,
+                              teamType: team.value!,
+                            }))
+                          }
+                        />
+                      ) : null,
+                    )}
+                  </div>
+
+                  <div className="grid gap-4 border-t border-border pt-6 sm:grid-cols-3">
                     <div>
                       <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                        {getCopyValue(block.wizardCopy, 'nameLabel')}
+                        {getCopyValue(block.wizardCopy, 'teamField1Label')}
                       </label>
                       <Input
-                        value={data.name ?? ''}
+                        value={data.teamField1 ?? ''}
                         onChange={(e) =>
-                          setData((prev) => ({
-                            ...prev,
-                            name: e.target.value,
-                          }))
+                          setData((prev) => ({ ...prev, teamField1: e.target.value }))
                         }
-                        placeholder={getCopyValue(block.wizardCopy, 'namePlaceholder')}
-                        className="h-10"
+                        placeholder={getCopyValue(block.wizardCopy, 'teamField1Placeholder')}
+                        className={cn('h-10', rtl && 'text-right')}
                         dir={isArabic ? 'rtl' : 'ltr'}
                       />
                     </div>
 
                     <div>
                       <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                        {getCopyValue(block.wizardCopy, 'emailLabel')}
+                        {getCopyValue(block.wizardCopy, 'teamField2Label')}
                       </label>
                       <Input
-                        type="email"
-                        value={data.email ?? ''}
+                        value={data.teamField2 ?? ''}
                         onChange={(e) =>
-                          setData((prev) => ({
-                            ...prev,
-                            email: e.target.value,
-                          }))
+                          setData((prev) => ({ ...prev, teamField2: e.target.value }))
                         }
-                        placeholder={getCopyValue(block.wizardCopy, 'emailPlaceholder')}
+                        placeholder={getCopyValue(block.wizardCopy, 'teamField2Placeholder')}
                         className="h-10"
                         dir="ltr"
                       />
                     </div>
-                  </div>
-
-                  <div className="grid gap-4 sm:grid-cols-3">
-                    <div>
-                      <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                        {getCopyValue(block.wizardCopy, 'companyLabel')}
-                      </label>
-                      <Input
-                        value={data.company ?? ''}
-                        onChange={(e) =>
-                          setData((prev) => ({
-                            ...prev,
-                            company: e.target.value,
-                          }))
-                        }
-                        placeholder={getCopyValue(block.wizardCopy, 'companyPlaceholder')}
-                        className="h-10"
-                        dir={isArabic ? 'rtl' : 'ltr'}
-                      />
-                    </div>
 
                     <div>
                       <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                        {getCopyValue(block.wizardCopy, 'roleLabel')}
+                        {getCopyValue(block.wizardCopy, 'teamField3Label')}
                       </label>
                       <Input
-                        value={data.role ?? ''}
+                        value={data.teamField3 ?? ''}
                         onChange={(e) =>
-                          setData((prev) => ({
-                            ...prev,
-                            role: e.target.value,
-                          }))
+                          setData((prev) => ({ ...prev, teamField3: e.target.value }))
                         }
-                        placeholder={getCopyValue(block.wizardCopy, 'rolePlaceholder')}
-                        className="h-10"
+                        placeholder={getCopyValue(block.wizardCopy, 'teamField3Placeholder')}
+                        className={cn('h-10', rtl && 'text-right')}
                         dir={isArabic ? 'rtl' : 'ltr'}
                       />
                     </div>
-
-                    <div>
-                      <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                        {getCopyValue(block.wizardCopy, 'regionLabel')}
-                      </label>
-                      <Input
-                        value={data.region ?? ''}
-                        onChange={(e) =>
-                          setData((prev) => ({
-                            ...prev,
-                            region: e.target.value,
-                          }))
-                        }
-                        placeholder={getCopyValue(block.wizardCopy, 'regionPlaceholder')}
-                        className="h-10"
-                        dir={isArabic ? 'rtl' : 'ltr'}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                      {getCopyValue(block.wizardCopy, 'phoneLabel')}
-                    </label>
-                    <Input
-                      value={data.phone ?? ''}
-                      onChange={(e) =>
-                        setData((prev) => ({
-                          ...prev,
-                          phone: e.target.value,
-                        }))
-                      }
-                      placeholder={getCopyValue(block.wizardCopy, 'phonePlaceholder')}
-                      className="h-10"
-                      dir="ltr"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
-                      {getCopyValue(block.wizardCopy, 'commentLabel')}
-                    </label>
-                    <Textarea
-                      value={data.comment ?? ''}
-                      onChange={(e) =>
-                        setData((prev) => ({
-                          ...prev,
-                          comment: e.target.value,
-                        }))
-                      }
-                      placeholder={getCopyValue(block.wizardCopy, 'commentPlaceholder')}
-                      rows={3}
-                      dir={isArabic ? 'rtl' : 'ltr'}
-                      className={rtl ? 'text-right' : undefined}
-                    />
-                  </div>
-
-                  <div className="space-y-3 border-t border-border pt-4">
-                    <label
-                      className={cn(
-                        'flex cursor-pointer items-start gap-3',
-                        rtl && 'flex-row-reverse',
-                      )}
-                    >
-                      <Checkbox
-                        checked={Boolean(data.noCallFirst)}
-                        onCheckedChange={(checked) =>
-                          setData((prev) => ({
-                            ...prev,
-                            noCallFirst: Boolean(checked),
-                          }))
-                        }
-                        className="mt-0.5"
-                      />
-                      <span className="text-sm text-foreground">
-                        {getCopyValue(block.wizardCopy, 'noCallLabel')}
-                      </span>
-                    </label>
-
-                    <label
-                      className={cn(
-                        'flex cursor-pointer items-start gap-3',
-                        rtl && 'flex-row-reverse',
-                      )}
-                    >
-                      <Checkbox
-                        checked={Boolean(data.expertReview)}
-                        onCheckedChange={(checked) =>
-                          setData((prev) => ({
-                            ...prev,
-                            expertReview: Boolean(checked),
-                          }))
-                        }
-                        className="mt-0.5"
-                      />
-                      <span className="text-sm text-foreground">
-                        {getCopyValue(block.wizardCopy, 'expertReviewLabel')}
-                      </span>
-                    </label>
-
-                    <label
-                      className={cn(
-                        'flex cursor-pointer items-start gap-3',
-                        rtl && 'flex-row-reverse',
-                      )}
-                    >
-                      <Checkbox
-                        checked={Boolean(data.nda)}
-                        onCheckedChange={(checked) =>
-                          setData((prev) => ({
-                            ...prev,
-                            nda: Boolean(checked),
-                          }))
-                        }
-                        className="mt-0.5"
-                      />
-                      <span className="text-sm text-foreground">
-                        {getCopyValue(block.wizardCopy, 'ndaLabel')}
-                      </span>
-                    </label>
                   </div>
                 </div>
-              </div>
-            ) : null}
+              ) : null}
 
-            {submitError ? (
-              <div className="mt-6 rounded-sm border border-destructive/20 bg-destructive/5 px-4 py-3 text-sm text-destructive">
-                {submitError}
-              </div>
-            ) : null}
+              {currentStep === 4 ? (
+                <div>
+                  <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
+                    {getCopyValue(block.wizardCopy, 'complexityTitle')}
+                  </h2>
+                  <p className="mb-8 text-sm text-muted-foreground">
+                    {getCopyValue(block.wizardCopy, 'complexityDescription')}
+                  </p>
 
-            {block.summaryResults?.length ? (
-              <div className="mt-8 border-t border-border pt-6">
-                <div className="mb-3 text-xs uppercase tracking-wider text-muted-foreground">
-                  {getCopyValue(block.wizardCopy, 'summaryResultsTitle')}
+                  <div className="space-y-6">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
+                          {getCopyValue(block.wizardCopy, 'rolesCountLabel')}
+                        </label>
+                        <Input
+                          value={data.rolesCount ?? ''}
+                          onChange={(e) =>
+                            setData((prev) => ({ ...prev, rolesCount: e.target.value }))
+                          }
+                          placeholder={getCopyValue(block.wizardCopy, 'rolesCountPlaceholder')}
+                          className={cn('h-10', rtl && 'text-right')}
+                          dir={isArabic ? 'rtl' : 'ltr'}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
+                          {getCopyValue(block.wizardCopy, 'screenCountLabel')}
+                        </label>
+                        <Input
+                          value={data.screenCount ?? ''}
+                          onChange={(e) =>
+                            setData((prev) => ({ ...prev, screenCount: e.target.value }))
+                          }
+                          placeholder={getCopyValue(block.wizardCopy, 'screenCountPlaceholder')}
+                          className={cn('h-10', rtl && 'text-right')}
+                          dir={isArabic ? 'rtl' : 'ltr'}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid gap-3 pt-4 sm:grid-cols-2 lg:grid-cols-3">
+                      {block.complexityFlags?.map((flag) =>
+                        flag?.value ? (
+                          <label
+                            key={flag.value}
+                            className={cn(
+                              'flex cursor-pointer items-center gap-3 rounded-sm border border-border p-3 transition-colors hover:border-foreground/30',
+                              rtl && 'flex-row-reverse',
+                            )}
+                          >
+                            <Checkbox
+                              checked={data.complexityFlags.includes(flag.value)}
+                              onCheckedChange={() =>
+                                toggleArrayValue('complexityFlags', flag.value!)
+                              }
+                            />
+                            <span className="text-sm text-foreground">{flag.value}</span>
+                          </label>
+                        ) : null,
+                      )}
+                    </div>
+                  </div>
                 </div>
+              ) : null}
 
-                <ul className="grid gap-2 sm:grid-cols-2">
-                  {block.summaryResults.map((item) =>
-                    item?.value ? (
-                      <li
-                        key={item.value}
-                        className={cn('flex items-center gap-2', rtl && 'flex-row-reverse')}
-                      >
-                        <Check className="h-3.5 w-3.5 text-accent" />
-                        <span className="text-sm text-foreground">{item.value}</span>
-                      </li>
-                    ) : null,
-                  )}
-                </ul>
+              {currentStep === 5 ? (
+                <div>
+                  <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
+                    {getCopyValue(block.wizardCopy, 'materialsTitle')}
+                  </h2>
+                  <p className="mb-8 text-sm text-muted-foreground">
+                    {getCopyValue(block.wizardCopy, 'materialsDescription')}
+                  </p>
 
-                <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                  {getCopyValue(block.wizardCopy, 'summaryFooter')}
-                </p>
-              </div>
-            ) : null}
+                  <div className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                    {block.materialsOptions?.map((material) =>
+                      material?.value && material?.label ? (
+                        <button
+                          key={material.value}
+                          type="button"
+                          onClick={() => toggleArrayValue('materials', material.value!)}
+                          className={cn(
+                            'rounded-sm border p-4 transition-all',
+                            data.materials.includes(material.value)
+                              ? 'border-foreground bg-foreground/5'
+                              : 'border-border hover:border-foreground/30',
+                            rtl ? 'text-right' : 'text-left',
+                          )}
+                        >
+                          <div
+                            className={cn(
+                              'flex items-center gap-2',
+                              rtl ? 'justify-end flex-row-reverse' : '',
+                            )}
+                          >
+                            {data.materials.includes(material.value) ? (
+                              <Check className="h-4 w-4 text-foreground" />
+                            ) : null}
+                            <span className="text-sm font-medium text-foreground">
+                              {material.label}
+                            </span>
+                          </div>
+                        </button>
+                      ) : null,
+                    )}
+                  </div>
 
-            <div
-              className={cn(
-                'mt-8 flex items-center justify-between border-t border-border pt-6',
-                rtl && 'flex-row-reverse',
-              )}
-            >
-              <button
-                type="button"
-                onClick={handlePrev}
-                disabled={submitting}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground disabled:opacity-50"
-              >
-                {currentStep === 1
-                  ? getCopyValue(block.wizardCopy, 'cancelLabel', 'Cancel')
-                  : getCopyValue(block.wizardCopy, 'backLabel', 'Back')}
-              </button>
+                  <label className="block cursor-pointer">
+                    <input
+                      type="file"
+                      multiple
+                      className="hidden"
+                      onChange={handleUploadFiles}
+                    />
 
-              <Button
-                type="button"
-                onClick={handleNext}
-                disabled={submitting}
-                className="h-10 bg-foreground px-6 text-[11px] uppercase tracking-[0.12em] text-background hover:bg-foreground/90 disabled:opacity-50"
-              >
-                {submitting
-                  ? '...'
-                  : currentStep === totalSteps
-                    ? getCopyValue(block.wizardCopy, 'submitLabel', 'Submit')
-                    : getCopyValue(block.wizardCopy, 'nextLabel', 'Next')}
-                {rtl ? (
-                  <ArrowLeft className="mr-2 h-3.5 w-3.5" />
-                ) : (
-                  <ArrowRight className="ml-2 h-3.5 w-3.5" />
+                    <div className="rounded-sm border-2 border-dashed border-border p-8 text-center transition-colors hover:border-foreground/30">
+                      <Upload className="mx-auto mb-3 h-8 w-8 text-muted-foreground" />
+                      <p className="mb-1 text-sm text-foreground">
+                        {getCopyValue(block.wizardCopy, 'wizardUploadTitle')}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {getCopyValue(block.wizardCopy, 'wizardUploadHint')}
+                      </p>
+                    </div>
+                  </label>
+
+                  {data.uploadedFiles.length ? (
+                    <div className="mt-4 space-y-2">
+                      {data.uploadedFiles.map((file, index) => (
+                        <UploadChip
+                          key={`${file.name}-${index}`}
+                          label={file.name}
+                          icon="file"
+                          rtl={rtl}
+                          onRemove={() =>
+                            setData((prev) => ({
+                              ...prev,
+                              uploadedFiles: prev.uploadedFiles.filter((_, i) => i !== index),
+                            }))
+                          }
+                        />
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {currentStep === 6 ? (
+                <div>
+                  <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
+                    {getCopyValue(block.wizardCopy, 'timelineTitle')}
+                  </h2>
+                  <p className="mb-8 text-sm text-muted-foreground">
+                    {getCopyValue(block.wizardCopy, 'timelineDescription')}
+                  </p>
+
+                  <div className="space-y-8">
+                    <div>
+                      <label className="mb-3 block text-xs uppercase tracking-wider text-muted-foreground">
+                        {getCopyValue(block.wizardCopy, 'timelineLabel')}
+                      </label>
+
+                      <div className="flex flex-wrap gap-2">
+                        {block.timelineOptions?.map((option) =>
+                          option?.value && option?.label ? (
+                            <button
+                              key={option.value}
+                              type="button"
+                              onClick={() =>
+                                setData((prev) => ({ ...prev, timeline: option.value! }))
+                              }
+                              className={cn(
+                                'rounded-sm border px-4 py-2 text-sm transition-all',
+                                data.timeline === option.value
+                                  ? 'border-foreground bg-foreground text-background'
+                                  : 'border-border text-foreground hover:border-foreground/30',
+                              )}
+                            >
+                              {option.label}
+                            </button>
+                          ) : null,
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="mb-3 block text-xs uppercase tracking-wider text-muted-foreground">
+                        {getCopyValue(block.wizardCopy, 'budgetLabel')}
+                      </label>
+
+                      <div className="flex flex-wrap gap-2">
+                        {block.budgetOptions?.map((option) =>
+                          option?.value && option?.label ? (
+                            <button
+                              key={option.value}
+                              type="button"
+                              onClick={() =>
+                                setData((prev) => ({ ...prev, budget: option.value! }))
+                              }
+                              className={cn(
+                                'rounded-sm border px-4 py-2 text-sm transition-all',
+                                data.budget === option.value
+                                  ? 'border-foreground bg-foreground text-background'
+                                  : 'border-border text-foreground hover:border-foreground/30',
+                              )}
+                            >
+                              {option.label}
+                            </button>
+                          ) : null,
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+
+              {currentStep === 7 ? (
+                <div>
+                  <h2 className="mb-2 font-serif text-2xl font-medium text-foreground">
+                    {getCopyValue(block.wizardCopy, 'contactTitle')}
+                  </h2>
+                  <p className="mb-8 text-sm text-muted-foreground">
+                    {getCopyValue(block.wizardCopy, 'contactDescription')}
+                  </p>
+
+                  <div className="space-y-6">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
+                          {getCopyValue(block.wizardCopy, 'nameLabel')}
+                        </label>
+                        <Input
+                          value={data.name ?? ''}
+                          onChange={(e) =>
+                            setData((prev) => ({ ...prev, name: e.target.value }))
+                          }
+                          placeholder={getCopyValue(block.wizardCopy, 'namePlaceholder')}
+                          className={cn('h-10', rtl && 'text-right')}
+                          dir={isArabic ? 'rtl' : 'ltr'}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
+                          {getCopyValue(block.wizardCopy, 'emailLabel')}
+                        </label>
+                        <Input
+                          type="email"
+                          value={data.email ?? ''}
+                          onChange={(e) =>
+                            setData((prev) => ({ ...prev, email: e.target.value }))
+                          }
+                          placeholder={getCopyValue(block.wizardCopy, 'emailPlaceholder')}
+                          className="h-10"
+                          dir="ltr"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-3">
+                      {getCopyValue(block.wizardCopy, 'companyLabel') ? (
+                        <div>
+                          <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
+                            {getCopyValue(block.wizardCopy, 'companyLabel')}
+                          </label>
+                          <Input
+                            value={data.company ?? ''}
+                            onChange={(e) =>
+                              setData((prev) => ({ ...prev, company: e.target.value }))
+                            }
+                            placeholder={getCopyValue(block.wizardCopy, 'companyPlaceholder')}
+                            className={cn('h-10', rtl && 'text-right')}
+                            dir={isArabic ? 'rtl' : 'ltr'}
+                          />
+                        </div>
+                      ) : null}
+
+                      {getCopyValue(block.wizardCopy, 'roleLabel') ? (
+                        <div>
+                          <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
+                            {getCopyValue(block.wizardCopy, 'roleLabel')}
+                          </label>
+                          <Input
+                            value={data.role ?? ''}
+                            onChange={(e) =>
+                              setData((prev) => ({ ...prev, role: e.target.value }))
+                            }
+                            placeholder={getCopyValue(block.wizardCopy, 'rolePlaceholder')}
+                            className={cn('h-10', rtl && 'text-right')}
+                            dir={isArabic ? 'rtl' : 'ltr'}
+                          />
+                        </div>
+                      ) : null}
+
+                      {getCopyValue(block.wizardCopy, 'regionLabel') ? (
+                        <div>
+                          <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
+                            {getCopyValue(block.wizardCopy, 'regionLabel')}
+                          </label>
+                          <Input
+                            value={data.region ?? ''}
+                            onChange={(e) =>
+                              setData((prev) => ({ ...prev, region: e.target.value }))
+                            }
+                            placeholder={getCopyValue(block.wizardCopy, 'regionPlaceholder')}
+                            className={cn('h-10', rtl && 'text-right')}
+                            dir={isArabic ? 'rtl' : 'ltr'}
+                          />
+                        </div>
+                      ) : null}
+
+                      {!getCopyValue(block.wizardCopy, 'regionLabel') &&
+                      getCopyValue(block.wizardCopy, 'phoneLabelInline') ? (
+                        <div>
+                          <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
+                            {getCopyValue(block.wizardCopy, 'phoneLabelInline')}
+                          </label>
+                          <Input
+                            value={data.phone ?? ''}
+                            onChange={(e) =>
+                              setData((prev) => ({ ...prev, phone: e.target.value }))
+                            }
+                            placeholder={getCopyValue(block.wizardCopy, 'phonePlaceholder')}
+                            className="h-10"
+                            dir="ltr"
+                          />
+                        </div>
+                      ) : null}
+                    </div>
+
+                    {getCopyValue(block.wizardCopy, 'phoneLabel') ? (
+                      <div>
+                        <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
+                          {getCopyValue(block.wizardCopy, 'phoneLabel')}
+                        </label>
+                        <Input
+                          value={data.phone ?? ''}
+                          onChange={(e) =>
+                            setData((prev) => ({ ...prev, phone: e.target.value }))
+                          }
+                          placeholder={getCopyValue(block.wizardCopy, 'phonePlaceholder')}
+                          className="h-10"
+                          dir="ltr"
+                        />
+                      </div>
+                    ) : null}
+
+                    {getCopyValue(block.wizardCopy, 'commentLabel') ? (
+                      <div>
+                        <label className="mb-2 block text-xs uppercase tracking-wider text-muted-foreground">
+                          {getCopyValue(block.wizardCopy, 'commentLabel')}
+                        </label>
+                        <Textarea
+                          value={data.comment ?? ''}
+                          onChange={(e) =>
+                            setData((prev) => ({ ...prev, comment: e.target.value }))
+                          }
+                          placeholder={getCopyValue(block.wizardCopy, 'commentPlaceholder')}
+                          rows={locale === 'ru' ? 3 : 4}
+                          className={rtl ? 'text-right' : undefined}
+                          dir={isArabic ? 'rtl' : 'ltr'}
+                        />
+                      </div>
+                    ) : null}
+
+                    {showNoCall || showExpert || showNda ? (
+                      <div className="space-y-3 border-t border-border pt-4">
+                        {showNoCall ? (
+                          <label
+                            className={cn(
+                              'flex cursor-pointer items-start gap-3',
+                              rtl && 'flex-row-reverse',
+                            )}
+                          >
+                            <Checkbox
+                              checked={Boolean(data.noCallFirst)}
+                              onCheckedChange={(checked) =>
+                                setData((prev) => ({
+                                  ...prev,
+                                  noCallFirst: Boolean(checked),
+                                }))
+                              }
+                              className="mt-0.5"
+                            />
+                            <span className="text-sm text-foreground">
+                              {getCopyValue(block.wizardCopy, 'noCallLabel')}
+                            </span>
+                          </label>
+                        ) : null}
+
+                        {showExpert ? (
+                          <label
+                            className={cn(
+                              'flex cursor-pointer items-start gap-3',
+                              rtl && 'flex-row-reverse',
+                            )}
+                          >
+                            <Checkbox
+                              checked={Boolean(data.expertReview)}
+                              onCheckedChange={(checked) =>
+                                setData((prev) => ({
+                                  ...prev,
+                                  expertReview: Boolean(checked),
+                                }))
+                              }
+                              className="mt-0.5"
+                            />
+                            <span className="text-sm text-foreground">
+                              {getCopyValue(block.wizardCopy, 'expertReviewLabel')}
+                            </span>
+                          </label>
+                        ) : null}
+
+                        {showNda ? (
+                          <label
+                            className={cn(
+                              'flex cursor-pointer items-start gap-3',
+                              rtl && 'flex-row-reverse',
+                              locale !== 'ru' && 'rounded-sm border border-border p-4 hover:border-foreground/30',
+                            )}
+                          >
+                            <Checkbox
+                              checked={Boolean(data.nda)}
+                              onCheckedChange={(checked) =>
+                                setData((prev) => ({
+                                  ...prev,
+                                  nda: Boolean(checked),
+                                }))
+                              }
+                              className="mt-0.5"
+                            />
+
+                            <div>
+                              <span className="text-sm text-foreground">
+                                {getCopyValue(block.wizardCopy, 'ndaLabel')}
+                              </span>
+                              {getCopyValue(block.wizardCopy, 'ndaDescription') ? (
+                                <p className="mt-1 text-xs text-muted-foreground">
+                                  {getCopyValue(block.wizardCopy, 'ndaDescription')}
+                                </p>
+                              ) : null}
+                            </div>
+                          </label>
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+              ) : null}
+
+              {submitError ? (
+                <div className="mt-6 rounded-sm border border-destructive/20 bg-destructive/5 px-4 py-3 text-sm text-destructive">
+                  {submitError}
+                </div>
+              ) : null}
+
+              <div
+                className={cn(
+                  'mt-10 flex items-center justify-between border-t border-border pt-6',
+                  rtl && 'flex-row-reverse',
                 )}
-              </Button>
+              >
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  disabled={submitting}
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground disabled:opacity-50"
+                >
+                  {getCopyValue(
+                    block.wizardCopy,
+                    currentStep === 1 ? 'cancelLabel' : 'backLabel',
+                    currentStep === 1 ? 'Cancel' : 'Back',
+                  )}
+                </button>
+
+                <Button
+                  type="button"
+                  onClick={handleNext}
+                  disabled={submitting}
+                  className="h-10 bg-foreground px-6 text-[11px] uppercase tracking-[0.12em] text-background hover:bg-foreground/90 disabled:opacity-50"
+                >
+                  {submitting
+                    ? '...'
+                    : getCopyValue(
+                        block.wizardCopy,
+                        currentStep === totalSteps ? 'submitLabel' : 'nextLabel',
+                        currentStep === totalSteps ? 'Submit' : 'Continue',
+                      )}
+                  {rtl ? (
+                    <ArrowLeft className="mr-2 h-3.5 w-3.5" />
+                  ) : (
+                    <ArrowRight className="ml-2 h-3.5 w-3.5" />
+                  )}
+                </Button>
+              </div>
             </div>
           </div>
+
+          <WizardSidebar
+            block={block}
+            locale={locale}
+            currentStep={currentStep}
+            data={data}
+          />
         </div>
       </div>
     </section>
@@ -1270,7 +1620,7 @@ function UploadMaterialsView({
   return (
     <section className="py-8 lg:py-12">
       <div className="mx-auto max-w-3xl px-6 lg:px-8">
-        <div className="overflow-hidden rounded-sm border border-border bg-card">
+        <div className="rounded-sm border border-border bg-card">
           <div className="border-b border-border px-8 py-6">
             <button
               type="button"
@@ -1461,9 +1811,9 @@ function SuccessView({
         </div>
 
         <div className="mb-12 text-center">
-          <h2 className="mb-4 font-serif text-3xl font-light text-foreground sm:text-4xl lg:text-5xl">
+          <h1 className="mb-4 font-serif text-3xl font-light text-foreground sm:text-4xl lg:text-5xl">
             {getCopyValue(block.successCopy, 'title')}
-          </h2>
+          </h1>
           <p className="mx-auto max-w-xl text-lg text-muted-foreground">
             {getCopyValue(block.successCopy, 'description')}
           </p>
@@ -1482,18 +1832,13 @@ function SuccessView({
                   className={cn('flex gap-4', rtl && 'flex-row-reverse text-right')}
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary">
-                    <span className="text-xs font-medium text-foreground">
-                      {step.number}
-                    </span>
+                    <span className="text-xs font-medium text-foreground">{step.number}</span>
                   </div>
-
                   <div>
                     <div className="mb-1 text-sm font-medium text-foreground">
                       {step.title}
                     </div>
-                    <div className="text-xs text-muted-foreground">
-                      {step.description}
-                    </div>
+                    <div className="text-xs text-muted-foreground">{step.description}</div>
                   </div>
                 </div>
               ) : null,
@@ -1551,15 +1896,11 @@ function SuccessView({
           <p className="text-sm text-muted-foreground">
             {getCopyValue(block.successCopy, 'supportNotePrefix')}{' '}
             <a
-              href={`mailto:${getCopyValue(
-                block.successCopy,
-                'supportEmail',
-                'hello@atelier-meridian.com',
-              )}`}
+              href={`mailto:${getCopyValue(block.successCopy, 'supportEmail')}`}
               className="text-foreground hover:underline"
               dir="ltr"
             >
-              {getCopyValue(block.successCopy, 'supportEmail', 'hello@atelier-meridian.com')}
+              {getCopyValue(block.successCopy, 'supportEmail')}
             </a>
           </p>
         </div>
@@ -1570,7 +1911,6 @@ function SuccessView({
 
 export function ProposalFlowProposalBlockComponent({ block, locale }: Props) {
   const rtl = isRTL(locale)
-  const isArabic = locale === 'ar'
   const [activeView, setActiveView] = useState<ViewState>('intro')
 
   return (
@@ -1584,144 +1924,12 @@ export function ProposalFlowProposalBlockComponent({ block, locale }: Props) {
       ) : (
         <>
           {activeView === 'intro' ? (
-            <section className="py-12 lg:py-16">
-              <div className="mx-auto max-w-4xl px-6 lg:px-8">
-                <div className="grid gap-6 md:grid-cols-2">
-                  <div
-                    className={cn(
-                      'group relative rounded-sm border border-border bg-card p-8 transition-colors hover:border-accent/40',
-                      rtl && 'text-right',
-                    )}
-                  >
-                    <div className={cn('absolute top-6', isArabic ? 'left-6' : 'right-6')}>
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10">
-                        <FileText className="h-5 w-5 text-accent" />
-                      </div>
-                    </div>
-
-                    <div className={isArabic ? 'pl-14' : 'pr-14'}>
-                      <h3 className="mb-3 font-serif text-xl font-medium text-foreground">
-                        {getCopyValue(block.introCopy, 'briefCardTitle')}
-                      </h3>
-                      <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-                        {getCopyValue(block.introCopy, 'briefCardDescription')}
-                      </p>
-                    </div>
-
-                    <Button
-                      type="button"
-                      onClick={() => setActiveView('wizard')}
-                      className="h-10 bg-foreground px-6 text-[11px] uppercase tracking-[0.12em] text-background hover:bg-foreground/90"
-                    >
-                      {getCopyValue(block.introCopy, 'briefButtonLabel')}
-                      {rtl ? (
-                        <ArrowLeft className="mr-2 h-3.5 w-3.5" />
-                      ) : (
-                        <ArrowRight className="ml-2 h-3.5 w-3.5" />
-                      )}
-                    </Button>
-                  </div>
-
-                  <div
-                    className={cn(
-                      'group relative rounded-sm border border-border bg-card p-8 transition-colors hover:border-accent/40',
-                      rtl && 'text-right',
-                    )}
-                  >
-                    <div className={cn('absolute top-6', isArabic ? 'left-6' : 'right-6')}>
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary">
-                        <Upload className="h-5 w-5 text-muted-foreground" />
-                      </div>
-                    </div>
-
-                    <div className={isArabic ? 'pl-14' : 'pr-14'}>
-                      <h3 className="mb-3 font-serif text-xl font-medium text-foreground">
-                        {getCopyValue(block.introCopy, 'uploadCardTitle')}
-                      </h3>
-                      <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-                        {getCopyValue(block.introCopy, 'uploadCardDescription')}
-                      </p>
-                    </div>
-
-                    <Button
-                      type="button"
-                      onClick={() => setActiveView('upload')}
-                      variant="outline"
-                      className="h-10 border-foreground/20 px-6 text-[11px] uppercase tracking-[0.12em] text-foreground hover:bg-foreground/5"
-                    >
-                      {getCopyValue(block.introCopy, 'uploadButtonLabel')}
-                      {rtl ? (
-                        <ArrowLeft className="mr-2 h-3.5 w-3.5" />
-                      ) : (
-                        <ArrowRight className="ml-2 h-3.5 w-3.5" />
-                      )}
-                    </Button>
-                  </div>
-                </div>
-
-                <div className="mt-16 lg:mt-20">
-                  <div className="mb-8 flex items-center gap-4">
-                    <span className="h-px flex-1 bg-border/60" />
-                    <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground/70">
-                      {getCopyValue(block.introCopy, 'processEyebrow')}
-                    </span>
-                    <span className="h-px flex-1 bg-border/60" />
-                  </div>
-
-                  <div className="mb-10 text-center">
-                    <h3 className="mb-4 font-serif text-2xl font-light text-foreground lg:text-[1.75rem]">
-                      {getCopyValue(block.introCopy, 'processTitle')}
-                    </h3>
-                    <p className="mx-auto max-w-2xl text-sm leading-relaxed text-muted-foreground lg:text-base">
-                      {getCopyValue(block.introCopy, 'processDescription')}
-                    </p>
-                  </div>
-
-                  <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
-                    {block.introProcessSteps?.map((step, index) => {
-                      if (!step?.title || !step?.description) return null
-
-                      const iconKey =
-                        step.icon === 'arrowUpRight' && isArabic
-                          ? 'arrowUpLeft'
-                          : step.icon ?? 'target'
-
-                      const Icon = PROCESS_ICONS[iconKey] ?? Target
-
-                      return (
-                        <div
-                          key={`${step.title}-${index}`}
-                          className={cn(
-                            'relative rounded-sm border border-border/50 bg-secondary/30 p-5',
-                            rtl && 'text-right',
-                          )}
-                        >
-                          <div
-                            className={cn(
-                              'absolute top-4 text-[10px] font-medium text-muted-foreground/40',
-                              isArabic ? 'left-4' : 'right-4',
-                            )}
-                          >
-                            {String(index + 1).padStart(2, '0')}
-                          </div>
-
-                          <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background">
-                            <Icon className="h-4 w-4 text-foreground/70" />
-                          </div>
-
-                          <h4 className="mb-2 text-sm font-medium text-foreground">
-                            {step.title}
-                          </h4>
-                          <p className="text-xs leading-relaxed text-muted-foreground">
-                            {step.description}
-                          </p>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              </div>
-            </section>
+            <IntroView
+              block={block}
+              locale={locale}
+              onStartWizard={() => setActiveView('wizard')}
+              onStartUpload={() => setActiveView('upload')}
+            />
           ) : null}
 
           {activeView === 'wizard' ? (
@@ -1746,3 +1954,4 @@ export function ProposalFlowProposalBlockComponent({ block, locale }: Props) {
     </section>
   )
 }
+

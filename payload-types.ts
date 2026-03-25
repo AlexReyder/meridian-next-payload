@@ -1675,6 +1675,24 @@ export interface Page {
         blockType: 'proposalFlowProposal';
       }
     | {
+        title: string;
+        description: string;
+        uploadButtonLabel: string;
+        pricingButtonLabel: string;
+        pricingPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'finalSupportProposal';
+      }
+    | {
         eyebrow: string;
         title: string;
         description: string;
@@ -3309,6 +3327,17 @@ export interface PagesSelect<T extends boolean = true> {
                     description?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        finalSupportProposal?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              uploadButtonLabel?: T;
+              pricingButtonLabel?: T;
+              pricingPageKey?: T;
               id?: T;
               blockName?: T;
             };

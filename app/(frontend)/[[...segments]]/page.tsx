@@ -5,7 +5,7 @@ import { PageRenderer } from '@/components/cms/PageRenderer'
 import { getPayloadClient } from '@/lib/payload'
 import { getLocaleDirection, resolveLocaleAndPageKey } from '@/lib/routes'
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
 
 type Props = {
   params: Promise<{ segments?: string[] }> | { segments?: string[] }

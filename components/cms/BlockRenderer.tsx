@@ -67,6 +67,7 @@ import { type NavConceptItem, NavConceptsBlockComponent } from './blocks/concept
 import { ConceptSectionConceptBlockComponent } from './blocks/concepts/ConceptSectionConceptBlock'
 import { WhyConceptsBlockComponent } from './blocks/concepts/WhyConceptBlock'
 import { CtaConceptsBlockComponent } from './blocks/concepts/CtaConceptBlock'
+import { FinalSupportProposalBlockComponent } from './blocks/get-proposal/FinalSupportProposalBlock'
 
 type Props = {
   blocks: Array<Record<string, unknown>>
@@ -240,9 +241,16 @@ export function BlockRenderer({ blocks, locale }: Props) {
           )       
       case 'whyConcepts':
         return <WhyConceptsBlockComponent key={key} block={block} locale={locale} />
-
       case 'ctaConcepts':
-        return <CtaConceptsBlockComponent key={key} block={block} locale={locale} />          
+        return <CtaConceptsBlockComponent key={key} block={block} locale={locale} />     
+      case 'finalSupportProposal':
+        return (
+          <FinalSupportProposalBlockComponent
+            key={key}
+            block={block}
+            locale={locale}
+          />
+        )     
           default:
             return null
         }

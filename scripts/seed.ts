@@ -1094,6 +1094,246 @@ const PROPOSAL_FLOW_PROPOSAL_SEED: Record<Locale, BlockData> = {
   },
 }
 
+const TRUST_PROPOSAL_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'trustProposal',
+    title: 'Структурный intake для сложных digital-проектов',
+    description: 'Формат работы, который подходит для серьёзных продуктовых задач',
+    items: [
+      {
+        icon: 'layers',
+        title: 'Подходит для сложных workflow',
+        description: 'Структурируем многоуровневые процессы, role-based системы и enterprise-задачи',
+      },
+      {
+        icon: 'users',
+        title: 'Удобно для startup, B2B и enterprise',
+        description: 'Работаем с founders, product teams, агентствами и integrators',
+      },
+      {
+        icon: 'building2',
+        title: 'Поддерживает white-label модель',
+        description: 'Готовим материалы под бренд клиента для агентств и партнёров',
+      },
+      {
+        icon: 'arrowRightLeft',
+        title: 'Упрощает передачу в разработку',
+        description: 'Формируем build-ready материалы и документацию для разработки',
+      },
+    ],
+  },
+
+  en: {
+    blockType: 'trustProposal',
+    title: 'A structured start for complex digital work',
+    description: 'A format designed for teams that want clarity without unnecessary sales friction',
+    items: [
+      {
+        icon: 'layers',
+        title: 'Built for complex workflows',
+        description: 'We structure multi-layered processes, role-based systems, and enterprise-level tasks',
+      },
+      {
+        icon: 'users',
+        title: 'Works for startups, B2B, and enterprise',
+        description: 'We collaborate with founders, product teams, agencies, and integrators',
+      },
+      {
+        icon: 'building2',
+        title: 'Supports white-label model',
+        description: "We prepare materials under your client's brand for agencies and partners",
+      },
+      {
+        icon: 'arrowRightLeft',
+        title: 'Simplifies dev handoff',
+        description: 'We create build-ready materials and documentation for development teams',
+      },
+    ],
+  },
+
+  ar: {
+    blockType: 'trustProposal',
+    title: 'بداية منظمة للمشاريع الرقمية المعقدة',
+    description: 'صُممت هذه الصفحة للفرق التي تحتاج إلى وضوح من دون احتكاك بيعي غير ضروري',
+    items: [
+      {
+        icon: 'layers',
+        title: 'مصمم للعمليات المعقدة',
+        description: 'نهيكل العمليات متعددة الطبقات والأنظمة القائمة على الأدوار والمهام على مستوى المؤسسات',
+      },
+      {
+        icon: 'users',
+        title: 'يعمل للشركات الناشئة وB2B والمؤسسات',
+        description: 'نتعاون مع المؤسسين وفرق المنتجات والوكالات وشركاء التكامل',
+      },
+      {
+        icon: 'building2',
+        title: 'يدعم نموذج White-label',
+        description: 'نعد المواد تحت علامتك التجارية للوكالات والشركاء',
+      },
+      {
+        icon: 'arrowRightLeft',
+        title: 'يسهل تسليم التطوير',
+        description: 'ننشىء مواد ووثائق جاهزة للتطوير لفرق البرمجة',
+      },
+    ],
+    supportPoints: [
+      { label: 'لا حاجة إلى مكالمة إلزامية في البداية' },
+      { label: 'مناسب للمواقع والأنظمة وتطبيقات الجوال' },
+      { label: 'توصية واضحة بعد المراجعة' },
+    ],
+  },
+}
+
+const FAQ_PROPOSAL_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'faqProposal',
+    title: 'Частые вопросы',
+    items: [
+      {
+        question: 'Что я получу после отправки brief?',
+        answer: 'Вы получите структурированное предложение с рекомендацией по формату работы, ориентиром по срокам и стартовой стоимостью. Если потребуется уточнение — мы свяжемся с вами напрямую.',
+      },
+      {
+        question: 'Можно ли работать без звонков?',
+        answer: 'Да. Мы поддерживаем no-call-first формат. Большинство вопросов решается через brief, email и asynchronous коммуникацию. Звонок нужен только для сложных случаев, и только по согласованию.',
+      },
+      {
+        question: 'Поддерживаете ли вы white-label формат?',
+        answer: 'Да. Мы работаем с агентствами, integrators и консультантами, которые готовят материалы для своих клиентов. Все артефакты могут быть под ваш бренд.',
+      },
+      {
+        question: 'Можно ли прийти с rough notes или старой системой?',
+        answer: 'Да. Вы можете загрузить любые материалы — заметки, screenshots, старые экраны, PRD или просто описание. Мы поможем структурировать проект с того места, где вы находитесь.',
+      },
+      {
+        question: 'Работаете ли вы с multilingual-продуктами и Arabic / RTL?',
+        answer: 'Да. У нас есть опыт работы с многоязычными продуктами, включая арабский язык и RTL-интерфейсы. Это учитывается в оценке сложности.',
+      },
+      {
+        question: 'Подписываете ли вы NDA?',
+        answer: 'Да. Если вам нужно защитить чувствительную информацию до отправки материалов — укажите это в форме, и мы подготовим NDA.',
+      },
+      {
+        question: 'Получу ли я сразу фиксированную цену?',
+        answer: 'Вы получите стартовую стоимость и ориентир. Финальная цена зависит от глубины проработки, числа ролей, модулей и дополнительных требований. Мы не начинаем работу без согласованного scope.',
+      },
+      {
+        question: 'Что делать, если я не уверен, какой формат мне нужен?',
+        answer: 'Заполните brief или загрузите материалы — мы предложим подходящий формат на основе ваших задач, сроков и бюджета.',
+      },
+    ],
+  },
+
+  en: {
+    blockType: 'faqProposal',
+    title: 'Frequently Asked Questions',
+    items: [
+      {
+        question: 'Do I need to book a call first?',
+        answer: 'No. We support a no-call-first format. You can start by submitting a brief or uploading materials. Most questions are resolved through email and asynchronous communication. A call is only needed for complex cases, and only by mutual agreement.',
+      },
+      {
+        question: 'Can I start with rough notes or links?',
+        answer: 'Absolutely. You can upload any materials you have — notes, screenshots, existing screens, PRD, or just a description. We will help structure your project from wherever you are.',
+      },
+      {
+        question: 'What if the scope is still unclear?',
+        answer: 'That is perfectly fine. Fill in the brief or upload what you have — we will help clarify the scope and recommend an appropriate format of work based on your goals and constraints.',
+      },
+      {
+        question: 'Is this suitable for redesign projects?',
+        answer: 'Yes. We work with website redesigns, digital product redesigns, and UX/UI improvements. You can share existing screens, user feedback, or analytics, and we will structure the improvement plan.',
+      },
+      {
+        question: 'Can agencies and integrators use this page too?',
+        answer: 'Yes. We work with agencies, integrators, and consultants who prepare materials for their own clients. All deliverables can be white-labeled under your brand.',
+      },
+      {
+        question: 'What happens after I submit?',
+        answer: 'We review your brief or materials, identify the right format of work, estimate a timeline range and starting price direction, and propose the most practical next step.',
+      },
+      {
+        question: 'Do you sign NDAs?',
+        answer: 'Yes. If you need to protect sensitive information before sharing materials, indicate this in the form and we will prepare an NDA for your review.',
+      },
+      {
+        question: 'How quickly do you respond?',
+        answer: 'Most submissions receive a response within 1–2 business days. Complex requests may take slightly longer as we prepare a thoughtful recommendation.',
+      },
+    ],
+  },
+
+  ar: {
+    blockType: 'faqProposal',
+    title: 'الأسئلة الشائعة',
+    items: [
+      {
+        question: 'هل أحتاج إلى حجز مكالمة أولاً؟',
+        answer: 'لا. ندعم صيغة بدون مكالمة أولية. يمكنك البدء بإرسال brief أو رفع مواد. معظم الأسئلة تُحل عبر البريد الإلكتروني والتواصل غير المتزامن. المكالمة تُطلب فقط للحالات المعقدة وبالاتفاق المتبادل.',
+      },
+      {
+        question: 'هل يمكنني البدء من خلال ملاحظات أولية أو روابط فقط؟',
+        answer: 'بالتأكيد. يمكنك رفع أي مواد متوفرة لديك — ملاحظات، لقطات شاشة، شاشات قائمة، PRD، أو مجرد وصف. سنساعدك على هيكلة مشروعك من أي نقطة بداية.',
+      },
+      {
+        question: 'ماذا لو كان نطاق المشروع غير واضح بعد؟',
+        answer: 'هذا طبيعي تماماً. املأ الـ brief أو ارفع ما لديك — سنساعدك على توضيح النطاق والتوصية بصيغة عمل مناسبة بناءً على أهدافك وقيودك.',
+      },
+      {
+        question: 'هل هذه الصفحة مناسبة لمشاريع إعادة التصميم؟',
+        answer: 'نعم. نعمل على إعادة تصميم المواقع والمنتجات الرقمية وتحسينات UX/UI. يمكنك مشاركة الشاشات الحالية أو ملاحظات المستخدمين أو التحليلات، وسنقوم بهيكلة خطة التحسين.',
+      },
+      {
+        question: 'هل يمكن للوكالات وشركاء التنفيذ استخدام هذه الصفحة أيضاً؟',
+        answer: 'نعم. نعمل مع الوكالات وشركات التكامل والمستشارين الذين يحضّرون مواد لعملائهم. جميع المخرجات يمكن تقديمها تحت علامتك التجارية (White-label).',
+      },
+      {
+        question: 'ماذا يحدث بعد أن أرسل الطلب؟',
+        answer: 'نراجع الـ brief أو المواد، نحدد صيغة العمل المناسبة، نقدر نطاقاً زمنياً واتجاهاً أولياً للسعر، ونقترح الخطوة التالية الأكثر عملية.',
+      },
+      {
+        question: 'هل توقّعون NDA؟',
+        answer: 'نعم. إذا كنت بحاجة إلى حماية معلومات حساسة قبل مشاركة المواد، أشر إلى ذلك في النموذج وسنعد NDA لمراجعتك.',
+      },
+      {
+        question: 'كم تستغرقون عادة للرد؟',
+        answer: 'معظم الطلبات تتلقى رداً خلال 1-2 يوم عمل. الطلبات المعقدة قد تستغرق وقتاً أطول قليلاً لأننا نعد توصية مدروسة.',
+      },
+    ],
+  },
+}
+
+const FINAL_SUPPORT_PROPOSAL_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'finalSupportProposal',
+    title: 'Не хотите заполнять всё вручную?',
+    description:
+      'Пришлите материалы проекта — мы всё равно сможем подготовить структурированное предложение.',
+    uploadButtonLabel: 'Загрузить материалы',
+    pricingButtonLabel: 'Посмотреть форматы работы',
+    pricingPageKey: 'pricing',
+  },
+  en: {
+    blockType: 'finalSupportProposal',
+    title: "Don't want to fill everything manually?",
+    description:
+      "Send over your project materials — we'll still be able to prepare a structured proposal.",
+    uploadButtonLabel: 'Upload Materials',
+    pricingButtonLabel: 'View Work Formats',
+    pricingPageKey: 'pricing',
+  },
+  ar: {
+    blockType: 'finalSupportProposal',
+    title: 'لا تريد تعبئة كل شيء يدوياً؟',
+    description:
+      'أرسل مواد المشروع وسنظل قادرين على إعداد عرض منظم ومناسب لك.',
+    uploadButtonLabel: 'ارفع المواد',
+    pricingButtonLabel: 'اطلع على صيغ العمل',
+    pricingPageKey: 'pricing',
+  },
+}
+
 function upsertBlock(layout: BlockData[], block: BlockData): BlockData[] {
   const existingIndex = layout.findIndex(
     (item) => item?.blockType === block?.blockType,
@@ -1162,7 +1402,7 @@ async function seedProposalFlowProposalForLocale(
     locale,
     depth: 0,
     data: {
-      layout: upsertBlock(layout, PROPOSAL_FLOW_PROPOSAL_SEED[locale]),
+      layout: upsertBlock(layout, FINAL_SUPPORT_PROPOSAL_SEED[locale]),
     },
   })
 }

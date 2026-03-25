@@ -68,9 +68,18 @@ import { NavConceptsBlock } from '@/blocks/concepts/NavConceptsBlock'
 import { ConceptSectionConceptBlock } from '@/blocks/concepts/ConceptSectionConceptBlock'
 import { WhyConceptsBlock } from '@/blocks/concepts/WhyConceptsBlock'
 import { CtaConceptsBlock } from '@/blocks/concepts/CtaConceptBlock'
+import { FinalSupportProposalBlock } from '@/blocks/get-proposal/FinalSupportProposalBlock'
+import { revalidatePath } from 'next/cache'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  hooks: {
+      afterChange: [
+      ({ doc }) => {
+        revalidatePath(`/${doc.slug}`)
+      },
+    ],
+  },
   access: {
     read: () => true,
   },
@@ -178,6 +187,7 @@ export const Pages: CollectionConfig = {
         TrustProposalBlock,
         FaqProposalBlock,
         ProposalFlowProposalBlock,
+        FinalSupportProposalBlock,
         //concepts
         HeroConceptsBlock,
         IntroConceptsBlock,
