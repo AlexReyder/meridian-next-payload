@@ -6,772 +6,1097 @@ import { getPayload } from 'payload'
 type Locale = 'ru' | 'en' | 'ar'
 type BlockData = Record<string, any>
 
-const STARTUPS_PAGE_KEY = 'concepts'
+const GET_PROPOSAL_PAGE_KEY = 'get-proposal'
 
-// const CTA_CONCEPTS_SEED: Record<Locale, BlockData> = {
-//   ru: {
-//     blockType: 'ctaConcepts',
-//     title: 'Хотите такой же уровень проработки для своего проекта?',
-//     description:
-//       'Опишите задачу — мы предложим подходящий формат работы, ориентир по срокам и следующий шаг.',
-//     primaryButtonLabel: 'Получить предложение',
-//     primaryPageKey: 'get-proposal',
-//     secondaryButtonLabel: 'Посмотреть цены',
-//     secondaryPageKey: 'pricing',
-//     footerNote:
-//       'Подходит для сайтов, digital-систем, client portals, dashboards, startup landing pages и mobile apps.',
-//   },
-//   en: {
-//     blockType: 'ctaConcepts',
-//     title: 'Want this level of clarity and presentation for your project?',
-//     description:
-//       'Tell us what you are building, and we will recommend the right format, timeline range, and next step.',
-//     primaryButtonLabel: 'Get Proposal',
-//     primaryPageKey: 'get-proposal',
-//     secondaryButtonLabel: 'View Pricing',
-//     secondaryPageKey: 'pricing',
-//     footerNote:
-//       'Suitable for websites, digital systems, client portals, dashboards, startup landing pages, and mobile apps.',
-//   },
-//   ar: {
-//     blockType: 'ctaConcepts',
-//     title: 'هل تريد هذا المستوى من الوضوح والعرض لمشروعك؟',
-//     description:
-//       'أخبرنا بما تعمل عليه، وسنقترح عليك الصيغة المناسبة للعمل، والنطاق الزمني المتوقع، والخطوة التالية.',
-//     primaryButtonLabel: 'اطلب عرضاً',
-//     primaryPageKey: 'get-proposal',
-//     secondaryButtonLabel: 'اطلع على الأسعار',
-//     secondaryPageKey: 'pricing',
-//     footerNote:
-//       'مناسب للمواقع، والأنظمة الرقمية، وبوابات العملاء، ولوحات التحكم، وصفحات الشركات الناشئة، وتطبيقات الجوال.',
-//   },
-// }
-// const WHY_CONCEPTS_SEED: Record<Locale, BlockData> = {
-//   ru: {
-//     blockType: 'whyConcepts',
-//     eyebrow: 'Зачем это важно',
-//     title: 'Зачем мы показываем студийные концепты',
-//     description:
-//       'Студийные концепты позволяют показать не только визуальный уровень, но и способ мышления. Они помогают увидеть, как мы собираем продукт из целей, ролей, сценариев, экранной структуры и interface-направления ещё до начала разработки.',
-//     items: [
-//       {
-//         icon: 'search',
-//         title: 'Показывают глубину проработки',
-//         description:
-//           'Каждый концепт содержит продуктовую логику, сценарии и структуру — не только визуальную подачу.',
-//       },
-//       {
-//         icon: 'layers',
-//         title: 'Демонстрируют продуктовую логику',
-//         description:
-//           'Роли, workflow, экранная архитектура и приоритеты — то, что стоит за каждым интерфейсом.',
-//       },
-//       {
-//         icon: 'monitor',
-//         title: 'Помогают понять уровень интерфейсной подачи',
-//         description:
-//           'Визуальное качество, типографика, spacing и внимание к деталям определяют восприятие продукта.',
-//       },
-//       {
-//         icon: 'fileText',
-//         title: 'Дают представление о том, что получает клиент',
-//         description:
-//           'Prototype, структура, visual direction и материалы для передачи в разработку.',
-//       },
-//     ],
-//   },
-//   en: {
-//     blockType: 'whyConcepts',
-//     eyebrow: 'Why This Matters',
-//     title: 'Why we show studio concepts',
-//     description:
-//       'Studio concepts show more than visual taste. They show how we think — how we turn goals, roles, user flows, screen structure, and interface direction into a coherent product story before development begins.',
-//     items: [
-//       {
-//         icon: 'search',
-//         title: 'They show the depth of thinking',
-//         description:
-//           'Each concept contains product logic, scenarios, and structure — not just visual presentation.',
-//       },
-//       {
-//         icon: 'layers',
-//         title: 'They demonstrate product logic',
-//         description:
-//           'Roles, workflows, screen architecture, and priorities — what stands behind every interface.',
-//       },
-//       {
-//         icon: 'monitor',
-//         title: 'They reveal interface quality',
-//         description:
-//           'Visual quality, typography, spacing, and attention to detail define the perception of the product.',
-//       },
-//       {
-//         icon: 'fileText',
-//         title: 'They make the outputs more tangible',
-//         description:
-//           'Prototype, structure, visual direction, and materials for development handoff.',
-//       },
-//     ],
-//   },
-//   ar: {
-//     blockType: 'whyConcepts',
-//     eyebrow: 'لماذا هذا مهم',
-//     title: 'لماذا نعرض مفاهيم الاستوديو',
-//     description:
-//       'مفاهيم الاستوديو لا تُظهر المستوى البصري فقط، بل تُظهر أيضاً طريقة التفكير. فهي تساعد على فهم كيف نجمع المنتج من الأهداف، والأدوار، ومسارات المستخدم، وهيكل الشاشات، واتجاه الواجهة قبل بدء التطوير.',
-//     items: [
-//       {
-//         icon: 'search',
-//         title: 'تُظهر عمق التفكير',
-//         description:
-//           'كل concept يتضمن منطق المنتج، والسيناريوهات، والهيكل — وليس العرض البصري فقط.',
-//       },
-//       {
-//         icon: 'layers',
-//         title: 'تُظهر منطق المنتج',
-//         description:
-//           'الأدوار، ومسارات العمل، وهيكل الشاشات، والأولويات — كل ما يقف خلف كل واجهة.',
-//       },
-//       {
-//         icon: 'monitor',
-//         title: 'تكشف مستوى جودة الواجهة',
-//         description:
-//           'الجودة البصرية، والطباعة، والمسافات، والانتباه للتفاصيل — كلها تحدد كيفية إدراك المنتج.',
-//       },
-//       {
-//         icon: 'fileText',
-//         title: 'تجعل المخرجات أكثر وضوحاً',
-//         description:
-//           'النموذج الأولي، والهيكل، والاتجاه البصري، ومواد التسليم للتطوير.',
-//       },
-//     ],
-//   },
-// }
-
-const NAV_CONCEPTS_SEED: Record<Locale, BlockData> = {
+const PROPOSAL_FLOW_PROPOSAL_SEED: Record<Locale, BlockData> = {
   ru: {
-    blockType: 'navConcepts',
-    label: 'Концепты:',
-    items: [
-      { anchorId: 'b2b-platform', shortLabel: 'B2B-платформа', number: '01' },
-      { anchorId: 'mobile-app', shortLabel: 'Мобильное приложение', number: '02' },
-      { anchorId: 'client-portal', shortLabel: 'Клиентский портал', number: '03' },
-      { anchorId: 'b2b-website', shortLabel: 'Корпоративный сайт', number: '04' },
-      { anchorId: 'startup-landing', shortLabel: 'Startup landing', number: '05' },
-      { anchorId: 'saas-interface', shortLabel: 'SaaS-интерфейс', number: '06' },
-      { anchorId: 'booking-platform', shortLabel: 'Booking interface', number: '07' },
-    ],
-  },
-  en: {
-    blockType: 'navConcepts',
-    label: 'Concepts:',
-    items: [
-      { anchorId: 'b2b-platform', shortLabel: 'B2B Platform', number: '01' },
-      { anchorId: 'mobile-app', shortLabel: 'Mobile App', number: '02' },
-      { anchorId: 'client-portal', shortLabel: 'Client Portal', number: '03' },
-      { anchorId: 'b2b-website', shortLabel: 'B2B Website', number: '04' },
-      { anchorId: 'startup-landing', shortLabel: 'Startup Landing', number: '05' },
-      { anchorId: 'saas-interface', shortLabel: 'SaaS Interface', number: '06' },
-      { anchorId: 'booking-platform', shortLabel: 'Booking Platform', number: '07' },
-    ],
-  },
-  ar: {
-    blockType: 'navConcepts',
-    label: 'المفاهيم:',
-    items: [
-      { anchorId: 'b2b-platform', shortLabel: 'منصة B2B', number: '٠١' },
-      { anchorId: 'mobile-app', shortLabel: 'تطبيق جوال', number: '٠٢' },
-      { anchorId: 'client-portal', shortLabel: 'بوابة العميل', number: '٠٣' },
-      { anchorId: 'b2b-website', shortLabel: 'موقع B2B', number: '٠٤' },
-      { anchorId: 'startup-landing', shortLabel: 'Landing للشركات الناشئة', number: '٠٥' },
-      { anchorId: 'saas-interface', shortLabel: 'واجهة SaaS', number: '٠٦' },
-      { anchorId: 'booking-platform', shortLabel: 'منصة حجز', number: '٠٧' },
-    ],
-  },
-}
+    blockType: 'proposalFlowProposal',
 
-const CONCEPT_SECTION_CONCEPT_SEED: Record<Locale, BlockData[]> = {
-  ru: [
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'b2b-platform',
-      sectionNumber: '01',
-      categoryLabel: 'ДИЗАЙН B2B-СИСТЕМ',
-      title: 'B2B-платформа и внутренняя система',
-      intro: 'Концепт для сложной операционной среды, где важно собрать workflow, роли, статусы и логику работы команды в одну понятную digital-систему.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/B2B-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%D0%B8%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0-nfjB6TIcpHm2krsv9QxEOV6JqBP6jO.png',
-      challengeLabel: 'Задача',
-      challenge: 'Собрать в единую digital-систему сложный операционный workflow с несколькими ролями, сценариями согласования и dashboard-логикой.',
-      structuredLabel: 'Что структурировали',
-      structured: 'Роли и права доступа, ключевые пользовательские сценарии, экранную карту продукта, логику модулей и повседневные сценарии работы команды.',
-      deliveredLabel: 'Что подготовили',
-      delivered: 'Premium prototype, визуальную систему интерфейсов, структуру ключевых экранов и материалы для передачи в разработку.',
-      suitableForLabel: 'Подходит для:',
-      suitableFor: 'B2B-платформ, внутренних систем, operational tools и complex admin interfaces.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'Получить предложение',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'mobile-app',
-      sectionNumber: '02',
-      categoryLabel: 'ДИЗАЙН МОБИЛЬНЫХ ПРИЛОЖЕНИЙ',
-      title: 'Дизайн мобильного приложения',
-      intro: 'Концепт mobile-first продукта, собранный так, чтобы его можно было показать инвестору, использовать в pitch или взять как основу для следующего этапа разработки.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%94%D0%B8%D0%B7%D0%B0%D0%B8%CC%86%D0%BD%20%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F-WPXYUHUvoGBadJ6HNUNIFKIWraf70B.png',
-      challengeLabel: 'Задача',
-      challenge: 'Упаковать fintech-продукт в понятный mobile-first формат, который можно показать инвесторам и использовать как основу для следующего этапа product delivery.',
-      structuredLabel: 'Что структурировали',
-      structured: 'Пользовательские сценарии, onboarding flow, логику финансовых экранов, приоритетные модули и структуру mobile app.',
-      deliveredLabel: 'Что подготовили',
-      delivered: 'Investor-ready prototype, визуальное направление, ключевые экраны приложения и материалы для следующего этапа разработки.',
-      suitableForLabel: 'Подходит для:',
-      suitableFor: 'Mobile apps, MVP, investor-ready concept и redesign мобильных продуктов.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageRight',
-      ctaLabel: 'Получить предложение',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'client-portal',
-      sectionNumber: '03',
-      categoryLabel: 'PORTAL & DASHBOARD DESIGN',
-      title: 'Клиентский портал и dashboard',
-      intro: 'Концепт сервиса, где сложный процесс превращён в понятный client portal с прозрачной навигацией, статусами, workflow-логикой и role-based структурой.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9A%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D1%81%D0%BA%D0%B8%D0%B8%CC%86%20%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D0%BB%20%D0%B8%20dashboard-JlI8wKPt6UWq4rRVcyFQXwBsL2XAHb.png',
-      challengeLabel: 'Задача',
-      challenge: 'Превратить сложный сервисный процесс в понятный client portal с прозрачной навигацией, workflow-логикой и role-based структурой.',
-      structuredLabel: 'Что структурировали',
-      structured: 'Архитектуру portal, пользовательские сценарии, статусы сервисных запросов, экранную матрицу и ключевые точки взаимодействия.',
-      deliveredLabel: 'Что подготовили',
-      delivered: 'Структуру интерфейсов, prototype ключевых экранов, UI-направление и пакет материалов для передачи в разработку.',
-      suitableForLabel: 'Подходит для:',
-      suitableFor: 'Service portals, account areas, dashboards и внутренних сервисных интерфейсов.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'Получить предложение',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'b2b-website',
-      sectionNumber: '04',
-      categoryLabel: 'ДИЗАЙН САЙТОВ',
-      title: 'Корпоративный сайт для B2B-компании',
-      intro: 'Концепт корпоративного сайта, который помогает premium B2B-компании ясно объяснить сложный сервис, усилить доверие и сделать первый контакт с брендом более убедительным.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%81%D0%B0%D0%B8%CC%86%D1%82%20%D0%B4%D0%BB%D1%8F%20premium%20B2B-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8-6RgbOJ9HFWZMTpHDeV3gRjnxMU9UZF.png',
-      challengeLabel: 'Задача',
-      challenge: 'Создать корпоративный сайт, который выглядит premium, ясно объясняет сложный сервис и усиливает доверие к компании на этапе первого контакта.',
-      structuredLabel: 'Что структурировали',
-      structured: 'Архитектуру сайта, иерархию смысловых блоков, логику ключевых страниц, сценарии навигации и подачу сложного B2B-предложения.',
-      deliveredLabel: 'Что подготовили',
-      delivered: 'Визуальную концепцию сайта, структуру основных страниц, UI-систему для web-интерфейса и материалы для передачи в разработку.',
-      suitableForLabel: 'Подходит для:',
-      suitableFor: 'B2B-компаний, integrators, outsourcing-команд, технологических сервисов и premium corporate websites.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageRight',
-      ctaLabel: 'Получить предложение',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'startup-landing',
-      sectionNumber: '05',
-      categoryLabel: 'STARTUP WEBSITE DESIGN',
-      title: 'Investor-ready landing page для startup-продукта',
-      intro: 'Концепт landing page для раннего продукта, собранный так, чтобы идею было проще объяснить инвестору, партнёру и первым пользователям.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Investor-ready%20landing%20page%20%D0%B4%D0%BB%D1%8F%20startup-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-b85KxA9lUQySVtGgn38fMd2GX2STAN.png',
-      challengeLabel: 'Задача',
-      challenge: 'Упаковать ранний продукт в landing page, который помогает быстро объяснить идею, ценность и сценарий продукта инвестору, партнёру или первым клиентам.',
-      structuredLabel: 'Что структурировали',
-      structured: 'Логику первого экрана, narrative продукта, порядок смысловых блоков, ключевые proof points и визуальную подачу startup-концепции.',
-      deliveredLabel: 'Что подготовили',
-      delivered: 'Landing page concept, структуру сайта, визуальное направление и набор ключевых экранов для запуска или презентации.',
-      suitableForLabel: 'Подходит для:',
-      suitableFor: 'Startup-сайтов, pre-seed / seed продуктов, launch pages, investor presentation и early-stage positioning.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'Получить предложение',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'saas-interface',
-      sectionNumber: '06',
-      categoryLabel: 'WEB PRODUCT DESIGN',
-      title: 'SaaS-интерфейс для web-продукта',
-      intro: 'Концепт интерфейса для web-продукта, где важно собрать сложную функциональность в понятную, масштабируемую и продуктово зрелую систему.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SaaS-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B8%CC%86%D1%81%20%D0%B4%D0%BB%D1%8F%20web-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-ypxGBLA8NjWgvW2cxBxjUL68xoXEGf.png',
-      challengeLabel: 'Задача',
-      challenge: 'Собрать интерфейс web-продукта так, чтобы сложная функциональность выглядела понятно, современно и была готова к росту по модулям и ролям.',
-      structuredLabel: 'Что структурировали',
-      structured: 'Ключевые пользовательские сценарии, экранную архитектуру, продуктовые модули, приоритетные workflows и иерархию основных разделов.',
-      deliveredLabel: 'Что подготовили',
-      delivered: 'Prototype web-продукта, структуру ключевых экранов, базовую систему компонентов и материалы для передачи в разработку.',
-      suitableForLabel: 'Подходит для:',
-      suitableFor: 'SaaS, dashboards, web products, startup software и B2B digital tools.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageRight',
-      ctaLabel: 'Получить предложение',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'booking-platform',
-      sectionNumber: '07',
-      categoryLabel: 'SERVICE PLATFORM DESIGN',
-      title: 'Сервисная платформа / booking interface',
-      intro: 'Концепт customer-facing платформы, где сложный сервис превращён в понятный поиск, выбор, booking flow и прозрачный путь пользователя.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%3A%20booking%20interface-LmkTbFEVKsDBsJTHI6LSbVWUfH0eCy.png',
-      challengeLabel: 'Задача',
-      challenge: 'Превратить сложный клиентский сервис в понятный digital-продукт с прозрачным поиском, выбором, booking flow и личным кабинетом.',
-      structuredLabel: 'Что структурировали',
-      structured: 'Путь пользователя от выбора до бронирования, логику сервиса, ключевые точки принятия решения, статусы, экранную карту и сценарии повторного взаимодействия.',
-      deliveredLabel: 'Что подготовили',
-      delivered: 'Структуру платформы, prototype ключевых flows, UI-направление и материалы для следующего этапа продукта.',
-      suitableForLabel: 'Подходит для:',
-      suitableFor: 'Service marketplaces, booking platforms, customer portals и digital products with transaction flow.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'Получить предложение',
-      ctaPageKey: 'get-proposal',
-    },
-  ],
-
-  en: [
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'b2b-platform',
-      sectionNumber: '01',
-      categoryLabel: 'B2B SYSTEM DESIGN',
-      title: 'B2B Platform & Internal System',
-      intro: 'A concept built for a complex operational environment where workflows, roles, approvals, and team logic need to come together inside one clear digital system.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/B2B-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%D0%B8%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0-nfjB6TIcpHm2krsv9QxEOV6JqBP6jO.png',
-      challengeLabel: 'Challenge',
-      challenge: 'Turn a complex operational workflow into one coherent system with multiple user roles, approval paths, and dashboard logic.',
-      structuredLabel: 'What We Structured',
-      structured: 'Roles and permissions, key user flows, the product screen map, module logic, and the day-to-day scenarios the team needs to work through.',
-      deliveredLabel: 'What We Prepared',
-      delivered: 'A premium prototype, interface system direction, the structure of the key screens, and materials for development.',
-      suitableForLabel: 'Suitable for:',
-      suitableFor: 'B2B platforms, internal systems, operational tools, and complex admin interfaces.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'Get Proposal',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'mobile-app',
-      sectionNumber: '02',
-      categoryLabel: 'MOBILE APP DESIGN',
-      title: 'Mobile App Design',
-      intro: 'A mobile-first concept shaped so it can be shown to investors, used in a pitch, or taken forward as a credible base for the next development stage.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%94%D0%B8%D0%B7%D0%B0%D0%B8%CC%86%D0%BD%20%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F-WPXYUHUvoGBadJ6HNUNIFKIWraf70B.png',
-      challengeLabel: 'Challenge',
-      challenge: 'Package a fintech product into a clear mobile-first format that can be shown to investors and used as the basis for the next delivery stage.',
-      structuredLabel: 'What We Structured',
-      structured: 'User flows, onboarding flow, the logic of the financial screens, priority modules, and the overall mobile app structure.',
-      deliveredLabel: 'What We Prepared',
-      delivered: 'An investor-ready prototype, visual direction, key app screens, and materials for the next stage of development.',
-      suitableForLabel: 'Suitable for:',
-      suitableFor: 'Mobile apps, MVPs, investor-ready concepts, and redesign of existing mobile products.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageRight',
-      ctaLabel: 'Get Proposal',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'client-portal',
-      sectionNumber: '03',
-      categoryLabel: 'PORTAL & DASHBOARD DESIGN',
-      title: 'Client Portal & Dashboard',
-      intro: 'A service concept where a complex process is turned into a clear client portal with transparent navigation, status logic, workflow structure, and role-based access.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9A%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D1%81%D0%BA%D0%B8%D0%B8%CC%86%20%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D0%BB%20%D0%B8%20dashboard-JlI8wKPt6UWq4rRVcyFQXwBsL2XAHb.png',
-      challengeLabel: 'Challenge',
-      challenge: 'Turn a complex service process into a clear client portal with transparent navigation, workflow logic, and role-based structure.',
-      structuredLabel: 'What We Structured',
-      structured: 'The portal architecture, user scenarios, service request statuses, the screen matrix, and the key interaction points.',
-      deliveredLabel: 'What We Prepared',
-      delivered: 'The interface structure, a prototype of the key screens, UI direction, and a package of materials for development.',
-      suitableForLabel: 'Suitable for:',
-      suitableFor: 'Service portals, account areas, dashboards, and internal service interfaces.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'Get Proposal',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'b2b-website',
-      sectionNumber: '04',
-      categoryLabel: 'WEBSITE DESIGN',
-      title: 'Corporate Website for a B2B Company',
-      intro: 'A corporate website concept designed to help a premium B2B company explain a complex service more clearly, build trust faster, and create a stronger first impression.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%81%D0%B0%D0%B8%CC%86%D1%82%20%D0%B4%D0%BB%D1%8F%20premium%20B2B-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8-6RgbOJ9HFWZMTpHDeV3gRjnxMU9UZF.png',
-      challengeLabel: 'Challenge',
-      challenge: 'Create a corporate website that looks premium, explains a complex service clearly, and strengthens trust at the first point of contact.',
-      structuredLabel: 'What We Structured',
-      structured: 'The site architecture, content hierarchy, key page logic, navigation paths, and the way a complex B2B offer is presented.',
-      deliveredLabel: 'What We Prepared',
-      delivered: 'A visual website concept, the structure of the main pages, a UI system for the web interface, and materials for development.',
-      suitableForLabel: 'Suitable for:',
-      suitableFor: 'B2B companies, integrators, outsourcing teams, technology services, and premium corporate websites.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageRight',
-      ctaLabel: 'Get Proposal',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'startup-landing',
-      sectionNumber: '05',
-      categoryLabel: 'STARTUP WEBSITE DESIGN',
-      title: 'Investor-Ready Landing Page for a Startup Product',
-      intro: 'A landing page concept for an early-stage product, built to make the idea easier to explain to investors, partners, and early users.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Investor-ready%20landing%20page%20%D0%B4%D0%BB%D1%8F%20startup-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-b85KxA9lUQySVtGgn38fMd2GX2STAN.png',
-      challengeLabel: 'Challenge',
-      challenge: 'Package an early-stage product into a landing page that quickly explains the idea, value, and core user logic to investors, partners, or early customers.',
-      structuredLabel: 'What We Structured',
-      structured: 'The first-screen logic, the product narrative, the order of the key content blocks, the main proof points, and the visual presentation of the startup concept.',
-      deliveredLabel: 'What We Prepared',
-      delivered: 'A landing page concept, site structure, visual direction, and a set of key screens for launch or presentation.',
-      suitableForLabel: 'Suitable for:',
-      suitableFor: 'Startup websites, pre-seed and seed products, launch pages, investor presentations, and early-stage positioning.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'Get Proposal',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'saas-interface',
-      sectionNumber: '06',
-      categoryLabel: 'WEB PRODUCT DESIGN',
-      title: 'SaaS Interface for a Web Product',
-      intro: 'A web product concept where complex functionality is shaped into a clear, scalable, and product-mature interface system.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SaaS-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B8%CC%86%D1%81%20%D0%B4%D0%BB%D1%8F%20web-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-ypxGBLA8NjWgvW2cxBxjUL68xoXEGf.png',
-      challengeLabel: 'Challenge',
-      challenge: 'Design a web product interface so that complex functionality feels clear, modern, and ready to scale across modules and user roles.',
-      structuredLabel: 'What We Structured',
-      structured: 'Key user flows, screen architecture, product modules, priority workflows, and the hierarchy of the main sections.',
-      deliveredLabel: 'What We Prepared',
-      delivered: 'A web product prototype, the structure of key screens, a basic component system, and materials for development.',
-      suitableForLabel: 'Suitable for:',
-      suitableFor: 'SaaS products, dashboards, web products, startup software, and B2B digital tools.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageRight',
-      ctaLabel: 'Get Proposal',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'booking-platform',
-      sectionNumber: '07',
-      categoryLabel: 'SERVICE PLATFORM DESIGN',
-      title: 'Service Platform / Booking Interface',
-      intro: 'A customer-facing platform concept where a complex service is turned into clear search, selection, booking flow, and a more transparent customer journey.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%3A%20booking%20interface-LmkTbFEVKsDBsJTHI6LSbVWUfH0eCy.png',
-      challengeLabel: 'Challenge',
-      challenge: 'Turn a complex customer service into a clear digital product with transparent search, selection, booking flow, and a user account area.',
-      structuredLabel: 'What We Structured',
-      structured: 'The customer journey from choice to booking, service logic, key decision points, statuses, the screen map, and repeat-use scenarios.',
-      deliveredLabel: 'What We Prepared',
-      delivered: 'The platform structure, a prototype of the key flows, UI direction, and materials for the next stage of product work.',
-      suitableForLabel: 'Suitable for:',
-      suitableFor: 'Service marketplaces, booking platforms, customer portals, and digital products with transaction flows.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'Get Proposal',
-      ctaPageKey: 'get-proposal',
-    },
-  ],
-
-  ar: [
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'b2b-platform',
-      sectionNumber: '٠١',
-      categoryLabel: 'تصميم أنظمة B2B',
-      title: 'منصة B2B ونظام داخلي',
-      intro: 'مفهوم صُمم لبيئة تشغيلية معقدة حيث يجب جمع سير العمل، والأدوار، والموافقات، ومنطق الفريق داخل نظام رقمي واضح واحد.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/B2B-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%D0%B8%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D1%8F%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0-nfjB6TIcpHm2krsv9QxEOV6JqBP6jO.png',
-      challengeLabel: 'التحدي',
-      challenge: 'تحويل سير عمل تشغيلي معقد إلى نظام واحد مترابط يضم أدوار مستخدمين متعددة ومسارات موافقة ومنطق dashboard.',
-      structuredLabel: 'ما الذي قمنا بهيكلته',
-      structured: 'الأدوار والصلاحيات، ومسارات المستخدم الأساسية، وخريطة الشاشات، ومنطق الوحدات، وسيناريوهات العمل اليومية للفريق.',
-      deliveredLabel: 'ما الذي قمنا بإعداده',
-      delivered: 'نموذج أولي عالي المستوى، واتجاه بصري للواجهة، وهيكل الشاشات الأساسية، ومواد للتطوير.',
-      suitableForLabel: 'مناسب لـ:',
-      suitableFor: 'منصات B2B، والأنظمة الداخلية، وأدوات التشغيل، وواجهات الإدارة المعقدة.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'اطلب عرضاً',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'mobile-app',
-      sectionNumber: '٠٢',
-      categoryLabel: 'تصميم تطبيقات الجوال',
-      title: 'تصميم تطبيق جوال',
-      intro: 'مفهوم mobile-first صُمم بحيث يمكن عرضه على المستثمرين، أو استخدامه في pitch، أو اعتماده كأساس موثوق للمرحلة التالية من التطوير.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%94%D0%B8%D0%B7%D0%B0%D0%B8%CC%86%D0%BD%20%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F-WPXYUHUvoGBadJ6HNUNIFKIWraf70B.png',
-      challengeLabel: 'التحدي',
-      challenge: 'صياغة منتج fintech ضمن إطار mobile-first واضح يمكن عرضه على المستثمرين واستخدامه كقاعدة للمرحلة التالية.',
-      structuredLabel: 'ما الذي قمنا بهيكلته',
-      structured: 'مسارات المستخدم، وonboarding، ومنطق الشاشات المالية، والوحدات ذات الأولوية، وهيكل التطبيق.',
-      deliveredLabel: 'ما الذي قمنا بإعداده',
-      delivered: 'نموذج أولي جاهز للمستثمرين، واتجاه بصري، والشاشات الأساسية، ومواد للمرحلة التالية من التطوير.',
-      suitableForLabel: 'مناسب لـ:',
-      suitableFor: 'تطبيقات الجوال، وMVP، والمفاهيم الجاهزة للمستثمرين، وإعادة تصميم المنتجات المحمولة.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageRight',
-      ctaLabel: 'اطلب عرضاً',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'client-portal',
-      sectionNumber: '٠٣',
-      categoryLabel: 'تصميم البوابات ولوحات التحكم',
-      title: 'بوابة العميل ولوحة التحكم',
-      intro: 'مفهوم لخدمة تتحول فيها العملية المعقدة إلى بوابة عميل واضحة مع تنقل شفاف، ومنطق حالات، وهيكل workflow، ووصول مبني على الأدوار.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9A%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D1%81%D0%BA%D0%B8%D0%B8%CC%86%20%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D0%BB%20%D0%B8%20dashboard-JlI8wKPt6UWq4rRVcyFQXwBsL2XAHb.png',
-      challengeLabel: 'التحدي',
-      challenge: 'تحويل عملية خدمية معقدة إلى بوابة عميل واضحة مع تنقل شفاف ومنطق workflow وهيكل قائم على الأدوار.',
-      structuredLabel: 'ما الذي قمنا بهيكلته',
-      structured: 'معمارية البوابة، وسيناريوهات المستخدم، وحالات طلبات الخدمة، ومصفوفة الشاشات، ونقاط التفاعل الأساسية.',
-      deliveredLabel: 'ما الذي قمنا بإعداده',
-      delivered: 'هيكل الواجهة، ونموذج أولي للشاشات الأساسية، واتجاه UI، وحزمة مواد للتطوير.',
-      suitableForLabel: 'مناسب لـ:',
-      suitableFor: 'بوابات الخدمات، ومساحات الحسابات، ولوحات التحكم، وواجهات الخدمات الداخلية.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'اطلب عرضاً',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'b2b-website',
-      sectionNumber: '٠٤',
-      categoryLabel: 'تصميم المواقع',
-      title: 'موقع مؤسسي لشركة B2B',
-      intro: 'مفهوم لموقع مؤسسي يساعد شركة B2B متميزة على شرح خدمة معقدة بوضوح أكبر، وبناء الثقة بسرعة، وترك انطباع أول أقوى.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%81%D0%B0%D0%B8%CC%86%D1%82%20%D0%B4%D0%BB%D1%8F%20premium%20B2B-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8-6RgbOJ9HFWZMTpHDeV3gRjnxMU9UZF.png',
-      challengeLabel: 'التحدي',
-      challenge: 'إنشاء موقع مؤسسي يبدو premium ويشرح خدمة معقدة بوضوح ويعزز الثقة عند أول نقطة تواصل.',
-      structuredLabel: 'ما الذي قمنا بهيكلته',
-      structured: 'معمارية الموقع، وتسلسل المحتوى، ومنطق الصفحات الأساسية، ومسارات التنقل، وطريقة تقديم العرض المعقد.',
-      deliveredLabel: 'ما الذي قمنا بإعداده',
-      delivered: 'مفهوم بصري للموقع، وهيكل الصفحات الأساسية، ونظام UI للويب، ومواد للتطوير.',
-      suitableForLabel: 'مناسب لـ:',
-      suitableFor: 'شركات B2B، وintegrators، وفرق outsourcing، والخدمات التقنية، والمواقع المؤسسية المتميزة.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageRight',
-      ctaLabel: 'اطلب عرضاً',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'startup-landing',
-      sectionNumber: '٠٥',
-      categoryLabel: 'تصميم مواقع الشركات الناشئة',
-      title: 'Landing جاهز للمستثمرين لمنتج ناشئ',
-      intro: 'مفهوم landing page لمنتج في مراحله المبكرة، صُمم لتسهيل شرح الفكرة للمستثمرين والشركاء والمستخدمين الأوائل.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Investor-ready%20landing%20page%20%D0%B4%D0%BB%D1%8F%20startup-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-b85KxA9lUQySVtGgn38fMd2GX2STAN.png',
-      challengeLabel: 'التحدي',
-      challenge: 'صياغة منتج مبكر ضمن landing page يشرح الفكرة والقيمة ومنطق الاستخدام بسرعة للمستثمر أو الشريك أو العميل الأول.',
-      structuredLabel: 'ما الذي قمنا بهيكلته',
-      structured: 'منطق الشاشة الأولى، وسرد المنتج، وترتيب الأقسام الأساسية، وعناصر الإثبات، والتقديم البصري للمفهوم الناشئ.',
-      deliveredLabel: 'ما الذي قمنا بإعداده',
-      delivered: 'مفهوم landing page، وهيكل الموقع، والاتجاه البصري، ومجموعة الشاشات الأساسية للإطلاق أو العرض.',
-      suitableForLabel: 'مناسب لـ:',
-      suitableFor: 'مواقع الشركات الناشئة، ومنتجات pre-seed وseed، وصفحات الإطلاق، وعروض المستثمرين، والتموضع المبكر.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'اطلب عرضاً',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'saas-interface',
-      sectionNumber: '٠٦',
-      categoryLabel: 'تصميم منتجات الويب',
-      title: 'واجهة SaaS لمنتج ويب',
-      intro: 'مفهوم لواجهة web product حيث يتم جمع الوظائف المعقدة ضمن نظام واضح وقابل للتوسع وناضج من منظور المنتج.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SaaS-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B8%CC%86%D1%81%20%D0%B4%D0%BB%D1%8F%20web-%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%B0-ypxGBLA8NjWgvW2cxBxjUL68xoXEGf.png',
-      challengeLabel: 'التحدي',
-      challenge: 'تصميم واجهة web product بحيث تبدو الوظائف المعقدة واضحة وحديثة وجاهزة للتوسع عبر الوحدات والأدوار.',
-      structuredLabel: 'ما الذي قمنا بهيكلته',
-      structured: 'مسارات المستخدم الأساسية، ومعمارية الشاشات، ووحدات المنتج، وworkflows ذات الأولوية، وتسلسل الأقسام الرئيسية.',
-      deliveredLabel: 'ما الذي قمنا بإعداده',
-      delivered: 'نموذج أولي لمنتج الويب، وهيكل الشاشات الأساسية، ونظام مكونات أساسي، ومواد للتطوير.',
-      suitableForLabel: 'مناسب لـ:',
-      suitableFor: 'منتجات SaaS، ولوحات التحكم، ومنتجات الويب، وبرمجيات الشركات الناشئة، وأدوات B2B الرقمية.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageRight',
-      ctaLabel: 'اطلب عرضاً',
-      ctaPageKey: 'get-proposal',
-    },
-    {
-      blockType: 'conceptSectionConcept',
-      anchorId: 'booking-platform',
-      sectionNumber: '٠٧',
-      categoryLabel: 'تصميم منصات الخدمات',
-      title: 'منصة خدمة / واجهة حجز',
-      intro: 'مفهوم لمنصة موجهة للعميل حيث تتحول الخدمة المعقدة إلى بحث واضح واختيار وتدفق حجز ورحلة مستخدم أكثر شفافية.',
-      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%3A%20booking%20interface-LmkTbFEVKsDBsJTHI6LSbVWUfH0eCy.png',
-      challengeLabel: 'التحدي',
-      challenge: 'تحويل خدمة معقدة موجهة للعميل إلى منتج رقمي واضح مع بحث شفاف واختيار وتدفق حجز ومساحة حساب.',
-      structuredLabel: 'ما الذي قمنا بهيكلته',
-      structured: 'رحلة العميل من الاختيار إلى الحجز، ومنطق الخدمة، ونقاط القرار الأساسية، والحالات، وخريطة الشاشات، وسيناريوهات الاستخدام المتكرر.',
-      deliveredLabel: 'ما الذي قمنا بإعداده',
-      delivered: 'هيكل المنصة، ونموذج أولي للتدفقات الأساسية، واتجاه UI، ومواد للمرحلة التالية من العمل على المنتج.',
-      suitableForLabel: 'مناسب لـ:',
-      suitableFor: 'منصات الخدمات، ومنصات الحجز، وبوابات العملاء، والمنتجات الرقمية ذات التدفقات المعاملاتية.',
-      captionLabel: 'Concept',
-      captionStudioLabel: 'Atelier Meridian Studio',
-      layout: 'imageLeft',
-      ctaLabel: 'اطلب عرضاً',
-      ctaPageKey: 'get-proposal',
-    },
-  ],
-}
-function upsertBlock(layout: BlockData[], block: BlockData): BlockData[] {
-  const existingIndex = layout.findIndex((item) => item?.blockType === block?.blockType)
-
-  if (existingIndex === -1) {
-    return [...layout, block]
-  }
-
-  const nextLayout = [...layout]
-  nextLayout[existingIndex] = {
-    ...nextLayout[existingIndex],
-    ...block,
-  }
-
-  return nextLayout
-}
-
-async function getStartupsPageId(
-  payload: Awaited<ReturnType<typeof getPayload>>,
-): Promise<string | number> {
-  const result = await payload.find({
-    collection: 'pages',
-    where: {
-      pageKey: {
-        equals: STARTUPS_PAGE_KEY,
+    introCopy: [
+      { key: 'briefCardTitle', value: 'Заполнить brief' },
+      {
+        key: 'briefCardDescription',
+        value:
+          'Если хотите быстро получить ориентир по формату, срокам и следующему шагу — заполните короткий wizard. Он помогает нам понять контекст проекта и дать более точный ответ.',
       },
-    },
-    limit: 1,
-    depth: 0,
-  })
+      { key: 'briefButtonLabel', value: 'Начать brief' },
 
-  const page = result.docs[0]
+      { key: 'uploadCardTitle', value: 'Прикрепить материалы' },
+      {
+        key: 'uploadCardDescription',
+        value:
+          'Если у вас уже есть презентация, doc, структура, заметки, wireframes или links — просто отправьте материалы. Мы посмотрим их и вернёмся с предложением.',
+      },
+      { key: 'uploadButtonLabel', value: 'Загрузить материалы' },
 
-  if (!page) {
-    throw new Error(`Page "${STARTUPS_PAGE_KEY}" not found`)
-  }
+      { key: 'processEyebrow', value: 'Как это работает' },
+      { key: 'processTitle', value: 'Как мы обрабатываем заявку' },
+      {
+        key: 'processDescription',
+        value:
+          'Независимо от того, проходите ли вы wizard или просто отправляете материалы, дальше процесс одинаковый: мы быстро смотрим задачу, структурируем входные данные и возвращаем следующий шаг.',
+      },
+    ],
 
-  return page.id
+    introProcessSteps: [
+      {
+        icon: 'target',
+        title: 'Смотрим задачу',
+        description:
+          'Понимаем, что именно вы хотите запустить: сайт, продукт, MVP, mobile app или investor-ready concept.',
+      },
+      {
+        icon: 'users',
+        title: 'Собираем контекст',
+        description:
+          'Учитываем команду, stage проекта, текущие материалы и ограничения по срокам.',
+      },
+      {
+        icon: 'layers',
+        title: 'Определяем scope',
+        description:
+          'Формулируем, какой формат работы действительно подходит под задачу и текущую стадию.',
+      },
+      {
+        icon: 'arrowUpRight',
+        title: 'Возвращаем предложение',
+        description:
+          'Присылаем ответ с recommended format, ориентиром по срокам и next step.',
+      },
+    ],
+
+    wizardCopy: [
+      { key: 'stepCounterPrefix', value: 'Шаг' },
+      { key: 'stepCounterConnector', value: 'из' },
+
+      { key: 'projectTypeTitle', value: 'Какой тип проекта у вас сейчас?' },
+      {
+        key: 'projectTypeDescription',
+        value:
+          'Выберите то, что ближе всего к задаче. Это помогает нам быстрее предложить правильный формат работы.',
+      },
+
+      { key: 'goalTitle', value: 'Что для вас сейчас главное?' },
+      {
+        key: 'goalDescription',
+        value:
+          'Некоторые проекты приходят за структурой, другие — за prototype, visual direction или investor-ready materials.',
+      },
+
+      { key: 'teamTitle', value: 'Расскажите немного о команде и проекте' },
+      {
+        key: 'teamDescription',
+        value:
+          'Нам важно понять stage продукта, размер команды и есть ли уже что-то в работе.',
+      },
+
+      { key: 'companyNameLabel', value: 'Название проекта / компании' },
+      { key: 'companyNamePlaceholder', value: 'Например, Meridian Health' },
+      { key: 'websiteLabel', value: 'Сайт / ссылка на продукт' },
+      { key: 'websitePlaceholder', value: 'https://...' },
+      { key: 'teamSizeLabel', value: 'Размер команды' },
+      { key: 'teamSizePlaceholder', value: 'Например, 4–7 человек' },
+
+      { key: 'complexityTitle', value: 'Насколько сложный у вас продукт?' },
+      {
+        key: 'complexityDescription',
+        value:
+          'Это помогает понять будущий объём интерфейсов, сценариев и глубину product architecture.',
+      },
+
+      { key: 'rolesCountLabel', value: 'Сколько пользовательских ролей?' },
+      { key: 'rolesCountPlaceholder', value: 'Например, 2–3 роли' },
+      { key: 'screenCountLabel', value: 'Примерный объём экранов' },
+      { key: 'screenCountPlaceholder', value: 'Например, 15–25 screens' },
+
+      { key: 'materialsTitle', value: 'Какие материалы уже есть?' },
+      {
+        key: 'materialsDescription',
+        value:
+          'Можно отметить всё, что уже есть. Это сокращает этап погружения и помогает быстрее стартовать.',
+      },
+      { key: 'wizardUploadLabel', value: 'Прикрепить файлы сразу' },
+      {
+        key: 'wizardUploadHint',
+        value:
+          'PDF, DOCX, ZIP, JPG, PNG — если что-то уже есть, можно приложить это прямо здесь.',
+      },
+
+      { key: 'timelineTitle', value: 'Сроки и бюджет' },
+      {
+        key: 'timelineDescription',
+        value:
+          'Нам не нужен точный бюджет до рубля. Достаточно диапазона и ощущения срочности.',
+      },
+      { key: 'timelineLabel', value: 'Когда вы хотите начать?' },
+      { key: 'budgetLabel', value: 'Какой диапазон бюджета вы рассматриваете?' },
+      { key: 'notesLabel', value: 'Что ещё важно знать о проекте?' },
+      {
+        key: 'notesPlaceholder',
+        value:
+          'Например: есть дедлайн под инвестора, нужен redesign без полного relaunch, хотим стартовать с concept stage и т.д.',
+      },
+
+      { key: 'contactTitle', value: 'Куда вернуть ответ?' },
+      {
+        key: 'contactDescription',
+        value:
+          'Оставьте контактные данные — мы вернёмся с предложением, форматом и следующим шагом.',
+      },
+
+      { key: 'nameLabel', value: 'Имя' },
+      { key: 'namePlaceholder', value: 'Ваше имя' },
+      { key: 'emailLabel', value: 'Email' },
+      { key: 'emailPlaceholder', value: 'name@company.com' },
+      { key: 'companyLabel', value: 'Компания' },
+      { key: 'companyPlaceholder', value: 'Название компании' },
+      { key: 'roleLabel', value: 'Роль' },
+      { key: 'rolePlaceholder', value: 'Founder / Product / Partner' },
+      { key: 'regionLabel', value: 'Страна / регион' },
+      { key: 'regionPlaceholder', value: 'Например, UAE, Germany, Estonia' },
+      { key: 'phoneLabel', value: 'Телефон / Telegram / WhatsApp' },
+      { key: 'phonePlaceholder', value: '+49..., @telegram, whatsapp number' },
+      { key: 'commentLabel', value: 'Комментарий' },
+      {
+        key: 'commentPlaceholder',
+        value:
+          'Если есть что добавить до созвона или письма — напишите это здесь.',
+      },
+
+      {
+        key: 'noCallLabel',
+        value:
+          'Не хочу начинать с обязательного созвона — сначала удобнее получить ответ письменно',
+      },
+      {
+        key: 'expertReviewLabel',
+        value: 'Нужен взгляд на задачу и format recommendation ещё до оценки',
+      },
+      {
+        key: 'ndaLabel',
+        value: 'Нам может понадобиться NDA перед более детальным обсуждением',
+      },
+
+      { key: 'summaryResultsTitle', value: 'Что вы получите после отправки' },
+      {
+        key: 'summaryFooter',
+        value:
+          'Мы не отправляем generic sales response. Обычно вы получаете более содержательный ответ по формату, scope и следующему шагу.',
+      },
+
+      { key: 'cancelLabel', value: 'Отмена' },
+      { key: 'backLabel', value: 'Назад' },
+      { key: 'nextLabel', value: 'Далее' },
+      { key: 'submitLabel', value: 'Отправить' },
+    ],
+
+    wizardStepLabels: [
+      { value: 'Тип проекта' },
+      { value: 'Цель' },
+      { value: 'Команда' },
+      { value: 'Сложность' },
+      { value: 'Материалы' },
+      { value: 'Сроки' },
+      { value: 'Контакты' },
+    ],
+
+    projectTypes: [
+      {
+        value: 'startup-website',
+        label: 'Startup Website',
+        description: 'Сайт для запуска, positioning, fundraising или первого трафика',
+      },
+      {
+        value: 'web-product',
+        label: 'Web Product',
+        description: 'SaaS, client portal, dashboard, platform или internal tool',
+      },
+      {
+        value: 'mobile-app',
+        label: 'Mobile App',
+        description: 'iOS / Android продукт, mobile-first MVP или redesign',
+      },
+      {
+        value: 'mvp-concept',
+        label: 'MVP / Concept',
+        description: 'Нужно собрать продуктовую структуру, сценарии и prototype',
+      },
+      {
+        value: 'redesign',
+        label: 'Redesign',
+        description: 'Есть текущий продукт, который нужно пересобрать или усилить',
+      },
+      {
+        value: 'other',
+        label: 'Другое',
+        description: 'Если задача не укладывается в одну из типовых категорий',
+      },
+    ],
+
+    projectGoals: [
+      { value: 'clarify-structure', label: 'Прояснить product structure' },
+      { value: 'prepare-prototype', label: 'Собрать strong prototype' },
+      { value: 'design-ui', label: 'Сделать premium interface design' },
+      { value: 'prepare-investor', label: 'Подготовить investor-ready materials' },
+      { value: 'redesign-existing', label: 'Переделать текущий продукт / сайт' },
+      { value: 'define-format', label: 'Понять, с чего вообще лучше начать' },
+    ],
+
+    teamTypes: [
+      { value: 'solo-founder', label: 'Solo founder' },
+      { value: 'small-team', label: 'Небольшая product team' },
+      { value: 'agency-partner', label: 'Agency / partner side' },
+      { value: 'company-team', label: 'Сформированная компания / in-house team' },
+    ],
+
+    complexityFlags: [
+      { value: 'Несколько пользовательских ролей' },
+      { value: 'Нужен dashboard / portal / cabinet' },
+      { value: 'Есть booking / payments / transaction flow' },
+      { value: 'Сложный onboarding или многосоставной workflow' },
+      { value: 'Нужны mobile + web сценарии' },
+      { value: 'Есть admin / internal side' },
+    ],
+
+    materialsOptions: [
+      { value: 'brief', label: 'Brief / notes' },
+      { value: 'pitchdeck', label: 'Pitch deck / presentation' },
+      { value: 'wireframes', label: 'Wireframes' },
+      { value: 'existing-design', label: 'Existing design' },
+      { value: 'product-link', label: 'Current product / link' },
+      { value: 'research', label: 'Research / insights' },
+      { value: 'brand', label: 'Brand / visual materials' },
+      { value: 'docs', label: 'Docs / specifications' },
+    ],
+
+    timelineOptions: [
+      { value: 'asap', label: 'ASAP / срочно' },
+      { value: '1-2-weeks', label: 'В ближайшие 1–2 недели' },
+      { value: 'this-month', label: 'В этом месяце' },
+      { value: 'next-month', label: 'В следующем месяце' },
+      { value: 'exploring', label: 'Пока изучаем варианты' },
+    ],
+
+    budgetOptions: [
+      { value: 'under-3k', label: 'До €3k' },
+      { value: '3k-7k', label: '€3k–7k' },
+      { value: '7k-15k', label: '€7k–15k' },
+      { value: '15k-plus', label: '€15k+' },
+      { value: 'not-sure', label: 'Пока не уверены' },
+    ],
+
+    summaryResults: [
+      { value: 'Ответ по recommended format' },
+      { value: 'Ориентир по срокам и scope' },
+      { value: 'Понимание следующего шага' },
+      { value: 'Возможность стартовать без обязательного созвона' },
+    ],
+
+    uploadCopy: [
+      { key: 'backLabel', value: 'Назад' },
+      { key: 'title', value: 'Загрузите материалы по проекту' },
+      {
+        key: 'description',
+        value:
+          'Если у вас уже есть brief, презентация, структура, wireframes, ссылки или другие материалы — отправьте их. Мы посмотрим всё в контексте и вернёмся с ответом.',
+      },
+
+      { key: 'filesLabel', value: 'Файлы' },
+      { key: 'filesTitle', value: 'Перетащите файлы сюда или выберите их вручную' },
+      {
+        key: 'filesHint',
+        value:
+          'PDF, DOCX, ZIP, JPG, PNG, WEBP — всё, что помогает понять продукт.',
+      },
+
+      { key: 'linksLabel', value: 'Ссылки' },
+      { key: 'linksPlaceholder', value: 'https://figma.com / notion / loom / product link' },
+
+      { key: 'descriptionLabel', value: 'Коротко опишите задачу' },
+      {
+        key: 'descriptionPlaceholder',
+        value:
+          'Что это за проект, на какой он стадии и с чем вы хотите прийти к следующему шагу.',
+      },
+
+      { key: 'contactLabel', value: 'Контактные данные' },
+      { key: 'namePlaceholder', value: 'Ваше имя' },
+      { key: 'emailPlaceholder', value: 'name@company.com' },
+
+      { key: 'cancelLabel', value: 'Отмена' },
+      { key: 'submitLabel', value: 'Отправить материалы' },
+    ],
+
+    successCopy: [
+      { key: 'title', value: 'Спасибо — заявка отправлена' },
+      {
+        key: 'description',
+        value:
+          'Мы получили ваши данные и материалы. Обычно возвращаемся с первым содержательным ответом после быстрого review контекста.',
+      },
+      { key: 'stepsTitle', value: 'Что будет дальше' },
+
+      { key: 'homeLabel', value: 'На главную' },
+      { key: 'pricingLabel', value: 'Посмотреть pricing' },
+      { key: 'uploadMoreLabel', value: 'Добавить ещё материалы' },
+
+      { key: 'supportNotePrefix', value: 'Если нужно срочно что-то добавить — напишите на' },
+      { key: 'supportEmail', value: 'hello@atelier-meridian.com' },
+    ],
+
+    successHomePageKey: 'home',
+    successPricingPageKey: 'pricing',
+
+    successSteps: [
+      {
+        number: '01',
+        title: 'Быстрый review',
+        description: 'Мы смотрим задачу, stage проекта и все входные материалы.',
+      },
+      {
+        number: '02',
+        title: 'Определяем format',
+        description: 'Формулируем, какой формат работы действительно подходит под задачу.',
+      },
+      {
+        number: '03',
+        title: 'Возвращаемся с ответом',
+        description: 'Отправляем письмо с recommended scope, timeline direction и next step.',
+      },
+      {
+        number: '04',
+        title: 'При необходимости — созвон',
+        description: 'Если нужно, подключаем короткий call уже с более понятным контекстом.',
+      },
+    ],
+  },
+
+  en: {
+    blockType: 'proposalFlowProposal',
+
+    introCopy: [
+      { key: 'briefCardTitle', value: 'Fill in the brief' },
+      {
+        key: 'briefCardDescription',
+        value:
+          'If you want a fast direction on format, timeline, and next step, complete the short wizard. It helps us understand the project context and respond more precisely.',
+      },
+      { key: 'briefButtonLabel', value: 'Start brief' },
+
+      { key: 'uploadCardTitle', value: 'Upload materials' },
+      {
+        key: 'uploadCardDescription',
+        value:
+          'If you already have a presentation, docs, structure, notes, wireframes, or links, just send the materials. We will review them and come back with a proposal.',
+      },
+      { key: 'uploadButtonLabel', value: 'Upload materials' },
+
+      { key: 'processEyebrow', value: 'How it works' },
+      { key: 'processTitle', value: 'How we process the request' },
+      {
+        key: 'processDescription',
+        value:
+          'Whether you go through the wizard or simply upload materials, the process is the same: we quickly review the task, structure the input, and return the next practical step.',
+      },
+    ],
+
+    introProcessSteps: [
+      {
+        icon: 'target',
+        title: 'We review the task',
+        description:
+          'We understand what exactly you want to launch: website, product, MVP, mobile app, or investor-ready concept.',
+      },
+      {
+        icon: 'users',
+        title: 'We collect context',
+        description:
+          'We consider the team, project stage, existing materials, and timing constraints.',
+      },
+      {
+        icon: 'layers',
+        title: 'We define the scope',
+        description:
+          'We determine which format actually fits the task and the current stage.',
+      },
+      {
+        icon: 'arrowUpRight',
+        title: 'We return a proposal',
+        description:
+          'We send a response with the recommended format, timeline direction, and next practical step.',
+      },
+    ],
+
+    wizardCopy: [
+      { key: 'stepCounterPrefix', value: 'Step' },
+      { key: 'stepCounterConnector', value: 'of' },
+
+      { key: 'projectTypeTitle', value: 'What type of project is this?' },
+      {
+        key: 'projectTypeDescription',
+        value:
+          'Choose the option that is closest to your situation. This helps us recommend the right format faster.',
+      },
+
+      { key: 'goalTitle', value: 'What matters most right now?' },
+      {
+        key: 'goalDescription',
+        value:
+          'Some teams come for structure, others for a prototype, visual direction, or investor-ready materials.',
+      },
+
+      { key: 'teamTitle', value: 'Tell us a bit about the team and project' },
+      {
+        key: 'teamDescription',
+        value:
+          'It helps to understand the product stage, the team size, and whether anything already exists.',
+      },
+
+      { key: 'companyNameLabel', value: 'Project / company name' },
+      { key: 'companyNamePlaceholder', value: 'For example, Meridian Health' },
+      { key: 'websiteLabel', value: 'Website / product link' },
+      { key: 'websitePlaceholder', value: 'https://...' },
+      { key: 'teamSizeLabel', value: 'Team size' },
+      { key: 'teamSizePlaceholder', value: 'For example, 4–7 people' },
+
+      { key: 'complexityTitle', value: 'How complex is the product?' },
+      {
+        key: 'complexityDescription',
+        value:
+          'This helps us estimate interface depth, flow complexity, and product architecture needs.',
+      },
+
+      { key: 'rolesCountLabel', value: 'How many user roles?' },
+      { key: 'rolesCountPlaceholder', value: 'For example, 2–3 roles' },
+      { key: 'screenCountLabel', value: 'Approximate number of screens' },
+      { key: 'screenCountPlaceholder', value: 'For example, 15–25 screens' },
+
+      { key: 'materialsTitle', value: 'What materials do you already have?' },
+      {
+        key: 'materialsDescription',
+        value:
+          'Select everything you already have. This reduces onboarding time and helps us move faster.',
+      },
+      { key: 'wizardUploadLabel', value: 'Attach files right away' },
+      {
+        key: 'wizardUploadHint',
+        value:
+          'PDF, DOCX, ZIP, JPG, PNG — if something already exists, you can attach it here.',
+      },
+
+      { key: 'timelineTitle', value: 'Timeline and budget' },
+      {
+        key: 'timelineDescription',
+        value:
+          'We do not need an exact budget down to the last euro. A rough range and urgency are enough.',
+      },
+      { key: 'timelineLabel', value: 'When would you like to start?' },
+      { key: 'budgetLabel', value: 'What budget range are you considering?' },
+      { key: 'notesLabel', value: 'Anything else we should know?' },
+      {
+        key: 'notesPlaceholder',
+        value:
+          'For example: investor deadline, redesign without full relaunch, want to start with a concept stage, etc.',
+      },
+
+      { key: 'contactTitle', value: 'Where should we send the response?' },
+      {
+        key: 'contactDescription',
+        value:
+          'Leave your contact details and we will return with a proposal, format direction, and next step.',
+      },
+
+      { key: 'nameLabel', value: 'Name' },
+      { key: 'namePlaceholder', value: 'Your name' },
+      { key: 'emailLabel', value: 'Email' },
+      { key: 'emailPlaceholder', value: 'name@company.com' },
+      { key: 'companyLabel', value: 'Company' },
+      { key: 'companyPlaceholder', value: 'Company name' },
+      { key: 'roleLabel', value: 'Role' },
+      { key: 'rolePlaceholder', value: 'Founder / Product / Partner' },
+      { key: 'regionLabel', value: 'Country / region' },
+      { key: 'regionPlaceholder', value: 'For example, UAE, Germany, Estonia' },
+      { key: 'phoneLabel', value: 'Phone / Telegram / WhatsApp' },
+      { key: 'phonePlaceholder', value: '+49..., @telegram, whatsapp number' },
+      { key: 'commentLabel', value: 'Comment' },
+      {
+        key: 'commentPlaceholder',
+        value:
+          'If there is anything important before a call or written reply, add it here.',
+      },
+
+      {
+        key: 'noCallLabel',
+        value: 'I do not want to start with a mandatory call — a written response is better first',
+      },
+      {
+        key: 'expertReviewLabel',
+        value: 'We need a quick expert review and format recommendation before estimation',
+      },
+      {
+        key: 'ndaLabel',
+        value: 'We may need an NDA before discussing the project in more detail',
+      },
+
+      { key: 'summaryResultsTitle', value: 'What you get after submission' },
+      {
+        key: 'summaryFooter',
+        value:
+          'We do not send generic sales replies. Usually you receive a more useful response on format, scope, and next step.',
+      },
+
+      { key: 'cancelLabel', value: 'Cancel' },
+      { key: 'backLabel', value: 'Back' },
+      { key: 'nextLabel', value: 'Next' },
+      { key: 'submitLabel', value: 'Submit' },
+    ],
+
+    wizardStepLabels: [
+      { value: 'Project type' },
+      { value: 'Goal' },
+      { value: 'Team' },
+      { value: 'Complexity' },
+      { value: 'Materials' },
+      { value: 'Timeline' },
+      { value: 'Contacts' },
+    ],
+
+    projectTypes: [
+      {
+        value: 'startup-website',
+        label: 'Startup Website',
+        description: 'Website for launch, positioning, fundraising, or initial traffic',
+      },
+      {
+        value: 'web-product',
+        label: 'Web Product',
+        description: 'SaaS, client portal, dashboard, platform, or internal tool',
+      },
+      {
+        value: 'mobile-app',
+        label: 'Mobile App',
+        description: 'iOS / Android product, mobile-first MVP, or redesign',
+      },
+      {
+        value: 'mvp-concept',
+        label: 'MVP / Concept',
+        description: 'Need to shape product structure, flows, and a strong prototype',
+      },
+      {
+        value: 'redesign',
+        label: 'Redesign',
+        description: 'There is an existing product or website that needs to be reworked',
+      },
+      {
+        value: 'other',
+        label: 'Other',
+        description: 'If the task does not fit a typical category',
+      },
+    ],
+
+    projectGoals: [
+      { value: 'clarify-structure', label: 'Clarify product structure' },
+      { value: 'prepare-prototype', label: 'Build a strong prototype' },
+      { value: 'design-ui', label: 'Create premium interface design' },
+      { value: 'prepare-investor', label: 'Prepare investor-ready materials' },
+      { value: 'redesign-existing', label: 'Redesign an existing product / site' },
+      { value: 'define-format', label: 'Understand where to start' },
+    ],
+
+    teamTypes: [
+      { value: 'solo-founder', label: 'Solo founder' },
+      { value: 'small-team', label: 'Small product team' },
+      { value: 'agency-partner', label: 'Agency / partner side' },
+      { value: 'company-team', label: 'Established company / in-house team' },
+    ],
+
+    complexityFlags: [
+      { value: 'Multiple user roles' },
+      { value: 'Need a dashboard / portal / cabinet' },
+      { value: 'Booking / payments / transaction flow' },
+      { value: 'Complex onboarding or multi-step workflow' },
+      { value: 'Need both mobile and web scenarios' },
+      { value: 'Admin / internal side exists' },
+    ],
+
+    materialsOptions: [
+      { value: 'brief', label: 'Brief / notes' },
+      { value: 'pitchdeck', label: 'Pitch deck / presentation' },
+      { value: 'wireframes', label: 'Wireframes' },
+      { value: 'existing-design', label: 'Existing design' },
+      { value: 'product-link', label: 'Current product / link' },
+      { value: 'research', label: 'Research / insights' },
+      { value: 'brand', label: 'Brand / visual materials' },
+      { value: 'docs', label: 'Docs / specifications' },
+    ],
+
+    timelineOptions: [
+      { value: 'asap', label: 'ASAP / urgent' },
+      { value: '1-2-weeks', label: 'Within 1–2 weeks' },
+      { value: 'this-month', label: 'This month' },
+      { value: 'next-month', label: 'Next month' },
+      { value: 'exploring', label: 'Still exploring' },
+    ],
+
+    budgetOptions: [
+      { value: 'under-3k', label: 'Under €3k' },
+      { value: '3k-7k', label: '€3k–7k' },
+      { value: '7k-15k', label: '€7k–15k' },
+      { value: '15k-plus', label: '€15k+' },
+      { value: 'not-sure', label: 'Not sure yet' },
+    ],
+
+    summaryResults: [
+      { value: 'A response with recommended format' },
+      { value: 'A direction on timeline and scope' },
+      { value: 'A clear next step' },
+      { value: 'An option to start without a mandatory call' },
+    ],
+
+    uploadCopy: [
+      { key: 'backLabel', value: 'Back' },
+      { key: 'title', value: 'Upload project materials' },
+      {
+        key: 'description',
+        value:
+          'If you already have a brief, presentation, structure, wireframes, links, or any other materials, send them over. We will review everything in context and respond with the next step.',
+      },
+
+      { key: 'filesLabel', value: 'Files' },
+      { key: 'filesTitle', value: 'Drop files here or select them manually' },
+      {
+        key: 'filesHint',
+        value:
+          'PDF, DOCX, ZIP, JPG, PNG, WEBP — anything that helps explain the product.',
+      },
+
+      { key: 'linksLabel', value: 'Links' },
+      { key: 'linksPlaceholder', value: 'https://figma.com / notion / loom / product link' },
+
+      { key: 'descriptionLabel', value: 'Briefly describe the task' },
+      {
+        key: 'descriptionPlaceholder',
+        value:
+          'What kind of project is this, what stage is it at, and what do you want to achieve next?',
+      },
+
+      { key: 'contactLabel', value: 'Contact details' },
+      { key: 'namePlaceholder', value: 'Your name' },
+      { key: 'emailPlaceholder', value: 'name@company.com' },
+
+      { key: 'cancelLabel', value: 'Cancel' },
+      { key: 'submitLabel', value: 'Send materials' },
+    ],
+
+    successCopy: [
+      { key: 'title', value: 'Thank you — your request has been sent' },
+      {
+        key: 'description',
+        value:
+          'We have received your details and materials. We usually come back after a quick review of the context.',
+      },
+      { key: 'stepsTitle', value: 'What happens next' },
+
+      { key: 'homeLabel', value: 'Back to home' },
+      { key: 'pricingLabel', value: 'View pricing' },
+      { key: 'uploadMoreLabel', value: 'Upload more materials' },
+
+      { key: 'supportNotePrefix', value: 'If you need to add something urgently, write to' },
+      { key: 'supportEmail', value: 'hello@atelier-meridian.com' },
+    ],
+
+    successHomePageKey: 'home',
+    successPricingPageKey: 'pricing',
+
+    successSteps: [
+      {
+        number: '01',
+        title: 'Quick review',
+        description: 'We review the task, project stage, and all incoming materials.',
+      },
+      {
+        number: '02',
+        title: 'Format definition',
+        description: 'We define which working format actually fits the task.',
+      },
+      {
+        number: '03',
+        title: 'Written response',
+        description: 'We send a response with scope direction, timeline guidance, and the next step.',
+      },
+      {
+        number: '04',
+        title: 'Call if needed',
+        description: 'If necessary, we then connect a short call with much clearer context.',
+      },
+    ],
+  },
+
+  ar: {
+    blockType: 'proposalFlowProposal',
+
+    introCopy: [
+      { key: 'briefCardTitle', value: 'املأ الـ brief' },
+      {
+        key: 'briefCardDescription',
+        value:
+          'إذا كنت تريد اتجاهاً سريعاً حول صيغة العمل والمدة والخطوة التالية، فاملأ الـ wizard القصير. هذا يساعدنا على فهم سياق المشروع والرد بشكل أدق.',
+      },
+      { key: 'briefButtonLabel', value: 'ابدأ الـ brief' },
+
+      { key: 'uploadCardTitle', value: 'ارفع المواد' },
+      {
+        key: 'uploadCardDescription',
+        value:
+          'إذا كان لديك عرض تقديمي أو docs أو هيكل أو ملاحظات أو wireframes أو روابط، فقط أرسل المواد. سنراجعها ونعود إليك باقتراح مناسب.',
+      },
+      { key: 'uploadButtonLabel', value: 'رفع المواد' },
+
+      { key: 'processEyebrow', value: 'كيف يعمل هذا' },
+      { key: 'processTitle', value: 'كيف نعالج الطلب' },
+      {
+        key: 'processDescription',
+        value:
+          'سواء مررت عبر الـ wizard أو أرسلت المواد مباشرة، فالعملية واحدة: نراجع المهمة بسرعة، ونرتب المدخلات، ثم نعود بالخطوة العملية التالية.',
+      },
+    ],
+
+    introProcessSteps: [
+      {
+        icon: 'target',
+        title: 'نراجع المهمة',
+        description:
+          'نفهم ما الذي تريد إطلاقه بالضبط: موقع، منتج، MVP، تطبيق جوال، أو concept جاهز للمستثمرين.',
+      },
+      {
+        icon: 'users',
+        title: 'نجمع السياق',
+        description:
+          'نأخذ في الاعتبار الفريق، ومرحلة المشروع، والمواد الحالية، والقيود الزمنية.',
+      },
+      {
+        icon: 'layers',
+        title: 'نحدد النطاق',
+        description:
+          'نحدد صيغة العمل الأنسب للمهمة والمرحلة الحالية للمشروع.',
+      },
+      {
+        icon: 'arrowUpLeft',
+        title: 'نعيد المقترح',
+        description:
+          'نرسل رداً يتضمن الصيغة المقترحة واتجاه الجدول الزمني والخطوة العملية التالية.',
+      },
+    ],
+
+    wizardCopy: [
+      { key: 'stepCounterPrefix', value: 'الخطوة' },
+      { key: 'stepCounterConnector', value: 'من' },
+
+      { key: 'projectTypeTitle', value: 'ما نوع المشروع الحالي؟' },
+      {
+        key: 'projectTypeDescription',
+        value:
+          'اختر الخيار الأقرب لحالتك. هذا يساعدنا على اقتراح الصيغة المناسبة بشكل أسرع.',
+      },
+
+      { key: 'goalTitle', value: 'ما هو الأهم بالنسبة لكم الآن؟' },
+      {
+        key: 'goalDescription',
+        value:
+          'بعض الفرق تأتي من أجل الهيكلة، وأخرى من أجل prototype أو visual direction أو materials جاهزة للمستثمرين.',
+      },
+
+      { key: 'teamTitle', value: 'أخبرنا قليلاً عن الفريق والمشروع' },
+      {
+        key: 'teamDescription',
+        value:
+          'من المهم فهم مرحلة المنتج، وحجم الفريق، وما إذا كان هناك شيء موجود بالفعل.',
+      },
+
+      { key: 'companyNameLabel', value: 'اسم المشروع / الشركة' },
+      { key: 'companyNamePlaceholder', value: 'مثلاً: Meridian Health' },
+      { key: 'websiteLabel', value: 'الموقع / رابط المنتج' },
+      { key: 'websitePlaceholder', value: 'https://...' },
+      { key: 'teamSizeLabel', value: 'حجم الفريق' },
+      { key: 'teamSizePlaceholder', value: 'مثلاً: 4–7 أشخاص' },
+
+      { key: 'complexityTitle', value: 'ما مدى تعقيد المنتج؟' },
+      {
+        key: 'complexityDescription',
+        value:
+          'هذا يساعدنا على تقدير عمق الواجهات وتعقيد المسارات واحتياجات product architecture.',
+      },
+
+      { key: 'rolesCountLabel', value: 'كم عدد أدوار المستخدمين؟' },
+      { key: 'rolesCountPlaceholder', value: 'مثلاً: 2–3 أدوار' },
+      { key: 'screenCountLabel', value: 'العدد التقريبي للشاشات' },
+      { key: 'screenCountPlaceholder', value: 'مثلاً: 15–25 شاشة' },
+
+      { key: 'materialsTitle', value: 'ما المواد المتوفرة بالفعل؟' },
+      {
+        key: 'materialsDescription',
+        value:
+          'اختر كل ما لديكم بالفعل. هذا يقلل وقت الانطلاق ويساعدنا على التحرك بسرعة أكبر.',
+      },
+      { key: 'wizardUploadLabel', value: 'إرفاق الملفات مباشرة' },
+      {
+        key: 'wizardUploadHint',
+        value:
+          'PDF وDOCX وZIP وJPG وPNG — إذا كان لديكم شيء جاهز، يمكن إرفاقه هنا.',
+      },
+
+      { key: 'timelineTitle', value: 'الجدول الزمني والميزانية' },
+      {
+        key: 'timelineDescription',
+        value:
+          'لا نحتاج إلى ميزانية دقيقة جداً. يكفي نطاق تقريبي وفهم مستوى الاستعجال.',
+      },
+      { key: 'timelineLabel', value: 'متى تودون البدء؟' },
+      { key: 'budgetLabel', value: 'ما نطاق الميزانية الذي تفكرون فيه؟' },
+      { key: 'notesLabel', value: 'هل هناك شيء آخر يجب أن نعرفه؟' },
+      {
+        key: 'notesPlaceholder',
+        value:
+          'مثلاً: هناك موعد مع مستثمر، أو نحتاج redesign من دون relaunch كامل، أو نريد البدء بمرحلة concept.',
+      },
+
+      { key: 'contactTitle', value: 'إلى أين نرسل الرد؟' },
+      {
+        key: 'contactDescription',
+        value:
+          'اترك بيانات التواصل، وسنعود إليك بالمقترح وصيغة العمل والخطوة التالية.',
+      },
+
+      { key: 'nameLabel', value: 'الاسم' },
+      { key: 'namePlaceholder', value: 'اسمك' },
+      { key: 'emailLabel', value: 'البريد الإلكتروني' },
+      { key: 'emailPlaceholder', value: 'name@company.com' },
+      { key: 'companyLabel', value: 'الشركة' },
+      { key: 'companyPlaceholder', value: 'اسم الشركة' },
+      { key: 'roleLabel', value: 'الدور' },
+      { key: 'rolePlaceholder', value: 'Founder / Product / Partner' },
+      { key: 'regionLabel', value: 'الدولة / المنطقة' },
+      { key: 'regionPlaceholder', value: 'مثلاً: UAE, Germany, Estonia' },
+      { key: 'phoneLabel', value: 'الهاتف / Telegram / WhatsApp' },
+      { key: 'phonePlaceholder', value: '+49..., @telegram, whatsapp number' },
+      { key: 'commentLabel', value: 'تعليق' },
+      {
+        key: 'commentPlaceholder',
+        value:
+          'إذا كان هناك أي شيء مهم قبل المكالمة أو الرد المكتوب، أضفه هنا.',
+      },
+
+      {
+        key: 'noCallLabel',
+        value: 'لا أريد أن أبدأ بمكالمة إلزامية — الرد المكتوب أفضل أولاً',
+      },
+      {
+        key: 'expertReviewLabel',
+        value: 'نحتاج إلى نظرة خبيرة سريعة وتوصية بالصيغة قبل التقدير',
+      },
+      {
+        key: 'ndaLabel',
+        value: 'قد نحتاج إلى NDA قبل مناقشة المشروع بتفصيل أكبر',
+      },
+
+      { key: 'summaryResultsTitle', value: 'ماذا تحصل بعد الإرسال' },
+      {
+        key: 'summaryFooter',
+        value:
+          'نحن لا نرسل generic sales response. عادةً تحصل على رد أكثر فائدة بخصوص الصيغة والنطاق والخطوة التالية.',
+      },
+
+      { key: 'cancelLabel', value: 'إلغاء' },
+      { key: 'backLabel', value: 'رجوع' },
+      { key: 'nextLabel', value: 'التالي' },
+      { key: 'submitLabel', value: 'إرسال' },
+    ],
+
+    wizardStepLabels: [
+      { value: 'نوع المشروع' },
+      { value: 'الهدف' },
+      { value: 'الفريق' },
+      { value: 'التعقيد' },
+      { value: 'المواد' },
+      { value: 'الوقت' },
+      { value: 'التواصل' },
+    ],
+
+    projectTypes: [
+      {
+        value: 'startup-website',
+        label: 'Startup Website',
+        description: 'موقع للإطلاق أو التموضع أو جمع التمويل أو الزيارات الأولى',
+      },
+      {
+        value: 'web-product',
+        label: 'Web Product',
+        description: 'SaaS أو client portal أو dashboard أو platform أو internal tool',
+      },
+      {
+        value: 'mobile-app',
+        label: 'Mobile App',
+        description: 'منتج iOS / Android أو MVP mobile-first أو redesign',
+      },
+      {
+        value: 'mvp-concept',
+        label: 'MVP / Concept',
+        description: 'تحتاجون إلى تشكيل هيكل المنتج والمسارات وprototype قوي',
+      },
+      {
+        value: 'redesign',
+        label: 'Redesign',
+        description: 'هناك منتج أو موقع قائم يحتاج إلى إعادة بناء',
+      },
+      {
+        value: 'other',
+        label: 'أخرى',
+        description: 'إذا كانت المهمة لا تنطبق على فئة نمطية واضحة',
+      },
+    ],
+
+    projectGoals: [
+      { value: 'clarify-structure', label: 'توضيح هيكل المنتج' },
+      { value: 'prepare-prototype', label: 'بناء prototype قوي' },
+      { value: 'design-ui', label: 'تصميم واجهة premium' },
+      { value: 'prepare-investor', label: 'إعداد materials للمستثمرين' },
+      { value: 'redesign-existing', label: 'إعادة تصميم منتج / موقع قائم' },
+      { value: 'define-format', label: 'فهم من أين يجب أن نبدأ' },
+    ],
+
+    teamTypes: [
+      { value: 'solo-founder', label: 'Solo founder' },
+      { value: 'small-team', label: 'فريق منتج صغير' },
+      { value: 'agency-partner', label: 'Agency / partner side' },
+      { value: 'company-team', label: 'شركة قائمة / فريق داخلي' },
+    ],
+
+    complexityFlags: [
+      { value: 'أدوار مستخدمين متعددة' },
+      { value: 'الحاجة إلى dashboard / portal / cabinet' },
+      { value: 'وجود booking / payments / transaction flow' },
+      { value: 'Onboarding معقد أو workflow متعدد الخطوات' },
+      { value: 'الحاجة إلى mobile + web معاً' },
+      { value: 'وجود جانب admin / internal' },
+    ],
+
+    materialsOptions: [
+      { value: 'brief', label: 'Brief / notes' },
+      { value: 'pitchdeck', label: 'Pitch deck / presentation' },
+      { value: 'wireframes', label: 'Wireframes' },
+      { value: 'existing-design', label: 'تصميم موجود' },
+      { value: 'product-link', label: 'المنتج الحالي / رابط' },
+      { value: 'research', label: 'Research / insights' },
+      { value: 'brand', label: 'Brand / visual materials' },
+      { value: 'docs', label: 'Docs / specifications' },
+    ],
+
+    timelineOptions: [
+      { value: 'asap', label: 'بأسرع وقت / عاجل' },
+      { value: '1-2-weeks', label: 'خلال 1–2 أسبوع' },
+      { value: 'this-month', label: 'خلال هذا الشهر' },
+      { value: 'next-month', label: 'الشهر القادم' },
+      { value: 'exploring', label: 'ما زلنا نستكشف الخيارات' },
+    ],
+
+    budgetOptions: [
+      { value: 'under-3k', label: 'أقل من €3k' },
+      { value: '3k-7k', label: '€3k–7k' },
+      { value: '7k-15k', label: '€7k–15k' },
+      { value: '15k-plus', label: '€15k+' },
+      { value: 'not-sure', label: 'لسنا متأكدين بعد' },
+    ],
+
+    summaryResults: [
+      { value: 'رد يتضمن الصيغة المقترحة' },
+      { value: 'اتجاه مبدئي للمدة والنطاق' },
+      { value: 'خطوة تالية واضحة' },
+      { value: 'إمكانية البدء من دون مكالمة إلزامية' },
+    ],
+
+    uploadCopy: [
+      { key: 'backLabel', value: 'رجوع' },
+      { key: 'title', value: 'ارفع مواد المشروع' },
+      {
+        key: 'description',
+        value:
+          'إذا كان لديكم brief أو عرض تقديمي أو هيكل أو wireframes أو روابط أو أي مواد أخرى، أرسلوها. سنراجع كل شيء ضمن السياق ونعود إليكم بالخطوة التالية.',
+      },
+
+      { key: 'filesLabel', value: 'الملفات' },
+      { key: 'filesTitle', value: 'اسحب الملفات هنا أو اخترها يدوياً' },
+      {
+        key: 'filesHint',
+        value:
+          'PDF وDOCX وZIP وJPG وPNG وWEBP — أي شيء يساعد على شرح المنتج.',
+      },
+
+      { key: 'linksLabel', value: 'الروابط' },
+      { key: 'linksPlaceholder', value: 'https://figma.com / notion / loom / product link' },
+
+      { key: 'descriptionLabel', value: 'صف المهمة باختصار' },
+      {
+        key: 'descriptionPlaceholder',
+        value:
+          'ما نوع المشروع، وفي أي مرحلة هو الآن، وما الذي تريدون الوصول إليه في الخطوة التالية؟',
+      },
+
+      { key: 'contactLabel', value: 'بيانات التواصل' },
+      { key: 'namePlaceholder', value: 'اسمك' },
+      { key: 'emailPlaceholder', value: 'name@company.com' },
+
+      { key: 'cancelLabel', value: 'إلغاء' },
+      { key: 'submitLabel', value: 'إرسال المواد' },
+    ],
+
+    successCopy: [
+      { key: 'title', value: 'شكراً — تم إرسال الطلب' },
+      {
+        key: 'description',
+        value:
+          'لقد استلمنا البيانات والمواد. عادةً نعود بعد مراجعة سريعة للسياق.',
+      },
+      { key: 'stepsTitle', value: 'ماذا يحدث بعد ذلك' },
+
+      { key: 'homeLabel', value: 'إلى الصفحة الرئيسية' },
+      { key: 'pricingLabel', value: 'الاطلاع على الأسعار' },
+      { key: 'uploadMoreLabel', value: 'إضافة مواد أخرى' },
+
+      { key: 'supportNotePrefix', value: 'إذا كنت بحاجة لإضافة شيء بشكل عاجل، اكتب إلى' },
+      { key: 'supportEmail', value: 'hello@atelier-meridian.com' },
+    ],
+
+    successHomePageKey: 'home',
+    successPricingPageKey: 'pricing',
+
+    successSteps: [
+      {
+        number: '٠١',
+        title: 'مراجعة سريعة',
+        description: 'نراجع المهمة ومرحلة المشروع وكل المواد المرسلة.',
+      },
+      {
+        number: '٠٢',
+        title: 'تحديد الصيغة',
+        description: 'نحدد صيغة العمل التي تناسب المهمة فعلاً.',
+      },
+      {
+        number: '٠٣',
+        title: 'رد مكتوب',
+        description: 'نرسل رداً يتضمن اتجاه النطاق والمدة والخطوة التالية.',
+      },
+      {
+        number: '٠٤',
+        title: 'مكالمة عند الحاجة',
+        description: 'إذا لزم الأمر، نضيف مكالمة قصيرة بعد أن يصبح السياق أوضح.',
+      },
+    ],
+  },
 }
 
-async function getPageLayoutForLocale(
-  payload: Awaited<ReturnType<typeof getPayload>>,
-  pageId: string | number,
-  locale: Locale,
-): Promise<BlockData[]> {
-  const page = await payload.findByID({
-    collection: 'pages',
-    id: pageId,
-    locale,
-    fallbackLocale: 'none',
-    depth: 0,
-  })
-
-  return Array.isArray(page?.layout) ? (page.layout as BlockData[]) : []
-}
-
-async function seedStartupsBlocks(
-  payload: Awaited<ReturnType<typeof getPayload>>,
-  pageId: string | number,
-) {
-  const ruLayout = await getPageLayoutForLocale(payload, pageId, 'ru')
-
-  await payload.update({
-    collection: 'pages',
-    id: pageId,
-    locale: 'ru',
-    depth: 0,
-    data: {
-      layout: upsertBlock(
-        upsertBlock(ruLayout, NAV_CONCEPTS_SEED.ru),
-        CONCEPT_SECTION_CONCEPT_SEED.ru,
-      ),
-    },
-  })
-
-  const enLayout = await getPageLayoutForLocale(payload, pageId, 'en')
-
-  await payload.update({
-    collection: 'pages',
-    id: pageId,
-    locale: 'en',
-    depth: 0,
-    data: {
-      layout: upsertBlock(
-        upsertBlock(enLayout, NAV_CONCEPTS_SEED.en),
-        CONCEPT_SECTION_CONCEPT_SEED.en,
-      ),
-    },
-  })
-
-  const arLayout = await getPageLayoutForLocale(payload, pageId, 'ar')
-
-  await payload.update({
-    collection: 'pages',
-    id: pageId,
-    locale: 'ar',
-    depth: 0,
-    data: {
-      layout: upsertBlock(
-        upsertBlock(arLayout, NAV_CONCEPTS_SEED.ar),
-        CONCEPT_SECTION_CONCEPT_SEED.ar,
-      ),
-    },
-  })
-}
-
-function upsertConceptSectionByAnchor(layout: BlockData[], block: BlockData): BlockData[] {
+function upsertBlock(layout: BlockData[], block: BlockData): BlockData[] {
   const existingIndex = layout.findIndex(
-    (item) =>
-      item?.blockType === 'conceptSectionConcept' &&
-      item?.anchorId === block?.anchorId,
+    (item) => item?.blockType === block?.blockType,
   )
 
   if (existingIndex === -1) {
@@ -787,12 +1112,32 @@ function upsertConceptSectionByAnchor(layout: BlockData[], block: BlockData): Bl
   return nextLayout
 }
 
-async function seedConceptSectionConceptsForLocale(
+async function getPageId(payload: Awaited<ReturnType<typeof getPayload>>) {
+  const result = await payload.find({
+    collection: 'pages',
+    where: {
+      pageKey: {
+        equals: GET_PROPOSAL_PAGE_KEY,
+      },
+    },
+    limit: 1,
+    depth: 0,
+  })
+
+  const page = result.docs[0]
+
+  if (!page) {
+    throw new Error(`Page "${GET_PROPOSAL_PAGE_KEY}" not found`)
+  }
+
+  return page.id
+}
+
+async function getLayout(
   payload: Awaited<ReturnType<typeof getPayload>>,
   pageId: string | number,
   locale: Locale,
-  blocks: BlockData[],
-) {
+): Promise<BlockData[]> {
   const page = await payload.findByID({
     collection: 'pages',
     id: pageId,
@@ -801,11 +1146,15 @@ async function seedConceptSectionConceptsForLocale(
     depth: 0,
   })
 
-  let nextLayout = Array.isArray(page?.layout) ? [...page.layout] : []
+  return Array.isArray(page?.layout) ? (page.layout as BlockData[]) : []
+}
 
-  for (const block of blocks) {
-    nextLayout = upsertConceptSectionByAnchor(nextLayout, block)
-  }
+async function seedProposalFlowProposalForLocale(
+  payload: Awaited<ReturnType<typeof getPayload>>,
+  pageId: string | number,
+  locale: Locale,
+) {
+  const layout = await getLayout(payload, pageId, locale)
 
   await payload.update({
     collection: 'pages',
@@ -813,39 +1162,20 @@ async function seedConceptSectionConceptsForLocale(
     locale,
     depth: 0,
     data: {
-      layout: nextLayout,
+      layout: upsertBlock(layout, PROPOSAL_FLOW_PROPOSAL_SEED[locale]),
     },
   })
 }
 
 async function run() {
   const payload = await getPayload({ config })
+  const pageId = await getPageId(payload)
 
- const startupsPageId = await getStartupsPageId(payload)
-await seedStartupsBlocks(payload, startupsPageId)
+  await seedProposalFlowProposalForLocale(payload, pageId, 'ru')
+  await seedProposalFlowProposalForLocale(payload, pageId, 'en')
+  await seedProposalFlowProposalForLocale(payload, pageId, 'ar')
 
-await seedConceptSectionConceptsForLocale(
-  payload,
-  startupsPageId,
-  'ru',
-  CONCEPT_SECTION_CONCEPT_SEED.ru,
-)
-
-await seedConceptSectionConceptsForLocale(
-  payload,
-  startupsPageId,
-  'en',
-  CONCEPT_SECTION_CONCEPT_SEED.en,
-)
-
-await seedConceptSectionConceptsForLocale(
-  payload,
-  startupsPageId,
-  'ar',
-  CONCEPT_SECTION_CONCEPT_SEED.ar,
-)
-
-  console.log('ArtifactsStartups and ProcessStartups seeded successfully')
+  console.log('ProposalFlowProposal seeded successfully')
 }
 
 run()

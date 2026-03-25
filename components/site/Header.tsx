@@ -104,14 +104,14 @@ export function SiteHeader({
 
           <nav className="hidden items-center gap-8 lg:flex">
             {navItems.map((item) => {
-              const href = getHrefForPageKey(item.pageKey, locale)
+              const href = getHrefForPageKey(item.pageKey!, locale)
 
               return (
                 <Link
                   key={`${item.pageKey}-${item.label}`}
                   href={href}
                   className={`text-sm transition-colors duration-200 ${
-                    isActive(item.pageKey)
+                    isActive(item.pageKey!)
                       ? 'font-medium text-foreground'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
@@ -192,14 +192,14 @@ export function SiteHeader({
         <div className="border-t border-border bg-background lg:hidden">
           <div className="space-y-4 px-6 py-6">
             {navItems.map((item) => {
-              const href = getHrefForPageKey(item.pageKey, locale)
+              const href = getHrefForPageKey(item.pageKey!, locale)
 
               return (
                 <Link
                   key={`mobile-${item.pageKey}-${item.label}`}
                   href={href}
                   className={`block text-sm transition-colors ${
-                    isActive(item.pageKey)
+                    isActive(item.pageKey!)
                       ? 'font-medium text-foreground'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}

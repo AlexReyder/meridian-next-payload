@@ -63,7 +63,7 @@ import { FaqProposalBlockComponent } from './blocks/get-proposal/FaqProposalBloc
 import { ProposalFlowProposalBlockComponent } from './blocks/get-proposal/ProposalFlowProposalBlock'
 import { HeroConceptsBlockComponent } from './blocks/concepts/HeroConceptsBlock'
 import { IntroConceptsBlockComponent } from './blocks/concepts/IntroConceptsBlock'
-import { ConceptNavItem, NavConceptsBlockComponent } from './blocks/concepts/NavConceptsBlock'
+import { type NavConceptItem, NavConceptsBlockComponent } from './blocks/concepts/NavConceptsBlock'
 import { ConceptSectionConceptBlockComponent } from './blocks/concepts/ConceptSectionConceptBlock'
 import { WhyConceptsBlockComponent } from './blocks/concepts/WhyConceptBlock'
 import { CtaConceptsBlockComponent } from './blocks/concepts/CtaConceptBlock'
@@ -79,7 +79,7 @@ export function BlockRenderer({ blocks, locale }: Props) {
   .map((item, index) => ({
     anchorId: item.anchorId || `concept-${index + 1}`,
     navLabel: item.navLabel || item.title || `Concept ${index + 1}`,
-  })) as ConceptNavItem[] 
+  })) as NavConceptItem
   return (
     <>
       {blocks.map((block, index) => {
@@ -226,7 +226,7 @@ export function BlockRenderer({ blocks, locale }: Props) {
               key={key}
               block={block}
               locale={locale}
-              items={conceptSections}
+              // items={conceptSections}
             />
           )
         case 'conceptSectionConcept':
@@ -235,7 +235,7 @@ export function BlockRenderer({ blocks, locale }: Props) {
               key={key}
               block={block}
               locale={locale}
-              index={index}
+              // index={index}
             />
           )       
       case 'whyConcepts':

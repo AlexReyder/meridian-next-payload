@@ -90,7 +90,6 @@ export default async function FrontendPage({ params }: Props) {
       page={page}
       pageKey={route.pageKey}
       locale={route.locale}
-      dir={getLocaleDirection(route.locale)}
       header={header}
       footer={footer}
     />

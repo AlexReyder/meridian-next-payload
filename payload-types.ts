@@ -70,6 +70,8 @@ export interface Config {
     users: User;
     media: Media;
     pages: Page;
+    'proposal-files': ProposalFile;
+    'proposal-requests': ProposalRequest;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +82,8 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    'proposal-files': ProposalFilesSelect<false> | ProposalFilesSelect<true>;
+    'proposal-requests': ProposalRequestsSelect<false> | ProposalRequestsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -1809,6 +1813,60 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "proposal-files".
+ */
+export interface ProposalFile {
+  id: number;
+  alt?: string | null;
+  sourceType: 'proposal-upload';
+  request?: (number | null) | ProposalRequest;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "proposal-requests".
+ */
+export interface ProposalRequest {
+  id: number;
+  mode: 'wizard' | 'upload';
+  locale: 'ru' | 'en' | 'ar';
+  name?: string | null;
+  email?: string | null;
+  company?: string | null;
+  role?: string | null;
+  region?: string | null;
+  phone?: string | null;
+  payload:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  links?:
+    | {
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  files?: (number | ProposalFile)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -1842,6 +1900,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'proposal-files';
+        value: number | ProposalFile;
+      } | null)
+    | ({
+        relationTo: 'proposal-requests';
+        value: number | ProposalRequest;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -3354,6 +3420,50 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "proposal-files_select".
+ */
+export interface ProposalFilesSelect<T extends boolean = true> {
+  alt?: T;
+  sourceType?: T;
+  request?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "proposal-requests_select".
+ */
+export interface ProposalRequestsSelect<T extends boolean = true> {
+  mode?: T;
+  locale?: T;
+  name?: T;
+  email?: T;
+  company?: T;
+  role?: T;
+  region?: T;
+  phone?: T;
+  payload?: T;
+  links?:
+    | T
+    | {
+        url?: T;
+        id?: T;
+      };
+  files?: T;
   updatedAt?: T;
   createdAt?: T;
 }

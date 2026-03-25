@@ -1,4 +1,4 @@
-import type { GlobalConfig } from 'payload'
+import type { Field, GlobalConfig } from 'payload'
 
 import { PAGE_KEY_OPTIONS } from '@/lib/routes'
 
@@ -100,7 +100,7 @@ export const Footer: GlobalConfig = {
           admin: {
             condition: (_, siblingData) => siblingData?.type === 'links',
           },
-          fields: linkFields,
+          fields: linkFields as Field[],
         },
         {
           name: 'body',
@@ -148,7 +148,7 @@ export const Footer: GlobalConfig = {
       type: 'array',
       localized: true,
       required: false,
-      fields: linkFields,
+      fields: linkFields as Field[],
     },
   ],
 }

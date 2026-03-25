@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { isRTL, type Locale } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
-type NavConceptItem = {
+export type NavConceptItem = {
   anchorId?: string | null
   shortLabel?: string | null
   number?: string | null
