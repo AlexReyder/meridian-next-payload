@@ -1,4 +1,37 @@
 export type Locale = 'ru' | 'en' | 'ar'
+export const LOCALES: Locale[] = ['ru', 'en', 'ar']
+
+export function getLocaleFromSegments(segments?: string[]): Locale {
+  const normalized = segments ?? []
+  const first = normalized[0]
+
+  if (first === 'en') return 'en'
+  if (first === 'ar') return 'ar'
+
+  return 'ru'
+}
+
+export function stripLocalePrefix(segments?: string[]): string[] {
+  const normalized = segments ?? []
+  const locale = getLocaleFromSegments(normalized)
+
+  if (locale === 'ru') return normalized
+  return normalized.slice(1)
+}
+
+export function normalizeSlug(slug?: string | null): string {
+  return (slug ?? '').trim().replace(/^\/+|\/+$/g, '')
+}
+
+export function buildHrefFromSlug(slug: string, locale: Locale): string {
+  const normalized = normalizeSlug(slug)
+
+  if (!normalized) {
+    return locale === 'ru' ? '/' : `/${locale}`
+  }
+
+  return locale === 'ru' ? `/${normalized}` : `/${locale}/${normalized}`
+}
 export type PageKey =
   | 'home'
   | 'solutions'
@@ -28,7 +61,7 @@ export const PAGE_KEY_OPTIONS = PAGE_KEYS.map((value) => ({
   value,
 }))
 
-const ROUTE_MAP: Record<PageKey, Record<Locale, string[]>> = {
+export const ROUTE_MAP: Record<PageKey, Record<Locale, string[]>> = {
   home: {
     ru: [],
     en: ['en'],

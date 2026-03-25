@@ -70,16 +70,29 @@ import { WhyConceptsBlock } from '@/blocks/concepts/WhyConceptsBlock'
 import { CtaConceptsBlock } from '@/blocks/concepts/CtaConceptBlock'
 import { FinalSupportProposalBlock } from '@/blocks/get-proposal/FinalSupportProposalBlock'
 import { revalidatePath } from 'next/cache'
+import { getAllFrontendPaths, getPathsForPageDocument, revalidateFrontendPaths } from '../lib/data/revalidateFrontend'
+import type { PageKey } from '../lib/routes'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
-  hooks: {
-      afterChange: [
-      ({ doc }) => {
-        revalidatePath(`/${doc.slug}`)
-      },
-    ],
-  },
+ hooks: {
+  afterChange: [
+    async ({ doc, req }) => {
+      const paths = await getPathsForPageDocument(req.payload, {
+        id: doc.id,
+        pageKey: doc.pageKey,
+        routeType: doc.routeType,
+      })
+
+      await revalidateFrontendPaths(paths)
+    },
+  ],
+  afterDelete: [
+    async () => {
+      await revalidateFrontendPaths(getAllFrontendPaths())
+    },
+  ],
+},
   access: {
     read: () => true,
   },
@@ -88,6 +101,59 @@ export const Pages: CollectionConfig = {
     defaultColumns: ['pageKey', 'updatedAt'],
   },
   fields: [
+    {
+  name: 'routeType',
+  type: 'select',
+  required: true,
+  defaultValue: 'system',
+  options: [
+    { label: 'System page', value: 'system' },
+    { label: 'Custom page', value: 'custom' },
+  ],
+},
+
+{
+  name: 'pageKey',
+  type: 'select',
+  options: PAGE_KEY_OPTIONS,
+  admin: {
+    condition: (_, siblingData) => siblingData?.routeType === 'system',
+  },
+  validate: (value, { siblingData }) => {
+    if (siblingData?.routeType === 'system' && !value) {
+      return 'pageKey is required for system pages'
+    }
+    return true
+  },
+},
+
+{
+  name: 'slug',
+  type: 'text',
+  localized: true,
+  admin: {
+    condition: (_, siblingData) => siblingData?.routeType === 'custom',
+    description:
+      'Without locale prefix. Example: services/fintech-ui',
+  },
+  validate: (value, { siblingData }) => {
+    if (siblingData?.routeType !== 'custom') return true
+
+    if (!value || typeof value !== 'string') {
+      return 'slug is required for custom pages'
+    }
+
+    const normalized = value.trim().replace(/^\/+|\/+$/g, '')
+
+    if (!normalized) return 'slug is required for custom pages'
+    if (normalized.includes('//')) return 'slug must not contain empty segments'
+    if (normalized === 'en' || normalized === 'ar') {
+      return 'slug must not equal locale prefix'
+    }
+
+    return true
+  },
+},
     {
       name: 'pageKey',
       type: 'select',

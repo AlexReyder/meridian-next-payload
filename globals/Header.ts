@@ -1,9 +1,18 @@
 import type { GlobalConfig } from 'payload'
 
 import { PAGE_KEY_OPTIONS } from '@/lib/routes'
+import { getAllFrontendPaths, revalidateFrontendPaths } from '../lib/data/revalidateFrontend'
+
 
 export const Header: GlobalConfig = {
   slug: 'header',
+  hooks: {
+ afterChange: [
+    async () => {
+      await revalidateFrontendPaths(getAllFrontendPaths())
+    },
+  ],
+},
   label: 'Header',
   access: {
     read: () => true,

@@ -1,6 +1,7 @@
 import type { Field, GlobalConfig } from 'payload'
 
 import { PAGE_KEY_OPTIONS } from '@/lib/routes'
+import { getAllFrontendPaths, revalidateFrontendPaths } from '@/lib/data/revalidateFrontend'
 
 const linkFields = [
   {
@@ -28,6 +29,13 @@ const linkFields = [
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
+  hooks: {
+ afterChange: [
+    async () => {
+      await revalidateFrontendPaths(getAllFrontendPaths())
+    },
+  ],
+},
   label: 'Footer',
   access: {
     read: () => true,

@@ -29,6 +29,11 @@ export default buildConfig({
       importMapFile: './app/(payload)/importMap.ts', // УКАЖИТЕ .ts ЗДЕСЬ
     //  baseDir: path.resolve(dirname, 'src/app/(payload)'),
     },
+    livePreview: {
+      url: process.env.APP_DOMAIN,
+      collections: ['pages'],
+      globals: ['header', 'footer'],
+    }
   },
     email: nodemailerAdapter({
     defaultFromAddress: 'razrab@bk.ru',
