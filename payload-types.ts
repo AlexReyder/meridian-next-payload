@@ -857,32 +857,23 @@ export interface Page {
     | {
         eyebrow: string;
         title: string;
-        description: string;
         items: {
+          icon: 'fileText' | 'gitBranch' | 'layout' | 'play' | 'palette' | 'package';
           title: string;
-          subtitle: string;
-          imageUrl: string;
-          alt: string;
+          support: string;
           id?: string | null;
         }[];
-        bottomNote: string;
         id?: string | null;
         blockName?: string | null;
         blockType: 'artifactsStartups';
       }
     | {
-        sectionId?: string | null;
         eyebrow: string;
         title: string;
-        description: string;
-        items: {
+        steps: {
           number: string;
           title: string;
           description: string;
-          details: {
-            label: string;
-            id?: string | null;
-          }[];
           id?: string | null;
         }[];
         id?: string | null;
@@ -2527,39 +2518,28 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               eyebrow?: T;
               title?: T;
-              description?: T;
               items?:
                 | T
                 | {
+                    icon?: T;
                     title?: T;
-                    subtitle?: T;
-                    imageUrl?: T;
-                    alt?: T;
+                    support?: T;
                     id?: T;
                   };
-              bottomNote?: T;
               id?: T;
               blockName?: T;
             };
         processStartups?:
           | T
           | {
-              sectionId?: T;
               eyebrow?: T;
               title?: T;
-              description?: T;
-              items?:
+              steps?:
                 | T
                 | {
                     number?: T;
                     title?: T;
                     description?: T;
-                    details?:
-                      | T
-                      | {
-                          label?: T;
-                          id?: T;
-                        };
                     id?: T;
                   };
               id?: T;

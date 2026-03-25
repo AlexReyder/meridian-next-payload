@@ -4,59 +4,54 @@ export const ArtifactsStartupsBlock: Block = {
   slug: 'artifactsStartups',
   labels: {
     singular: 'Artifacts Startups',
-    plural: 'Artifacts Startups blocks',
+    plural: 'Artifacts Startups',
   },
   fields: [
     {
       name: 'eyebrow',
       type: 'text',
+      localized: true,
       required: true,
-      defaultValue: 'Что получает стартап',
     },
     {
       name: 'title',
-      type: 'textarea',
-      required: true,
-      defaultValue: 'Материалы, которые помогают двигаться дальше',
-    },
-    {
-      name: 'description',
-      type: 'textarea',
+      type: 'text',
+      localized: true,
       required: true,
     },
     {
       name: 'items',
       type: 'array',
       required: true,
-      minRows: 4,
-      maxRows: 4,
+      minRows: 6,
+      maxRows: 6,
       fields: [
+        {
+          name: 'icon',
+          type: 'select',
+          required: true,
+          options: [
+            { label: 'FileText', value: 'fileText' },
+            { label: 'GitBranch', value: 'gitBranch' },
+            { label: 'Layout', value: 'layout' },
+            { label: 'Play', value: 'play' },
+            { label: 'Palette', value: 'palette' },
+            { label: 'Package', value: 'package' },
+          ],
+        },
         {
           name: 'title',
           type: 'text',
+          localized: true,
           required: true,
         },
         {
-          name: 'subtitle',
+          name: 'support',
           type: 'text',
-          required: true,
-        },
-        {
-          name: 'imageUrl',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'alt',
-          type: 'text',
+          localized: true,
           required: true,
         },
       ],
-    },
-    {
-      name: 'bottomNote',
-      type: 'text',
-      required: true,
     },
   ],
 }

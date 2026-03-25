@@ -1,88 +1,104 @@
-import { isRTL, type Locale } from '@/lib/routes'
-import { cn } from '@/lib/utils'
+import {
+  FileText,
+  GitBranch,
+  Layout,
+  Package,
+  Palette,
+  Play,
+  type LucideIcon,
+} from 'lucide-react'
+
+type Lang = 'ru' | 'en' | 'ar'
 
 type ArtifactItem = {
+  icon?: 'fileText' | 'gitBranch' | 'layout' | 'play' | 'palette' | 'package' | null
   title?: string | null
-  subtitle?: string | null
-  imageUrl?: string | null
-  alt?: string | null
-}
-
-type ArtifactsStartupsBlockData = {
-  eyebrow?: string | null
-  title?: string | null
-  description?: string | null
-  items?: ArtifactItem[] | null
-  bottomNote?: string | null
+  support?: string | null
 }
 
 type Props = {
-  block: ArtifactsStartupsBlockData
-  locale: Locale
+  eyebrow?: string | null
+  title?: string | null
+  items?: ArtifactItem[] | null
+  lang?: Lang
 }
 
-export function ArtifactsStartupsBlockComponent({ block, locale }: Props) {
-  const rtl = isRTL(locale)
+const iconMap: Record<string, LucideIcon> = {
+  fileText: FileText,
+  gitBranch: GitBranch,
+  layout: Layout,
+  play: Play,
+  palette: Palette,
+  package: Package,
+}
+
+export function ArtifactsStartups({
+  eyebrow,
+  title,
+  items,
+  lang = 'ru',
+}: Props) {
+  const isRTL = lang === 'ar'
+
+  if (!items?.length) return null
 
   return (
-    <section dir={rtl ? 'rtl' : 'ltr'} className="bg-foreground py-20 text-background lg:py-28">
+    <section dir={isRTL ? 'rtl' : 'ltr'} className="py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className={cn('mb-12 max-w-3xl', rtl && 'ml-auto text-right')}>
-          <div className={cn('mb-6 flex items-center gap-3', rtl && 'flex-row-reverse justify-end')}>
-            <span className="h-px w-8 bg-signature-cobalt-soft/70" />
-            <span
-              className={cn(
-                'text-[11px] text-background/50',
-                rtl ? 'tracking-[0.18em]' : 'uppercase tracking-[0.2em]',
-              )}
-            >
-              {block.eyebrow}
-            </span>
-          </div>
-
-          <h2 className="font-serif text-3xl font-light leading-tight text-background lg:text-4xl">
-            {block.title}
-          </h2>
-
-          <p className="mt-4 text-base leading-relaxed text-background/60 lg:text-lg">
-            {block.description}
-          </p>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {block.items?.map((artifact, index) =>
-            artifact?.title ? (
-              <div
-                key={`${artifact.title}-${index}`}
-                className={cn(
-                  'group overflow-hidden rounded border border-background/12 bg-background/[0.04] transition-colors hover:border-background/20 hover:bg-background/[0.06]',
-                  rtl && 'text-right',
-                )}
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={artifact.imageUrl ?? ''}
-                    alt={artifact.alt ?? artifact.title}
-                    className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/35 via-transparent to-transparent" />
-                </div>
-
-                <div className="p-5">
-                  <h3 className="font-serif text-lg font-light text-background">
-                    {artifact.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-background/50">
-                    {artifact.subtitle}
-                  </p>
-                </div>
-              </div>
-            ) : null,
+        <div className={`mb-6 flex items-center gap-3 ${isRTL ? 'justify-start' : ''}`}>
+          {isRTL ? (
+            <>
+              <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                {eyebrow}
+              </span>
+              <span className="h-px w-8 bg-accent" />
+            </>
+          ) : (
+            <>
+              <span className="h-px w-8 bg-accent" />
+              <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                {eyebrow}
+              </span>
+            </>
           )}
         </div>
 
-        <div className="mt-10 border-t border-background/10 pt-8">
-          <p className="text-center text-sm text-background/40">{block.bottomNote}</p>
+        <h2 className="mb-12 max-w-2xl font-serif text-3xl font-light leading-tight text-foreground lg:text-4xl">
+          {title}
+        </h2>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((item, index) => {
+            const Icon = iconMap[item.icon || 'fileText'] || FileText
+
+            return (
+              <div
+                key={`${item.title || 'artifact'}-${index}`}
+                className="group rounded-sm border border-border/60 bg-card p-6 transition-colors hover:border-accent/40 lg:p-8"
+              >
+                <div className="relative mb-6 aspect-[16/10] w-full overflow-hidden rounded-sm bg-secondary/50">
+                  <div
+                    className={`absolute inset-0 ${
+                      isRTL
+                        ? 'bg-gradient-to-bl from-accent/5 to-transparent'
+                        : 'bg-gradient-to-br from-accent/5 to-transparent'
+                    }`}
+                  />
+                  <div className="flex h-full items-center justify-center">
+                    <Icon className="h-8 w-8 text-foreground/40" />
+                  </div>
+                </div>
+
+                <h3 className="mb-2 font-serif text-lg font-light text-foreground">
+                  {item.title}
+                </h3>
+
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {item.support}
+                </p>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>

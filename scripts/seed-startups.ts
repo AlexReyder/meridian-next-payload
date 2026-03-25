@@ -414,123 +414,119 @@ const STARTUPS_SITUATIONS_SEED: Record<Locale, BlockData> = {
   },
 }
 
-const STARTUPS_ARTIFACTS_SEED: Record<Locale, BlockData> = {
+ const ARTIFACTS_STARTUPS_SEED: Record<Locale, any> = {
   ru: {
     blockType: 'artifactsStartups',
-    eyebrow: 'Что получает стартап',
-    title: 'Материалы, которые помогают двигаться дальше',
-    description:
-      'На выходе стартап получает не просто набор экранов, а понятный продуктовый артефакт, который можно показать, согласовать и использовать в следующем этапе.',
+    eyebrow: 'Результат',
+    title: 'Что получает founder в результате',
     items: [
       {
-        title: 'Структура продукта',
-        subtitle: 'Фиксирует ядро идеи, scope и приоритеты',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-izxISwxnsh153iue55fxis0BfXpJZy.png',
-        alt: 'Структура продукта',
+        icon: 'fileText',
+        title: 'Структура проекта',
+        support: 'помогает собрать продукт по логике',
       },
       {
-        title: 'Сценарии использования',
-        subtitle: 'Показывают ключевые user flows и логику продукта',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B8-6Cd1Gr0fJ9T1bQvpwusenVE1qH0EeF.png',
-        alt: 'Сценарии использования',
+        icon: 'gitBranch',
+        title: 'Пользовательские сценарии',
+        support: 'показывает ключевые сценарии и приоритеты',
       },
       {
-        title: 'Экранная карта',
-        subtitle: 'Делает состав MVP понятным и управляемым',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20-CjniSYt05jhRhvZGAnVzEoa5nOSJcb.png',
-        alt: 'Экранная карта',
+        icon: 'layout',
+        title: 'Экранная карта продукта',
+        support: 'превращает идею в понятную систему экранов',
       },
       {
-        title: 'Кликабельный прототип',
-        subtitle: 'Помогает показать продукт инвестору, партнёру или команде',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B8%CC%86%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-f73wC5LUW8rwRcU9w00neMYkmRnmYY.png',
-        alt: 'Кликабельный прототип',
+        icon: 'play',
+        title: 'Интерактивный прототип',
+        support: 'даёт сильный prototype для обсуждения и показа',
+      },
+      {
+        icon: 'palette',
+        title: 'Визуальное направление',
+        support: 'задаёт визуальный характер продукта',
+      },
+      {
+        icon: 'package',
+        title: 'Материалы для передачи в разработку',
+        support: 'помогает перейти к следующему этапу разработки',
       },
     ],
-    bottomNote:
-      'Эти материалы можно использовать для pitch, согласования с командой и передачи в разработку.',
   },
+
   en: {
     blockType: 'artifactsStartups',
-    eyebrow: 'What Startups Receive',
-    title: 'Artifacts that help the product move forward',
-    description:
-      'Instead of just screens, the startup gets a clear product artifact that can be shown, aligned internally, and used for the next stage.',
+    eyebrow: 'Result',
+    title: 'What startup teams receive',
     items: [
       {
-        title: 'Product Structure',
-        subtitle: 'Captures the core idea, scope, and priorities',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-izxISwxnsh153iue55fxis0BfXpJZy.png',
-        alt: 'Product Structure',
+        icon: 'fileText',
+        title: 'Project Structure',
+        support: 'clarifies what the product really needs',
       },
       {
+        icon: 'gitBranch',
         title: 'User Flows',
-        subtitle: 'Show key scenarios and product logic',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B8-6Cd1Gr0fJ9T1bQvpwusenVE1qH0EeF.png',
-        alt: 'User Flows',
+        support: 'makes key user journeys easier to align',
       },
       {
-        title: 'Screen Map',
-        subtitle: 'Makes the MVP scope more explicit and manageable',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20-CjniSYt05jhRhvZGAnVzEoa5nOSJcb.png',
-        alt: 'Screen Map',
+        icon: 'layout',
+        title: 'Screen Matrix',
+        support: 'organizes screens into one coherent system',
       },
       {
+        icon: 'play',
         title: 'Clickable Prototype',
-        subtitle: 'Helps present the product to investors, partners, or the team',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B8%CC%86%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-f73wC5LUW8rwRcU9w00neMYkmRnmYY.png',
-        alt: 'Clickable Prototype',
+        support: 'creates something tangible to present or validate',
+      },
+      {
+        icon: 'palette',
+        title: 'Visual Direction',
+        support: 'sets the tone of the interface',
+      },
+      {
+        icon: 'package',
+        title: 'Materials for Development',
+        support: 'helps move cleanly into the next stage',
       },
     ],
-    bottomNote:
-      'These artifacts can be used for investor pitch, team alignment, and development handoff.',
   },
+
   ar: {
     blockType: 'artifactsStartups',
-    eyebrow: 'ما الذي تحصل عليه الشركة الناشئة',
-    title: 'مواد تساعد المنتج على الانتقال إلى المرحلة التالية',
-    description:
-      'بدلاً من مجرد شاشات، تحصل الشركة الناشئة على مخرجات منتج واضحة يمكن عرضها، والتوافق عليها، واستخدامها في المرحلة التالية.',
+    eyebrow: 'النتيجة',
+    title: 'ما الذي تحصل عليه فرق الشركات الناشئة',
     items: [
       {
-        title: 'هيكل المنتج',
-        subtitle: 'يثبت جوهر الفكرة والنطاق والأولويات',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%B0%D1%80%D0%BD%D0%A7%D0%B1%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-izxISwxnsh153iue55fxis0BfXpJZy.png',
-        alt: 'هيكل المنتج',
+        icon: 'fileText',
+        title: 'هيكل المشروع',
+        support: 'يوضح ما الذي يحتاجه المنتج فعلاً',
       },
       {
-        title: 'مسارات الاستخدام',
-        subtitle: 'توضح السيناريوهات الأساسية ومنطق المنتج',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%9F%D0%BE%D0%BB%D1%8A%D0%B7%D0%BE%D0%B2%D0%A7%D0%B1%D0%BB%D0%B5%D1%82%D1%8C%D1%81%D0%BA%D0%B8%D0%B5%20%D1%81%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%B8%D0%B8-6Cd1Gr0fJ9T1bQvpwusenVE1qH0EeF.png',
-        alt: 'مسارات الاستخدام',
+        icon: 'gitBranch',
+        title: 'مسارات المستخدم',
+        support: 'يسهل الاتفاق على المسارات الرئيسية',
       },
       {
-        title: 'خريطة الشاشات',
-        subtitle: 'تجعل نطاق MVP أوضح وأسهل في الإدارة',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%B0%D1%80%D1%82%D0%B0%20-CjniSYt05jhRhvZGAnVzEoa5nOSJcb.png',
-        alt: 'خريطة الشاشات',
+        icon: 'layout',
+        title: 'مصفوفة الشاشات',
+        support: 'ينظم الشاشات في نظام واحد واضح',
       },
       {
+        icon: 'play',
         title: 'نموذج أولي قابل للنقر',
-        subtitle: 'يساعد على عرض المنتج للمستثمر أو الشريك أو الفريق',
-        imageUrl:
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%A7%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B8%CC%86%20%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%20-f73wC5LUW8rwRcU9w00neMYkmRnmYY.png',
-        alt: 'نموذج أولي قابل للنقر',
+        support: 'يقدم شيئاً ملموساً للعرض أو المراجعة',
+      },
+      {
+        icon: 'palette',
+        title: 'الاتجاه البصري',
+        support: 'يحدد الطابع البصري للمنتج',
+      },
+      {
+        icon: 'package',
+        title: 'مواد التسليم للتطوير',
+        support: 'يدعم الانتقال المنظم إلى المرحلة التالية',
       },
     ],
-    bottomNote:
-      'يمكن استخدام هذه المواد في عرض المستثمرين أو التوافق الداخلي أو التسليم إلى التطوير.',
   },
 }
 
@@ -667,6 +663,105 @@ const STARTUPS_PROCESS_SEED: Record<Locale, BlockData> = {
         description:
           'نسلّم مواد يمكن أن تنتقل مباشرة إلى التطوير أو التوافق الداخلي أو الجولة التالية.',
         details: [{ label: 'handoff' }, { label: 'docs' }, { label: 'next step' }],
+      },
+    ],
+  },
+}const PROCESS_STARTUPS_SEED: Record<Locale, any> = {
+  ru: {
+    blockType: 'processStartups',
+    eyebrow: 'Процесс',
+    title: 'Как это обычно происходит',
+    steps: [
+      {
+        number: '01',
+        title: 'Brief',
+        description: 'Собираем задачу, цели, ограничения и контекст проекта.',
+      },
+      {
+        number: '02',
+        title: 'Структура',
+        description: 'Определяем, какие сценарии и экраны действительно нужны на старте.',
+      },
+      {
+        number: '03',
+        title: 'Приоритеты',
+        description: 'Отделяем MVP от второстепенного. Фокусируем на главном.',
+      },
+      {
+        number: '04',
+        title: 'Интерфейсы',
+        description: 'Собираем prototype, сайт или mobile screens в сильную и понятную систему.',
+      },
+      {
+        number: '05',
+        title: 'Следующий этап',
+        description: 'Готовим рекомендации и материалы для передачи в разработку или следующего pitch.',
+      },
+    ],
+  },
+
+  en: {
+    blockType: 'processStartups',
+    eyebrow: 'Process',
+    title: 'How this usually works',
+    steps: [
+      {
+        number: '01',
+        title: 'Brief',
+        description: 'We start by understanding the idea, the context, and the current level of clarity.',
+      },
+      {
+        number: '02',
+        title: 'Product Structure',
+        description: 'We define the key roles, flows, priorities, and what the product actually needs at this stage.',
+      },
+      {
+        number: '03',
+        title: 'Priorities',
+        description: 'We separate core MVP logic from everything that can wait.',
+      },
+      {
+        number: '04',
+        title: 'Interface & Prototype',
+        description: 'We shape the screens, interaction logic, and clickable prototype.',
+      },
+      {
+        number: '05',
+        title: 'Next Step',
+        description: 'You receive materials that help you present, align, or move into development.',
+      },
+    ],
+  },
+
+  ar: {
+    blockType: 'processStartups',
+    eyebrow: 'العملية',
+    title: 'كيف تسير العملية عادة',
+    steps: [
+      {
+        number: '٠١',
+        title: 'الـ brief',
+        description: 'نبدأ بفهم الفكرة والسياق ودرجة الوضوح الحالية للمشروع.',
+      },
+      {
+        number: '٠٢',
+        title: 'هيكلة المنتج',
+        description: 'نحدد الأدوار الأساسية والمسارات والأولويات وما الذي يحتاجه المنتج فعلاً في هذه المرحلة.',
+      },
+      {
+        number: '٠٣',
+        title: 'تحديد الأولويات',
+        description: 'نفصل بين ما يجب أن يكون ضمن MVP الآن وما يمكن تأجيله لاحقاً.',
+      },
+      {
+        number: '٠٤',
+        title: 'الواجهة والنموذج الأولي',
+        description: 'نبني الشاشات الأساسية ومنطق الاستخدام والـ prototype القابل للنقر.',
+      },
+      {
+        number: '٠٥',
+        title: 'الخطوة التالية',
+        description: 'تحصلون على مواد تساعدكم في العرض أو التوافق الداخلي أو الانتقال إلى التطوير.',
       },
     ],
   },
@@ -1188,9 +1283,9 @@ async function main() {
     await seedBlockForLocale(payload, homePage.id, 'en', STARTUPS_SITUATIONS_SEED.en)
     await seedBlockForLocale(payload, homePage.id, 'ar', STARTUPS_SITUATIONS_SEED.ar)
 
-    await seedBlockForLocale(payload, homePage.id, 'ru', STARTUPS_ARTIFACTS_SEED.ru)
-    await seedBlockForLocale(payload, homePage.id, 'en', STARTUPS_ARTIFACTS_SEED.en)
-    await seedBlockForLocale(payload, homePage.id, 'ar', STARTUPS_ARTIFACTS_SEED.ar)
+    await seedBlockForLocale(payload, homePage.id, 'ru', ARTIFACTS_STARTUPS_SEED.ru)
+    await seedBlockForLocale(payload, homePage.id, 'en', ARTIFACTS_STARTUPS_SEED.en)
+    await seedBlockForLocale(payload, homePage.id, 'ar', ARTIFACTS_STARTUPS_SEED.ar)
 
     await seedBlockForLocale(payload, homePage.id, 'ru', STARTUPS_PROCESS_SEED.ru)
     await seedBlockForLocale(payload, homePage.id, 'en', STARTUPS_PROCESS_SEED.en)
