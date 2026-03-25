@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Clock } from 'lucide-react'
 
 import { getHrefForPageKey, isRTL, type Locale, type PageKey } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
-type CtaConceptsBlockData = {
+type CTAConceptsBlockData = {
   title?: string | null
   description?: string | null
   primaryButtonLabel?: string | null
@@ -15,7 +15,7 @@ type CtaConceptsBlockData = {
 }
 
 type Props = {
-  block: CtaConceptsBlockData
+  block: CTAConceptsBlockData
   locale: Locale
 }
 
@@ -23,45 +23,62 @@ export function CtaConceptsBlockComponent({ block, locale }: Props) {
   const rtl = isRTL(locale)
 
   return (
-    <section dir={rtl ? 'rtl' : 'ltr'} className="py-20 lg:py-28">
-      <div className="mx-auto max-w-5xl px-6 lg:px-8">
-        <div className="rounded-sm border border-border/60 bg-card px-6 py-12 text-center sm:px-10 lg:px-16 lg:py-16">
-          <h2 className="mx-auto max-w-3xl font-serif text-3xl font-light leading-tight text-foreground lg:text-4xl xl:text-5xl">
-            {block.title}
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground lg:text-lg">
-            {block.description}
-          </p>
-
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href={getHrefForPageKey(block.primaryPageKey ?? 'get-proposal', locale)}
-              className="inline-flex h-11 items-center justify-center rounded-sm bg-foreground px-7 text-[11px] font-medium uppercase tracking-[0.15em] text-background transition-colors hover:bg-foreground/90"
-            >
-              {rtl ? (
-                <>
-                  <ArrowLeft className="ml-2 h-3.5 w-3.5" />
-                  {block.primaryButtonLabel}
-                </>
-              ) : (
-                <>
-                  {block.primaryButtonLabel}
-                  <ArrowRight className="ml-2 h-3.5 w-3.5" />
-                </>
-              )}
-            </Link>
-
-            <Link
-              href={getHrefForPageKey(block.secondaryPageKey ?? 'pricing', locale)}
-              className="inline-flex h-11 items-center justify-center rounded-sm border border-foreground/15 px-7 text-[11px] font-medium uppercase tracking-[0.15em] text-foreground transition-colors hover:bg-foreground/5"
-            >
-              {block.secondaryButtonLabel}
-            </Link>
-          </div>
-
-          <p className="mt-8 text-sm text-muted-foreground">{block.footerNote}</p>
+    <section dir={rtl ? 'rtl' : 'ltr'} className="border-t border-border/50 bg-background py-20 lg:py-28">
+      <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
+        <div className="mb-8 flex items-center justify-center gap-1">
+          {rtl ? (
+            <>
+              <div className="h-[2px] w-1 rounded-full bg-foreground/20" />
+              <div className="h-[2px] w-1.5 rounded-full bg-signature-brass" />
+              <div className="h-[2px] w-3 rounded-full bg-signature-cobalt" />
+            </>
+          ) : (
+            <>
+              <div className="h-[2px] w-3 rounded-full bg-signature-cobalt" />
+              <div className="h-[2px] w-1.5 rounded-full bg-signature-brass" />
+              <div className="h-[2px] w-1 rounded-full bg-foreground/20" />
+            </>
+          )}
         </div>
+
+        <h2 className="text-balance font-serif text-3xl font-light leading-tight text-foreground lg:text-4xl xl:text-5xl">
+          {block.title}
+        </h2>
+
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-foreground/70">
+          {block.description}
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <Link
+            href={getHrefForPageKey(block.primaryPageKey ?? 'get-proposal', locale)}
+            className={cn(
+              'group inline-flex items-center gap-2 rounded-sm bg-foreground px-8 py-4 text-sm font-medium text-background transition-colors hover:bg-foreground/90',
+              rtl && 'flex-row-reverse',
+            )}
+          >
+            <Clock className="h-4 w-4" />
+
+            <span>{block.primaryButtonLabel}</span>
+
+            {rtl ? (
+              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+            ) : (
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            )}
+          </Link>
+
+          <Link
+            href={getHrefForPageKey(block.secondaryPageKey ?? 'pricing', locale)}
+            className="inline-flex items-center gap-2 rounded-sm border border-border px-8 py-4 text-sm font-medium text-foreground transition-colors hover:border-foreground/40"
+          >
+            {block.secondaryButtonLabel}
+          </Link>
+        </div>
+
+        <p className="mt-10 text-sm text-muted-foreground">
+          {block.footerNote}
+        </p>
       </div>
     </section>
   )

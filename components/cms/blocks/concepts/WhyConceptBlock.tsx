@@ -1,7 +1,10 @@
+import { FileText, Layers, Monitor, Search, type LucideIcon } from 'lucide-react'
+
 import { isRTL, type Locale } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
-type WhyItem = {
+type WhyConceptsItem = {
+  icon?: 'search' | 'layers' | 'monitor' | 'fileText' | null
   title?: string | null
   description?: string | null
 }
@@ -10,7 +13,7 @@ type WhyConceptsBlockData = {
   eyebrow?: string | null
   title?: string | null
   description?: string | null
-  items?: WhyItem[] | null
+  items?: WhyConceptsItem[] | null
 }
 
 type Props = {
@@ -18,65 +21,82 @@ type Props = {
   locale: Locale
 }
 
+const iconMap: Record<string, LucideIcon> = {
+  search: Search,
+  layers: Layers,
+  monitor: Monitor,
+  fileText: FileText,
+}
+
 export function WhyConceptsBlockComponent({ block, locale }: Props) {
   const rtl = isRTL(locale)
 
+  if (!block.items?.length) return null
+
   return (
-    <section
-      dir={rtl ? 'rtl' : 'ltr'}
-      className="border-t border-border/50 bg-muted/20 py-20 lg:py-28"
-    >
+    <section dir={rtl ? 'rtl' : 'ltr'} className="bg-[#1a1816] py-20 text-background lg:py-28">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="mb-14 grid gap-10 lg:grid-cols-[0.95fr,1.05fr] lg:gap-16">
-          <div className={cn(rtl && 'text-right')}>
-            <div
-              className={cn(
-                'mb-5 flex items-center gap-2',
-                rtl && 'flex-row-reverse justify-end',
-              )}
-            >
-              <div className="h-[1px] w-6 bg-signature-cobalt" />
-              <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                {block.eyebrow}
-              </span>
-            </div>
-
-            <h2 className="font-serif text-3xl font-light leading-tight text-foreground lg:text-4xl xl:text-5xl">
-              {block.title}
-            </h2>
+        <div className={cn('mb-16 max-w-3xl', rtl && 'mr-auto text-right')}>
+          <div className={cn('mb-6 flex items-center gap-2', rtl && 'flex-row-reverse justify-end')}>
+            <div className="h-px w-6 bg-signature-brass" />
+            <span className="text-[10px] uppercase tracking-[0.2em] text-background/50">
+              {block.eyebrow}
+            </span>
           </div>
 
-          <div className={cn(rtl && 'text-right')}>
-            <p className="text-base leading-relaxed text-foreground/80 lg:text-lg">
-              {block.description}
-            </p>
-          </div>
+          <h2 className="mb-6 font-serif text-3xl font-light leading-tight text-background lg:text-4xl xl:text-5xl">
+            {block.title}
+          </h2>
+
+          <p className="text-lg leading-relaxed text-background/70">
+            {block.description}
+          </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {block.items?.map((item, index) =>
-            item?.title && item?.description ? (
+        <div className="grid gap-6 sm:grid-cols-2">
+          {block.items.map((item, index) => {
+            const Icon = iconMap[item.icon || 'search'] || Search
+
+            return (
               <div
                 key={`${item.title}-${index}`}
-                className={cn(
-                  'rounded-sm border border-border/60 bg-background p-6 transition-colors hover:border-foreground/20',
-                  rtl && 'text-right',
-                )}
+                className="group relative rounded-sm border border-background/10 bg-background/5 p-6 transition-all hover:border-background/20 hover:bg-background/10 lg:p-8"
               >
-                <div className="mb-4 text-[10px] font-medium tracking-[0.2em] text-signature-cobalt">
-                  {String(index + 1).padStart(2, '0')}
+                {index === 0 && (
+                  <div className={cn('absolute top-0', rtl ? 'right-0' : 'left-0')}>
+                    <div
+                      className={cn(
+                        'absolute top-0 h-[2px] w-4 bg-signature-cobalt',
+                        rtl ? 'right-0 rounded-l-full' : 'left-0 rounded-r-full',
+                      )}
+                    />
+                    <div
+                      className={cn(
+                        'absolute top-0 h-4 w-[2px] bg-signature-cobalt',
+                        rtl ? 'right-0 rounded-b-full' : 'left-0 rounded-b-full',
+                      )}
+                    />
+                  </div>
+                )}
+
+                <div className={cn('flex items-start gap-4', rtl && 'flex-row-reverse text-right')}>
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background/10">
+                    <Icon className="h-5 w-5 text-background/60" />
+                  </div>
+
+                  <div>
+                    <h3 className="mb-2 text-base font-medium text-background">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-sm leading-relaxed text-background/60">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-
-                <h3 className="mb-3 text-sm font-medium text-foreground">
-                  {item.title}
-                </h3>
-
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {item.description}
-                </p>
               </div>
-            ) : null,
-          )}
+            )
+          })}
         </div>
       </div>
     </section>

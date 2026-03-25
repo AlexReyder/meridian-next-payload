@@ -1718,37 +1718,45 @@ export interface Page {
         blockType: 'introConcepts';
       }
     | {
-        eyebrow: string;
-        title: string;
-        description: string;
+        label: string;
+        items: {
+          anchorId: string;
+          shortLabel: string;
+          number: string;
+          id?: string | null;
+        }[];
         id?: string | null;
         blockName?: string | null;
         blockType: 'navConcepts';
       }
     | {
-        /**
-         * Уникальный anchor для навигации. Например: medflow, aurora, pulse
-         */
         anchorId: string;
-        navLabel: string;
-        eyebrow: string;
+        sectionNumber: string;
+        categoryLabel: string;
         title: string;
-        description: string;
-        category?: string | null;
-        year?: string | null;
-        services?:
-          | {
-              label: string;
-              id?: string | null;
-            }[]
-          | null;
-        results?:
-          | {
-              label: string;
-              id?: string | null;
-            }[]
-          | null;
-        visualCaption?: string | null;
+        intro: string;
+        image: string;
+        challengeLabel: string;
+        challenge: string;
+        structuredLabel: string;
+        structured: string;
+        deliveredLabel: string;
+        delivered: string;
+        suitableForLabel: string;
+        suitableFor: string;
+        captionLabel: string;
+        captionStudioLabel: string;
+        layout: 'imageLeft' | 'imageRight';
+        ctaLabel: string;
+        ctaPageKey:
+          | 'home'
+          | 'solutions'
+          | 'pricing'
+          | 'get-proposal'
+          | 'concepts'
+          | 'for-startups'
+          | 'for-partners'
+          | 'method';
         id?: string | null;
         blockName?: string | null;
         blockType: 'conceptSectionConcept';
@@ -1758,6 +1766,7 @@ export interface Page {
         title: string;
         description: string;
         items: {
+          icon: 'search' | 'layers' | 'monitor' | 'fileText';
           title: string;
           description: string;
           id?: string | null;
@@ -3277,9 +3286,15 @@ export interface PagesSelect<T extends boolean = true> {
         navConcepts?:
           | T
           | {
-              eyebrow?: T;
-              title?: T;
-              description?: T;
+              label?: T;
+              items?:
+                | T
+                | {
+                    anchorId?: T;
+                    shortLabel?: T;
+                    number?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
@@ -3287,25 +3302,24 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               anchorId?: T;
-              navLabel?: T;
-              eyebrow?: T;
+              sectionNumber?: T;
+              categoryLabel?: T;
               title?: T;
-              description?: T;
-              category?: T;
-              year?: T;
-              services?:
-                | T
-                | {
-                    label?: T;
-                    id?: T;
-                  };
-              results?:
-                | T
-                | {
-                    label?: T;
-                    id?: T;
-                  };
-              visualCaption?: T;
+              intro?: T;
+              image?: T;
+              challengeLabel?: T;
+              challenge?: T;
+              structuredLabel?: T;
+              structured?: T;
+              deliveredLabel?: T;
+              delivered?: T;
+              suitableForLabel?: T;
+              suitableFor?: T;
+              captionLabel?: T;
+              captionStudioLabel?: T;
+              layout?: T;
+              ctaLabel?: T;
+              ctaPageKey?: T;
               id?: T;
               blockName?: T;
             };
@@ -3318,6 +3332,7 @@ export interface PagesSelect<T extends boolean = true> {
               items?:
                 | T
                 | {
+                    icon?: T;
                     title?: T;
                     description?: T;
                     id?: T;

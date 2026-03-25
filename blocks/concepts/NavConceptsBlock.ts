@@ -4,27 +4,39 @@ export const NavConceptsBlock: Block = {
   slug: 'navConcepts',
   labels: {
     singular: 'Nav Concepts',
-    plural: 'Nav Concepts blocks',
+    plural: 'Nav Concepts',
   },
   fields: [
     {
-      name: 'eyebrow',
+      name: 'label',
       type: 'text',
+      localized: true,
       required: true,
-      defaultValue: 'Навигация',
+      defaultValue: 'Концепты:',
     },
     {
-      name: 'title',
-      type: 'text',
+      name: 'items',
+      type: 'array',
+      localized: true,
       required: true,
-      defaultValue: 'Выберите концепт',
-    },
-    {
-      name: 'description',
-      type: 'textarea',
-      required: true,
-      defaultValue:
-        'Навигация формируется автоматически из concept sections, которые добавлены на страницу.',
+      minRows: 1,
+      fields: [
+        {
+          name: 'anchorId',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'shortLabel',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'number',
+          type: 'text',
+          required: true,
+        },
+      ],
     },
   ],
 }

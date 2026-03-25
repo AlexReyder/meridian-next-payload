@@ -1,23 +1,25 @@
 import type { Block } from 'payload'
 
-import { PAGE_KEY_OPTIONS } from '../../lib/routes'
+import { PAGE_KEY_OPTIONS } from '@/lib/routes'
 
 export const CtaConceptsBlock: Block = {
   slug: 'ctaConcepts',
   labels: {
     singular: 'CTA Concepts',
-    plural: 'CTA Concepts blocks',
+    plural: 'CTA Concepts',
   },
   fields: [
     {
       name: 'title',
       type: 'textarea',
+      localized: true,
       required: true,
-      defaultValue: 'Нужен похожий уровень проработки для вашего проекта?',
+      defaultValue: 'Хотите такой же уровень проработки для своего проекта?',
     },
     {
       name: 'description',
       type: 'textarea',
+      localized: true,
       required: true,
     },
     {
@@ -26,13 +28,13 @@ export const CtaConceptsBlock: Block = {
         {
           name: 'primaryButtonLabel',
           type: 'text',
+          localized: true,
           required: true,
           defaultValue: 'Получить предложение',
         },
         {
           name: 'primaryPageKey',
           type: 'select',
-          dbName: 'cc_pri_pk',
           required: true,
           options: PAGE_KEY_OPTIONS,
           defaultValue: 'get-proposal',
@@ -45,13 +47,13 @@ export const CtaConceptsBlock: Block = {
         {
           name: 'secondaryButtonLabel',
           type: 'text',
+          localized: true,
           required: true,
           defaultValue: 'Посмотреть цены',
         },
         {
           name: 'secondaryPageKey',
           type: 'select',
-          dbName: 'cc_sec_pk',
           required: true,
           options: PAGE_KEY_OPTIONS,
           defaultValue: 'pricing',
@@ -61,6 +63,7 @@ export const CtaConceptsBlock: Block = {
     {
       name: 'footerNote',
       type: 'text',
+      localized: true,
       required: true,
     },
   ],

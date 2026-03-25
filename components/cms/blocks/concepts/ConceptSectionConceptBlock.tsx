@@ -1,199 +1,176 @@
-import { ArrowLeft, ArrowRight, Layers } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 
-import { isRTL, type Locale } from '@/lib/routes'
+import { getHrefForPageKey, isRTL, type Locale, type PageKey } from '@/lib/routes'
 import { cn } from '@/lib/utils'
-
-type LabelItem = {
-  label?: string | null
-}
 
 type ConceptSectionConceptBlockData = {
   anchorId?: string | null
-  navLabel?: string | null
-  eyebrow?: string | null
+  sectionNumber?: string | null
+  categoryLabel?: string | null
   title?: string | null
-  description?: string | null
-  category?: string | null
-  year?: string | null
-  services?: LabelItem[] | null
-  results?: LabelItem[] | null
-  visualCaption?: string | null
+  intro?: string | null
+  image?: string | null
+  challengeLabel?: string | null
+  challenge?: string | null
+  structuredLabel?: string | null
+  structured?: string | null
+  deliveredLabel?: string | null
+  delivered?: string | null
+  suitableForLabel?: string | null
+  suitableFor?: string | null
+  captionLabel?: string | null
+  captionStudioLabel?: string | null
+  layout?: 'imageLeft' | 'imageRight' | null
+  ctaLabel?: string | null
+  ctaPageKey?: PageKey | null
 }
 
 type Props = {
   block: ConceptSectionConceptBlockData
   locale: Locale
-  index: number
 }
 
-export function ConceptSectionConceptBlockComponent({
-  block,
-  locale,
-  index,
-}: Props) {
+export function ConceptSectionConceptBlockComponent({ block, locale }: Props) {
   const rtl = isRTL(locale)
-  const isArabic = locale === 'ar'
-
-  const sectionId = block.anchorId || `concept-${index + 1}`
+  const isImageLeft = block.layout === 'imageLeft'
 
   return (
     <section
-      id={sectionId}
+      id={block.anchorId || undefined}
       dir={rtl ? 'rtl' : 'ltr'}
-      className="border-b border-border/50 py-20 lg:py-28 scroll-mt-36"
+      className="scroll-mt-20 py-20 lg:py-32 even:bg-muted/20"
     >
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.05fr,0.95fr] lg:gap-16">
-          <div className={cn(rtl && 'lg:order-2 text-right')}>
-            <div
-              className={cn(
-                'mb-5 flex items-center gap-2',
-                rtl && 'flex-row-reverse justify-end',
-              )}
-            >
-              <span className="text-[10px] font-medium text-signature-cobalt">
-                {String(index + 1).padStart(2, '0')}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className={cn(isImageLeft ? 'lg:order-1' : 'lg:order-2')}>
+            <div className={cn('relative', rtl && 'rtl')}>
+              <div className={cn('absolute -top-2 z-10', rtl ? '-right-2' : '-left-2')}>
+                <div
+                  className={cn(
+                    'absolute top-0 h-[2px] w-6 bg-signature-cobalt',
+                    rtl ? 'right-0 rounded-l-full' : 'left-0 rounded-r-full',
+                  )}
+                />
+                <div
+                  className={cn(
+                    'absolute top-0 h-6 w-[2px] bg-signature-cobalt',
+                    rtl ? 'right-0 rounded-b-full' : 'left-0 rounded-b-full',
+                  )}
+                />
+                <div
+                  className={cn(
+                    'absolute top-[2px] h-[1.5px] w-3 rounded-full bg-signature-brass/70',
+                    rtl ? 'right-6' : 'left-6',
+                  )}
+                />
+              </div>
+
+              <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-border/50 bg-muted shadow-lg lg:aspect-[5/4]">
+                {block.image ? (
+                  <Image
+                    src={block.image}
+                    alt={block.title || 'Concept'}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                ) : null}
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+              </div>
+
+              <div className={cn('mt-4 flex items-center justify-between', rtl && 'flex-row-reverse')}>
+                <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                  {block.captionLabel} {block.sectionNumber}
+                </span>
+
+                <span className="text-[10px] text-muted-foreground">
+                  {block.captionStudioLabel}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className={cn(isImageLeft ? 'lg:order-2' : 'lg:order-1', rtl && 'text-right')}>
+            <div className={cn('mb-6 flex items-center gap-3', rtl && 'flex-row-reverse justify-end')}>
+              <span className="text-xl font-light text-signature-cobalt/40">
+                {block.sectionNumber}
               </span>
-              <div className="h-[1px] w-6 bg-signature-cobalt" />
-              <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                {block.eyebrow}
+
+              <span className="rounded-sm border border-signature-cobalt/25 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-signature-cobalt">
+                {block.categoryLabel}
               </span>
             </div>
 
-            <h2 className="mb-5 font-serif text-3xl font-light leading-tight text-foreground lg:text-4xl xl:text-5xl">
+            <h2 className="mb-6 font-serif text-2xl font-light leading-tight text-foreground lg:text-3xl xl:text-4xl">
               {block.title}
             </h2>
 
-            <p className="max-w-2xl text-base leading-relaxed text-foreground/80 lg:text-lg">
-              {block.description}
+            <p className="mb-10 text-base leading-relaxed text-foreground/80 lg:text-lg">
+              {block.intro}
             </p>
 
-            {(block.category || block.year) && (
-              <div
-                className={cn(
-                  'mt-8 flex flex-wrap gap-2',
-                  rtl && 'justify-end',
-                )}
-              >
-                {block.category ? (
-                  <span className="rounded-sm border border-border px-3 py-1 text-xs text-muted-foreground">
-                    {block.category}
-                  </span>
-                ) : null}
+            <div className="mb-10 space-y-6">
+              <div className="rounded-sm border border-border/50 bg-muted/40 p-5">
+                <div className="mb-2 text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                  {block.challengeLabel}
+                </div>
 
-                {block.year ? (
-                  <span className="rounded-sm border border-border px-3 py-1 text-xs text-muted-foreground">
-                    {block.year}
-                  </span>
-                ) : null}
+                <p className="text-sm leading-relaxed text-foreground/90">
+                  {block.challenge}
+                </p>
               </div>
-            )}
 
-            {block.services?.length ? 
-            (
-              <div className="mt-10">
-                <div
-                  className={cn(
-                    'mb-3 flex items-center gap-2',
-                    rtl && 'flex-row-reverse justify-end',
-                  )}
-                >
-                  <Layers className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                    {locale === 'ru'
-                      ? 'Services'
-                      : locale === 'ar'
-                        ? 'الخدمات'
-                        : 'Services'}
-                  </span>
-                </div>
-
-                <div
-                  className={cn(
-                    'flex flex-wrap gap-2',
-                    rtl && 'justify-end',
-                  )}
-                >
-                  {block.services.map((item, itemIndex) =>
-                    item?.label ? (
-                      <span
-                        key={`${item.label}-${itemIndex}`}
-                        className="rounded-sm bg-muted px-3 py-1.5 text-xs text-foreground/80"
-                      >
-                        {item.label}
-                      </span>
-                    ) : null,
-                  )}
-                </div>
-              </div>
-            ) : null}
-
-            {block.results?.length ? (
-              <div className="mt-10">
-                <div
-                  className={cn(
-                    'mb-3 flex items-center gap-2',
-                    rtl && 'flex-row-reverse justify-end',
-                  )}
-                >
-                  {rtl ? (
-                    <ArrowLeft className="h-4 w-4 text-muted-foreground" />
-                  ) : (
-                    <ArrowRight className="h-4 w-4 text-muted-foreground" />
-                  )}
-                  <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                    {locale === 'ru'
-                      ? 'Outputs'
-                      : locale === 'ar'
-                        ? 'المخرجات'
-                        : 'Outputs'}
-                  </span>
-                </div>
-
-                <div className="space-y-2">
-                  {block.results.map((item, itemIndex) =>
-                    item?.label ? (
-                      <div
-                        key={`${item.label}-${itemIndex}`}
-                        className={cn(
-                          'text-sm text-foreground/80',
-                          rtl && 'text-right',
-                        )}
-                      >
-                        {item.label}
-                      </div>
-                    ) : null
-                  )}
-                </div>
-              </div>
-            ) : null}
-          </div>
-
-          <div className={cn(rtl && 'lg:order-1')}>
-            <div className="relative overflow-hidden rounded-sm border border-border/60 bg-muted/40 aspect-[4/3]">
-              <div className="absolute inset-0 bg-gradient-to-br from-background/30 via-transparent to-transparent" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="mb-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                    {block.navLabel}
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-sm border border-border/50 bg-background p-5">
+                  <div className="mb-2 text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                    {block.structuredLabel}
                   </div>
-                  <div className="font-serif text-2xl font-light text-foreground/60">
-                    Concept Preview
+
+                  <p className="text-sm leading-relaxed text-foreground/80">
+                    {block.structured}
+                  </p>
+                </div>
+
+                <div className="rounded-sm border border-border/50 bg-background p-5">
+                  <div className="mb-2 text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                    {block.deliveredLabel}
                   </div>
+
+                  <p className="text-sm leading-relaxed text-foreground/80">
+                    {block.delivered}
+                  </p>
                 </div>
               </div>
             </div>
 
-            {block.visualCaption ? (
-              <p
-                className={cn(
-                  'mt-4 text-sm leading-relaxed text-muted-foreground',
-                  rtl && 'text-right',
-                )}
-              >
-                {block.visualCaption}
+            <div className={cn('mb-8 flex items-start gap-2', rtl && 'flex-row-reverse')}>
+              <span className="mt-0.5 text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                {block.suitableForLabel}
+              </span>
+
+              <p className="text-sm text-foreground/70">
+                {block.suitableFor}
               </p>
-            ) : null}
+            </div>
+
+            <Link
+              href={getHrefForPageKey(block.ctaPageKey ?? 'get-proposal', locale)}
+              className={cn(
+                'group inline-flex items-center gap-2 rounded-sm bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90',
+                rtl && 'flex-row-reverse',
+              )}
+            >
+              <span>{block.ctaLabel}</span>
+
+              {rtl ? (
+                <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+              ) : (
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              )}
+            </Link>
           </div>
         </div>
       </div>
