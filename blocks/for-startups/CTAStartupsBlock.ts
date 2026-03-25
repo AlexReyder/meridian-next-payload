@@ -1,23 +1,25 @@
 import type { Block } from 'payload'
 
-import { PAGE_KEY_OPTIONS } from '../../lib/routes'
+import { PAGE_KEY_OPTIONS } from '@/lib/routes'
 
 export const CTAStartupsBlock: Block = {
   slug: 'ctaStartups',
   labels: {
     singular: 'CTA Startups',
-    plural: 'CTA Startups blocks',
+    plural: 'CTA Startups',
   },
   fields: [
     {
       name: 'title',
       type: 'textarea',
+      localized: true,
       required: true,
-      defaultValue: 'Нужен понятный MVP, prototype или investor-ready product?',
+      defaultValue: 'Не уверены, с чего начать: с сайта, MVP или prototype?',
     },
     {
       name: 'description',
       type: 'textarea',
+      localized: true,
       required: true,
     },
     {
@@ -26,6 +28,7 @@ export const CTAStartupsBlock: Block = {
         {
           name: 'primaryButtonLabel',
           type: 'text',
+          localized: true,
           required: true,
           defaultValue: 'Получить предложение',
         },
@@ -44,6 +47,7 @@ export const CTAStartupsBlock: Block = {
         {
           name: 'secondaryButtonLabel',
           type: 'text',
+          localized: true,
           required: true,
           defaultValue: 'Посмотреть цены',
         },
@@ -59,6 +63,7 @@ export const CTAStartupsBlock: Block = {
     {
       name: 'footerNote',
       type: 'text',
+      localized: true,
       required: true,
     },
   ],

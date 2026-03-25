@@ -12,12 +12,14 @@ export const ArtifactsStartupsBlock: Block = {
       type: 'text',
       localized: true,
       required: true,
+      defaultValue: 'Результат',
     },
     {
       name: 'title',
-      type: 'text',
+      type: 'textarea',
       localized: true,
       required: true,
+      defaultValue: 'Что получает founder в результате',
     },
     {
       name: 'items',

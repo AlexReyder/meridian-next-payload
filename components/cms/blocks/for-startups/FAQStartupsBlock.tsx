@@ -1,11 +1,7 @@
 'use client'
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
+import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
 
 import { isRTL, type Locale } from '@/lib/routes'
 import { cn } from '@/lib/utils'
@@ -18,7 +14,6 @@ type FAQItem = {
 type FAQStartupsBlockData = {
   eyebrow?: string | null
   title?: string | null
-  description?: string | null
   items?: FAQItem[] | null
 }
 
@@ -29,64 +24,90 @@ type Props = {
 
 export function FAQStartupsBlockComponent({ block, locale }: Props) {
   const rtl = isRTL(locale)
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  if (!block.items?.length) return null
 
   return (
-    <section dir={rtl ? 'rtl' : 'ltr'} className="border-t border-border/40 py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className={cn('lg:col-span-4', rtl && 'text-right')}>
-            <div className={cn('mb-6 flex items-center gap-3', rtl && 'flex-row-reverse justify-end')}>
-              <span className="h-px w-8 bg-accent" />
-              <span
-                className={cn(
-                  'text-[11px] text-muted-foreground',
-                  rtl ? 'tracking-[0.18em]' : 'uppercase tracking-[0.2em]',
-                )}
-              >
+    <section dir={rtl ? 'rtl' : 'ltr'} className="bg-secondary/30 py-20 lg:py-28">
+      <div className="mx-auto max-w-3xl px-6 lg:px-8">
+        <div className={cn('mb-6 flex items-center gap-3', rtl && 'flex-row-reverse justify-end')}>
+          {rtl ? (
+            <>
+              <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
                 {block.eyebrow}
               </span>
-            </div>
+              <span className="h-px w-8 bg-accent" />
+            </>
+          ) : (
+            <>
+              <span className="h-px w-8 bg-accent" />
+              <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                {block.eyebrow}
+              </span>
+            </>
+          )}
+        </div>
 
-            <h2 className="font-serif text-3xl font-light leading-tight text-foreground sm:text-4xl">
-              {block.title}
-            </h2>
+        <h2
+          className={cn(
+            'mb-12 font-serif text-3xl font-light leading-tight text-foreground lg:text-4xl',
+            rtl && 'text-right',
+          )}
+        >
+          {block.title}
+        </h2>
 
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground lg:text-lg">
-              {block.description}
-            </p>
-          </div>
-
-          <div className="lg:col-span-8">
-            <Accordion type="single" collapsible className="w-full">
-              {block.items?.map((item, index) =>
-                item?.question && item?.answer ? (
-                  <AccordionItem
-                    key={`${item.question}-${index}`}
-                    value={`item-${index}`}
-                    className="border-b border-border/40"
-                  >
-                    <AccordionTrigger
+        <div className="space-y-4">
+          {block.items.map((item, index) => (
+            <div
+              key={`${item.question}-${index}`}
+              className="overflow-hidden rounded-sm border border-border/60 bg-card"
+            >
+              <button
+                type="button"
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className={cn(
+                  'flex w-full items-center justify-between p-5 transition-colors hover:bg-secondary/30 lg:p-6',
+                  rtl ? 'text-right' : 'text-left',
+                )}
+              >
+                {rtl ? (
+                  <>
+                    <ChevronDown
                       className={cn(
-                        'py-5 text-base font-medium text-foreground hover:no-underline',
-                        rtl ? 'text-right' : 'text-left',
+                        'h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200',
+                        openIndex === index && 'rotate-180',
                       )}
-                    >
+                    />
+                    <span className="pr-4 font-serif text-base font-light text-foreground lg:text-lg">
                       {item.question}
-                    </AccordionTrigger>
-
-                    <AccordionContent
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="pr-4 font-serif text-base font-light text-foreground lg:text-lg">
+                      {item.question}
+                    </span>
+                    <ChevronDown
                       className={cn(
-                        'pb-5 text-sm leading-relaxed text-muted-foreground lg:text-[15px]',
-                        rtl && 'text-right',
+                        'h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200',
+                        openIndex === index && 'rotate-180',
                       )}
-                    >
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ) : null,
+                    />
+                  </>
+                )}
+              </button>
+
+              {openIndex === index && (
+                <div className="px-5 pb-5 lg:px-6 lg:pb-6">
+                  <p className={cn('text-sm leading-relaxed text-muted-foreground', rtl && 'text-right')}>
+                    {item.answer}
+                  </p>
+                </div>
               )}
-            </Accordion>
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

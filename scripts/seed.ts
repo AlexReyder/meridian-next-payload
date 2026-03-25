@@ -46,7 +46,6 @@ const ARTIFACTS_STARTUPS_SEED: Record<Locale, BlockData> = {
       },
     ],
   },
-
   en: {
     blockType: 'artifactsStartups',
     eyebrow: 'Result',
@@ -84,7 +83,6 @@ const ARTIFACTS_STARTUPS_SEED: Record<Locale, BlockData> = {
       },
     ],
   },
-
   ar: {
     blockType: 'artifactsStartups',
     eyebrow: 'النتيجة',
@@ -158,7 +156,6 @@ const PROCESS_STARTUPS_SEED: Record<Locale, BlockData> = {
       },
     ],
   },
-
   en: {
     blockType: 'processStartups',
     eyebrow: 'Process',
@@ -195,7 +192,6 @@ const PROCESS_STARTUPS_SEED: Record<Locale, BlockData> = {
       },
     ],
   },
-
   ar: {
     blockType: 'processStartups',
     eyebrow: 'العملية',
@@ -234,6 +230,189 @@ const PROCESS_STARTUPS_SEED: Record<Locale, BlockData> = {
   },
 }
 
+const CTA_STARTUPS_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'ctaStartups',
+    title: 'Не уверены, с чего начать: с сайта, MVP или prototype?',
+    description:
+      'Опишите задачу — мы предложим подходящий формат работы, ориентир по срокам и следующий шаг.',
+    primaryButtonLabel: 'Получить предложение',
+    primaryPageKey: 'get-proposal',
+    secondaryButtonLabel: 'Посмотреть цены',
+    secondaryPageKey: 'pricing',
+    footerNote:
+      'Подходит для startup-сайтов, web products, mobile apps и investor-ready materials.',
+  },
+  en: {
+    blockType: 'ctaStartups',
+    title: 'Not sure where to start — website, MVP, or prototype?',
+    description:
+      'Tell us what you are building, and we will recommend the right format, a timeline range, and the most practical next step.',
+    primaryButtonLabel: 'Get Proposal',
+    primaryPageKey: 'get-proposal',
+    secondaryButtonLabel: 'View Pricing',
+    secondaryPageKey: 'pricing',
+    footerNote:
+      'Suitable for startup websites, mobile apps, SaaS interfaces, MVP structure, and investor-ready presentation materials.',
+  },
+  ar: {
+    blockType: 'ctaStartups',
+    title: 'لست متأكداً من أين تبدأ — من الموقع أم الـ MVP أم النموذج الأولي؟',
+    description:
+      'شاركنا بما تعمل عليه، وسنقترح عليك الصيغة الأنسب للعمل، والنطاق الزمني المتوقع، والخطوة التالية الأكثر عملية.',
+    primaryButtonLabel: 'اطلب عرضاً',
+    primaryPageKey: 'get-proposal',
+    secondaryButtonLabel: 'اطلع على الأسعار',
+    secondaryPageKey: 'pricing',
+    footerNote:
+      'مناسب لمواقع الشركات الناشئة، وتطبيقات الجوال، وواجهات SaaS، وهيكلة MVP، ومواد العرض للمستثمرين.',
+  },
+}
+
+const FAQ_STARTUPS_SEED: Record<Locale, BlockData> = {
+  ru: {
+    blockType: 'faqStartups',
+    eyebrow: 'FAQ',
+    title: 'Частые вопросы',
+    items: [
+      {
+        question: 'Можно ли прийти только с идеей?',
+        answer:
+          'Да. Мы часто работаем с проектами на стадии идеи или rough concept. Помогаем превратить её в понятную структуру продукта, сценарии и первые интерфейсы.',
+      },
+      {
+        question: 'Подходит ли это для MVP?',
+        answer:
+          'Да, это один из самых частых запросов. Помогаем сфокусировать MVP, определить приоритеты, убрать лишнее и собрать минимальный, но сильный набор интерфейсов.',
+      },
+      {
+        question: 'Можно ли сделать сначала сайт, а потом продукт?',
+        answer:
+          'Да. Многие стартапы начинают с сайта для валидации или fundraising, а позже возвращаются за продуктом. Мы готовы к обоим сценариям.',
+      },
+      {
+        question: 'Работаете ли вы с mobile apps?',
+        answer:
+          'Да. Помогаем с дизайном мобильных приложений для iOS и Android — от структуры и user flows до готового UI и материалов для разработки.',
+      },
+      {
+        question: 'Подходит ли это для investor presentation?',
+        answer:
+          'Да. Собираем investor-ready prototype и визуальные материалы, которые помогают показать продукт убедительно и понятно.',
+      },
+      {
+        question: 'Что делать, если у нас уже есть ранний дизайн?',
+        answer:
+          'Работаем с redesign существующих продуктов. Анализируем текущее состояние, определяем точки улучшения и предлагаем решение.',
+      },
+      {
+        question: 'Вы помогаете только с визуалом или со структурой тоже?',
+        answer:
+          'Мы работаем со структурой продукта: сценарии, логика экранов, приоритеты, user flows. Визуальный дизайн — важная, но не единственная часть работы.',
+      },
+      {
+        question: 'Как понять, какой формат работы нам нужен?',
+        answer:
+          'Опишите задачу через форму на сайте — мы предложим подходящий формат, ориентир по срокам и следующий шаг. Это бесплатно и ни к чему не обязывает.',
+      },
+    ],
+  },
+  en: {
+    blockType: 'faqStartups',
+    eyebrow: 'FAQ',
+    title: 'Common Questions',
+    items: [
+      {
+        question: 'Can we come to you with just an idea?',
+        answer:
+          'Yes. We often work with projects at the idea or rough concept stage. We help turn it into a clear product structure, scenarios, and initial interfaces.',
+      },
+      {
+        question: 'Is this relevant for MVP?',
+        answer:
+          'Yes, this is one of the most common requests. We help focus the MVP, define priorities, cut the excess, and build a minimal but strong set of interfaces.',
+      },
+      {
+        question: 'Can you help with both structure and interface design?',
+        answer:
+          'Yes. We work on product structure: scenarios, screen logic, priorities, user flows. Visual design is an important but not the only part of our work.',
+      },
+      {
+        question: 'Can this be used for investor presentations?',
+        answer:
+          'Yes. We build investor-ready prototypes and visual materials that help present the product clearly and convincingly.',
+      },
+      {
+        question: 'Do you work on mobile apps too?',
+        answer:
+          'Yes. We help design mobile applications for iOS and Android — from structure and user flows to final UI and materials for development.',
+      },
+      {
+        question: 'Can you redesign an early version of the product?',
+        answer:
+          'Yes. We work on redesigns of existing products. We analyze the current state, identify improvement points, and propose a solution.',
+      },
+      {
+        question: 'What if we already have some materials?',
+        answer:
+          'We can work with what you have. If you already have research, wireframes, or early designs, we incorporate them into the process and build from there.',
+      },
+      {
+        question: 'How do we know which format fits our stage?',
+        answer:
+          'Describe your task through the form on the site — we will recommend the right format, a timeline estimate, and the next step. It is free and non-binding.',
+      },
+    ],
+  },
+  ar: {
+    blockType: 'faqStartups',
+    eyebrow: 'الأسئلة الشائعة',
+    title: 'أسئلة شائعة',
+    items: [
+      {
+        question: 'هل يمكن أن نأتي بفكرة فقط؟',
+        answer:
+          'نعم. كثيراً ما نعمل على مشاريع في مرحلة الفكرة أو المفهوم الأولي. نساعد في تحويلها إلى هيكل منتج واضح وسيناريوهات وواجهات أولية.',
+      },
+      {
+        question: 'هل هذا مناسب لـ MVP؟',
+        answer:
+          'نعم، هذا من أكثر الطلبات شيوعاً. نساعد في تركيز الـ MVP وتحديد الأولويات وإزالة الزائد وبناء مجموعة واجهات قوية لكن مصغرة.',
+      },
+      {
+        question: 'هل تساعدون في الهيكل والمنطق إلى جانب التصميم؟',
+        answer:
+          'نعم. نعمل على هيكل المنتج: السيناريوهات ومنطق الشاشات والأولويات ومسارات المستخدم. التصميم البصري جزء مهم لكنه ليس الجزء الوحيد من عملنا.',
+      },
+      {
+        question: 'هل يمكن استخدام ذلك في العروض على المستثمرين؟',
+        answer:
+          'نعم. نبني نماذج أولية ومواد بصرية جاهزة للمستثمرين تساعد على عرض المنتج بوضوح وإقناع.',
+      },
+      {
+        question: 'هل تعملون على تطبيقات الجوال أيضاً؟',
+        answer:
+          'نعم. نساعد في تصميم تطبيقات الجوال لـ iOS و Android — من الهيكلة ومسارات المستخدم إلى واجهة المستخدم النهائية ومواد التسليم للتطوير.',
+      },
+      {
+        question: 'هل يمكنكم إعادة تصميم نسخة مبكرة من المنتج؟',
+        answer:
+          'نعم. نعمل على إعادة تصميم المنتجات الموجودة. نحلل الوضع الحالي ونحدد نقاط التحسين ونقترح حلاً.',
+      },
+      {
+        question: 'ماذا لو كانت لدينا بعض المواد بالفعل؟',
+        answer:
+          'يمكننا العمل مع ما لديكم. إذا كان لديكم أبحاث أو wireframes أو تصاميم أولية، ندمجها في العملية ونبني عليها.',
+      },
+      {
+        question: 'كيف نعرف الصيغة الأنسب لمرحلتنا؟',
+        answer:
+          'صِفوا مهمتكم من خلال النموذج على الموقع — سنقترح الصيغة المناسبة وتقديراً للجدول الزمني والخطوة التالية. هذا مجاني وغير ملزم.',
+      },
+    ],
+  },
+}
+
 function upsertBlock(layout: BlockData[], block: BlockData): BlockData[] {
   const existingIndex = layout.findIndex((item) => item?.blockType === block?.blockType)
 
@@ -248,44 +427,6 @@ function upsertBlock(layout: BlockData[], block: BlockData): BlockData[] {
   }
 
   return nextLayout
-}
-
-function findBlock(layout: BlockData[], blockType: string): BlockData | undefined {
-  return layout.find((block) => block?.blockType === blockType)
-}
-
-function syncRowIds<T extends { id?: string }>(
-  nextRows: T[] | undefined,
-  savedRows: Array<{ id?: string }> | undefined,
-): T[] {
-  if (!nextRows?.length) return []
-
-  return nextRows.map((row, index) => ({
-    ...row,
-    ...(savedRows?.[index]?.id ? { id: savedRows[index].id } : {}),
-  }))
-}
-
-function syncArtifactsBlock(nextBlock: BlockData, savedBlock: BlockData | undefined): BlockData {
-  return {
-    ...nextBlock,
-    ...(savedBlock?.id ? { id: savedBlock.id } : {}),
-    items: syncRowIds(
-      Array.isArray(nextBlock.items) ? nextBlock.items : [],
-      Array.isArray(savedBlock?.items) ? savedBlock.items : [],
-    ),
-  }
-}
-
-function syncProcessBlock(nextBlock: BlockData, savedBlock: BlockData | undefined): BlockData {
-  return {
-    ...nextBlock,
-    ...(savedBlock?.id ? { id: savedBlock.id } : {}),
-    steps: syncRowIds(
-      Array.isArray(nextBlock.steps) ? nextBlock.steps : [],
-      Array.isArray(savedBlock?.steps) ? savedBlock.steps : [],
-    ),
-  }
 }
 
 async function getStartupsPageId(
@@ -331,12 +472,7 @@ async function seedStartupsBlocks(
   payload: Awaited<ReturnType<typeof getPayload>>,
   pageId: string | number,
 ) {
-  // RU: replace both blocks in one update
   const ruLayout = await getPageLayoutForLocale(payload, pageId, 'ru')
-  const ruNextLayout = upsertBlock(
-    upsertBlock(ruLayout, ARTIFACTS_STARTUPS_SEED.ru),
-    PROCESS_STARTUPS_SEED.ru,
-  )
 
   await payload.update({
     collection: 'pages',
@@ -344,29 +480,14 @@ async function seedStartupsBlocks(
     locale: 'ru',
     depth: 0,
     data: {
-      layout: ruNextLayout,
+      layout: upsertBlock(
+        upsertBlock(ruLayout, CTA_STARTUPS_SEED.ru),
+        FAQ_STARTUPS_SEED.ru,
+      ),
     },
   })
 
-  // Read created RU block ids
-  const savedRuLayout = await getPageLayoutForLocale(payload, pageId, 'ru')
-  const savedRuArtifacts = findBlock(savedRuLayout, 'artifactsStartups')
-  const savedRuProcess = findBlock(savedRuLayout, 'processStartups')
-
-  if (!savedRuArtifacts) {
-    throw new Error('artifactsStartups block not found after RU seed')
-  }
-
-  if (!savedRuProcess) {
-    throw new Error('processStartups block not found after RU seed')
-  }
-
-  // EN: replace both blocks in one update
   const enLayout = await getPageLayoutForLocale(payload, pageId, 'en')
-  const enNextLayout = upsertBlock(
-    upsertBlock(enLayout, syncArtifactsBlock(ARTIFACTS_STARTUPS_SEED.en, savedRuArtifacts)),
-    syncProcessBlock(PROCESS_STARTUPS_SEED.en, savedRuProcess),
-  )
 
   await payload.update({
     collection: 'pages',
@@ -374,16 +495,14 @@ async function seedStartupsBlocks(
     locale: 'en',
     depth: 0,
     data: {
-      layout: enNextLayout,
+      layout: upsertBlock(
+        upsertBlock(enLayout, CTA_STARTUPS_SEED.en),
+        FAQ_STARTUPS_SEED.en,
+      ),
     },
   })
 
-  // AR: replace both blocks in one update
   const arLayout = await getPageLayoutForLocale(payload, pageId, 'ar')
-  const arNextLayout = upsertBlock(
-    upsertBlock(arLayout, syncArtifactsBlock(ARTIFACTS_STARTUPS_SEED.ar, savedRuArtifacts)),
-    syncProcessBlock(PROCESS_STARTUPS_SEED.ar, savedRuProcess),
-  )
 
   await payload.update({
     collection: 'pages',
@@ -391,16 +510,18 @@ async function seedStartupsBlocks(
     locale: 'ar',
     depth: 0,
     data: {
-      layout: arNextLayout,
+      layout: upsertBlock(
+        upsertBlock(arLayout, CTA_STARTUPS_SEED.ar),
+        FAQ_STARTUPS_SEED.ar,
+      ),
     },
   })
 }
-
 async function run() {
   const payload = await getPayload({ config })
-  const startupsPageId = await getStartupsPageId(payload)
 
-  await seedStartupsBlocks(payload, startupsPageId)
+ const startupsPageId = await getStartupsPageId(payload)
+await seedStartupsBlocks(payload, startupsPageId)
 
   console.log('ArtifactsStartups and ProcessStartups seeded successfully')
 }
@@ -411,3 +532,4 @@ run()
     console.error(error)
     process.exit(1)
   })
+

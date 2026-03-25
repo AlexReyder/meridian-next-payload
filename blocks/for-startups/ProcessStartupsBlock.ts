@@ -12,12 +12,14 @@ export const ProcessStartupsBlock: Block = {
       type: 'text',
       localized: true,
       required: true,
+      defaultValue: 'Процесс',
     },
     {
       name: 'title',
-      type: 'text',
+      type: 'textarea',
       localized: true,
       required: true,
+      defaultValue: 'Как это обычно происходит',
     },
     {
       name: 'steps',

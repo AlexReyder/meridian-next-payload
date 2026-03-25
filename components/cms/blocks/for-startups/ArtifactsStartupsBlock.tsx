@@ -8,7 +8,8 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 
-type Lang = 'ru' | 'en' | 'ar'
+import { isRTL, type Locale } from '@/lib/routes'
+import { cn } from '@/lib/utils'
 
 type ArtifactItem = {
   icon?: 'fileText' | 'gitBranch' | 'layout' | 'play' | 'palette' | 'package' | null
@@ -16,11 +17,15 @@ type ArtifactItem = {
   support?: string | null
 }
 
-type Props = {
+type ArtifactsStartupsBlockData = {
   eyebrow?: string | null
   title?: string | null
   items?: ArtifactItem[] | null
-  lang?: Lang
+}
+
+type Props = {
+  block: ArtifactsStartupsBlockData
+  locale: Locale
 }
 
 const iconMap: Record<string, LucideIcon> = {
@@ -32,24 +37,20 @@ const iconMap: Record<string, LucideIcon> = {
   package: Package,
 }
 
-export function ArtifactsStartups({
-  eyebrow,
-  title,
-  items,
-  lang = 'ru',
-}: Props) {
-  const isRTL = lang === 'ar'
+export function ArtifactsStartupsBlockComponent({ block, locale }: Props) {
+  const rtl = isRTL(locale)
+  const isArabic = locale === 'ar'
 
-  if (!items?.length) return null
+  if (!block.items?.length) return null
 
   return (
-    <section dir={isRTL ? 'rtl' : 'ltr'} className="py-20 lg:py-28">
+    <section dir={rtl ? 'rtl' : 'ltr'} className="py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className={`mb-6 flex items-center gap-3 ${isRTL ? 'justify-start' : ''}`}>
-          {isRTL ? (
+        <div className={cn('mb-6 flex items-center gap-3', rtl && 'flex-row-reverse justify-end')}>
+          {rtl ? (
             <>
               <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                {eyebrow}
+                {block.eyebrow}
               </span>
               <span className="h-px w-8 bg-accent" />
             </>
@@ -57,43 +58,47 @@ export function ArtifactsStartups({
             <>
               <span className="h-px w-8 bg-accent" />
               <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                {eyebrow}
+                {block.eyebrow}
               </span>
             </>
           )}
         </div>
 
-        <h2 className="mb-12 max-w-2xl font-serif text-3xl font-light leading-tight text-foreground lg:text-4xl">
-          {title}
+        <h2
+          className={cn(
+            'mb-12 max-w-2xl font-serif text-3xl font-light leading-tight text-foreground lg:text-4xl',
+            rtl && 'text-right',
+          )}
+        >
+          {block.title}
         </h2>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((item, index) => {
+          {block.items.map((item, index) => {
             const Icon = iconMap[item.icon || 'fileText'] || FileText
 
             return (
               <div
-                key={`${item.title || 'artifact'}-${index}`}
+                key={`${item.title}-${index}`}
                 className="group rounded-sm border border-border/60 bg-card p-6 transition-colors hover:border-accent/40 lg:p-8"
               >
-                <div className="relative mb-6 aspect-[16/10] w-full overflow-hidden rounded-sm bg-secondary/50">
+                <div className="relative mb-6 flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-sm bg-secondary/50">
                   <div
-                    className={`absolute inset-0 ${
-                      isRTL
+                    className={cn(
+                      'absolute inset-0',
+                      isArabic
                         ? 'bg-gradient-to-bl from-accent/5 to-transparent'
-                        : 'bg-gradient-to-br from-accent/5 to-transparent'
-                    }`}
+                        : 'bg-gradient-to-br from-accent/5 to-transparent',
+                    )}
                   />
-                  <div className="flex h-full items-center justify-center">
-                    <Icon className="h-8 w-8 text-foreground/40" />
-                  </div>
+                  <Icon className="h-8 w-8 text-foreground/40" />
                 </div>
 
-                <h3 className="mb-2 font-serif text-lg font-light text-foreground">
+                <h3 className={cn('mb-2 font-serif text-lg font-light text-foreground', rtl && 'text-right')}>
                   {item.title}
                 </h3>
 
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className={cn('text-sm leading-relaxed text-muted-foreground', rtl && 'text-right')}>
                   {item.support}
                 </p>
               </div>

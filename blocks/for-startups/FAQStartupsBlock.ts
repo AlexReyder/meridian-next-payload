@@ -4,25 +4,22 @@ export const FAQStartupsBlock: Block = {
   slug: 'faqStartups',
   labels: {
     singular: 'FAQ Startups',
-    plural: 'FAQ Startups blocks',
+    plural: 'FAQ Startups',
   },
   fields: [
     {
       name: 'eyebrow',
       type: 'text',
+      localized: true,
       required: true,
       defaultValue: 'FAQ',
     },
     {
       name: 'title',
       type: 'textarea',
+      localized: true,
       required: true,
-      defaultValue: 'Частые вопросы для стартапов',
-    },
-    {
-      name: 'description',
-      type: 'textarea',
-      required: true,
+      defaultValue: 'Частые вопросы',
     },
     {
       name: 'items',
@@ -33,11 +30,13 @@ export const FAQStartupsBlock: Block = {
         {
           name: 'question',
           type: 'text',
+          localized: true,
           required: true,
         },
         {
           name: 'answer',
           type: 'textarea',
+          localized: true,
           required: true,
         },
       ],

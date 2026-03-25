@@ -953,7 +953,6 @@ export interface Page {
     | {
         eyebrow: string;
         title: string;
-        description: string;
         items: {
           question: string;
           answer: string;
@@ -2603,7 +2602,6 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               eyebrow?: T;
               title?: T;
-              description?: T;
               items?:
                 | T
                 | {
